@@ -1,0 +1,56 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.vw_AccountCodes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model=> model.AccountCodeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Program)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountDescription)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountCodeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Program)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AccountCodeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AccountCodeID })
+        </td>
+    </tr>
+}
+
+</table>

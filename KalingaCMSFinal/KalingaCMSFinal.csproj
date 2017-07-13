@@ -1,0 +1,1499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BBA52353-297D-40F9-9106-3D50366B1A66}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KalingaCMSFinal</RootNamespace>
+    <AssemblyName>KalingaCMSFinal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="FoolproofValidation, Version=0.9.5851.39121, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Foolproof.0.9.4518\lib\net45\FoolproofValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.3.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.3.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.3.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.3.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.3.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.3.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.1.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
+    <Compile Include="Controllers\CoffeeAreaAndProductionController.cs" />
+    <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
+    <Compile Include="Controllers\LiteracyReportChartsController.cs" />
+    <Compile Include="Controllers\NewProjectsController.cs" />
+    <Compile Include="Controllers\OfficialCodeController.cs" />
+    <Compile Include="Controllers\PopulationReportChartsController.cs" />
+    <Compile Include="Controllers\PriorityClassificationController.cs" />
+    <Compile Include="Controllers\SectorTypeController.cs" />
+    <Compile Include="Controllers\SourceOfFundController.cs" />
+    <Compile Include="Controllers\StrategicPriorityAreaController.cs" />
+    <Compile Include="Controllers\StrategicPriorityController.cs" />
+    <Compile Include="Controllers\BDIPperMunicipalityController.cs" />
+    <Compile Include="Controllers\ClassOfWorkerController.cs" />
+    <Compile Include="Controllers\CornAreaProductionsAndYieldController.cs" />
+    <Compile Include="Controllers\EstablishmentByIndustryController.cs" />
+    <Compile Include="Controllers\EthnicityController.cs" />
+    <Compile Include="Controllers\ForestCoverbyVegetationController.cs" />
+    <Compile Include="Controllers\GainfulWorkersByClassOfWorkerController.cs" />
+    <Compile Include="Controllers\GainfulWorkersByMajorBusinessOrIndustryController.cs" />
+    <Compile Include="Controllers\GainfulWorkersByMajorOCcupationGroupController.cs" />
+    <Compile Include="Controllers\GrowthRateController.cs" />
+    <Compile Include="Controllers\HighValueCropController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImplementingDepartmentController.cs" />
+    <Compile Include="Controllers\HouseholdHighestEducationAttainedController.cs" />
+    <Compile Include="Controllers\HouseHoldMigrationController.cs" />
+    <Compile Include="Controllers\HouseHoldPopulation10YearsAndAboveController.cs" />
+    <Compile Include="Controllers\IndustryClassificationController.cs" />
+    <Compile Include="Controllers\LandCoverClassificationController.cs" />
+    <Compile Include="Controllers\LanguageSpokenController.cs" />
+    <Compile Include="Controllers\LivestockAndPoultryController.cs" />
+    <Compile Include="Controllers\LivestockPoultryInventoryController.cs" />
+    <Compile Include="Controllers\MajorBusinessIndustryGroupController.cs" />
+    <Compile Include="Controllers\MajorOccupationGroupController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectCategoryController.cs" />
+    <Compile Include="Controllers\ProjectStatusController.cs" />
+    <Compile Include="Controllers\OtherHighValueCropsAreaAndProductionController.cs" />
+    <Compile Include="Controllers\PalayProductionAreaHarvestedandAverageYieldController.cs" />
+    <Compile Include="Controllers\PopulationByCitizenshipAndSexController.cs" />
+    <Compile Include="Controllers\PopulationByEthnicityController.cs" />
+    <Compile Include="Controllers\PopulationByLanguageSpokenController.cs" />
+    <Compile Include="Controllers\PopulationByReligiousAffiliationController.cs" />
+    <Compile Include="Controllers\PopulationDensityController.cs" />
+    <Compile Include="Controllers\ProjectProfileController.cs" />
+    <Compile Include="Controllers\StatusOfIrrigationSystemController.cs" />
+    <Compile Include="Controllers\TotalPopulationAndDistributionController.cs" />
+    <Compile Include="Controllers\WorkerReportChartsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\appModule.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\appUser.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\appUserAccess.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChartsClass.cs" />
+    <Compile Include="Models\CoffeeProduction.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CornProduction.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AcountCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_Barangay.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_BDIPMunicipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_ClimateChangeAdaptation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_ClimateChangeMitigation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_ImplementingDepartment.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_Municipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_OfficialCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dropdown_PriorityArea.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_ProgramCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_SectoralCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_SourceofFund.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_SupervisorList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_TypologyCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpAttendanceMain.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpCertificate.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpEducationHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpFamilyBackGround.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpMasterProfile.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpTraining.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpVolunteer.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpWorkHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_DTRCapture.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_LeaveApplication.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_LeaveApplicationDetail.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_LeaveBalance.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_LeaveBalanceAudit.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_LeaveCredit.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_OffsetApplication.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_OffsetHoursBalance.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emp_OvertimeApplication.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstablishmentByIndustry.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ForestCoverVegetation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IrrigationSystem.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KalingaPPDOEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KalingaPPDOEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KalingaPPDOEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KalingaPPDOEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KalingaPPDOEntitiesMetadatas.cs" />
+    <Compile Include="Models\LivestockPoultryInventory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OtherCropsProduction.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PalayProduction.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationByCitizenshipGender.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationByEthnicity.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationByLanguageSpoken.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationByReligiousAffiliation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationDensity.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationDistribution.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationGrowthRate.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationHighestEducationAttained.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationLiteracy10YrsAbove.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationMigrationRate.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectProfile.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AccountCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AgeGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AppointmentStatus.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AreabySector.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Barangay.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_BDIPperMunicipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_BloodType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_CivilStatus.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ClassWorker.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ClimateChangeTypology.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_CoffeeType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_CornType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_CropCommodity.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_DayType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Degree.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Department.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_DepartmentUnit.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_EducationLevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Ethnicity.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Gender.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_HighestEducationAttained.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_HighValueCrop.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Holiday.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ImplementingDepartment.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_IndustryClassification.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_InvolvementType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LandCoverClassification.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LanguageSpoken.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LeavePolicy.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LeaveType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Literacy.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LivestockPoultry.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_MajorBusinessIndustryGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_MajorOccupationGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Method.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Municipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_NamePrefix.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_NameSuffix.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_OfficialCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Origins.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Position.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ProjectCategory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ProjectClassificationbyProgram.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ProjectClassificationbySector.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_ProjectStatus.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Province.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Regions.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Relationship.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Religion.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_SalaryGrade.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_SalaryGradeIncrement.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_Sector.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_SourceOfFund.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_StrategicPriority.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_StrategicPriorityArea.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_StrategicPriorityClassification.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_StrategicPriorityGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_HouseholdHighestEducationAttained.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_PopulationDistributionByYearByMunicipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AccountCodes.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_BarangayList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_BDIPperMunicipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ByMajorBusinessOrIndustry.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ByMajorOccupationGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ClassOfWorker.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ClimateChangeTypology.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_CornAreaProductionYield.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_DepartmentUnitsList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EducationHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmployeeList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmployeeSalaryHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmploymentRecord.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EstablishmentByIndustryByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ExamTaken.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_FamilyBackground.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ForestCoverByVegetationByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_GrowthRateByMunicipalityByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_HolidayList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_HouseholdHighestEducationAttained.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_HouseholdMigrationByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_HouseholdPopulation10YearsAbove.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_HouseholdPopulationByCitizenshipAndSex.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_LivestockAndPoultryInventoryByMunicipalityByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_MunicipalityList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_OtherHighValueCropsAreaAndProduction.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_PalayProductionIrrigatedRainfedUpland.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_PopulationByEthnicity.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_PopulationByLanguageSpokenByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_PopulationDensityByMunicipalityByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ProjectAccountCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ProjectProfile.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ProvinceList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_RegionList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_ReligiousAffiliation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_StatusOfIrrigationSystemByMunicipalityByYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_StrategicPriorityArea.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_TrainingsAttended.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_VolunteerList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkersByClass.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkersByMajorIndustry.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkersByMajorOCcupation.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AccountCodeController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.js" />
+    <Content Include="Client Scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.js" />
+    <Content Include="Client Scripts\MvcFoolproofValidation.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowGroup.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.foundation.css" />
+    <Content Include="Content\DataTables\css\rowGroup.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowGroup.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.semanticui.css" />
+    <Content Include="Content\DataTables\css\rowGroup.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\Images\KalingaLogo.png" />
+    <Content Include="Content\Images\UserIcon.jpg" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Gentel\css\animate.css\animate.css" />
+    <Content Include="Gentel\css\animate.css\animate.min.css" />
+    <Content Include="Gentel\css\animate.css\gulpfile.js" />
+    <Content Include="Gentel\css\custom.css" />
+    <Content Include="Gentel\css\custom.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Gentel\css\font-awesome\.gitignore" />
+    <Content Include="Gentel\css\font-awesome\css\font-awesome.css" />
+    <Content Include="Gentel\css\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Gentel\css\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Gentel\css\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Gentel\css\nprogress\index.html" />
+    <Content Include="Gentel\css\nprogress\nprogress.css" />
+    <Content Include="Gentel\css\nprogress\nprogress.js" />
+    <Content Include="Gentel\css\nprogress\support\extras.css" />
+    <Content Include="Gentel\css\nprogress\support\style.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Gentel\js\custom.js" />
+    <Content Include="Gentel\js\custom.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\DataTables\css\semanticui.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="Dockerfile" />
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Gentel\css\animate.css\.bower.json" />
+    <Content Include="Gentel\css\animate.css\animate-config.json" />
+    <Content Include="Gentel\css\animate.css\bower.json" />
+    <Content Include="Gentel\css\animate.css\package.json" />
+    <Content Include="Gentel\css\font-awesome\.bower.json" />
+    <Content Include="Gentel\css\font-awesome\.npmignore" />
+    <Content Include="Gentel\css\font-awesome\bower.json" />
+    <Content Include="Gentel\css\font-awesome\css\font-awesome.css.map" />
+    <Content Include="Gentel\css\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Gentel\css\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Gentel\css\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Gentel\css\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Gentel\css\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Gentel\css\font-awesome\less\animated.less" />
+    <Content Include="Gentel\css\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Gentel\css\font-awesome\less\core.less" />
+    <Content Include="Gentel\css\font-awesome\less\fixed-width.less" />
+    <Content Include="Gentel\css\font-awesome\less\font-awesome.less" />
+    <Content Include="Gentel\css\font-awesome\less\icons.less" />
+    <Content Include="Gentel\css\font-awesome\less\larger.less" />
+    <Content Include="Gentel\css\font-awesome\less\list.less" />
+    <Content Include="Gentel\css\font-awesome\less\mixins.less" />
+    <Content Include="Gentel\css\font-awesome\less\path.less" />
+    <Content Include="Gentel\css\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Gentel\css\font-awesome\less\screen-reader.less" />
+    <Content Include="Gentel\css\font-awesome\less\stacked.less" />
+    <Content Include="Gentel\css\font-awesome\less\variables.less" />
+    <Content Include="Gentel\css\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_animated.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_core.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_icons.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_larger.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_list.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_mixins.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_path.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_stacked.scss" />
+    <Content Include="Gentel\css\font-awesome\scss\_variables.scss" />
+    <Content Include="Gentel\css\nprogress\.bower.json" />
+    <Content Include="Gentel\css\nprogress\bower.json" />
+    <Content Include="Gentel\css\nprogress\component.json" />
+    <Content Include="Gentel\css\nprogress\History.md" />
+    <Content Include="Gentel\css\nprogress\License.md" />
+    <Content Include="Gentel\css\nprogress\Notes.md" />
+    <Content Include="Gentel\css\nprogress\Readme.md" />
+    <EntityDeploy Include="Models\KalingaPPDOEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KalingaPPDOEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\KalingaPPDOEntities.edmx.diagram">
+      <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Models\KalingaPPDOEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
+      <LastGenOutput>KalingaPPDOEntities.Context.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\KalingaPPDOEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
+      <LastGenOutput>KalingaPPDOEntities.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.print.js" />
+    <Content Include="Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowGroup.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowGroup.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\flot\excanvas.js" />
+    <Content Include="Scripts\flot\excanvas.min.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.js" />
+    <Content Include="Scripts\flot\jquery.colorhelpers.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.js" />
+    <Content Include="Scripts\flot\jquery.flot.canvas.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.js" />
+    <Content Include="Scripts\flot\jquery.flot.categories.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\flot\jquery.flot.crosshair.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.js" />
+    <Content Include="Scripts\flot\jquery.flot.errorbars.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.js" />
+    <Content Include="Scripts\flot\jquery.flot.fillbetween.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.js" />
+    <Content Include="Scripts\flot\jquery.flot.image.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.js" />
+    <Content Include="Scripts\flot\jquery.flot.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.js" />
+    <Content Include="Scripts\flot\jquery.flot.navigate.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.js" />
+    <Content Include="Scripts\flot\jquery.flot.pie.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.js" />
+    <Content Include="Scripts\flot\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.js" />
+    <Content Include="Scripts\flot\jquery.flot.selection.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.js" />
+    <Content Include="Scripts\flot\jquery.flot.stack.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.js" />
+    <Content Include="Scripts\flot\jquery.flot.symbol.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.js" />
+    <Content Include="Scripts\flot\jquery.flot.threshold.min.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.js" />
+    <Content Include="Scripts\flot\jquery.flot.time.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProjectStatus\Create.cshtml" />
+    <Content Include="Views\ProjectStatus\Delete.cshtml" />
+    <Content Include="Views\ProjectStatus\Details.cshtml" />
+    <Content Include="Views\ProjectStatus\Edit.cshtml" />
+    <Content Include="Views\ProjectStatus\Index.cshtml" />
+    <Content Include="Views\ProjectCategory\Create.cshtml" />
+    <Content Include="Views\ProjectCategory\Delete.cshtml" />
+    <Content Include="Views\ProjectCategory\Details.cshtml" />
+    <Content Include="Views\ProjectCategory\Edit.cshtml" />
+    <Content Include="Views\ProjectCategory\Index.cshtml" />
+    <Content Include="Views\SourceOfFund\Create.cshtml" />
+    <Content Include="Views\SourceOfFund\Delete.cshtml" />
+    <Content Include="Views\SourceOfFund\Details.cshtml" />
+    <Content Include="Views\SourceOfFund\Edit.cshtml" />
+    <Content Include="Views\SourceOfFund\Index.cshtml" />
+    <Content Include="Views\ImplementingDepartment\Create.cshtml" />
+    <Content Include="Views\ImplementingDepartment\Delete.cshtml" />
+    <Content Include="Views\ImplementingDepartment\Details.cshtml" />
+    <Content Include="Views\ImplementingDepartment\Edit.cshtml" />
+    <Content Include="Views\ImplementingDepartment\Index.cshtml" />
+    <Content Include="Views\OfficialCode\Create.cshtml" />
+    <Content Include="Views\OfficialCode\Delete.cshtml" />
+    <Content Include="Views\OfficialCode\Details.cshtml" />
+    <Content Include="Views\OfficialCode\Edit.cshtml" />
+    <Content Include="Views\OfficialCode\Index.cshtml" />
+    <Content Include="Views\SectorType\Create.cshtml" />
+    <Content Include="Views\SectorType\Delete.cshtml" />
+    <Content Include="Views\SectorType\Details.cshtml" />
+    <Content Include="Views\SectorType\Edit.cshtml" />
+    <Content Include="Views\SectorType\Index.cshtml" />
+    <Content Include="Views\StrategicPriority\Create.cshtml" />
+    <Content Include="Views\StrategicPriority\Delete.cshtml" />
+    <Content Include="Views\StrategicPriority\Details.cshtml" />
+    <Content Include="Views\StrategicPriority\Edit.cshtml" />
+    <Content Include="Views\StrategicPriority\Index.cshtml" />
+    <Content Include="Views\PriorityClassification\Create.cshtml" />
+    <Content Include="Views\PriorityClassification\Delete.cshtml" />
+    <Content Include="Views\PriorityClassification\Details.cshtml" />
+    <Content Include="Views\PriorityClassification\Edit.cshtml" />
+    <Content Include="Views\PriorityClassification\Index.cshtml" />
+    <Content Include="Views\ClimateChangeTypology\Create.cshtml" />
+    <Content Include="Views\ClimateChangeTypology\Delete.cshtml" />
+    <Content Include="Views\ClimateChangeTypology\Details.cshtml" />
+    <Content Include="Views\ClimateChangeTypology\Edit.cshtml" />
+    <Content Include="Views\ClimateChangeTypology\Index.cshtml" />
+    <Content Include="Views\AccountCode\Create.cshtml" />
+    <Content Include="Views\AccountCode\Delete.cshtml" />
+    <Content Include="Views\AccountCode\Edit.cshtml" />
+    <Content Include="Views\AccountCode\Index.cshtml" />
+    <Content Include="Views\NewProjects\Create.cshtml" />
+    <Content Include="Views\NewProjects\Delete.cshtml" />
+    <Content Include="Views\NewProjects\Edit.cshtml" />
+    <Content Include="Views\NewProjects\Index.cshtml" />
+    <Content Include="Views\BDIPperMunicipality\Create.cshtml" />
+    <Content Include="Views\BDIPperMunicipality\Delete.cshtml" />
+    <Content Include="Views\BDIPperMunicipality\Edit.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\PopulationDensity\Create.cshtml" />
+    <Content Include="Views\PopulationDensity\Delete.cshtml" />
+    <Content Include="Views\PopulationDensity\Details.cshtml" />
+    <Content Include="Views\PopulationDensity\Edit.cshtml" />
+    <Content Include="Views\PopulationDensity\Index.cshtml" />
+    <Content Include="Views\GrowthRate\Create.cshtml" />
+    <Content Include="Views\GrowthRate\Delete.cshtml" />
+    <Content Include="Views\GrowthRate\Details.cshtml" />
+    <Content Include="Views\GrowthRate\Edit.cshtml" />
+    <Content Include="Views\GrowthRate\Index.cshtml" />
+    <Content Include="Views\HouseHoldMigration\Create.cshtml" />
+    <Content Include="Views\HouseHoldMigration\Delete.cshtml" />
+    <Content Include="Views\HouseHoldMigration\Details.cshtml" />
+    <Content Include="Views\HouseHoldMigration\Edit.cshtml" />
+    <Content Include="Views\HouseHoldMigration\Index.cshtml" />
+    <Content Include="Views\HouseHoldPopulation10YearsAndAbove\Create.cshtml" />
+    <Content Include="Views\HouseHoldPopulation10YearsAndAbove\Delete.cshtml" />
+    <Content Include="Views\HouseHoldPopulation10YearsAndAbove\Details.cshtml" />
+    <Content Include="Views\HouseHoldPopulation10YearsAndAbove\Edit.cshtml" />
+    <Content Include="Views\HouseHoldPopulation10YearsAndAbove\Index.cshtml" />
+    <Content Include="Views\HouseholdHighestEducationAttained\Create.cshtml" />
+    <Content Include="Views\HouseholdHighestEducationAttained\Delete.cshtml" />
+    <Content Include="Views\HouseholdHighestEducationAttained\Details.cshtml" />
+    <Content Include="Views\HouseholdHighestEducationAttained\Edit.cshtml" />
+    <Content Include="Views\HouseholdHighestEducationAttained\Index.cshtml" />
+    <Content Include="Views\MajorOccupationGroup\Create.cshtml" />
+    <Content Include="Views\MajorOccupationGroup\Delete.cshtml" />
+    <Content Include="Views\MajorOccupationGroup\Details.cshtml" />
+    <Content Include="Views\MajorOccupationGroup\Edit.cshtml" />
+    <Content Include="Views\MajorOccupationGroup\Index.cshtml" />
+    <Content Include="Views\MajorBusinessIndustryGroup\Create.cshtml" />
+    <Content Include="Views\MajorBusinessIndustryGroup\Delete.cshtml" />
+    <Content Include="Views\MajorBusinessIndustryGroup\Details.cshtml" />
+    <Content Include="Views\MajorBusinessIndustryGroup\Edit.cshtml" />
+    <Content Include="Views\MajorBusinessIndustryGroup\Index.cshtml" />
+    <Content Include="Views\ClassOfWorker\Create.cshtml" />
+    <Content Include="Views\ClassOfWorker\Delete.cshtml" />
+    <Content Include="Views\ClassOfWorker\Details.cshtml" />
+    <Content Include="Views\ClassOfWorker\Edit.cshtml" />
+    <Content Include="Views\ClassOfWorker\Index.cshtml" />
+    <Content Include="Views\Ethnicity\Create.cshtml" />
+    <Content Include="Views\Ethnicity\Delete.cshtml" />
+    <Content Include="Views\Ethnicity\Details.cshtml" />
+    <Content Include="Views\Ethnicity\Edit.cshtml" />
+    <Content Include="Views\Ethnicity\Index.cshtml" />
+    <Content Include="Views\LanguageSpoken\Create.cshtml" />
+    <Content Include="Views\LanguageSpoken\Delete.cshtml" />
+    <Content Include="Views\LanguageSpoken\Details.cshtml" />
+    <Content Include="Views\LanguageSpoken\Edit.cshtml" />
+    <Content Include="Views\LanguageSpoken\Index.cshtml" />
+    <Content Include="Views\HighValueCrop\Create.cshtml" />
+    <Content Include="Views\HighValueCrop\Delete.cshtml" />
+    <Content Include="Views\HighValueCrop\Details.cshtml" />
+    <Content Include="Views\HighValueCrop\Edit.cshtml" />
+    <Content Include="Views\HighValueCrop\Index.cshtml" />
+    <Content Include="Views\LivestockAndPoultry\Create.cshtml" />
+    <Content Include="Views\LivestockAndPoultry\Delete.cshtml" />
+    <Content Include="Views\LivestockAndPoultry\Details.cshtml" />
+    <Content Include="Views\LivestockAndPoultry\Edit.cshtml" />
+    <Content Include="Views\LivestockAndPoultry\Index.cshtml" />
+    <Content Include="Views\IndustryClassification\Create.cshtml" />
+    <Content Include="Views\IndustryClassification\Delete.cshtml" />
+    <Content Include="Views\IndustryClassification\Details.cshtml" />
+    <Content Include="Views\IndustryClassification\Edit.cshtml" />
+    <Content Include="Views\IndustryClassification\Index.cshtml" />
+    <Content Include="Views\LandCoverClassification\Create.cshtml" />
+    <Content Include="Views\LandCoverClassification\Delete.cshtml" />
+    <Content Include="Views\LandCoverClassification\Details.cshtml" />
+    <Content Include="Views\LandCoverClassification\Edit.cshtml" />
+    <Content Include="Views\LandCoverClassification\Index.cshtml" />
+    <Content Include="Views\ForestCoverbyVegetation\Create.cshtml" />
+    <Content Include="Views\ForestCoverbyVegetation\Delete.cshtml" />
+    <Content Include="Views\ForestCoverbyVegetation\Details.cshtml" />
+    <Content Include="Views\ForestCoverbyVegetation\Edit.cshtml" />
+    <Content Include="Views\ForestCoverbyVegetation\Index.cshtml" />
+    <Content Include="Views\StatusOfIrrigationSystem\Create.cshtml" />
+    <Content Include="Views\StatusOfIrrigationSystem\Delete.cshtml" />
+    <Content Include="Views\StatusOfIrrigationSystem\Details.cshtml" />
+    <Content Include="Views\StatusOfIrrigationSystem\Edit.cshtml" />
+    <Content Include="Views\StatusOfIrrigationSystem\Index.cshtml" />
+    <Content Include="Views\EstablishmentByIndustry\Create.cshtml" />
+    <Content Include="Views\EstablishmentByIndustry\Delete.cshtml" />
+    <Content Include="Views\EstablishmentByIndustry\Details.cshtml" />
+    <Content Include="Views\EstablishmentByIndustry\Edit.cshtml" />
+    <Content Include="Views\EstablishmentByIndustry\Index.cshtml" />
+    <Content Include="Views\LivestockPoultryInventory\Create.cshtml" />
+    <Content Include="Views\LivestockPoultryInventory\Delete.cshtml" />
+    <Content Include="Views\LivestockPoultryInventory\Details.cshtml" />
+    <Content Include="Views\LivestockPoultryInventory\Edit.cshtml" />
+    <Content Include="Views\LivestockPoultryInventory\Index.cshtml" />
+    <Content Include="Views\OtherHighValueCropsAreaAndProduction\Create.cshtml" />
+    <Content Include="Views\OtherHighValueCropsAreaAndProduction\Delete.cshtml" />
+    <Content Include="Views\OtherHighValueCropsAreaAndProduction\Details.cshtml" />
+    <Content Include="Views\OtherHighValueCropsAreaAndProduction\Edit.cshtml" />
+    <Content Include="Views\OtherHighValueCropsAreaAndProduction\Index.cshtml" />
+    <Content Include="Views\CornAreaProductionsAndYield\Create.cshtml" />
+    <Content Include="Views\CornAreaProductionsAndYield\Delete.cshtml" />
+    <Content Include="Views\CornAreaProductionsAndYield\Details.cshtml" />
+    <Content Include="Views\CornAreaProductionsAndYield\Edit.cshtml" />
+    <Content Include="Views\CornAreaProductionsAndYield\Index.cshtml" />
+    <Content Include="Views\PalayProductionAreaHarvestedandAverageYield\Create.cshtml" />
+    <Content Include="Views\PalayProductionAreaHarvestedandAverageYield\Delete.cshtml" />
+    <Content Include="Views\PalayProductionAreaHarvestedandAverageYield\Details.cshtml" />
+    <Content Include="Views\PalayProductionAreaHarvestedandAverageYield\Edit.cshtml" />
+    <Content Include="Views\PalayProductionAreaHarvestedandAverageYield\Index.cshtml" />
+    <Content Include="Views\PopulationByCitizenshipAndSex\Create.cshtml" />
+    <Content Include="Views\PopulationByCitizenshipAndSex\Delete.cshtml" />
+    <Content Include="Views\PopulationByCitizenshipAndSex\Details.cshtml" />
+    <Content Include="Views\PopulationByCitizenshipAndSex\Edit.cshtml" />
+    <Content Include="Views\PopulationByCitizenshipAndSex\Index.cshtml" />
+    <Content Include="Views\PopulationByReligiousAffiliation\Create.cshtml" />
+    <Content Include="Views\PopulationByReligiousAffiliation\Delete.cshtml" />
+    <Content Include="Views\PopulationByReligiousAffiliation\Details.cshtml" />
+    <Content Include="Views\PopulationByReligiousAffiliation\Edit.cshtml" />
+    <Content Include="Views\PopulationByReligiousAffiliation\Index.cshtml" />
+    <Content Include="Views\PopulationByLanguageSpoken\Create.cshtml" />
+    <Content Include="Views\PopulationByLanguageSpoken\Delete.cshtml" />
+    <Content Include="Views\PopulationByLanguageSpoken\Details.cshtml" />
+    <Content Include="Views\PopulationByLanguageSpoken\Edit.cshtml" />
+    <Content Include="Views\PopulationByLanguageSpoken\Index.cshtml" />
+    <Content Include="Views\PopulationByEthnicity\Create.cshtml" />
+    <Content Include="Views\PopulationByEthnicity\Delete.cshtml" />
+    <Content Include="Views\PopulationByEthnicity\Details.cshtml" />
+    <Content Include="Views\PopulationByEthnicity\Edit.cshtml" />
+    <Content Include="Views\PopulationByEthnicity\Index.cshtml" />
+    <Content Include="Views\GainfulWorkersByClassOfWorker\Create.cshtml" />
+    <Content Include="Views\GainfulWorkersByClassOfWorker\Delete.cshtml" />
+    <Content Include="Views\GainfulWorkersByClassOfWorker\Details.cshtml" />
+    <Content Include="Views\GainfulWorkersByClassOfWorker\Edit.cshtml" />
+    <Content Include="Views\GainfulWorkersByClassOfWorker\Index.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorBusinessOrIndustry\Create.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorBusinessOrIndustry\Delete.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorBusinessOrIndustry\Details.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorBusinessOrIndustry\Edit.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorBusinessOrIndustry\Index.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorOCcupationGroup\Create.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorOCcupationGroup\Delete.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorOCcupationGroup\Details.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorOCcupationGroup\Edit.cshtml" />
+    <Content Include="Views\GainfulWorkersByMajorOCcupationGroup\Index.cshtml" />
+    <Content Include="Views\ProjectProfile\Create.cshtml" />
+    <Content Include="Views\ProjectProfile\Delete.cshtml" />
+    <Content Include="Views\ProjectProfile\Details.cshtml" />
+    <Content Include="Views\ProjectProfile\Edit.cshtml" />
+    <Content Include="Views\ProjectProfile\Index.cshtml" />
+    <Content Include="Views\TotalPopulationAndDistribution\Create.cshtml" />
+    <Content Include="Views\TotalPopulationAndDistribution\Delete.cshtml" />
+    <Content Include="Views\TotalPopulationAndDistribution\Details.cshtml" />
+    <Content Include="Views\TotalPopulationAndDistribution\Edit.cshtml" />
+    <Content Include="Views\TotalPopulationAndDistribution\Index.cshtml" />
+    <Content Include="Views\CoffeeAreaAndProduction\Create.cshtml" />
+    <Content Include="Views\CoffeeAreaAndProduction\Delete.cshtml" />
+    <Content Include="Views\CoffeeAreaAndProduction\Details.cshtml" />
+    <Content Include="Views\CoffeeAreaAndProduction\Edit.cshtml" />
+    <Content Include="Views\CoffeeAreaAndProduction\Index.cshtml" />
+    <Content Include="Views\PopulationReportCharts\Index.cshtml" />
+    <Content Include="Views\StrategicPriorityArea\Create.cshtml" />
+    <Content Include="Views\StrategicPriorityArea\Delete.cshtml" />
+    <Content Include="Views\StrategicPriorityArea\Details.cshtml" />
+    <Content Include="Views\StrategicPriorityArea\Edit.cshtml" />
+    <Content Include="Views\StrategicPriorityArea\Index.cshtml" />
+    <Content Include="Views\LiteracyReportCharts\Index.cshtml" />
+    <Content Include="Views\InfrastructureReportCharts\Index.cshtml" />
+    <Content Include="Views\WorkerReportCharts\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Controllers\AIP\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53542</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53542/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.2.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

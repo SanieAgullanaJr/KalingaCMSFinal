@@ -1,0 +1,50 @@
+﻿@model KalingaCMSFinal.Models.PopulationByCitizenshipGender
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationByCitizenshipGender</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberofHousehold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberofHousehold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopCitizenSexID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.PopulationMigrationRate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MigratingIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MigratingINPer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MigratingOUT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MigratingOUTPer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MunicipalityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MigratingIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MigratingINPer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MigratingOUT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MigratingOUTPer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PopMigrationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PopMigrationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PopMigrationID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model KalingaCMSFinal.Models.PopulationDistribution
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationDistribution</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MunicipalityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Population)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Population)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopDistributionID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

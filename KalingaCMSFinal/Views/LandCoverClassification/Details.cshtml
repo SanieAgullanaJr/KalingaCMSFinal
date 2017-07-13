@@ -1,0 +1,26 @@
+﻿@model KalingaCMSFinal.Models.ref_LandCoverClassification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_LandCoverClassification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LandCoverClassificationDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LandCoverClassificationDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LandCoverClassID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.PopulationDensity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LandArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PopulationPerArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MunicipalityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LandArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PopulationPerArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PopDensityID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PopDensityID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PopDensityID })
+        </td>
+    </tr>
+}
+
+</table>

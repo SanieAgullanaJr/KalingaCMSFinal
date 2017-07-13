@@ -1,0 +1,488 @@
+﻿@model KalingaCMSFinal.Models.PopulationChartsModels
+
+<h2>PopulationReports</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Total Population and Distribution</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.PopulationDistribution.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.PopulationDistribution.YearTaken, ViewBag.YearTakenPopulationDistribution as SelectList, "--Select Year--", new { @class = "form-control", id = "selectPopulationDistribution" })
+                                    @Html.ValidationMessageFor(model => model.PopulationDistribution.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder" style="width:350px;height:350px">
+                                        <canvas id="chart-area" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Growth Rate by Municipality</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.GrowthRate.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.GrowthRate.YearTaken, ViewBag.YearTakenGrowthRate as SelectList, "--Select Year--", new { @class = "form-control", id = "selectGrowthRate" })
+                                    @Html.ValidationMessageFor(model => model.GrowthRate.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder0" style="width:350px;height:350px">
+                                        <canvas id="chart-area0" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Population Density by Municipality</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.PopulationDensity.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.PopulationDensity.YearTaken, ViewBag.YearTakenDensity as SelectList, "--Select Year--", new { @class = "form-control", id = "selectDensity" })
+                                    @Html.ValidationMessageFor(model => model.PopulationDensity.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder1" style="width:350px;height:350px">
+                                        <canvas id="chart-area1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Household Migration Rate</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.HouseholdMigration.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.HouseholdMigration.YearTaken, ViewBag.YearTakenHouseholdMigration as SelectList, "Year", new { @class = "form-control", id = "selectHouseholdMigration" })
+                                    @Html.ValidationMessageFor(model => model.HouseholdMigration.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.HouseholdMigration.Municipality, htmlAttributes: new { @class = "control-label col-sm-3" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.HouseholdMigration.Municipality, new SelectList(" "), "Municipality", new { @class = "form-control", id = "selectMunicipality" })
+                                    @Html.ValidationMessageFor(model => model.HouseholdMigration.Municipality, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn" id="FindBtn" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder2" style="width:350px;height:350px">
+                                        <canvas id="chart-area2" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Household Population by Citizenship and Sex</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Citizenship.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-=10">
+                                    @Html.DropDownListFor(model => model.Citizenship.YearTaken, ViewBag.YearTakenCitizenship as SelectList, "Year", new { @class = "form-control", id = "selectCitizenship" })
+                                    @Html.ValidationMessageFor(model => model.Citizenship.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Male</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder4" style="width:350px;height:350px">
+                                                <canvas id="chart-area4" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Female</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder5" style="width:350px;height:350px">
+                                                <canvas id="chart-area5" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Household Population by Religious Affiliations</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.ReligiousAffiliation.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.ReligiousAffiliation.YearTaken, ViewBag.YearTakenReligion as SelectList, "--Select Year--", new { @class = "form-control", id = "selectReligion" })
+                                    @Html.ValidationMessageFor(model => model.ReligiousAffiliation.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder3" style="width:700px;height:350px">
+                                        <canvas id="chart-area3" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FindBtn").prop("disabled", "disabled");
+            $("#selectPopulationDistribution").on('change', function (e) {
+                $.get("/PopulationReportCharts/ChartData", { YearTaken: $("#selectPopulationDistribution").val() }, function (data) {
+                    var arr = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                    });
+                    var config = {
+                        type: 'pie',
+                        data: {
+                            datasets: [{
+                                "data": arr,
+                                "backgroundColor": ["#7B1CE8", "#1B32FF", "#1CA1E8", "#49E824", "#EEFF24", "#FFAD33", "#FF811E", "#E83A1F"],
+                            }],
+                            labels: [
+                                "Balbalan",
+                                "Lubugan",
+                                "Pasil",
+                                "Pinukpuk",
+                                "Rizal (Liwan)",
+                                "Tabuk",
+                                "Tanudan",
+                                "Tinglayan"
+                            ]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    };
+                    $('#chart-area').remove(); // this is my <canvas> element
+                    $('#canvas-holder').append('<canvas id="chart-area"><canvas>');
+                    var ctx = document.getElementById("chart-area").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                });
+            });
+            $("#selectGrowthRate").on('change', function (e) {
+                $.get("/PopulationReportCharts/ChartData1", { YearTaken: $("#selectGrowthRate").val() }, function (data) {
+                    var arr = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                    });
+                    var config = {
+                        type: 'pie',
+                        data: {
+                            datasets: [{
+                                "data": arr,
+                                "backgroundColor": ["#7B1CE8", "#1B32FF", "#1CA1E8", "#49E824", "#EEFF24", "#FFAD33", "#FF811E", "#E83A1F"],
+                            }],
+                            labels: [
+                                "Balbalan",
+                                "Lubugan",
+                                "Pasil",
+                                "Pinukpuk",
+                                "Rizal (Liwan)",
+                                "Tabuk",
+                                "Tanudan",
+                                "Tinglayan"
+                            ]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    };
+                    $('#chart-area0').remove(); // this is my <canvas> element
+                    $('#canvas-holder0').append('<canvas id="chart-area0"><canvas>');
+                    var ctx = document.getElementById("chart-area0").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                });
+            });
+            $("#selectDensity").on('change', function (e) {
+                $.get("/PopulationReportCharts/ChartData2", { YearTaken: $("#selectDensity").val() }, function (data) {
+                    var arr = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                    });
+                    var config = {
+                        type: 'pie',
+                        data: {
+                            datasets: [{
+                                "data": arr,
+                                "backgroundColor": ["#7B1CE8", "#1B32FF", "#1CA1E8", "#49E824", "#EEFF24", "#FFAD33", "#FF811E", "#E83A1F"],
+                            }],
+                            labels: [
+                                "Balbalan",
+                                "Lubugan",
+                                "Pasil",
+                                "Pinukpuk",
+                                "Rizal (Liwan)",
+                                "Tabuk",
+                                "Tanudan",
+                                "Tinglayan"
+                            ]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    };
+                    $('#chart-area1').remove(); // this is my <canvas> element
+                    $('#canvas-holder1').append('<canvas id="chart-area1"><canvas>');
+                    var ctx = document.getElementById("chart-area1").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                });
+            });
+            $("#selectHouseholdMigration").on('change', function (e) {
+                $("#selectMunicipality").removeAttr("disabled");
+                $.get("/PopulationReportCharts/GetMunicipalityList", { YearTaken: $("#selectHouseholdMigration").val() }, function (data) {
+                    $("#selectMunicipality").empty();
+                    $.each(data, function (index, row) {
+                        $("#selectMunicipality").append("<option value='" + row.Municipality + "'>" + row.Municipality + "</option>")
+                    });
+                });
+            });
+            $("#selectHouseholdMigration, #selectMunicipality").on("change", function () {
+                if ($("#selectHouseholdMigration").val() != "") {
+                    $("#FindBtn").removeAttr("disabled");
+                    $("#FindBtn").click(function () {
+                        $.get("/PopulationReportCharts/ChartData3", { YearTaken: $("#selectHouseholdMigration").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2) {
+                            var arr = [];
+                            $.each(data, function (index, val) {
+                                var MigratingIN = parseFloat(val.data);
+                                var MigratingOUT = parseFloat(val.data2)
+                                arr.push(MigratingIN, MigratingOUT);
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": ["#1B32FF", "#E83A1F"],
+                                    }],
+                                    labels: [
+                                        "Migrating IN",
+                                        "Migraing OUT"
+                                    ]
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area2').remove(); // this is my <canvas> element
+                            $('#canvas-holder2').append('<canvas id="chart-area2"><canvas>');
+                            var ctx = document.getElementById("chart-area2").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectHouseholdMigration").val() == "") {
+                    $("#FindBtn").prop("disabled", "disabled");
+                };
+            });
+            $("#selectReligion").on('change', function (e) {
+                $.get("/PopulationReportCharts/ChartData4", { YearTaken: $("#selectReligion").val() }, function (data, label) {
+                    var arr = [];
+                    var label = [];
+                    var color = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                        var labels = val.label;
+                        label.push(labels);
+                        var colors = "#1B32FF";
+                        color.push(colors);
+                    });
+                    var config = {
+                        type: 'bar',
+                        data: {
+                            datasets: [{
+                                label: "Number of Households",
+                                "data": arr,
+                                "backgroundColor": color,
+                            }],
+                            labels: label
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    };
+                    $('#chart-area3').remove(); // this is my <canvas> element
+                    $('#canvas-holder3').append('<canvas id="chart-area3"><canvas>');
+                    var ctx = document.getElementById("chart-area3").getContext("2d");
+                    window.myBar = new Chart(ctx, config);
+                });
+            });
+            $("#selectCitizenship").on('change', function (e) {
+                $.get("/PopulationReportCharts/ChartData5", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
+                    var arr = [];
+                    var label = [];
+                    var color1 = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                        var labels = val.label;
+                        label.push(labels);
+                        var colors1 = getRandomColor();
+                        color1.push(colors1);
+                    });
+                    var config = {
+                        type: 'pie',
+                        data: {
+                            labels: label,
+                            datasets: [{
+                                backgroundColor: color1,
+                                data: arr,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                        }
+                    };
+                    $('#chart-area4').remove(); // this is my <canvas> element
+                    $('#canvas-holder4').append('<canvas id="chart-area4"><canvas>');
+                    var ctx = document.getElementById("chart-area4").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                });
+                $.get("/PopulationReportCharts/ChartData6", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
+                    var arr = [];
+                    var label = [];
+                    var color1 = [];
+                    $.each(data, function (index, val) {
+                        var parser = parseFloat(val.data);
+                        arr.push(parser);
+                        var labels = val.label;
+                        label.push(labels);
+                        var colors1 = getRandomColor();
+                        color1.push(colors1);
+                    });
+                    var config = {
+                        type: 'pie',
+                        data: {
+                            labels: label,
+                            datasets: [{
+                                backgroundColor: color1,
+                                data: arr,
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                        }
+                    };
+                    $('#chart-area5').remove(); // this is my <canvas> element
+                    $('#canvas-holder5').append('<canvas id="chart-area5"><canvas>');
+                    var ctx = document.getElementById("chart-area5").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                });
+            });
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            };
+        });
+    </script>
+}

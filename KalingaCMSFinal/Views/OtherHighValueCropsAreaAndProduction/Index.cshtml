@@ -1,0 +1,51 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.OtherCropsProduction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HighValueCropID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaHectares)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdMetricTons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HighValueCropID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaHectares)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdMetricTons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OtherCropsProdID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OtherCropsProdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OtherCropsProdID })
+        </td>
+    </tr>
+}
+
+</table>

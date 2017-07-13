@@ -1,0 +1,66 @@
+﻿@model KalingaCMSFinal.Models.vw_ClimateChangeTypology
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vw_ClimateChangeTypology</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Priority
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityDescription)
+        </dd>
+
+        <dt>
+            Area
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityAreaDescription)
+        </dd>
+
+        <dt>
+            Classification
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityClassification)
+        </dd>
+
+        <dt>
+            Group
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityGrpDescription)
+        </dd>
+
+        <dt>
+            Typology Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypologyCode)
+        </dd>
+
+        <dt>
+            Typology Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypologyDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TypologyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

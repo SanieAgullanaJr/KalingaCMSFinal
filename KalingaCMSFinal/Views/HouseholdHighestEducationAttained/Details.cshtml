@@ -1,0 +1,50 @@
+﻿@model KalingaCMSFinal.Models.PopulationHighestEducationAttained
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationHighestEducationAttained</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HighestEducAttainedID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HighestEducAttainedID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MalePopulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MalePopulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FemalePopulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FemalePopulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopEducationAttainedID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

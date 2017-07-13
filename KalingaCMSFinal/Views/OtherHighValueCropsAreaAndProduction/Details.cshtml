@@ -1,0 +1,50 @@
+﻿@model KalingaCMSFinal.Models.OtherCropsProduction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OtherCropsProduction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HighValueCropID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HighValueCropID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaHectares)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AreaHectares)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdMetricTons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdMetricTons)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OtherCropsProdID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

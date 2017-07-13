@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalingaCMSFinal", "KalingaCMSFinal\KalingaCMSFinal.csproj", "{BBA52353-297D-40F9-9106-3D50366B1A66}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7CAFBD01-1066-4E0F-AF03-902B793D348E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBA52353-297D-40F9-9106-3D50366B1A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA52353-297D-40F9-9106-3D50366B1A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA52353-297D-40F9-9106-3D50366B1A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA52353-297D-40F9-9106-3D50366B1A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAFBD01-1066-4E0F-AF03-902B793D348E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAFBD01-1066-4E0F-AF03-902B793D348E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAFBD01-1066-4E0F-AF03-902B793D348E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAFBD01-1066-4E0F-AF03-902B793D348E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

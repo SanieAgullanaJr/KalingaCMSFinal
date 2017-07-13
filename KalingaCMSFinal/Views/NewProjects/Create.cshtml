@@ -1,0 +1,464 @@
+﻿@model Tuple<KalingaCMSFinal.Models.ProjectProfile, IEnumerable<KalingaCMSFinal.Models.vw_ProjectProfile>>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="overflow:hidden;">
+        <h4>Project Profile</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.FunctionID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.FunctionID, ViewBag.SectoralCodes as SelectList, "--Select Sectoral Codes--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.FunctionID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.BDIPID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.BDIPID, ViewBag.BDIPs as SelectList, "--Select BDIP--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.BDIPID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProgramID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.ProgramID, ViewBag.ProgramCodes as SelectList, "--Select Program Code--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.ProgramID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjCatID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.ProjCatID, ViewBag.ProjectCategories as SelectList, "--Select Project Category--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjCatID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.AccountCodeID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.AccountCodeID, ViewBag.AccountCodes as SelectList, "--Select Account Code--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.AccountCodeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjReferenceOutput, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjReferenceOutput, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjReferenceOutput, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.OfficialCodeID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.OfficialCodeID, ViewBag.OfficialCodes as SelectList, "--Select Official Code--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.OfficialCodeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjItemWork, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjItemWork, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjItemWork, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.LineNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.LineNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.LineNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.MunicipalityID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.MunicipalityID, ViewBag.Municipalities as SelectList, "--Select Municipality--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.MunicipalityID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.SectorID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.SectorID, ViewBag.Sectors as SelectList, "--Select Sector--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.SectorID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.barangayID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.barangayID, new SelectList(" "), "--Select Barangay--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.barangayID, "", new { @class = "text-danger", @onchange = "GetBarangay()" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjectTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjectTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjectTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjPurok, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjPurok, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjPurok, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjectDescription, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.Item1.ProjectDescription, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjectDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.Remarks, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.TextAreaFor(model => model.Item1.Remarks, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ImpDeptID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.ImpDeptID, ViewBag.ImplementingDepartments as SelectList, "--Select Implementing Dept.--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.ImpDeptID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjPS, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjPS, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjPS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjStartDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjStartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjMOOE, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjMOOE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjMOOE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjEndDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjEndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjCapitalOutlay, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjCapitalOutlay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjCapitalOutlay, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjStatusID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.ProjStatusID, ViewBag.ProjectStatuses as SelectList, "--Select Status--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjStatusID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.ProjExpectedOutput, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Item1.ProjExpectedOutput, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProjExpectedOutput, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.SourceFundID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.SourceFundID, ViewBag.SourceOfFunds as SelectList, "--Select Source of Fund.--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.SourceFundID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <center><h3>AMOUNT OF CLIMATE CHANGE PPAs</h3></center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                @Html.LabelFor(model => model.Item1.StrategicPriorityID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.StrategicPriorityID, ViewBag.TypologyCodes as SelectList, "--Select Typology Code--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.StrategicPriorityID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                @Html.LabelFor(model => model.Item1.StrategicPriorityAreaID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.StrategicPriorityAreaID, ViewBag.PriorityAreas as SelectList, "--Select Priority Area--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.StrategicPriorityAreaID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                @Html.LabelFor(model => model.Item1.AdaptationTypologyID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.AdaptationTypologyID, ViewBag.Adaptations as SelectList, "--Select Adaptations--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.AdaptationTypologyID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                @Html.LabelFor(model => model.Item1.MitigationTypologyID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Item1.MitigationTypologyID, ViewBag.Mitigations as SelectList, "--Select Mitigation--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.MitigationTypologyID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-12">
+                <input type="submit" value="Create" class="btn btn-info btn-lg" id="btnSubmit" />
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <table class="table table-striped table-bordered" id="ProjectProfileTable" style="overflow:auto;">
+        <thead>
+            <tr>
+                <th>
+                    AIP Reference Code
+                </th>
+                <th>
+                    Project Title
+                </th>
+                <th>
+                    Implementing Office
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Expected Output
+                </th>
+                <th>
+                    Project Status
+                </th>
+                <th>
+                    Capital Outlay
+                </th>
+                <th>
+                    Total Budget
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item2)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.ReferenceCode)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImpDeptCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjStartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjExpectedOutput)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjStatusDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjCapitalOutlay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalBudget)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ProjectProfileID }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ProjectProfileID }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#Item1_barangayID").prop("disabled", "disabled");
+            $("#btnSubmit").prop("disabled", "disabled");
+            $("#Item1_MunicipalityID").change(function () {
+                $("#Item1_barangayID").removeAttr("disabled");
+                $.get("/NewProjects/GetBarangayList", { MunicipalityID: $("#Item1_MunicipalityID").val() }, function (data) {
+                    $("#Item1_barangayID").empty();
+                    $.each(data, function (index, row) {
+                        $("#Item1_barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
+                    });
+                });
+            });
+            $('#ProjectProfileTable').on("click", ".modalOpener", function (e) {
+                e.preventDefault();
+                //replace the get with this.href to load the edit page
+                $.get(this.href, function (data) {
+                    //replace the content returned
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('#myModal').modal({
+                    keyboard: true,
+                }, 'show');
+                return false;
+            });
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var form = $("#editForm")
+                    .removeData("validator") /* added by the raw jquery.validate plugin */
+                    .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+                $.validator.unobtrusive.parse(form);
+                $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                    $("#barangayID").empty();
+                    $.each(data, function (index, row) {
+                        $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
+                    });
+                });
+                $("#MunicipalityID").change(function () {
+                    $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                        $("#barangayID").empty();
+                        $.each(data, function (index, row) {
+                            $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
+                        });
+                    });
+                });
+                $("#ProjStartDate, #ProjEndDate").change(function () {
+                    var startDate = $("#ProjStartDate").val();
+                    var startDateArray = startDate.split('-');
+                    var endDate = $("#ProjEndDate").val();
+                    var endDateArray = endDate.split('-');
+                    var startYear = parseInt(startDateArray[0]);
+                    var startMonth = parseInt(startDateArray[1]);
+                    var startDay = parseInt(startDateArray[2]);
+                    var endYear = parseInt(endDateArray[0]);
+                    var endMonth = parseInt(endDateArray[1]);
+                    var endDay = parseInt(endDateArray[2]);
+                    var getDate = new Date();
+                    var yearNowPartial = getDate.getFullYear();
+                    var monthNowPartial = getDate.getMonth() + 1;
+                    var dayNowPartial = getDate.getDate();
+                    var dateNow = yearNowPartial + '/' +
+                        (('' + monthNowPartial).length < 2 ? '0' : '') + monthNowPartial + '/' +
+                        (('' + dayNowPartial).length < 2 ? '0' : '') + dayNowPartial;
+                    var dateNowArray = dateNow.split('/');
+                    var yearNow = parseInt(dateNowArray[0]);
+                    var monthNow = parseInt(dateNowArray[1]);
+                    var dayNow = parseInt(dateNowArray[2]);
+                    alert(startYear + " " + endYear + " " + yearNow);
+                    if ((startYear <= endYear) && (startYear >= yearNow)) {
+                        if (startMonth <= endMonth) {
+                            if (startDay <= endDay) { $("#btnModalSubmit").removeAttr("disabled"); }
+                            else { $("#btnModalSubmit").prop("disabled", "disabled"); }
+                        }
+                        else { $("#btnModalSubmit").prop("disabled", "disabled"); }
+                    }
+                    else { $("#btnModalSubmit").prop("disabled", "disabled"); }
+                });
+            });
+            $("#Item1_ProjStartDate, #Item1_ProjEndDate").change(function () {
+                var startDate = $("#Item1_ProjStartDate").val();
+                var startDateArray = startDate.split('-');
+                var endDate = $("#Item1_ProjEndDate").val();
+                var endDateArray = endDate.split('-');
+                var startYear = parseInt(startDateArray[0]);
+                var startMonth = parseInt(startDateArray[1]);
+                var startDay = parseInt(startDateArray[2]);
+                var endYear = parseInt(endDateArray[0]);
+                var endMonth = parseInt(endDateArray[1]);
+                var endDay = parseInt(endDateArray[2]);
+                var getDate = new Date();
+                var yearNowPartial = getDate.getFullYear();
+                var monthNowPartial = getDate.getMonth() + 1;
+                var dayNowPartial = getDate.getDate();
+                var dateNow = yearNowPartial + '/' +
+                    (('' + monthNowPartial).length < 2 ? '0' : '') + monthNowPartial + '/' +
+                    (('' + dayNowPartial).length < 2 ? '0' : '') + dayNowPartial;
+                var dateNowArray = dateNow.split('/');
+                var yearNow = parseInt(dateNowArray[0]);
+                var monthNow = parseInt(dateNowArray[1]);
+                var dayNow = parseInt(dateNowArray[2]);
+                alert(startYear + " " + endYear + " " + yearNow);
+                if ((startYear <= endYear) && (startYear >= yearNow)) {
+                    if (startMonth <= endMonth) {
+                        if (startDay <= endDay) { $("#btnSubmit").removeAttr("disabled"); }
+                        else { $("#btnSubmit").prop("disabled", "disabled"); }
+                    }
+                    else { $("#btnSubmit").prop("disabled", "disabled"); }
+                }
+                else { $("#btnSubmit").prop("disabled", "disabled"); }
+            });
+        });
+
+    </script>
+}

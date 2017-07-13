@@ -1,0 +1,26 @@
+﻿@model KalingaCMSFinal.Models.ref_LivestockPoultry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_LivestockPoultry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LivestockPoultry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LivestockPoultry)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LivestockPoultryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

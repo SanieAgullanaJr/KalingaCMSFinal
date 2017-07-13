@@ -1,0 +1,26 @@
+﻿@model KalingaCMSFinal.Models.ref_MajorBusinessIndustryGroup
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_MajorBusinessIndustryGroup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorBusinessIndustryDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorBusinessIndustryDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MajorBusinessIndustryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EstablishmentByIndustry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IndustryClassID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberofFirms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PercentFirms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Investment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PercentInvest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberofEmployee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distribution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IndustryClassID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberofFirms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PercentFirms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Investment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PercentInvest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberofEmployee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distribution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EstablishID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EstablishID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EstablishID })
+        </td>
+    </tr>
+}
+
+</table>

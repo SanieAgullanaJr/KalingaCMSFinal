@@ -1,0 +1,42 @@
+﻿@model KalingaCMSFinal.Models.ref_StrategicPriorityArea
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_StrategicPriorityArea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StrategicPriorityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StrategicPriorityAreaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityAreaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StrategicPriorityAreaDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityAreaDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StrategicPriorityAreaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,200 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ProjectProfile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FunctionID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountCodeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficialCodeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LineNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SectorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImpDeptID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjStatusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjExpectedOutput)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceFundID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BDIPID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjCatID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjReferenceOutput)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjItemWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barangayID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjPurok)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjPS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjMOOE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjCapitalOutlay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriorityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriorityAreaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MitigationTypologyID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdaptationTypologyID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FunctionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountCodeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficialCodeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LineNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SectorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImpDeptID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjStatusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjExpectedOutput)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SourceFundID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BDIPID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjCatID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjReferenceOutput)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjItemWork)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MunicipalityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barangayID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjPurok)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjPS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjMOOE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjCapitalOutlay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityAreaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MitigationTypologyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdaptationTypologyID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectProfileID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectProfileID })
+        </td>
+    </tr>
+}
+
+</table>

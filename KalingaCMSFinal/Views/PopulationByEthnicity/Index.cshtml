@@ -1,0 +1,45 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.PopulationByEthnicity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EthnicityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberofPopulation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EthnicityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberofPopulation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PopEthnicityID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PopEthnicityID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PopEthnicityID })
+        </td>
+    </tr>
+}
+
+</table>

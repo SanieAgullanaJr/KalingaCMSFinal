@@ -1,0 +1,42 @@
+﻿@model KalingaCMSFinal.Models.PopulationByLanguageSpoken
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationByLanguageSpoken</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberHousehold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberHousehold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopLanguageID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

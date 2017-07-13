@@ -1,0 +1,58 @@
+﻿@model KalingaCMSFinal.Models.WorkersByMajorIndustry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkersByMajorIndustry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MajorBusinessIndustryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MajorBusinessIndustryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AgeGroupID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AgeGroupID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberofPopulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberofPopulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkersMajorIndustryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

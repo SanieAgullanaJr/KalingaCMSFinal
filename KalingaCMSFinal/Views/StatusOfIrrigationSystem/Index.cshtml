@@ -1,0 +1,87 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.IrrigationSystem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreasIrrigable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NatlIrrigationSys)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIAAssisted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherAgency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrivateIrrigation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PumpSystem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IrrigationDev)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingAreas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MunicipalityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreasIrrigable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NatlIrrigationSys)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIAAssisted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherAgency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrivateIrrigation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PumpSystem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IrrigationDev)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingAreas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IrrigationSysID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IrrigationSysID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IrrigationSysID })
+        </td>
+    </tr>
+}
+
+</table>

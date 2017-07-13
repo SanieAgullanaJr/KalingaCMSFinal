@@ -1,0 +1,241 @@
+﻿@model KalingaCMSFinal.Models.vw_ProjectProfile
+
+@{
+    Layout = null;
+}
+<div class="modal-header success">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Project Profile Details</h4>
+</div>
+
+<div class="modal-body">
+    <dl class="dl-horizontal">
+        <dt>
+            Function Code:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FunctionCode)
+        </dd>
+
+        <dt>
+            Program Code:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramCode)
+        </dd>
+
+        <dt>
+            Reference Code:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferenceCode)
+        </dd>
+
+        <dt>
+            Sector:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectorDescription)
+        </dd>
+
+        <dt>
+            Project Title:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectTitle)
+        </dd>
+
+        <dt>
+            Project Description:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectDescription)
+        </dd>
+
+        <dt>
+            Implementing Department:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImpDeptCode)
+        </dd>
+
+        <dt>
+            Project Start Date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjStartDate)
+        </dd>
+
+        <dt>
+            Project End Date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjEndDate)
+        </dd>
+
+        <dt>
+            Project Status:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjStatusDescription)
+        </dd>
+
+        <dt>
+            Expected Output:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjExpectedOutput)
+        </dd>
+
+        <dt>
+            Source of Fund:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceFundDescription)
+        </dd>
+
+        <dt>
+            BDIP per Municipality:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BDIPMunicipalityCode)
+        </dd>
+
+        <dt>
+            Project Category:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjCategoryCode)
+        </dd>
+
+        <dt>
+            Reference Output:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjReferenceOutput)
+        </dd>
+
+        <dt>
+            Item of Work:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjItemWork)
+        </dd>
+
+        <dt>
+            Municipality:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            Barangay:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barangay)
+        </dd>
+
+        <dt>
+            Purok:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjPurok)
+        </dd>
+
+        <dt>
+            Remarks:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            PS:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjPS)
+        </dd>
+
+        <dt>
+            MOOE:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjMOOE)
+        </dd>
+
+        <dt>
+            Capital Outlay:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjCapitalOutlay)
+        </dd>
+
+        <dt>
+            Total Budget:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalBudget)
+        </dd>
+
+        <dt>
+            Strategic Priority:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityDescription)
+        </dd>
+
+        <dt>
+            Strategic Priority Area
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StrategicPriorityAreaDescription)
+        </dd>
+
+        <dt>
+            Mitigation
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mitigation)
+        </dd>
+
+        <dt>
+            Adaptation
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adaptation)
+        </dd>
+
+    </dl>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

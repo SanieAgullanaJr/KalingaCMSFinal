@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.vw_ClimateChangeTypology>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+           Priority
+        </th>
+        <th>
+            Area
+        </th>
+        <th>
+            Classification
+        </th>
+        <th>
+            Group
+        </th>
+        <th>
+            Typology Code
+        </th>
+        <th>
+            Typology Description
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypologyID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityAreaDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityClassification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityGrpDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypologyCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypologyDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TypologyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TypologyID })
+        </td>
+    </tr>
+}
+
+</table>

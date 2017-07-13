@@ -1,0 +1,57 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.CoffeeProduction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoffeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaHectares)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalProd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MunicipalityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoffeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaHectares)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalProd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearTaken)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CoffeeProdID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CoffeeProdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CoffeeProdID })
+        </td>
+    </tr>
+}
+
+</table>

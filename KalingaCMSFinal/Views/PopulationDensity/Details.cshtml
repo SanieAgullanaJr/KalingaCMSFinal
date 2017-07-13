@@ -1,0 +1,50 @@
+﻿@model KalingaCMSFinal.Models.PopulationDensity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationDensity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MunicipalityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LandArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LandArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PopulationPerArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PopulationPerArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopDensityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

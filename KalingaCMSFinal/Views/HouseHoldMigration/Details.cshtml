@@ -1,0 +1,66 @@
+﻿@model KalingaCMSFinal.Models.PopulationMigrationRate
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationMigrationRate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MunicipalityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MunicipalityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MigratingIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MigratingIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MigratingINPer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MigratingINPer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MigratingOUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MigratingOUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MigratingOUTPer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MigratingOUTPer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopMigrationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

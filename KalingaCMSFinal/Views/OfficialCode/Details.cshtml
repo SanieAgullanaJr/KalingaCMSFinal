@@ -1,0 +1,34 @@
+﻿@model KalingaCMSFinal.Models.ref_OfficialCode
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_OfficialCode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficialCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficialCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficialCodeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficialCodeDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OfficialCodeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

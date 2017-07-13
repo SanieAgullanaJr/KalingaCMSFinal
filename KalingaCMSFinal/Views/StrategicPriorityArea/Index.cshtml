@@ -1,0 +1,45 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ref_StrategicPriorityArea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriorityID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriorityAreaNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StrategicPriorityAreaDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityAreaNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StrategicPriorityAreaDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StrategicPriorityAreaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StrategicPriorityAreaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StrategicPriorityAreaID })
+        </td>
+    </tr>
+}
+
+</table>

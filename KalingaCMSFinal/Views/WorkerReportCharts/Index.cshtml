@@ -1,0 +1,323 @@
+﻿@model Tuple<KalingaCMSFinal.Models.vw_ByMajorOccupationGroup, KalingaCMSFinal.Models.vw_ByMajorBusinessOrIndustry>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Gainful Workers By Major Occupation Group</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Item1.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.Item1.YearTaken, ViewBag.YearTakenByOccupationGroup as SelectList, "-- Select Year --", new { @class = "form-control", id = "selectOccupationGroup" })
+                                    @Html.ValidationMessageFor(model => model.Item1.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.Item1.MajorOccupationDesc, htmlAttributes: new { @class = "control-label col-sm-3" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.Item1.MajorOccupationDesc, new SelectList(" "), "-- Select Occupation --", new { @class = "form-control", id = "selectDescription" })
+                                    @Html.ValidationMessageFor(model => model.Item1.MajorOccupationDesc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn" id="FindBtn" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Male</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder" style="width:350px;height:350px">
+                                                <canvas id="chart-area" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Female</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder0" style="width:350px;height:350px">
+                                                <canvas id="chart-area0" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Gainful Workers By Major Business/Industry</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Item2.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.Item2.YearTaken, ViewBag.YearTakenByMajorIndustry as SelectList, "-- Select Year --", new { @class = "form-control", id = "selectIndustry" })
+                                    @Html.ValidationMessageFor(model => model.Item2.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.Item2.MajorBusinessIndustryDesc, htmlAttributes: new { @class = "control-label col-sm-3" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.Item2.MajorBusinessIndustryDesc, new SelectList(" "), "-- Select Industry or Business --", new { @class = "form-control", id = "selectDescription1" })
+                                    @Html.ValidationMessageFor(model => model.Item2.MajorBusinessIndustryDesc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn1" id="FindBtn1" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Male</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder1" style="width:350px;height:350px">
+                                                <canvas id="chart-area1" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <center><h4>Female</h4></center>
+                                        </div>
+                                        <div class="x_content">
+                                            <div id="canvas-holder2" style="width:350px;height:350px">
+                                                <canvas id="chart-area2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#selectDescription").attr("disabled", true);
+            $("#FindBtn").attr("disabled", true);
+            $("#selectOccupationGroup").on('change', function (e) {
+                $("#selectDescription").removeAttr("disabled");
+                $.get("/WorkerReportCharts/GetDescription", { YearTaken: $("#selectOccupationGroup").val() }, function (data) {
+                    $("#selectDescription").empty();
+                    var testPrev = "";
+                    var tester = [];
+                    var uniqueNames = [];
+                    $.each(data, function (index, row) {
+                        tester.push(row.MajorOccupationID);
+                        $.each(tester, function (i, el) {
+                            if ($.inArray(el, uniqueNames) === -1) {
+                                uniqueNames.push(el)
+                                $("#selectDescription").append("<option value='" + row.MajorOccupationID + "'>" + row.MajorOccupationDesc + "</option>")
+                            };
+                        });
+                    });
+                });
+            });
+            $("#selectOccupationGroup, #selectDescription").on("change", function () {
+                if ($("#selectOccupationGroup").val() != "") {
+                    $("#FindBtn").removeAttr("disabled");
+                    $("#FindBtn").click(function () {
+                        $.get("/WorkerReportCharts/ChartData", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
+                            var arr = [];
+                            var label = [];
+                            var color = [];
+                            $.each(data, function (index, val) {
+                                var data = parseFloat(val.data);
+                                arr.push(data);
+                                var labels = val.label;
+                                label.push(labels);
+                                var colors = getRandomColor();
+                                color.push(colors)
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": color,
+                                    }],
+                                    labels: label
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area').remove(); // this is my <canvas> element
+                            $('#canvas-holder').append('<canvas id="chart-area"><canvas>');
+                            var ctx = document.getElementById("chart-area").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                        $.get("/WorkerReportCharts/ChartData1", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
+                            var arr = [];
+                            var label = [];
+                            var color = [];
+                            $.each(data, function (index, val) {
+                                var data = parseFloat(val.data);
+                                arr.push(data);
+                                var labels = val.label;
+                                label.push(labels);
+                                var colors = getRandomColor();
+                                color.push(colors)
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": color,
+                                    }],
+                                    labels: label
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area0').remove(); // this is my <canvas> element
+                            $('#canvas-holder0').append('<canvas id="chart-area0"><canvas>');
+                            var ctx = document.getElementById("chart-area0").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectOccupationGroup").val() == "") {
+                    $("#FindBtn").prop("disabled", "disabled");
+                };
+            });
+
+            //----------------------------------------------------------------------------------
+
+            $("#selectDescription1").attr("disabled", true);
+            $("#FindBtn1").attr("disabled", true);
+            $("#selectIndustry").on('change', function (e) {
+                $("#selectDescription1").removeAttr("disabled");
+                $.get("/WorkerReportCharts/GetIndustry", { YearTaken: $("#selectIndustry").val() }, function (data) {
+                    $("#selectDescription1").empty();
+                    var testPrev = "";
+                    var tester = [];
+                    var uniqueNames = [];
+                    $.each(data, function (index, row) {
+                        tester.push(row.MajorBusinessIndustryID);
+                        $.each(tester, function (i, el) {
+                            if ($.inArray(el, uniqueNames) === -1) {
+                                uniqueNames.push(el)
+                                $("#selectDescription1").append("<option value='" + row.MajorBusinessIndustryID + "'>" + row.MajorBusinessIndustryDesc + "</option>")
+                            };
+                        });
+                    });
+                });
+            });
+            $("#selectIndustry, #selectDescription1").on("change", function () {
+                if ($("#selectIndustry").val() != "") {
+                    $("#FindBtn1").removeAttr("disabled");
+                    $("#FindBtn1").click(function () {
+                        $.get("/WorkerReportCharts/ChartData2", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
+                            var arr = [];
+                            var label = [];
+                            var color = [];
+                            $.each(data, function (index, val) {
+                                var data = parseFloat(val.data);
+                                arr.push(data);
+                                var labels = val.label;
+                                label.push(labels);
+                                var colors = getRandomColor();
+                                color.push(colors) 
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": color,
+                                    }],
+                                    labels: label
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area1').remove(); // this is my <canvas> element
+                            $('#canvas-holder1').append('<canvas id="chart-area1"><canvas>');
+                            var ctx = document.getElementById("chart-area1").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                        $.get("/WorkerReportCharts/ChartData3", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
+                            var arr = [];
+                            var label = [];
+                            var color = [];
+                            $.each(data, function (index, val) {
+                                var data = parseFloat(val.data);
+                                arr.push(data);
+                                var labels = val.label;
+                                label.push(labels);
+                                var colors = getRandomColor();
+                                color.push(colors)
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": color,
+                                    }],
+                                    labels: label
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area2').remove(); // this is my <canvas> element
+                            $('#canvas-holder2').append('<canvas id="chart-area2"><canvas>');
+                            var ctx = document.getElementById("chart-area2").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectIndustry").val() == "") {
+                    $("#FindBtn1").prop("disabled", "disabled");
+                };
+            });
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            };
+        });
+    </script>
+}

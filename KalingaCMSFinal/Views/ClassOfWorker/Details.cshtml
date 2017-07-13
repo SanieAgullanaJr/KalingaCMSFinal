@@ -1,0 +1,26 @@
+﻿@model KalingaCMSFinal.Models.ref_ClassWorker
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ref_ClassWorker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassWorkerDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClassWorkerDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClassWorkerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

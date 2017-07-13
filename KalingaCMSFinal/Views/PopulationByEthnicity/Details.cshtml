@@ -1,0 +1,42 @@
+﻿@model KalingaCMSFinal.Models.PopulationByEthnicity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulationByEthnicity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EthnicityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EthnicityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberofPopulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberofPopulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearTaken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearTaken)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PopEthnicityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

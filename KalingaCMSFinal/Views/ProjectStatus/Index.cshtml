@@ -1,0 +1,39 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ref_ProjectStatus>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjStatusCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjStatusDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjStatusCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjStatusDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProjStatusID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProjStatusID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProjStatusID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,212 @@
+﻿@model Tuple<KalingaCMSFinal.Models.vw_EstablishmentByIndustryByYear, KalingaCMSFinal.Models.vw_StatusOfIrrigationSystemByMunicipalityByYear>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Establishment By Industry</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Item1.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.Item1.YearTaken, ViewBag.YearTakenIndustry as SelectList, "Year", new { @class = "form-control", id = "selectEstablishment" })
+                                    @Html.ValidationMessageFor(model => model.Item1.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.Item1.IndustryClassification, htmlAttributes: new { @class = "control-label col-sm-3" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.Item1.IndustryClassification, new SelectList(" "), "Industry", new { @class = "form-control", id = "selectIndustry" })
+                                    @Html.ValidationMessageFor(model => model.Item1.IndustryClassification, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn" id="FindBtn" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder" style="width:350px;height:350px">
+                                        <canvas id="chart-area" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Status of Irrigation System</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Item2.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.Item2.YearTaken, ViewBag.YearTakenIrrigation as SelectList, "Year", new { @class = "form-control", id = "selectIrrigationSystem" })
+                                    @Html.ValidationMessageFor(model => model.Item2.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.Item2.Municipality, htmlAttributes: new { @class = "control-label col-sm-3" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.Item2.Municipality, new SelectList(" "), "Municipality", new { @class = "form-control", id = "selectMunicipality" })
+                                    @Html.ValidationMessageFor(model => model.Item2.Municipality, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn" id="FindBtn1" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder1" style="width:350px;height:350px">
+                                        <canvas id="chart-area1" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#FindBtn").prop("disabled", "disabled");
+            $("#selectMunicipality").prop("disabled", "disabled");
+            $("#FindBtn1").prop("disabled", "disabled");
+            $("#selectIndustry").prop("disabled", "disabled");
+
+            $("#selectEstablishment").on('change', function (e) {
+                $("#selectIndustry").removeAttr("disabled");
+                $.get("/InfrastructureReportCharts/GetIndustry", { YearTaken: $("#selectEstablishment").val() }, function (data) {
+                    $("#selectIndustry").empty();
+                    $.each(data, function (index, row) {
+                        $("#selectIndustry").append("<option value='" + row.IndustryClassification + "'>" + row.IndustryClassification + "</option>")
+                    });
+                });
+            });
+            $("#selectEstablishment, #selectIndustry").on("change", function () {
+                if ($("#selectEstablishment").val() != "") {
+                    $("#FindBtn").removeAttr("disabled");
+                    $("#FindBtn").click(function () {
+                        $.get("/InfrastructureReportCharts/ChartData", { YearTaken: $("#selectEstablishment").val(), Industry: $("#selectIndustry").val() }, function (data, data2, data3, data4, data5, data6) {
+                            var arr = [];
+                            $.each(data, function (index, val) {
+                                var NumberofFirms = parseFloat(val.data);
+                                var PercentFirms = parseFloat(val.data2);
+                                var Investment = parseFloat(val.data3);
+                                var PercentInvestment = parseFloat(val.data4);
+                                var NumberofEmployee = parseFloat(val.data5);
+                                var Distribution = parseFloat(val.data6);
+                                arr.push(NumberofFirms, PercentFirms, Investment, PercentInvestment, NumberofEmployee, Distribution);
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": ["#7B1CE8", "#1B32FF", "#1CA1E8", "#49E824", "#EEFF24", "#FFAD33"],
+                                    }],
+                                    labels: [
+                                        "Number of Firms", "Percent Firms", "Investment", "Percent Investment", "Number of Employee", "Distribution"
+                                    ]
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area').remove(); // this is my <canvas> element
+                            $('#canvas-holder').append('<canvas id="chart-area"><canvas>');
+                            var ctx = document.getElementById("chart-area").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectEstablishment").val() === "") {
+                    $("#selectIndustry").prop("disabled", "disabled");
+                    $("#FindBtn").prop("disabled", "disabled");
+                };
+            });
+
+            //------------------------------------------------------------
+
+            $("#selectIrrigationSystem").on('change', function (e) {
+                $("#selectMunicipality").removeAttr("disabled");
+                $.get("/InfrastructureReportCharts/GetMunicipalityList", { YearTaken: $("#selectIrrigationSystem").val() }, function (data) {
+                    $("#selectMunicipality").empty();
+                    $.each(data, function (index, row) {
+                        $("#selectMunicipality").append("<option value='" + row.Municipality + "'>" + row.Municipality + "</option>")
+                    });
+                });
+            });
+            $("#selectIrrigationSystem, #selectMunicipality").on("change", function () {
+                if ($("#selectIrrigationSystem").val() != "") {
+                    $("#FindBtn1").removeAttr("disabled");
+                    $("#FindBtn1").click(function () {
+                        $.get("/InfrastructureReportCharts/ChartData1", { YearTaken: $("#selectIrrigationSystem").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2, data3, data4, data5, data6, data7, data8) {
+                            var arr = [];
+                            $.each(data, function (index, val) {
+                                var AreasIrrigable = parseFloat(val.data);
+                                var NatlIrrigationSys = parseFloat(val.data2);
+                                var NIAAssisted = parseFloat(val.data3);
+                                var OtherAgency = parseFloat(val.data4);
+                                var PrivateIrrigation = parseFloat(val.data5);
+                                var PumpSystem = parseFloat(val.data6);
+                                var IrrigationDev = parseFloat(val.data7);
+                                var RemainingAreas = parseFloat(val.data8);
+                                arr.push(AreasIrrigable, NatlIrrigationSys, NIAAssisted, OtherAgency, PrivateIrrigation, PumpSystem, IrrigationDev, RemainingAreas);
+                            });
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": ["#7B1CE8", "#1B32FF", "#1CA1E8", "#49E824", "#EEFF24", "#FFAD33", "#FF811E", "#E83A1F"],
+                                    }],
+                                    labels: [
+                                        "Areas Irrigable", "National Irrigation System", "NIA Assisted", "Other Agency", "Private Irrigation", "Pump System", "Irrigation Dev", "Remaining Areas"
+                                    ]
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area1').remove(); // this is my <canvas> element
+                            $('#canvas-holder1').append('<canvas id="chart-area1"><canvas>');
+                            var ctx = document.getElementById("chart-area1").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectIrrigationSystem").val() === "") {
+                    $("#selectMunicipality").prop("disabled", "disabled");
+                    $("#FindBtn1").prop("disabled", "disabled");
+                };
+            });
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            };
+        });
+    </script>
+}
