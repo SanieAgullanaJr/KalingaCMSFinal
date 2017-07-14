@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgricultureReportChartsController.cs" />
     <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
     <Compile Include="Controllers\CoffeeAreaAndProductionController.cs" />
     <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
@@ -1037,6 +1038,10 @@
     <Content Include="Models\KalingaPPDOEntities.edmx.diagram">
       <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Models\KalingaPPDOEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1442,6 +1447,11 @@
     <Content Include="Views\LiteracyReportCharts\Index.cshtml" />
     <Content Include="Views\InfrastructureReportCharts\Index.cshtml" />
     <Content Include="Views\WorkerReportCharts\Index.cshtml" />
+    <Content Include="Views\AgricultureReportCharts\Create.cshtml" />
+    <Content Include="Views\AgricultureReportCharts\Delete.cshtml" />
+    <Content Include="Views\AgricultureReportCharts\Details.cshtml" />
+    <Content Include="Views\AgricultureReportCharts\Edit.cshtml" />
+    <Content Include="Views\AgricultureReportCharts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

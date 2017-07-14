@@ -29,4 +29,14 @@ namespace KalingaCMSFinal.Models
         public vw_ReligiousAffiliation ReligiousAffiliation { get; set; }
         public vw_HouseholdPopulationByCitizenshipAndSex Citizenship { get; set; }
     }
+
+    public class AgricultureChartsModels
+    {
+        public vw_PalayProductionIrrigatedRainfedUpland PalayProduction { get; set; }
+        public vw_CornAreaProductionYield CornProduction { get; set; }
+        public vw_OtherHighValueCropsAreaAndProduction OtherCropsProduction { get; set; }
+        public vw_LivestockAndPoultryInventoryByMunicipalityByYear LivestockPoultry { get; set; }
+        public vw_ForestCoverByVegetationByYear Vegetation { get; set; }
+
+    }
 }
