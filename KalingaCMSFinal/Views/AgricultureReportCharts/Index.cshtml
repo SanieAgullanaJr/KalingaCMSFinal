@@ -1,63 +1,65 @@
-﻿@model IEnumerable<KalingaCMSFinal.Models.vw_PalayProductionIrrigatedRainfedUpland>
+﻿@model KalingaCMSFinal.Models.AgricultureChartsModels
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Municipality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Method)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AreaHectares)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Production)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProdYield)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearTaken)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Municipality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Method)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AreaHectares)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Production)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProdYield)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearTaken)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PalayProdID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PalayProdID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PalayProdID })
-        </td>
-    </tr>
-}
-
-</table>
+<h2>Agriculture Reports</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Palay Production</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.PalayProduction.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.PalayProduction.YearTaken, ViewBag.YearTakenPopulationDistribution as SelectList, "--Select Year--", new { @class = "form-control", id = "selectPalayProduction" })
+                                    @Html.ValidationMessageFor(model => model.PalayProduction.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder" style="width:350px;height:350px">
+                                        <canvas id="chart-area" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Other High Value Crops</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.OtherCropsProduction.YearTaken, htmlAttributes: new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(model => model.OtherCropsProduction.YearTaken, ViewBag.YearTakenGrowthRate as SelectList, "--Select Year--", new { @class = "form-control", id = "selectGrowthRate" })
+                                    @Html.ValidationMessageFor(model => model.OtherCropsProduction.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder0" style="width:350px;height:350px">
+                                        <canvas id="chart-area0" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

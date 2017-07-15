@@ -6,6 +6,24 @@ using System.Web;
 
 namespace KalingaCMSFinal.Models
 {
+    [MetadataType(typeof(appUserMetadata))]
+    public partial class appUser
+    {
+    }
+    public class appUserMetadata
+    {
+        public int appuserid { get; set; }
+        public Nullable<int> empid { get; set; }
+        [Required(ErrorMessage = "Username is Required")]
+        [Display(Name = "Username")]
+        public string username { get; set; }
+
+        [Required(ErrorMessage = "Password is Required")]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        public string password { get; set; }
+    }
+
     [MetadataType(typeof(CornProductionMetadata))]
     public partial class CornProduction
     {

@@ -10,6 +10,7 @@ using KalingaCMSFinal.Models;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [Authorize]
     public class NewProjectsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();
