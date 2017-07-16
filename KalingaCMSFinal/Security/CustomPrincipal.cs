@@ -21,7 +21,8 @@ namespace KalingaCMSFinal.Security
 
         public bool IsInRole(string role)
         {
-            throw new NotImplementedException();
+            var roles = role.Split(new char[] { ',' });
+            return roles.Any( r => this.AppUser.username.Contains(r));
         }
     }
 }

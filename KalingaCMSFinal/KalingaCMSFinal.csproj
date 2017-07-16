@@ -266,6 +266,9 @@
     <Compile Include="Models\DropDown_AcountCode.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_AppUsers.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_Barangay.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -1459,7 +1462,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\AIP\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

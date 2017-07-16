@@ -37,6 +37,7 @@
           <Property Name="empid" Type="int" />
           <Property Name="username" Type="varchar" MaxLength="8" />
           <Property Name="password" Type="varchar" MaxLength="8" />
+          <Property Name="roles" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CoffeeProduction">
           <Key>
@@ -1039,6 +1040,15 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AcountCode' does not have
           <Property Name="AccountCode" Type="varchar" MaxLength="157" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AppUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AppUsers">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullname" Type="varchar" MaxLength="153" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_Barangay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DropDown_Barangay">
           <Key>
@@ -1863,6 +1873,12 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [DropDown_AcountCode].[AccountCode] AS [AccountCode]
     FROM [dbo].[DropDown_AcountCode] AS [DropDown_AcountCode]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DropDown_AppUsers" EntityType="Self.DropDown_AppUsers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AppUsers].[empid] AS [empid], 
+    [DropDown_AppUsers].[fullname] AS [fullname]
+    FROM [dbo].[DropDown_AppUsers] AS [DropDown_AppUsers]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DropDown_Barangay" EntityType="Self.DropDown_Barangay" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DropDown_Barangay].[barangayID] AS [barangayID], 
@@ -2447,6 +2463,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="empid" Type="Int32" />
           <Property Name="username" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CoffeeProduction">
           <Key>
@@ -4190,6 +4207,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="vw_VolunteerList" EntityType="Self.vw_VolunteerList" />
           <EntitySet Name="vw_StrategicPriorityArea" EntityType="kalingaPPDOModel.vw_StrategicPriorityArea" />
           <EntitySet Name="vw_ForestCoverByVegetationByYear" EntityType="kalingaPPDOModel.vw_ForestCoverByVegetationByYear" />
+          <EntitySet Name="DropDown_AppUsers" EntityType="kalingaPPDOModel.DropDown_AppUsers" />
         </EntityContainer>
         <EntityType Name="vw_StrategicPriorityArea">
           <Key>
@@ -4211,6 +4229,13 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="Distribution" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="YearTaken" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="VegetationID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DropDown_AppUsers">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4247,6 +4272,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="appUsers">
             <EntityTypeMapping TypeName="kalingaPPDOModel.appUser">
               <MappingFragment StoreEntitySet="appUsers">
+                <ScalarProperty Name="roles" ColumnName="roles" />
                 <ScalarProperty Name="appuserid" ColumnName="appuserid" />
                 <ScalarProperty Name="empid" ColumnName="empid" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -6000,6 +6026,14 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
                 <ScalarProperty Name="AreaHectares" ColumnName="AreaHectares" />
                 <ScalarProperty Name="LandCoverClassificationDescription" ColumnName="LandCoverClassificationDescription" />
                 <ScalarProperty Name="LandCoverClassID" ColumnName="LandCoverClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AppUsers">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AppUsers">
+              <MappingFragment StoreEntitySet="DropDown_AppUsers">
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
