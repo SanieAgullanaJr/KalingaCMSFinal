@@ -9,12 +9,12 @@ namespace KalingaCMSFinal.Security
 {
     public class CustomPrincipal : IPrincipal
     {
-        private appUser AppUser;
+        private appUserDTO AppUser;
 
-        public CustomPrincipal(appUser appuser)
+        public CustomPrincipal(appUserDTO appuser)
         {
             this.AppUser = appuser;
-            this.Identity = new GenericIdentity(AppUser.username);
+            this.Identity = new GenericIdentity(appuser.username);
         }
 
         public IIdentity Identity { get; set; }
@@ -22,7 +22,7 @@ namespace KalingaCMSFinal.Security
         public bool IsInRole(string role)
         {
             var roles = role.Split(new char[] { ',' });
-            return roles.Any( r => this.AppUser.username.Contains(r));
+            return roles.Any( r => this.AppUser.roles.Contains(r));
         }
     }
 }

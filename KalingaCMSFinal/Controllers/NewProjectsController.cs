@@ -7,10 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
-    [Authorize]
+    [CustomAuthorize(Roles = "AIPAdmin")]
     public class NewProjectsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

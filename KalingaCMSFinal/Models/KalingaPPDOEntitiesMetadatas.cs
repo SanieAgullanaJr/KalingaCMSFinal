@@ -13,7 +13,12 @@ namespace KalingaCMSFinal.Models
     public class appUserMetadata
     {
         public int appuserid { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
         public Nullable<int> empid { get; set; }
+
+
         [Required(ErrorMessage = "Username is Required")]
         [Display(Name = "Username")]
         public string username { get; set; }
@@ -22,6 +27,10 @@ namespace KalingaCMSFinal.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string password { get; set; }
+
+        [Required]
+        [Display(Name = "Roles")]
+        public string[] roles { get; set; }
     }
 
     [MetadataType(typeof(CornProductionMetadata))]

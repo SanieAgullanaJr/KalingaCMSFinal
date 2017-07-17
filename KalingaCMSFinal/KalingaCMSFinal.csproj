@@ -194,6 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgricultureReportChartsController.cs" />
+    <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
     <Compile Include="Controllers\CoffeeAreaAndProductionController.cs" />
     <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
@@ -732,7 +733,9 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomPrincipal.cs" />
+    <Compile Include="Security\RemainSession.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\AccessController.cs" />
     <Compile Include="Controllers\AccountCodeController.cs" />
@@ -1459,6 +1462,11 @@
     <Content Include="Views\AgricultureReportCharts\Index.cshtml" />
     <Content Include="Views\Dashboard\Soon.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\AppUsers\Create.cshtml" />
+    <Content Include="Views\AppUsers\Delete.cshtml" />
+    <Content Include="Views\AppUsers\Details.cshtml" />
+    <Content Include="Views\AppUsers\Edit.cshtml" />
+    <Content Include="Views\AppUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

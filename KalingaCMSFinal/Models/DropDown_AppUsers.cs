@@ -12,12 +12,9 @@ namespace KalingaCMSFinal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class appUser
+    public partial class DropDown_AppUsers
     {
-        public int appuserid { get; set; }
-        public Nullable<int> empid { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string roles { get; set; }
+        public int empid { get; set; }
+        public string fullname { get; set; }
     }
 }

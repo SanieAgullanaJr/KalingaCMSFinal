@@ -179,5 +179,6 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_VolunteerList> vw_VolunteerList { get; set; }
         public virtual DbSet<vw_StrategicPriorityArea> vw_StrategicPriorityArea { get; set; }
         public virtual DbSet<vw_ForestCoverByVegetationByYear> vw_ForestCoverByVegetationByYear { get; set; }
+        public virtual DbSet<DropDown_AppUsers> DropDown_AppUsers { get; set; }
     }
 }

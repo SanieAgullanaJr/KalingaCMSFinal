@@ -1,12 +1,14 @@
-﻿@{
+﻿@using KalingaCMSFinal.Security;
+@{
     if (Session == null)
     {
         Response.Redirect("~/Access/Login");
     }
     else if (Session != null)
     {
-        var First = Session["First"].ToString();
-        var Last = Session["Last"].ToString();
+        var First = RemainSession.Firstname;
+        var Last = RemainSession.Lastname;
+        var Username = RemainSession.Username;
         <!DOCTYPE html>
         <html>
         <head>
@@ -47,6 +49,7 @@
                 }
             </style>
         </head>
+
         <body class="nav-md">
             <div class="container body">
                 <div class="main_container">

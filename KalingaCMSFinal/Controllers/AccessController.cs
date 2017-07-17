@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Views.Login
 {
@@ -34,8 +35,10 @@ namespace KalingaCMSFinal.Views.Login
                     var Name = db.EmpMasterProfiles.Single(n => n.empid == UserCredentials.empid);
                     if (UserCredentials != null)
                     {
-                        Session["First"] = Name.FirstName.ToString();
-                        Session["Last"] = Name.LastName.ToString();
+                        RemainSession.Username = UserCredentials.username;
+                        RemainSession.Firstname = Name.FirstName;
+                        RemainSession.Lastname = Name.LastName;
+                        RemainSession.EmployeeID = UserCredentials.empid.ToString();
                         return RedirectToAction("Index", "Dashboard");
                     }
                     else

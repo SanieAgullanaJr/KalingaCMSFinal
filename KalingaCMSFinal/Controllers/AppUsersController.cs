@@ -7,114 +7,112 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
-using KalingaCMSFinal.Security;
 
-namespace KalingaCMSFinal.Controllers.AIP.ManageModule
+namespace KalingaCMSFinal.Controllers
 {
-    [CustomAuthorize(Roles = "AIPAdmin")]
-    public class OfficialCodeController : Controller
+    public class AppUsersController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();
 
-        // GET: OfficialCode
+        // GET: AppUsers
         public ActionResult Index()
         {
-            return View(db.ref_OfficialCode.ToList());
+            return View(db.appUsers.ToList());
         }
 
-        // GET: OfficialCode/Details/5
+        // GET: AppUsers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ref_OfficialCode ref_OfficialCode = db.ref_OfficialCode.Find(id);
-            if (ref_OfficialCode == null)
+            appUser appUser = db.appUsers.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(ref_OfficialCode);
+            return View(appUser);
         }
 
-        // GET: OfficialCode/Create
+        // GET: AppUsers/Create
         public ActionResult Create()
         {
-            return View(Tuple.Create<ref_OfficialCode, IEnumerable<ref_OfficialCode>>(new ref_OfficialCode(), db.ref_OfficialCode.ToList()));
+            return View();
         }
 
-        // POST: OfficialCode/Create
+        // POST: AppUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Prefix="Item1", Include = "OfficialCodeID,OfficialCode,OfficialCodeDescription")] ref_OfficialCode ref_OfficialCode)
+        public ActionResult Create([Bind(Include = "appuserid,empid,username,password")] appUser appUser)
         {
             if (ModelState.IsValid)
             {
-                db.ref_OfficialCode.Add(ref_OfficialCode);
+                db.appUsers.Add(appUser);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
 
-            return View(ref_OfficialCode);
+            return View(appUser);
         }
 
-        // GET: OfficialCode/Edit/5
+        // GET: AppUsers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ref_OfficialCode ref_OfficialCode = db.ref_OfficialCode.Find(id);
-            if (ref_OfficialCode == null)
+            appUser appUser = db.appUsers.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(ref_OfficialCode);
+            return View(appUser);
         }
 
-        // POST: OfficialCode/Edit/5
+        // POST: AppUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OfficialCodeID,OfficialCode,OfficialCodeDescription")] ref_OfficialCode ref_OfficialCode)
+        public ActionResult Edit([Bind(Include = "appuserid,empid,username,password")] appUser appUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ref_OfficialCode).State = EntityState.Modified;
+                db.Entry(appUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
-            return View(ref_OfficialCode);
+            return View(appUser);
         }
 
-        // GET: OfficialCode/Delete/5
+        // GET: AppUsers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ref_OfficialCode ref_OfficialCode = db.ref_OfficialCode.Find(id);
-            if (ref_OfficialCode == null)
+            appUser appUser = db.appUsers.Find(id);
+            if (appUser == null)
             {
                 return HttpNotFound();
             }
-            return View(ref_OfficialCode);
+            return View(appUser);
         }
 
-        // POST: OfficialCode/Delete/5
+        // POST: AppUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ref_OfficialCode ref_OfficialCode = db.ref_OfficialCode.Find(id);
-            db.ref_OfficialCode.Remove(ref_OfficialCode);
+            appUser appUser = db.appUsers.Find(id);
+            db.appUsers.Remove(appUser);
             db.SaveChanges();
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

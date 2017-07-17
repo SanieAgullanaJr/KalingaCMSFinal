@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -38,5 +41,34 @@ namespace KalingaCMSFinal.Models
         public vw_LivestockAndPoultryInventoryByMunicipalityByYear LivestockPoultry { get; set; }
         public vw_ForestCoverByVegetationByYear Vegetation { get; set; }
 
+    }
+
+    public class appUserDTO
+    {
+        public string username { get; set; }
+        public string roles { get; set; }
+    }
+
+    public class AccountModel
+    {
+        
+
+        public List<appUserDTO> Role()
+        {
+            kalingaPPDOEntities db = new kalingaPPDOEntities();
+            var appUsername = (from data in db.appUsers
+                               select new appUserDTO
+                               {
+                                   username = data.username,
+                                   roles = data.roles
+                                });
+            return appUsername.ToList();
+        }
+
+        public appUserDTO find(string username)
+        {
+            List<appUserDTO> Roles = Role();
+            return Roles.Where(acc => acc.username.Equals(username)).FirstOrDefault();
+        }
     }
 }
