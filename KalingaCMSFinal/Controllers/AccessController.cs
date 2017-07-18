@@ -39,6 +39,7 @@ namespace KalingaCMSFinal.Views.Login
                         RemainSession.Firstname = Name.FirstName;
                         RemainSession.Lastname = Name.LastName;
                         RemainSession.EmployeeID = UserCredentials.empid.ToString();
+                        RemainSession.Roles = UserCredentials.roles;
                         return RedirectToAction("Index", "Dashboard");
                     }
                     else

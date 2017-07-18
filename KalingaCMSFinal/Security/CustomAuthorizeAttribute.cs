@@ -22,7 +22,7 @@ namespace KalingaCMSFinal.Security
                 CustomPrincipal mp = new CustomPrincipal(am.find(RemainSession.Username));
                 if (!mp.IsInRole(Roles))
                     filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
-                        (new { Controller = "Dashboard", action = "Soon" }));
+                        (new { Controller = "Error", action = "Forbidden" }));
             }
         }
     }

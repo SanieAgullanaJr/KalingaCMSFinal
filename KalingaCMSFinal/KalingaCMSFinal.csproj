@@ -197,6 +197,7 @@
     <Compile Include="Controllers\AppUsersController.cs" />
     <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
     <Compile Include="Controllers\CoffeeAreaAndProductionController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
     <Compile Include="Controllers\LiteracyReportChartsController.cs" />
     <Compile Include="Controllers\NewProjectsController.cs" />
@@ -1467,9 +1468,13 @@
     <Content Include="Views\AppUsers\Details.cshtml" />
     <Content Include="Views\AppUsers\Edit.cshtml" />
     <Content Include="Views\AppUsers\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Errors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

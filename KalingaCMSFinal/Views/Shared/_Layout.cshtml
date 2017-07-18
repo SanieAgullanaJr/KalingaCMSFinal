@@ -9,6 +9,7 @@
         var First = RemainSession.Firstname;
         var Last = RemainSession.Lastname;
         var Username = RemainSession.Username;
+        var Role = RemainSession.Roles;
         <!DOCTYPE html>
         <html>
         <head>
@@ -78,7 +79,7 @@
                                 <div class="menu_section">
                                     <h3>General</h3>
                                     <ul class="nav side-menu">
-                                        @if (First == "AIP")
+                                        @if (Role.Contains("AIPAdmin"))
                                         {
                                             <li>
                                                 <a><i class="fa fa-edit"></i> A.I.P. <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -111,7 +112,7 @@
                                                 </ul>
                                             </li>
                                         }
-                                        else if (First == "SocioEcon")
+                                        else if (Role.Contains("SocioEconAdmin") == true)
                                         {
                                             <li>
                                                 <a><i class="fa fa-group"></i> Population <span class="glyphicon glyphicon-chevron-down"></span></a>

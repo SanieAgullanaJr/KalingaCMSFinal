@@ -81,7 +81,7 @@ namespace KalingaCMSFinal.Security
             }
         }
 
-        public static string roles
+        public static string Roles
         {
             get
             {
