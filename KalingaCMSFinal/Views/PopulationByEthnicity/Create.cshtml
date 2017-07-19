@@ -93,10 +93,6 @@
     <script>
         $(document).ready(function () {
             $('#EthnicityTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#EthnicityTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

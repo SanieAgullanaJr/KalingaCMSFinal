@@ -120,10 +120,6 @@
     <script>
         $(document).ready(function () {
             $('#EducationTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#EducationTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

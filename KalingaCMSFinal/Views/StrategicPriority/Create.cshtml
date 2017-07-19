@@ -87,10 +87,6 @@
     <script>
         $(document).ready(function () {
             $('#StratPriorityTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#StratPriorityTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

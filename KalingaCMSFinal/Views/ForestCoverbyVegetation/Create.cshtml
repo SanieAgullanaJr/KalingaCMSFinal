@@ -107,10 +107,6 @@
     <script>
         $(document).ready(function () {
             $('#LandClassTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#LandClassTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

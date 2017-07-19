@@ -67,10 +67,6 @@
     <script>
         $(document).ready(function () {
             $('#LandCoverClassificationTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#LandCoverClassificationTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

@@ -12,7 +12,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
-    [CustomAuthorize(Roles = "AIPAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,AIPAdmin")]
     public class ProjectProfileController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

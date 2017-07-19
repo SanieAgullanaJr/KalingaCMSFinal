@@ -93,10 +93,6 @@
     <script>
         $(document).ready(function () {
             $('#GrowthRateTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#GrowthRateTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

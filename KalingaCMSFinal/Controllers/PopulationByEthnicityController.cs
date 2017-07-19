@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using System.Web.Security;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class PopulationByEthnicityController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

@@ -16,7 +16,7 @@ namespace KalingaCMSFinal
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "Create", id = UrlParameter.Optional }
+                defaults: new { controller = "Access", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

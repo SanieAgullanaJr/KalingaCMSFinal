@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using KalingaCMSFinal.Models;
 using System.Collections;
 using System.Web.Helpers;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class TotalPopulationAndDistributionController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

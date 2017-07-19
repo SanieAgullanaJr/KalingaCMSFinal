@@ -86,10 +86,6 @@
     <script>
         $(document).ready(function () {
             $('#OfficialTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#OfficialTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

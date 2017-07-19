@@ -122,10 +122,6 @@
     <script>
         $(document).ready(function () {
             $('#CoffeeTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#CoffeeTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

@@ -1,43 +1,68 @@
-﻿@model KalingaCMSFinal.Models.appUser
+﻿@model Tuple<KalingaCMSFinal.Models.appUser, IEnumerable<KalingaCMSFinal.Models.appUser>>
 
 @{
     ViewBag.Title = "Create";
 }
-
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>appUser</h4>
+        <h4>App User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.empid, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Item1.empid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.empid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.empid, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Item1.empid, ViewBag.AppUsers as SelectList, "--Select User--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Item1.empid, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Item1.username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Item1.username, new { htmlAttributes = new { @class = "form-control", maxlength = "8" } })
+                @Html.ValidationMessageFor(model => model.Item1.username, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Item1.password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Item1.password, new { htmlAttributes = new { @class = "form-control", maxlength = "8" } })
+                @Html.ValidationMessageFor(model => model.Item1.password, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <div class="form-group">
+            <!--@Html.LabelFor(model => model.Item1.roles, htmlAttributes: new { @class = "control-label col-md-2" })-->
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Item1.roles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Item1.roles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    Select Roles
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+                        <label class="checkbox-inline"><input type="checkbox" value="SuperAdmin" class="checkBoxes" id="SuperAdmin">Super Admin</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="AIPAdmin" class="checkBoxes" id="AIPAdmin">AIP Admin</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="SocioEconAdmin" class="checkBoxes" id="SocioEconAdmin">Socio Economic Admin</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="HRAdmim" class="checkBoxes" id="HRAdmin">HR Admin</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="SystemAdmin" class="checkBoxes" id="SystemAdmin">System Admin</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="Employee" class="checkBoxes" id="Employee">Employee</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="Charts Only" class="checkBoxes" id="ChartsOnly">Charts Only</label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -45,7 +70,138 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<table class="table table-bordered table-striped" id="TableAppUser">
+    <thead>
+        <tr>
+            <th>
+                Employee ID
+            </th>
+            <th>
+                Roles
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.roles)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.appuserid }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.appuserid }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var checkBoxValues = [];
+            $(".checkBoxes").on("change", function () {
+                if ($(this).prop('checked') == true) {
+                    if ($("#SuperAdmin").prop('checked')) {
+                        checkBoxValues.splice(0, checkBoxValues.length)
+                        checkBoxValues.push($(this).val());
+                        $("#Item1_roles").val(checkBoxValues);
+                        $(".checkBoxes").prop('checked', true);
+                        $(".checkBoxes").prop('disabled', true);
+                        $("#SuperAdmin").prop('disabled', false);
+                    }
+                    else {
+                        checkBoxValues.push($(this).val());
+                        $("#Item1_roles").val(checkBoxValues);
+                    }
+                }
+                else {
+                    if (($("#SuperAdmin").prop('checked') == false) && $(this).val() == "SuperAdmin") {
+                        checkBoxValues.splice(0, checkBoxValues.length)
+                        $("#Item1_roles").val(checkBoxValues);
+                        $(".checkBoxes").prop('checked', false);
+                        $(".checkBoxes").prop('disabled', false);
+                    }
+                    else {
+                        checkBoxValues.splice($.inArray($(this).val(), checkBoxValues), 1);
+                        $("#Item1_roles").val(checkBoxValues);
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#TableAppUser').DataTable({
+            });
+            $('#TableAppUser').on("click", ".modalOpener", function (e) {
+                e.preventDefault();
+                //replace the get with this.href to load the edit page
+                $.get(this.href, function (data) {
+                    //replace the content returned
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('#myModal').modal({
+                    keyboard: true,
+                }, 'show');
+                return false;
+            });
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var form = $("#editForm")
+                    .removeData("validator") /* added by the raw jquery.validate plugin */
+                    .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+                $.validator.unobtrusive.parse(form);
+                var SavedRoles = [];
+                SavedRoles = $("#roles").val();
+                $('.checkBoxes0').each(function (i, obj) {
+                    if (SavedRoles.indexOf($(this).val()) >= 0) {
+                        $(this).prop('checked', true);
+                    }
+                });
+                var checkBoxValues0 = SavedRoles.split(",");
+                $(".checkBoxes0").on("change", function () {
+                    if ($(this).prop('checked') == true) {
+                        if ($("#SuperAdmin0").prop('checked')) {
+                            checkBoxValues0.splice(0, checkBoxValues0.length)
+                            checkBoxValues0.push($(this).val());
+                            $("#roles").val(checkBoxValues0);
+                            $(".checkBoxes0").prop('checked', true);
+                            $(".checkBoxes0").prop('disabled', true);
+                            $("#SuperAdmin0").prop('disabled', false);
+                        }
+                        else {
+                            checkBoxValues0.push($(this).val());
+                            $("#roles").val(checkBoxValues0);
+                        }
+                    }
+                    else {
+                        if (($("#SuperAdmin0").prop('checked') == false) && $(this).val() == "SuperAdmin") {
+                            checkBoxValues0.splice(0, checkBoxValues0.length)
+                            $("roles").val(checkBoxValues0);
+                            $(".checkBoxes0").prop('checked', false);
+                            $(".checkBoxes0").prop('disabled', false);
+                        }
+                        else {
+                            checkBoxValues0.splice($.inArray($(this).val(), checkBoxValues0), 1);
+                            $("#roles").val(checkBoxValues0);
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+}

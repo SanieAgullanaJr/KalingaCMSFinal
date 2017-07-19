@@ -94,10 +94,6 @@
     <script>
         $(document).ready(function () {
             $('#ReligionTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#ReligionTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

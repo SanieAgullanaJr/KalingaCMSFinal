@@ -101,10 +101,6 @@
     <script>
         $(document).ready(function () {
             $('#StrategicAreaTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#StrategicAreaTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

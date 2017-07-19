@@ -51,8 +51,6 @@ namespace KalingaCMSFinal.Models
 
     public class AccountModel
     {
-        
-
         public List<appUserDTO> Role()
         {
             kalingaPPDOEntities db = new kalingaPPDOEntities();

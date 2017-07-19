@@ -66,10 +66,6 @@
     <script>
         $(document).ready(function () {
             $('#LanguageSpokenTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#LanguageSpokenTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

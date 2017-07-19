@@ -73,10 +73,6 @@
     <script>
         $(document).ready(function () {
             $('#ClassificationTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#ClassificationTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

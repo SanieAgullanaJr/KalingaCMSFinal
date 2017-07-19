@@ -28,9 +28,9 @@ namespace KalingaCMSFinal.Models
         [DataType(DataType.Password)]
         public string password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Role is Required")]
         [Display(Name = "Roles")]
-        public string[] roles { get; set; }
+        public string roles { get; set; }
     }
 
     [MetadataType(typeof(CornProductionMetadata))]

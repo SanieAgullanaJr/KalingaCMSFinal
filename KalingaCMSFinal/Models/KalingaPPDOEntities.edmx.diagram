@@ -160,6 +160,7 @@
         <EntityTypeShape EntityType="kalingaPPDOModel.vw_StrategicPriorityArea" Width="1.875" PointX="3.375" PointY="33.75" />
         <EntityTypeShape EntityType="kalingaPPDOModel.vw_ForestCoverByVegetationByYear" Width="1.5" PointX="21.375" PointY="33.75" />
         <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AppUsers" Width="1.5" PointX="23.375" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.appRole" Width="1.5" PointX="33.375" PointY="28.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -136,10 +136,6 @@
     <script>
         $(document).ready(function () {
             $('#PalayTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#PalayTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

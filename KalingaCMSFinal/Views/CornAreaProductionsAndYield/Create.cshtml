@@ -101,7 +101,7 @@
                     @Html.DisplayFor(modelItem => item.Municipality)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CornProdID)
+                    @Html.DisplayFor(modelItem => item.Corn)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AreaHectares)
@@ -134,10 +134,6 @@
     <script>
         $(document).ready(function () {
             $('#CornTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#CornTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

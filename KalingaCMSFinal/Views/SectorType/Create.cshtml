@@ -88,10 +88,6 @@
     <script>
         $(document).ready(function () {
             $('#SectorTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#SectorTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

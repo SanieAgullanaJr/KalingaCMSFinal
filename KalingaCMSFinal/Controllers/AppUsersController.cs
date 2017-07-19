@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using System.Security.Cryptography;
 
 namespace KalingaCMSFinal.Controllers
 {
@@ -35,9 +36,19 @@ namespace KalingaCMSFinal.Controllers
             return View(appUser);
         }
 
+
         // GET: AppUsers/Create
         public ActionResult Create()
         {
+            UserDD();
+            return View(Tuple.Create<appUser, IEnumerable<appUser>>(new appUser(), db.appUsers.ToList()));
+        }
+
+        //User Dropdown
+        public ActionResult UserDD()
+        {
+            List<DropDown_AppUsers> AppUsers = db.DropDown_AppUsers.ToList();
+            ViewBag.AppUsers = new SelectList(AppUsers, "empid", "fullname");
             return View();
         }
 
@@ -46,13 +57,34 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "appuserid,empid,username,password")] appUser appUser)
+        public ActionResult Create([Bind(Prefix= "Item1", Include = "appuserid,empid,username,password,roles")] appUser appUser)
         {
-            if (ModelState.IsValid)
+            ModelState.Clear();
+            UserDD();
+            var check = appUser.empid;
+            var HasAccount = db.appUsers.Where(user => user.empid == check).Select(user => user.empid).FirstOrDefault().ToString();
+            var check2 = appUser.username;
+            var IsExisting = db.appUsers.FirstOrDefault(user => user.username == check2);
+
+            if (HasAccount == "")
             {
-                db.appUsers.Add(appUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (IsExisting == null)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.appUsers.Add(appUser);
+                        db.SaveChanges();
+                        return RedirectToAction("Create");
+                    }
+                }
+                else if (IsExisting != null)
+                {
+                    ModelState.AddModelError("", "User name is already taken.");
+                }
+            }
+            else if (HasAccount != "")
+            {
+                ModelState.AddModelError("", "Employee already has an account.");
             }
 
             return View(appUser);
@@ -61,6 +93,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: AppUsers/Edit/5
         public ActionResult Edit(int? id)
         {
+            UserDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,13 +111,15 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "appuserid,empid,username,password")] appUser appUser)
+        public ActionResult Edit([Bind(Include = "appuserid,empid,username,password,roles")] appUser appUser)
         {
+            ModelState.Clear();
+            UserDD();
             if (ModelState.IsValid)
             {
                 db.Entry(appUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(appUser);
         }
@@ -112,7 +147,7 @@ namespace KalingaCMSFinal.Controllers
             appUser appUser = db.appUsers.Find(id);
             db.appUsers.Remove(appUser);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

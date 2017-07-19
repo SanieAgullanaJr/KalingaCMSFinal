@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using KalingaCMSFinal.Models;
 using System.Configuration;
 using System.Data.SqlClient;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin,ChartsOnly")]
     public class InfrastructureReportChartsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

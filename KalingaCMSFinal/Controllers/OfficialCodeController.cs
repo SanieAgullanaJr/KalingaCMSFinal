@@ -11,7 +11,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers.AIP.ManageModule
 {
-    [CustomAuthorize(Roles = "AIPAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,AIPAdmin")]
     public class OfficialCodeController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

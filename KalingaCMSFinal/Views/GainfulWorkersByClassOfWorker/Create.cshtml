@@ -123,10 +123,6 @@
     <script>
         $(document).ready(function () {
             $('#WorkerClassTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#WorkerClassTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

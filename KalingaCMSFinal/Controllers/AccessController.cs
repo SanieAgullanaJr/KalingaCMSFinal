@@ -5,9 +5,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Security;
+using System.Security.Cryptography;
 
 namespace KalingaCMSFinal.Views.Login
 {
+    [AllowAnonymous]
     public class AccessController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();
@@ -58,7 +60,7 @@ namespace KalingaCMSFinal.Views.Login
         public ActionResult Logout()
         {
             Session.Abandon();
-            return RedirectToAction("Login","Access");
+            return RedirectToAction("Login", "Access");
         }
     }
 }

@@ -11,7 +11,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
-    [CustomAuthorize(Roles = "AIPAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class AccountCodeController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

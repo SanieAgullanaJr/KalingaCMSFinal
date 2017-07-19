@@ -91,10 +91,6 @@
     <script>
         $(document).ready(function () {
             $('#TotalPopulationTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#TotalPopulationTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

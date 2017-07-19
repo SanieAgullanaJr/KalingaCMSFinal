@@ -87,10 +87,6 @@
     <script>
         $(document).ready(function () {
             $('#SOFTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#SOFTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

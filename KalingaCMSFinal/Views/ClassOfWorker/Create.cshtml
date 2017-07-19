@@ -66,10 +66,6 @@
     <script>
         $(document).ready(function () {
             $('#ClassOfWorkerTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#ClassOfWorkerTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

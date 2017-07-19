@@ -1,10 +1,10 @@
 ﻿@using KalingaCMSFinal.Security;
 @{
-    if (Session == null)
+    if (RemainSession.Roles == null)
     {
         Response.Redirect("~/Access/Login");
     }
-    else if (Session != null)
+    else if (RemainSession.Roles != null)
     {
         var First = RemainSession.Firstname;
         var Last = RemainSession.Lastname;
@@ -23,6 +23,7 @@
             @Styles.Render("~/Gentel/css/font-awesome/css/font-awesome.min.css")
             @Styles.Render("~/Gentel/css/custom.min.css")
             @Scripts.Render("~/bundles/modernizr")
+            @Styles.Render("~/Content/nprogress.css")
             <style>
                 body {
                     width: 100%;
@@ -57,7 +58,7 @@
                     <div class="col-md-3 left_col">
                         <div class="left_col scroll-view">
                             <div class="navbar nav_title">
-                                <center><a href="index.html" class="site_title"><img src="../content/images/KalingaLogo.png" alt="..." class="img-circle kalingaLogo" width="80"></a></center>
+                                <center><a href="/Dashboard/Index" class="site_title"><img src="../content/images/KalingaLogo.png" alt="..." class="img-circle kalingaLogo" width="80"></a></center>
                             </div>
 
                             <div class="clearfix"></div>
@@ -74,12 +75,16 @@
                             </div>
                             <!-- /menu profile quick info -->
                             <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                             <!-- sidebar menu -->
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                                 <div class="menu_section">
                                     <h3>General</h3>
                                     <ul class="nav side-menu">
-                                        @if (Role.Contains("AIPAdmin"))
+                                        @if ((Role.Contains("AIPAdmin")) || Role.Contains("SuperAdmin"))
                                         {
                                             <li>
                                                 <a><i class="fa fa-edit"></i> A.I.P. <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -112,7 +117,7 @@
                                                 </ul>
                                             </li>
                                         }
-                                        else if (Role.Contains("SocioEconAdmin") == true)
+                                        @if((Role.Contains("SocioEconAdmin")) || Role.Contains("SuperAdmin"))
                                         {
                                             <li>
                                                 <a><i class="fa fa-group"></i> Population <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -161,7 +166,7 @@
                                                     <li>@Html.ActionLink("Population", "Index", "PopulationReportCharts")</li>
                                                     <li>@Html.ActionLink("Literacy", "Index", "LiteracyReportCharts")</li>
                                                     <li>@Html.ActionLink("Workers", "Index", "WorkerReportCharts")</li>
-                                                    <li>@Html.ActionLink("Agriculture", "Index", "Home")</li>
+                                                    <li>@Html.ActionLink("Agriculture", "Index", "AgricultureReportCharts")</li>
                                                     <li>@Html.ActionLink("Infrastructure", "Index", "InfrastructureReportCharts")</li>
                                                 </ul>
                                             </li>
@@ -177,6 +182,15 @@
                                                     <li>@Html.ActionLink("Live Stock and Poultry", "Create", "LiveStockAndPoultry")</li>
                                                     <li>@Html.ActionLink("Industry Classification", "Create", "IndustryClassification")</li>
                                                     <li>@Html.ActionLink("Land Cover Classification ", "Create", "LandCoverClassification")</li>
+                                                </ul>
+                                            </li>
+                                        }
+                                        @if ((Role.Contains("SystemAdmin")) || Role.Contains("SuperAdmin"))
+                                        {
+                                            <li>
+                                                <a><i class="fa fa-cog"></i> System <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("App Users", "Create", "AppUsers")</li>
                                                 </ul>
                                             </li>
                                         }
@@ -257,11 +271,13 @@
                                             <li><a href="~/Access/Logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                                         </ul>
                                     </li>
+                                    <!--
                                     <li role="presentation" class="dropdown">
                                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fa fa-envelope-o"></i>
                                             <span class="badge bg-green">6</span>
                                         </a>
+                                        
                                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                             <li>
                                                 <a>
@@ -321,6 +337,7 @@
                                             </li>
                                         </ul>
                                     </li>
+                                        -->
                                 </ul>
                             </nav>
                         </div>
@@ -352,11 +369,14 @@
             @Scripts.Render("~/Scripts/DataTables/dataTables.buttons.min.js")
             @Scripts.Render("~/Scripts/DataTables/buttons.bootstrap.min.js")
             @Scripts.Render("~/Scripts/DataTables/buttons.print.min.js")
-            @Scripts.Render("~/Scripts/DataTables/buttons.print.min.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.flash.min.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.colVis.min.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.html5.min.js")
             @Scripts.Render("~/Scripts/bootbox.min.js")
             @Scripts.Render("~/Gentel/js/custom.min.js")
             @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js");
             @Scripts.Render("~/Scripts/Chart.min.js");
+            @Scripts.Render("~/Scripts/nprogress.js");
             @RenderSection("scripts", required: false)
             <script type='text/javascript'>
                 $(function () {
@@ -372,6 +392,22 @@
                         }
                     });
                 });
+            </script>
+            <script>
+                // Show the progress bar
+                NProgress.start();
+
+                // Trigger finish when page fully loaded
+                jQuery(window).on('load', function () {
+                    
+                    NProgress.done();
+                });
+
+                // Trigger bar when exiting the page
+                jQuery(window).on('unload', function () {
+                    NProgress.start();
+                });
+
             </script>
         </body>
     </html>

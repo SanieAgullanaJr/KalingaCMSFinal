@@ -192,10 +192,6 @@
     <script>
         $(document).ready(function () {
             $('#IrrigationTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#IrrigationTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

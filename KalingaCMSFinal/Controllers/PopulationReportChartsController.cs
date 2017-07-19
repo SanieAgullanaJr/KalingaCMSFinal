@@ -12,9 +12,11 @@ using System.Web.Helpers;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Services;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class PopulationReportChartsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

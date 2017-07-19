@@ -164,10 +164,6 @@
     <script>
         $(document).ready(function () {
             $('#EstablishmentTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#EstablishmentTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();

@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class MajorOccupationGroupController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

@@ -11,7 +11,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers.AIP_Controllers
 {
-    [CustomAuthorize(Roles = "AIPAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
     public class ClimateChangeTypologyController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

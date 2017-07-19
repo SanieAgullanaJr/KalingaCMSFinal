@@ -136,10 +136,6 @@
     <script>
         $(document).ready(function () {
             $('#Migrationtable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
             });
             $('#Migrationtable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
