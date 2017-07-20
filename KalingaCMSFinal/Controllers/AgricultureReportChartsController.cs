@@ -25,6 +25,7 @@ namespace KalingaCMSFinal.Controllers
             YearTakenCornProdDD();
             YearTakenLivestockDD();
             YearTakenOtherCropsDD();
+            YearTakenForestDD();
             return View();
         }
 
@@ -94,6 +95,23 @@ namespace KalingaCMSFinal.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             List<vw_OtherHighValueCropsAreaAndProduction> TypeOfCrops = db.vw_OtherHighValueCropsAreaAndProduction.Where(x => x.YearTaken == YearTaken).ToList();
             return Json(TypeOfCrops, JsonRequestBehavior.AllowGet);
+        }
+
+        //Year Taken Forest
+        public ActionResult YearTakenForestDD()
+        {
+            var result = db.vw_ForestCoverByVegetationByYear.ToList();
+            List<vw_ForestCoverByVegetationByYear> YearTakenForest = result;
+            ViewBag.YearTakenForest = new SelectList(YearTakenForest.Select(m => m.YearTaken).Distinct());
+            return View();
+        }
+
+        //Forest
+        public JsonResult LandCover(string YearTaken)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<vw_ForestCoverByVegetationByYear> ForestCover = db.vw_ForestCoverByVegetationByYear.Where(x => x.YearTaken == YearTaken).ToList();
+            return Json(ForestCover, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult ChartData(string YearTaken, string Method, string SortBy)
@@ -229,6 +247,41 @@ namespace KalingaCMSFinal.Controllers
                             label = dr["HighValueCrop"].ToString(),
                             data = dr["AreaHectares"].ToString(),
                             data2 = dr["ProdMetricTons"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ChartData3(string YearTaken, string LandCoverClass)
+        {
+            List<trafficSourceData> t = new List<trafficSourceData>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select * from vw_ForestCoverByVegetationByYear where YearTaken = @year AND LandCoverClassificationDescription = @LandCoverClass";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@year", YearTaken);
+                cmd.Parameters.AddWithValue("@LandCoverClass", LandCoverClass);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        trafficSourceData tsData = new trafficSourceData()
+                        {
+                            data = dr["AreaHectares"].ToString(),
+                            data2 = dr["Distribution"].ToString()
                         };
                         t.Add(tsData);
                         counter++;

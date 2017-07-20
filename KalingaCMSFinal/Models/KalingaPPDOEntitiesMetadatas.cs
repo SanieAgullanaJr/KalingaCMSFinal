@@ -59,6 +59,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Production Yield")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> ProdYield { get; set; }
 
         [Required]
@@ -89,6 +91,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Total Production (MT)")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> TotalProd { get; set; }
 
         [Required]
@@ -115,14 +119,20 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "%")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> PercentFirms { get; set; }
 
         [Required]
         [Display(Name = "Investment (Peso)")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> Investment { get; set; }
 
         [Required]
         [Display(Name = "%")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> PercentInvest { get; set; }
 
         [Required]
@@ -131,6 +141,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "%")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> Distribution { get; set; }
 
         [Required]
@@ -152,10 +164,14 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Area Hectares")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> AreaHectares { get; set; }
 
         [Required]
         [Display(Name = "Distribution")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> Distribution { get; set; }
 
         [Required]
@@ -178,34 +194,50 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Potential Areas Irrigable")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> AreasIrrigable { get; set; }
 
         [Required]
         [Display(Name = "National Irrigation System")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> NatlIrrigationSys { get; set; }
 
         [Required]
         [Display(Name = "NIA Assisted/Constructed")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> NIAAssisted { get; set; }
 
         [Required]
         [Display(Name = "Other Agency")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> OtherAgency { get; set; }
 
         [Required]
         [Display(Name = "Private Irrigation")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> PrivateIrrigation { get; set; }
 
         [Required]
         [Display(Name = "Pump System")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> PumpSystem { get; set; }
 
         [Required]
         [Display(Name = "Irrigation Development")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> IrrigationDev { get; set; }
 
         [Required]
         [Display(Name = "Remaining Areas")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> RemainingAreas { get; set; }
 
         [Required]
@@ -292,6 +324,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Production Yield")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> ProdYield { get; set; }
 
         [Required]
@@ -406,6 +440,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Land Area")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> LandArea { get; set; }
 
         [Required]
@@ -453,6 +489,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Growth Rate")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> GrowthRate { get; set; }
 
         [Required]
@@ -535,6 +573,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Migrating IN (%)")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> MigratingINPer { get; set; }
 
         [Required]
@@ -543,6 +583,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Migrating OUT (%)")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> MigratingOUTPer { get; set; }
 
         [Required]
@@ -657,10 +699,14 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "MOOE")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> ProjMOOE { get; set; }
 
         [Required]
         [Display(Name = "Capital Outlay")]
+        [RegularExpression(@"^\d+\.\d{0,2}$", ErrorMessage = "Maximum of 9 Digits Only (7 Digits with 2 decimal places)")]
+        [Range(0, 9999999.99)]
         public Nullable<decimal> ProjCapitalOutlay { get; set; }
 
         [Required]

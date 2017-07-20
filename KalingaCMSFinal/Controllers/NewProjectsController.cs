@@ -188,11 +188,20 @@ namespace KalingaCMSFinal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Prefix = "Item1", Include = "ProjectProfileID,FunctionID,ProgramID,AccountCodeID,OfficialCodeID,LineNumber,SectorID,ProjectTitle,ProjectDescription,ImpDeptID,ProjStartDate,ProjEndDate,ProjStatusID,ProjExpectedOutput,SourceFundID,BDIPID,ProjCatID,ProjReferenceOutput,ProjItemWork,MunicipalityID,barangayID,ProjPurok,Remarks,ProjPS,ProjMOOE,ProjCapitalOutlay,StrategicPriorityID,StrategicPriorityAreaID,MitigationTypologyID,AdaptationTypologyID")] ProjectProfile ProjectProfile)
         {
-            if (ModelState.IsValid)
+            var check2 = ProjectProfile.ProjectTitle;
+            var IsExisting = db.ProjectProfiles.FirstOrDefault(user => user.ProjectTitle == check2);
+            if (IsExisting == null)
             {
-                db.ProjectProfiles.Add(ProjectProfile);
-                db.SaveChanges();
-                return RedirectToAction("Create");
+                if (ModelState.IsValid)
+                {
+                    db.ProjectProfiles.Add(ProjectProfile);
+                    db.SaveChanges();
+                    return RedirectToAction("Create");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Project already exists.");
             }
 
             return View(ProjectProfile);

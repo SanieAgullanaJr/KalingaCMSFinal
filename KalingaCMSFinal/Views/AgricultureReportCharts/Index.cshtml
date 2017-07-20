@@ -177,6 +177,49 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <center><h4>Forest Cover By Vegetation</h4></center>
+            </div>
+            <div class="x_content">
+                <center>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Vegetation.YearTaken, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-3">
+                                    @Html.DropDownListFor(model => model.Vegetation.YearTaken, ViewBag.YearTakenForest as SelectList, "Year", new { @class = "form-control", id = "selectForest" })
+                                    @Html.ValidationMessageFor(model => model.Vegetation.YearTaken, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.Vegetation.LandCoverClassificationDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.Vegetation.LandCoverClassificationDescription, new SelectList(" "), "Land Cover Classification", new { @class = "form-control", id = "selectCoverClass" })
+                                    @Html.ValidationMessageFor(model => model.Vegetation.LandCoverClassificationDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-5 col-sm-offset-4">
+                                    <button type="button" name="FindBtn3" id="FindBtn3" class="btn btn-default btn-sm form-control">Generate Chart!</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="canvas-holder3" style="width:350px;height:350px">
+                                        <canvas id="chart-area3" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
@@ -190,7 +233,59 @@
             $("#FindBtn1").prop("disabled", "disabled");
             $("#selectCropType").prop("disabled", "disabled");
             $("#FindBtn2").prop("disabled", "disabled");
+            $("#selectCoverClass").prop("disabled", "disabled");
+            $("#FindBtn3").prop("disabled", "disabled");
 
+            $("#selectForest").on('change', function (e) {
+                $("#selectCoverClass").removeAttr("disabled");
+                $.get("/AgricultureReportCharts/LandCover", { YearTaken: $("#selectForest").val() }, function (data) {
+                    $("#selectCoverClass").empty();
+                    $.each(data, function (index, row) {
+                        $("#selectCoverClass").append("<option value='" + row.LandCoverClassificationDescription + "'>" + row.LandCoverClassificationDescription + "</option>")
+                    });
+                });
+            });
+            $("#selectForest, #selectCoverClass").on("change", function () {
+                if ($("#selectForest").val() != "") {
+                    $("#FindBtn3").removeAttr("disabled");
+                    $("#FindBtn3").click(function () {
+                        $.get("/AgricultureReportCharts/ChartData3", { YearTaken: $("#selectForest").val(), LandCoverClass: $("#selectCoverClass").val() }, function (data) {
+                            var arr = [];
+                            var label = ["AreaHectares", "Distribution (%)"];
+                            var color1 = [];
+                            $.each(data, function (index, val) {
+                                var data = parseFloat(val.data);
+                                var data2 = parseFloat(val.data2);
+                                arr.push(data, data2);;
+                                var colors1 = getRandomColor();
+                                color1.push(colors1);
+                            });
+                            alert(arr)
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        "data": arr,
+                                        "backgroundColor": color1,
+                                    }],
+                                    labels: label
+                                },
+                                options: {
+                                    responsive: true
+                                }
+                            };
+                            $('#chart-area3').remove(); // this is my <canvas> element
+                            $('#canvas-holder3').append('<canvas id="chart-area3"><canvas>');
+                            var ctx = document.getElementById("chart-area3").getContext("2d");
+                            window.myPie = new Chart(ctx, config);
+                        });
+                    });
+                }
+                else if ($("#selectForest").val() == "") {
+                    $("#FindBtn3").prop("disabled", "disabled");
+                    $("#selectCropType").prop("disabled", "disabled");
+                };
+            });
 
             $("#selectOtherCrops").on('change', function (e) {
                 $("#selectCropType").removeAttr("disabled");
