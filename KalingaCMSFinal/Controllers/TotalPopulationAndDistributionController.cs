@@ -72,6 +72,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: TotalPopulationAndDistribution/Edit/5
         public ActionResult Edit(int? id)
         {
+            MunicipalityDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

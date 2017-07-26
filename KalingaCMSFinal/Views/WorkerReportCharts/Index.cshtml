@@ -131,7 +131,7 @@
             $("#FindBtn").attr("disabled", true);
             $("#selectOccupationGroup").on('change', function (e) {
                 $("#selectDescription").removeAttr("disabled");
-                $.get("/WorkerReportCharts/GetDescription", { YearTaken: $("#selectOccupationGroup").val() }, function (data) {
+                $.get("@Url.Action("GetDescription","WorkerReportCharts")", { YearTaken: $("#selectOccupationGroup").val() }, function (data) {
                     $("#selectDescription").empty();
                     var testPrev = "";
                     var tester = [];
@@ -151,7 +151,7 @@
                 if ($("#selectOccupationGroup").val() != "") {
                     $("#FindBtn").removeAttr("disabled");
                     $("#FindBtn").click(function () {
-                        $.get("/WorkerReportCharts/ChartData", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
+                        $.get("@Url.Action("ChartData", "WorkerReportCharts")", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
                             var arr = [];
                             var label = [];
                             var color = [];
@@ -181,7 +181,7 @@
                             var ctx = document.getElementById("chart-area").getContext("2d");
                             window.myPie = new Chart(ctx, config);
                         });
-                        $.get("/WorkerReportCharts/ChartData1", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
+                        $.get("@Url.Action("ChartData1", "WorkerReportCharts")", { YearTaken: $("#selectOccupationGroup").val(), Description: $("#selectDescription").val() }, function (data, label) {
                             var arr = [];
                             var label = [];
                             var color = [];
@@ -224,7 +224,7 @@
             $("#FindBtn1").attr("disabled", true);
             $("#selectIndustry").on('change', function (e) {
                 $("#selectDescription1").removeAttr("disabled");
-                $.get("/WorkerReportCharts/GetIndustry", { YearTaken: $("#selectIndustry").val() }, function (data) {
+                $.get("@Url.Action("GetIndustry", "WorkerReportCharts")", { YearTaken: $("#selectIndustry").val() }, function (data) {
                     $("#selectDescription1").empty();
                     var testPrev = "";
                     var tester = [];
@@ -244,7 +244,7 @@
                 if ($("#selectIndustry").val() != "") {
                     $("#FindBtn1").removeAttr("disabled");
                     $("#FindBtn1").click(function () {
-                        $.get("/WorkerReportCharts/ChartData2", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
+                        $.get("@Url.Action("ChartData2", "WorkerReportCharts")", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
                             var arr = [];
                             var label = [];
                             var color = [];
@@ -274,7 +274,7 @@
                             var ctx = document.getElementById("chart-area1").getContext("2d");
                             window.myPie = new Chart(ctx, config);
                         });
-                        $.get("/WorkerReportCharts/ChartData3", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
+                        $.get("@Url.Action("ChartData3", "WorkerReportCharts")", { YearTaken: $("#selectIndustry").val(), Description: $("#selectDescription1").val() }, function (data, label) {
                             var arr = [];
                             var label = [];
                             var color = [];

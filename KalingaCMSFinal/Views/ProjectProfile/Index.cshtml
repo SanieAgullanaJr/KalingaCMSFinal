@@ -218,12 +218,6 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            var table = $('#ProjectTable').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf', 'print'
-                ]
-            });
             var table = $('#ProjectTableExport').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
@@ -242,20 +236,6 @@
                     },
                     {
                         extend: 'excelFlash',
-                        filename: 'Project Profile',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    {
-                        extend: 'pdfFlash',
-                        filename: 'Project Profile',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    {
-                        extend: 'print',
                         filename: 'Project Profile',
                         exportOptions: {
                             columns: ':visible'
@@ -304,14 +284,14 @@
                     .removeData("validator") /* added by the raw jquery.validate plugin */
                     .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
                 $.validator.unobtrusive.parse(form);
-                $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                $.get("@Url.Action("GetBarangayList", "ProjectProfile")", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
                     $("#barangayID").empty();
                     $.each(data, function (index, row) {
                         $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
                     });
                 });
                 $("#MunicipalityID").change(function () {
-                    $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                    $.get("@Url.Action("GetBarangayList", "ProjectProfile")", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
                         $("#barangayID").empty();
                         $.each(data, function (index, row) {
                             $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")

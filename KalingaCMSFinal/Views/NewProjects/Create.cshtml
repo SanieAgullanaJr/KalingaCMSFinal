@@ -354,7 +354,7 @@
             $("#btnSubmit").prop("disabled", "disabled");
             $("#Item1_MunicipalityID").change(function () {
                 $("#Item1_barangayID").removeAttr("disabled");
-                $.get("/NewProjects/GetBarangayList", { MunicipalityID: $("#Item1_MunicipalityID").val() }, function (data) {
+                $.get("@Url.Action("GetBarangayList", "NewProjects")", { MunicipalityID: $("#Item1_MunicipalityID").val() }, function (data) {
                     $("#Item1_barangayID").empty();
                     $.each(data, function (index, row) {
                         $("#Item1_barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
@@ -379,14 +379,14 @@
                     .removeData("validator") /* added by the raw jquery.validate plugin */
                     .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
                 $.validator.unobtrusive.parse(form);
-                $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                $.get("@Url.Action("GetBarangayList", "ProjectProfile")", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
                     $("#barangayID").empty();
                     $.each(data, function (index, row) {
                         $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
                     });
                 });
                 $("#MunicipalityID").change(function () {
-                    $.get("/ProjectProfile/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+                    $.get("@Url.Action("GetBarangayList", "ProjectProfile")", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
                         $("#barangayID").empty();
                         $.each(data, function (index, row) {
                             $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")

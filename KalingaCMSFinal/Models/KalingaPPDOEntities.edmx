@@ -1222,6 +1222,17 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_AccountCodes' does not have a p
           <Property Name="AccountDescription" Type="varchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.vw_appUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_appUsers">
+          <Key>
+            <PropertyRef Name="appuserid" />
+          </Key>
+          <Property Name="appuserid" Type="int" Nullable="false" />
+          <Property Name="empid" Type="int" />
+          <Property Name="Fullname" Type="varchar" MaxLength="153" />
+          <Property Name="roles" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_BarangayList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_BarangayList">
           <Key>
@@ -2003,6 +2014,14 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_AccountCodes].[AccountDescription] AS [AccountDescription]
     FROM [dbo].[vw_AccountCodes] AS [vw_AccountCodes]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vw_appUsers" EntityType="Self.vw_appUsers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_appUsers].[appuserid] AS [appuserid], 
+    [vw_appUsers].[empid] AS [empid], 
+    [vw_appUsers].[Fullname] AS [Fullname], 
+    [vw_appUsers].[roles] AS [roles]
+    FROM [dbo].[vw_appUsers] AS [vw_appUsers]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_BarangayList" EntityType="Self.vw_BarangayList" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_BarangayList].[MunicipalityID] AS [MunicipalityID], 
@@ -2451,6 +2470,14 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="moduleGroup" Type="Int32" />
           <Property Name="IsMain" Type="Boolean" />
           <Property Name="moduleURL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="appRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsInRole" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="appUserAccess">
           <Key>
@@ -3472,6 +3499,13 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="ProgramID" Type="Int32" Nullable="false" />
           <Property Name="AccountCode" Type="String" MaxLength="157" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="DropDown_AppUsers">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="DropDown_Barangay">
           <Key>
             <PropertyRef Name="barangayID" />
@@ -3797,6 +3831,17 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="empFamBGID" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="vw_ForestCoverByVegetationByYear">
+          <Key>
+            <PropertyRef Name="VegetationID" />
+          </Key>
+          <Property Name="LandCoverClassID" Type="Int32" />
+          <Property Name="LandCoverClassificationDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AreaHectares" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="Distribution" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="YearTaken" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="VegetationID" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="vw_GrowthRateByMunicipalityByYear">
           <Key>
             <PropertyRef Name="PopGrowthRateID" />
@@ -4033,6 +4078,16 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="RemainingAreas" Type="Decimal" Precision="9" Scale="2" />
           <Property Name="YearTaken" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="vw_StrategicPriorityArea">
+          <Key>
+            <PropertyRef Name="StrategicPriorityAreaID" />
+          </Key>
+          <Property Name="StrategicPriorityNo" Type="Int32" />
+          <Property Name="StrategicPriorityAreaNo" Type="Int32" />
+          <Property Name="StrategicPriorityAreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StrategicPriorityAreaID" Type="Int32" Nullable="false" />
+          <Property Name="StrategicPriorityDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="vw_TrainingsAttended">
           <Key>
             <PropertyRef Name="empTrainID" />
@@ -4063,6 +4118,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
         </EntityType>
         <EntityContainer Name="kalingaPPDOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="appModules" EntityType="Self.appModule" />
+          <EntitySet Name="appRoles" EntityType="Self.appRole" />
           <EntitySet Name="appUserAccesses" EntityType="Self.appUserAccess" />
           <EntitySet Name="appUsers" EntityType="Self.appUser" />
           <EntitySet Name="CoffeeProductions" EntityType="Self.CoffeeProduction" />
@@ -4162,6 +4218,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="WorkersByMajorIndustries" EntityType="Self.WorkersByMajorIndustry" />
           <EntitySet Name="WorkersByMajorOCcupations" EntityType="Self.WorkersByMajorOCcupation" />
           <EntitySet Name="DropDown_AcountCode" EntityType="Self.DropDown_AcountCode" />
+          <EntitySet Name="DropDown_AppUsers" EntityType="Self.DropDown_AppUsers" />
           <EntitySet Name="DropDown_Barangay" EntityType="Self.DropDown_Barangay" />
           <EntitySet Name="DropDown_BDIPMunicipality" EntityType="Self.DropDown_BDIPMunicipality" />
           <EntitySet Name="DropDown_ClimateChangeAdaptation" EntityType="Self.DropDown_ClimateChangeAdaptation" />
@@ -4193,6 +4250,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="vw_EstablishmentByIndustryByYear" EntityType="Self.vw_EstablishmentByIndustryByYear" />
           <EntitySet Name="vw_ExamTaken" EntityType="Self.vw_ExamTaken" />
           <EntitySet Name="vw_FamilyBackground" EntityType="Self.vw_FamilyBackground" />
+          <EntitySet Name="vw_ForestCoverByVegetationByYear" EntityType="Self.vw_ForestCoverByVegetationByYear" />
           <EntitySet Name="vw_GrowthRateByMunicipalityByYear" EntityType="Self.vw_GrowthRateByMunicipalityByYear" />
           <EntitySet Name="vw_HolidayList" EntityType="Self.vw_HolidayList" />
           <EntitySet Name="vw_HouseholdHighestEducationAttained" EntityType="Self.vw_HouseholdHighestEducationAttained" />
@@ -4212,48 +4270,19 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="vw_RegionList" EntityType="Self.vw_RegionList" />
           <EntitySet Name="vw_ReligiousAffiliation" EntityType="Self.vw_ReligiousAffiliation" />
           <EntitySet Name="vw_StatusOfIrrigationSystemByMunicipalityByYear" EntityType="Self.vw_StatusOfIrrigationSystemByMunicipalityByYear" />
+          <EntitySet Name="vw_StrategicPriorityArea" EntityType="Self.vw_StrategicPriorityArea" />
           <EntitySet Name="vw_TrainingsAttended" EntityType="Self.vw_TrainingsAttended" />
           <EntitySet Name="vw_VolunteerList" EntityType="Self.vw_VolunteerList" />
-          <EntitySet Name="vw_StrategicPriorityArea" EntityType="kalingaPPDOModel.vw_StrategicPriorityArea" />
-          <EntitySet Name="vw_ForestCoverByVegetationByYear" EntityType="kalingaPPDOModel.vw_ForestCoverByVegetationByYear" />
-          <EntitySet Name="DropDown_AppUsers" EntityType="kalingaPPDOModel.DropDown_AppUsers" />
-          <EntitySet Name="appRoles" EntityType="kalingaPPDOModel.appRole" />
+          <EntitySet Name="vw_appUsers" EntityType="kalingaPPDOModel.vw_appUsers" />
         </EntityContainer>
-        <EntityType Name="vw_StrategicPriorityArea">
+        <EntityType Name="vw_appUsers">
           <Key>
-            <PropertyRef Name="StrategicPriorityAreaID" />
+            <PropertyRef Name="appuserid" />
           </Key>
-          <Property Name="StrategicPriorityNo" Type="Int32" />
-          <Property Name="StrategicPriorityAreaNo" Type="Int32" />
-          <Property Name="StrategicPriorityAreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StrategicPriorityAreaID" Type="Int32" Nullable="false" />
-          <Property Name="StrategicPriorityDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="vw_ForestCoverByVegetationByYear">
-          <Key>
-            <PropertyRef Name="VegetationID" />
-          </Key>
-          <Property Name="LandCoverClassID" Type="Int32" />
-          <Property Name="LandCoverClassificationDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="AreaHectares" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="Distribution" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="YearTaken" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="VegetationID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DropDown_AppUsers">
-          <Key>
-            <PropertyRef Name="empid" />
-          </Key>
-          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="appRole">
-          <Key>
-            <PropertyRef Name="RoleID" />
-          </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsInRole" Type="Boolean" Nullable="false" />
+          <Property Name="appuserid" Type="Int32" Nullable="false" />
+          <Property Name="empid" Type="Int32" />
+          <Property Name="Fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+          <Property Name="roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4274,6 +4303,15 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="appRoles">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.appRole">
+              <MappingFragment StoreEntitySet="appRole">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="IsInRole" ColumnName="IsInRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="appUserAccesses">
             <EntityTypeMapping TypeName="kalingaPPDOModel.appUserAccess">
               <MappingFragment StoreEntitySet="appUserAccess">
@@ -4290,11 +4328,11 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="appUsers">
             <EntityTypeMapping TypeName="kalingaPPDOModel.appUser">
               <MappingFragment StoreEntitySet="appUsers">
-                <ScalarProperty Name="roles" ColumnName="roles" />
                 <ScalarProperty Name="appuserid" ColumnName="appuserid" />
                 <ScalarProperty Name="empid" ColumnName="empid" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roles" ColumnName="roles" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5392,6 +5430,14 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AppUsers">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AppUsers">
+              <MappingFragment StoreEntitySet="DropDown_AppUsers">
+                <ScalarProperty Name="empid" ColumnName="empid" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DropDown_Barangay">
             <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_Barangay">
               <MappingFragment StoreEntitySet="DropDown_Barangay">
@@ -5564,26 +5610,26 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="vw_ByMajorBusinessOrIndustry">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_ByMajorBusinessOrIndustry">
               <MappingFragment StoreEntitySet="vw_ByMajorBusinessOrIndustry">
-                <ScalarProperty Name="MajorBusinessIndustryID" ColumnName="MajorBusinessIndustryID" />
                 <ScalarProperty Name="WorkersMajorIndustryID" ColumnName="WorkersMajorIndustryID" />
                 <ScalarProperty Name="MajorBusinessIndustryDesc" ColumnName="MajorBusinessIndustryDesc" />
                 <ScalarProperty Name="NumberofPopulation" ColumnName="NumberofPopulation" />
                 <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
                 <ScalarProperty Name="AgeGroup" ColumnName="AgeGroup" />
                 <ScalarProperty Name="YearTaken" ColumnName="YearTaken" />
+                <ScalarProperty Name="MajorBusinessIndustryID" ColumnName="MajorBusinessIndustryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="vw_ByMajorOccupationGroup">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_ByMajorOccupationGroup">
               <MappingFragment StoreEntitySet="vw_ByMajorOccupationGroup">
-                <ScalarProperty Name="MajorOccupationID" ColumnName="MajorOccupationID" />
                 <ScalarProperty Name="WorkersMajorOccupationID" ColumnName="WorkersMajorOccupationID" />
                 <ScalarProperty Name="MajorOccupationDesc" ColumnName="MajorOccupationDesc" />
                 <ScalarProperty Name="NumberofPopulation" ColumnName="NumberofPopulation" />
                 <ScalarProperty Name="genderDescription" ColumnName="genderDescription" />
                 <ScalarProperty Name="AgeGroup" ColumnName="AgeGroup" />
                 <ScalarProperty Name="YearTaken" ColumnName="YearTaken" />
+                <ScalarProperty Name="MajorOccupationID" ColumnName="MajorOccupationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5740,6 +5786,18 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
                 <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
                 <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
                 <ScalarProperty Name="empFamBGID" ColumnName="empFamBGID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ForestCoverByVegetationByYear">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_ForestCoverByVegetationByYear">
+              <MappingFragment StoreEntitySet="vw_ForestCoverByVegetationByYear">
+                <ScalarProperty Name="LandCoverClassID" ColumnName="LandCoverClassID" />
+                <ScalarProperty Name="LandCoverClassificationDescription" ColumnName="LandCoverClassificationDescription" />
+                <ScalarProperty Name="AreaHectares" ColumnName="AreaHectares" />
+                <ScalarProperty Name="Distribution" ColumnName="Distribution" />
+                <ScalarProperty Name="YearTaken" ColumnName="YearTaken" />
+                <ScalarProperty Name="VegetationID" ColumnName="VegetationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5995,6 +6053,17 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vw_StrategicPriorityArea">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_StrategicPriorityArea">
+              <MappingFragment StoreEntitySet="vw_StrategicPriorityArea">
+                <ScalarProperty Name="StrategicPriorityNo" ColumnName="StrategicPriorityNo" />
+                <ScalarProperty Name="StrategicPriorityAreaNo" ColumnName="StrategicPriorityAreaNo" />
+                <ScalarProperty Name="StrategicPriorityAreaDescription" ColumnName="StrategicPriorityAreaDescription" />
+                <ScalarProperty Name="StrategicPriorityAreaID" ColumnName="StrategicPriorityAreaID" />
+                <ScalarProperty Name="StrategicPriorityDescription" ColumnName="StrategicPriorityDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vw_TrainingsAttended">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_TrainingsAttended">
               <MappingFragment StoreEntitySet="vw_TrainingsAttended">
@@ -6024,43 +6093,13 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_StrategicPriorityArea">
-            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_StrategicPriorityArea">
-              <MappingFragment StoreEntitySet="vw_StrategicPriorityArea">
-                <ScalarProperty Name="StrategicPriorityDescription" ColumnName="StrategicPriorityDescription" />
-                <ScalarProperty Name="StrategicPriorityAreaID" ColumnName="StrategicPriorityAreaID" />
-                <ScalarProperty Name="StrategicPriorityAreaDescription" ColumnName="StrategicPriorityAreaDescription" />
-                <ScalarProperty Name="StrategicPriorityAreaNo" ColumnName="StrategicPriorityAreaNo" />
-                <ScalarProperty Name="StrategicPriorityNo" ColumnName="StrategicPriorityNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_ForestCoverByVegetationByYear">
-            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_ForestCoverByVegetationByYear">
-              <MappingFragment StoreEntitySet="vw_ForestCoverByVegetationByYear">
-                <ScalarProperty Name="VegetationID" ColumnName="VegetationID" />
-                <ScalarProperty Name="YearTaken" ColumnName="YearTaken" />
-                <ScalarProperty Name="Distribution" ColumnName="Distribution" />
-                <ScalarProperty Name="AreaHectares" ColumnName="AreaHectares" />
-                <ScalarProperty Name="LandCoverClassificationDescription" ColumnName="LandCoverClassificationDescription" />
-                <ScalarProperty Name="LandCoverClassID" ColumnName="LandCoverClassID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DropDown_AppUsers">
-            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AppUsers">
-              <MappingFragment StoreEntitySet="DropDown_AppUsers">
-                <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <EntitySetMapping Name="vw_appUsers">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_appUsers">
+              <MappingFragment StoreEntitySet="vw_appUsers">
+                <ScalarProperty Name="roles" ColumnName="roles" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
                 <ScalarProperty Name="empid" ColumnName="empid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="appRoles">
-            <EntityTypeMapping TypeName="kalingaPPDOModel.appRole">
-              <MappingFragment StoreEntitySet="appRole">
-                <ScalarProperty Name="IsInRole" ColumnName="IsInRole" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="appuserid" ColumnName="appuserid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

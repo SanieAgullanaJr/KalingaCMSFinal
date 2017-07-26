@@ -84,7 +84,7 @@
                                 <div class="menu_section">
                                     <h3>General</h3>
                                     <ul class="nav side-menu">
-                                        @if ((Role.Contains("AIPAdmin")) || Role.Contains("SuperAdmin"))
+                                        @if ((Role.Contains("AIPAdmin")) || (Role.Contains("SuperAdmin")))
                                         {
                                             <li>
                                                 <a><i class="fa fa-edit"></i> A.I.P. <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -191,6 +191,26 @@
                                                 <a><i class="fa fa-cog"></i> System <span class="glyphicon glyphicon-chevron-down"></span></a>
                                                 <ul class="nav child_menu">
                                                     <li>@Html.ActionLink("App Users", "Create", "AppUsers")</li>
+                                                </ul>
+                                            </li>
+                                        }
+                                        @if (Role == "ChartsOnly")
+                                        {
+                                            <li>
+                                                <a><i class="fa fa-list"></i> A.I.P. Reports <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("List of Projects", "Index", "ProjectProfile")</li>
+                                                    <li>@Html.ActionLink("Charts", "Soon", "Dashboard")</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a><i class="fa fa-list"></i> Socio Econ Reports <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("Population", "Index", "PopulationReportCharts")</li>
+                                                    <li>@Html.ActionLink("Literacy", "Index", "LiteracyReportCharts")</li>
+                                                    <li>@Html.ActionLink("Workers", "Index", "WorkerReportCharts")</li>
+                                                    <li>@Html.ActionLink("Agriculture", "Index", "AgricultureReportCharts")</li>
+                                                    <li>@Html.ActionLink("Infrastructure", "Index", "InfrastructureReportCharts")</li>
                                                 </ul>
                                             </li>
                                         }

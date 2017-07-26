@@ -611,6 +611,9 @@
     <Compile Include="Models\vw_AccountCodes.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_appUsers.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_BarangayList.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -1054,6 +1057,7 @@
     <Content Include="Models\KalingaPPDOEntities.edmx.diagram">
       <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
@@ -1063,13 +1067,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
       <LastGenOutput>KalingaPPDOEntities.Context.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\KalingaPPDOEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KalingaPPDOEntities.edmx</DependentUpon>
       <LastGenOutput>KalingaPPDOEntities.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />

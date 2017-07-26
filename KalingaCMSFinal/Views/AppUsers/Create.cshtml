@@ -1,4 +1,4 @@
-﻿@model Tuple<KalingaCMSFinal.Models.appUser, IEnumerable<KalingaCMSFinal.Models.appUser>>
+﻿@model Tuple<KalingaCMSFinal.Models.appUser, IEnumerable<KalingaCMSFinal.Models.vw_appUsers>>
 
 @{
     ViewBag.Title = "Create";
@@ -58,7 +58,7 @@
                         <label class="checkbox-inline"><input type="checkbox" value="HRAdmim" class="checkBoxes" id="HRAdmin">HR Admin</label>
                         <label class="checkbox-inline"><input type="checkbox" value="SystemAdmin" class="checkBoxes" id="SystemAdmin">System Admin</label>
                         <label class="checkbox-inline"><input type="checkbox" value="Employee" class="checkBoxes" id="Employee">Employee</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="Charts Only" class="checkBoxes" id="ChartsOnly">Charts Only</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="ChartsOnly" class="checkBoxes" id="ChartsOnly">Charts Only</label>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
     <thead>
         <tr>
             <th>
-                Employee ID
+                Employee Name
             </th>
             <th>
                 Roles
@@ -89,7 +89,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.empid)
+                    @Html.DisplayFor(modelItem => item.Fullname)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.roles)

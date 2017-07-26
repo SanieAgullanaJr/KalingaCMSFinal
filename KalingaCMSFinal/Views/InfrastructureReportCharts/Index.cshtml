@@ -94,7 +94,7 @@
 
             $("#selectEstablishment").on('change', function (e) {
                 $("#selectIndustry").removeAttr("disabled");
-                $.get("/InfrastructureReportCharts/GetIndustry", { YearTaken: $("#selectEstablishment").val() }, function (data) {
+                $.get("@Url.Action("GetIndustry", "InfrastructureReportCharts")", { YearTaken: $("#selectEstablishment").val() }, function (data) {
                     $("#selectIndustry").empty();
                     $.each(data, function (index, row) {
                         $("#selectIndustry").append("<option value='" + row.IndustryClassification + "'>" + row.IndustryClassification + "</option>")
@@ -105,7 +105,7 @@
                 if ($("#selectEstablishment").val() != "") {
                     $("#FindBtn").removeAttr("disabled");
                     $("#FindBtn").click(function () {
-                        $.get("/InfrastructureReportCharts/ChartData", { YearTaken: $("#selectEstablishment").val(), Industry: $("#selectIndustry").val() }, function (data, data2, data3, data4, data5, data6) {
+                        $.get("@Url.Action("ChartData", "InfrastructureReportCharts")", { YearTaken: $("#selectEstablishment").val(), Industry: $("#selectIndustry").val() }, function (data, data2, data3, data4, data5, data6) {
                             var arr = [];
                             $.each(data, function (index, val) {
                                 var NumberofFirms = parseFloat(val.data);
@@ -148,7 +148,7 @@
 
             $("#selectIrrigationSystem").on('change', function (e) {
                 $("#selectMunicipality").removeAttr("disabled");
-                $.get("/InfrastructureReportCharts/GetMunicipalityList", { YearTaken: $("#selectIrrigationSystem").val() }, function (data) {
+                $.get("@Url.Action("GetMunicipalityList", "InfrastructureReportCharts")", { YearTaken: $("#selectIrrigationSystem").val() }, function (data) {
                     $("#selectMunicipality").empty();
                     $.each(data, function (index, row) {
                         $("#selectMunicipality").append("<option value='" + row.Municipality + "'>" + row.Municipality + "</option>")
@@ -159,7 +159,7 @@
                 if ($("#selectIrrigationSystem").val() != "") {
                     $("#FindBtn1").removeAttr("disabled");
                     $("#FindBtn1").click(function () {
-                        $.get("/InfrastructureReportCharts/ChartData1", { YearTaken: $("#selectIrrigationSystem").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2, data3, data4, data5, data6, data7, data8) {
+                        $.get("@Url.Action("ChartData1", "InfrastructureReportCharts")", { YearTaken: $("#selectIrrigationSystem").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2, data3, data4, data5, data6, data7, data8) {
                             var arr = [];
                             $.each(data, function (index, val) {
                                 var AreasIrrigable = parseFloat(val.data);

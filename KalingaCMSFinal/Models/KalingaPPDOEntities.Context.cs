@@ -26,6 +26,7 @@ namespace KalingaCMSFinal.Models
         }
     
         public virtual DbSet<appModule> appModules { get; set; }
+        public virtual DbSet<appRole> appRoles { get; set; }
         public virtual DbSet<appUserAccess> appUserAccesses { get; set; }
         public virtual DbSet<appUser> appUsers { get; set; }
         public virtual DbSet<CoffeeProduction> CoffeeProductions { get; set; }
@@ -125,6 +126,7 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<WorkersByMajorIndustry> WorkersByMajorIndustries { get; set; }
         public virtual DbSet<WorkersByMajorOCcupation> WorkersByMajorOCcupations { get; set; }
         public virtual DbSet<DropDown_AcountCode> DropDown_AcountCode { get; set; }
+        public virtual DbSet<DropDown_AppUsers> DropDown_AppUsers { get; set; }
         public virtual DbSet<DropDown_Barangay> DropDown_Barangay { get; set; }
         public virtual DbSet<DropDown_BDIPMunicipality> DropDown_BDIPMunicipality { get; set; }
         public virtual DbSet<DropDown_ClimateChangeAdaptation> DropDown_ClimateChangeAdaptation { get; set; }
@@ -156,6 +158,7 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_EstablishmentByIndustryByYear> vw_EstablishmentByIndustryByYear { get; set; }
         public virtual DbSet<vw_ExamTaken> vw_ExamTaken { get; set; }
         public virtual DbSet<vw_FamilyBackground> vw_FamilyBackground { get; set; }
+        public virtual DbSet<vw_ForestCoverByVegetationByYear> vw_ForestCoverByVegetationByYear { get; set; }
         public virtual DbSet<vw_GrowthRateByMunicipalityByYear> vw_GrowthRateByMunicipalityByYear { get; set; }
         public virtual DbSet<vw_HolidayList> vw_HolidayList { get; set; }
         public virtual DbSet<vw_HouseholdHighestEducationAttained> vw_HouseholdHighestEducationAttained { get; set; }
@@ -175,11 +178,9 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_RegionList> vw_RegionList { get; set; }
         public virtual DbSet<vw_ReligiousAffiliation> vw_ReligiousAffiliation { get; set; }
         public virtual DbSet<vw_StatusOfIrrigationSystemByMunicipalityByYear> vw_StatusOfIrrigationSystemByMunicipalityByYear { get; set; }
+        public virtual DbSet<vw_StrategicPriorityArea> vw_StrategicPriorityArea { get; set; }
         public virtual DbSet<vw_TrainingsAttended> vw_TrainingsAttended { get; set; }
         public virtual DbSet<vw_VolunteerList> vw_VolunteerList { get; set; }
-        public virtual DbSet<vw_StrategicPriorityArea> vw_StrategicPriorityArea { get; set; }
-        public virtual DbSet<vw_ForestCoverByVegetationByYear> vw_ForestCoverByVegetationByYear { get; set; }
-        public virtual DbSet<DropDown_AppUsers> DropDown_AppUsers { get; set; }
-        public virtual DbSet<appRole> appRoles { get; set; }
+        public virtual DbSet<vw_appUsers> vw_appUsers { get; set; }
     }
 }

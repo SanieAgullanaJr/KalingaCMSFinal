@@ -238,7 +238,7 @@
 
             $("#selectForest").on('change', function (e) {
                 $("#selectCoverClass").removeAttr("disabled");
-                $.get("/AgricultureReportCharts/LandCover", { YearTaken: $("#selectForest").val() }, function (data) {
+                $.get("@Url.Action("LandCover", "AgricultureReportCharts")", { YearTaken: $("#selectForest").val() }, function (data) {
                     $("#selectCoverClass").empty();
                     $.each(data, function (index, row) {
                         $("#selectCoverClass").append("<option value='" + row.LandCoverClassificationDescription + "'>" + row.LandCoverClassificationDescription + "</option>")
@@ -249,7 +249,7 @@
                 if ($("#selectForest").val() != "") {
                     $("#FindBtn3").removeAttr("disabled");
                     $("#FindBtn3").click(function () {
-                        $.get("/AgricultureReportCharts/ChartData3", { YearTaken: $("#selectForest").val(), LandCoverClass: $("#selectCoverClass").val() }, function (data) {
+                        $.get("@Url.Action("ChartData3", "AgricultureReportCharts")", { YearTaken: $("#selectForest").val(), LandCoverClass: $("#selectCoverClass").val() }, function (data) {
                             var arr = [];
                             var label = ["AreaHectares", "Distribution (%)"];
                             var color1 = [];
@@ -289,7 +289,7 @@
 
             $("#selectOtherCrops").on('change', function (e) {
                 $("#selectCropType").removeAttr("disabled");
-                $.get("/AgricultureReportCharts/OtherCropsTypeOfCrop", { YearTaken: $("#selectOtherCrops").val() }, function (data) {
+                $.get("@Url.Action("OtherCropsTypeOfCrop", "AgricultureReportCharts")", { YearTaken: $("#selectOtherCrops").val() }, function (data) {
                     $("#selectCropType").empty();
                     $.each(data, function (index, row) {
                         $("#selectCropType").append("<option value='" + row.HighValueCrop + "'>" + row.HighValueCrop + "</option>")
@@ -300,7 +300,7 @@
                 if ($("#selectOtherCrops").val() != "") {
                     $("#FindBtn2").removeAttr("disabled");
                     $("#FindBtn2").click(function () {
-                        $.get("/AgricultureReportCharts/ChartData2", { YearTaken: $("#selectOtherCrops").val(), Croptype: $("#selectCropType").val() }, function (data) {
+                        $.get("@Url.Action("ChartData2", "AgricultureReportCharts")", { YearTaken: $("#selectOtherCrops").val(), Croptype: $("#selectCropType").val() }, function (data) {
                             var arr = [];
                             var label = ["AreaHectares","ProdMetricTons"];
                             var color1 = [];
@@ -339,7 +339,7 @@
 
             $("#selectLivestockPoultry").on('change', function (e) {
                 $("#selectMunicipality").removeAttr("disabled");
-                $.get("/AgricultureReportCharts/LivestockMunicipalities", { YearTaken: $("#selectLivestockPoultry").val() }, function (data) {
+                $.get("@Url.Action("LivestockMunicipalities", "AgricultureReportCharts")", { YearTaken: $("#selectLivestockPoultry").val() }, function (data) {
                     $("#selectMunicipality").empty();
                     $.each(data, function (index, row) {
                         $("#selectMunicipality").append("<option value='" + row.Municipality + "'>" + row.Municipality + "</option>")
@@ -350,7 +350,7 @@
                 if ($("#selectLivestockPoultry").val() != "") {
                     $("#FindBtn1").removeAttr("disabled");
                     $("#FindBtn1").click(function () {
-                        $.get("/AgricultureReportCharts/ChartData1", { YearTaken: $("#selectLivestockPoultry").val(), Municipality: $("#selectMunicipality").val() }, function (data) {
+                        $.get("@Url.Action("ChartData1", "AgricultureReportCharts")", { YearTaken: $("#selectLivestockPoultry").val(), Municipality: $("#selectMunicipality").val() }, function (data) {
                             var arr = [];
                             var label = [];
                             var color1 = [];
@@ -390,7 +390,7 @@
 
             $("#selectCornProduction").on('change', function (e) {
                 $("#selectCornType").removeAttr("disabled");
-                $.get("/AgricultureReportCharts/CornProdCornType", { YearTaken: $("#selectCornProduction").val() }, function (data) {
+                $.get("@Url.Action("CornProdCornType", "AgricultureReportCharts")", { YearTaken: $("#selectCornProduction").val() }, function (data) {
                     $("#selectCornType").empty();
                     $.each(data, function (index, row) {
                         $("#selectCornType").append("<option value='" + row.Corn + "'>" + row.Corn + "</option>")
@@ -402,7 +402,7 @@
                     $("#CornProdSortBy").removeAttr("disabled");
                     $("#FindBtn0").removeAttr("disabled");
                     $("#FindBtn0").click(function () {
-                        $.get("/AgricultureReportCharts/ChartData0", { YearTaken: $("#selectCornProduction").val(), CornType: $("#selectCornType").val(), SortBy: $("#CornProdSortBy").val() }, function (data) {
+                        $.get("@Url.Action("ChartData0", "AgricultureReportCharts")", { YearTaken: $("#selectCornProduction").val(), CornType: $("#selectCornType").val(), SortBy: $("#CornProdSortBy").val() }, function (data) {
                             var arr = [];
                             var label = [];
                             var color1 = [];
@@ -442,7 +442,7 @@
             });
             $("#selectPalayProduction").on('change', function (e) {
                 $("#selectMethod").removeAttr("disabled");
-                $.get("/AgricultureReportCharts/PalayProdMethods", { YearTaken: $("#selectPalayProduction").val() }, function (data) {
+                $.get("@Url.Action("PalayProdMethods", "AgricultureReportCharts")", { YearTaken: $("#selectPalayProduction").val() }, function (data) {
                     $("#selectMethod").empty();
                     $.each(data, function (index, row) {
                         $("#selectMethod").append("<option value='" + row.Method + "'>" + row.Method + "</option>")
@@ -454,7 +454,7 @@
                     $("#FindBtn").removeAttr("disabled");
                     $("#PalayProdSortBy").removeAttr("disabled");
                     $("#FindBtn").click(function () {
-                        $.get("/AgricultureReportCharts/ChartData", { YearTaken: $("#selectPalayProduction").val(), Method: $("#selectMethod").val(), SortBy: $("#PalayProdSortBy").val() }, function (data) {
+                        $.get("@Url.Action("ChartData", "AgricultureReportCharts")", { YearTaken: $("#selectPalayProduction").val(), Method: $("#selectMethod").val(), SortBy: $("#PalayProdSortBy").val() }, function (data) {
                             var arr = [];
                             var label = [];
                             var color1 = [];

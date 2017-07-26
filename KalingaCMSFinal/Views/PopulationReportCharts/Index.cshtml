@@ -228,7 +228,7 @@
         $(document).ready(function () {
             $("#FindBtn").prop("disabled", "disabled");
             $("#selectPopulationDistribution").on('change', function (e) {
-                $.get("/PopulationReportCharts/ChartData", { YearTaken: $("#selectPopulationDistribution").val() }, function (data) {
+                $.get("@Url.Action("ChartData", "PopulationReportCharts")", { YearTaken: $("#selectPopulationDistribution").val() }, function (data) {
                     var arr = [];
                     $.each(data, function (index, val) {
                         var parser = parseFloat(val.data);
@@ -263,7 +263,7 @@
                 });
             });
             $("#selectGrowthRate").on('change', function (e) {
-                $.get("/PopulationReportCharts/ChartData1", { YearTaken: $("#selectGrowthRate").val() }, function (data) {
+                $.get("@Url.Action("ChartData1", "PopulationReportCharts")", { YearTaken: $("#selectGrowthRate").val() }, function (data) {
                     var arr = [];
                     $.each(data, function (index, val) {
                         var parser = parseFloat(val.data);
@@ -298,7 +298,7 @@
                 });
             });
             $("#selectDensity").on('change', function (e) {
-                $.get("/PopulationReportCharts/ChartData2", { YearTaken: $("#selectDensity").val() }, function (data) {
+                $.get("@Url.Action("ChartData", "PopulationReportCharts")", { YearTaken: $("#selectDensity").val() }, function (data) {
                     var arr = [];
                     $.each(data, function (index, val) {
                         var parser = parseFloat(val.data);
@@ -334,7 +334,7 @@
             });
             $("#selectHouseholdMigration").on('change', function (e) {
                 $("#selectMunicipality").removeAttr("disabled");
-                $.get("/PopulationReportCharts/GetMunicipalityList", { YearTaken: $("#selectHouseholdMigration").val() }, function (data) {
+                $.get("@Url.Action("GetMunicipalityList", "PopulationReportCharts")", { YearTaken: $("#selectHouseholdMigration").val() }, function (data) {
                     $("#selectMunicipality").empty();
                     $.each(data, function (index, row) {
                         $("#selectMunicipality").append("<option value='" + row.Municipality + "'>" + row.Municipality + "</option>")
@@ -345,7 +345,7 @@
                 if ($("#selectHouseholdMigration").val() != "") {
                     $("#FindBtn").removeAttr("disabled");
                     $("#FindBtn").click(function () {
-                        $.get("/PopulationReportCharts/ChartData3", { YearTaken: $("#selectHouseholdMigration").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2) {
+                        $.get("@Url.Action("ChartData3", "PopulationReportCharts")", { YearTaken: $("#selectHouseholdMigration").val(), Municipality: $("#selectMunicipality").val() }, function (data, data2) {
                             var arr = [];
                             $.each(data, function (index, val) {
                                 var MigratingIN = parseFloat(val.data);
@@ -380,7 +380,7 @@
                 };
             });
             $("#selectReligion").on('change', function (e) {
-                $.get("/PopulationReportCharts/ChartData4", { YearTaken: $("#selectReligion").val() }, function (data, label) {
+                $.get("@Url.Action("ChartData4", "PopulationReportCharts")", { YearTaken: $("#selectReligion").val() }, function (data, label) {
                     var arr = [];
                     var label = [];
                     var color = [];
@@ -414,7 +414,7 @@
                 });
             });
             $("#selectCitizenship").on('change', function (e) {
-                $.get("/PopulationReportCharts/ChartData5", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
+                $.get("@Url.Action("ChartData5", "PopulationReportCharts")", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
                     var arr = [];
                     var label = [];
                     var color1 = [];
@@ -444,7 +444,7 @@
                     var ctx = document.getElementById("chart-area4").getContext("2d");
                     window.myPie = new Chart(ctx, config);
                 });
-                $.get("/PopulationReportCharts/ChartData6", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
+                $.get("@Url.Action("ChartData6", "PopulationReportCharts")", { YearTaken: $("#selectCitizenship").val() }, function (data, label) {
                     var arr = [];
                     var label = [];
                     var color1 = [];

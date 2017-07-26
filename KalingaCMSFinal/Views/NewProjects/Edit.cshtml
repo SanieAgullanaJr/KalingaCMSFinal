@@ -281,7 +281,7 @@
         $("#btnSubmit").prop("disabled", "disabled");
         $("#MunicipalityID").change(function () {
             $("#barangayID").removeAttr("disabled");
-            $.get("/NewProjects/GetBarangayList", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
+            $.get("@Url.Action("GetBarangayList", "NewProjects")", { MunicipalityID: $("#MunicipalityID").val() }, function (data) {
                 $("#barangayID").empty();
                 $.each(data, function (index, row) {
                     $("#barangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")

@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
 using System.Security.Cryptography;
+using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
+    [CustomAuthorize(Roles = "SuperAdmin,SystemAdmin")]
     public class AppUsersController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();
@@ -41,7 +43,7 @@ namespace KalingaCMSFinal.Controllers
         public ActionResult Create()
         {
             UserDD();
-            return View(Tuple.Create<appUser, IEnumerable<appUser>>(new appUser(), db.appUsers.ToList()));
+            return View(Tuple.Create<appUser, IEnumerable<vw_appUsers>>(new appUser(), db.vw_appUsers.ToList()));
         }
 
         //User Dropdown

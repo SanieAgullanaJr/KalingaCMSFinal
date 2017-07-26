@@ -13,7 +13,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
-    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin,ChartsOnly")]
     public class WorkerReportChartsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

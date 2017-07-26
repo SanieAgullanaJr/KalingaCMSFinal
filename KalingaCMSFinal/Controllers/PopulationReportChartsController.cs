@@ -16,7 +16,7 @@ using KalingaCMSFinal.Security;
 
 namespace KalingaCMSFinal.Controllers
 {
-    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin")]
+    [CustomAuthorize(Roles = "SuperAdmin,SocioEconAdmin,ChartsOnly")]
     public class PopulationReportChartsController : Controller
     {
         private kalingaPPDOEntities db = new kalingaPPDOEntities();

@@ -36,7 +36,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#selectEduc").on('change', function (e) {
-                $.get("/LiteracyReportCharts/ChartData", { YearTaken: $("#selectEduc").val() }, function (data, data2, label) {
+                $.get("@Url.Action("ChartData", "LiteracyReportCharts")", { YearTaken: $("#selectEduc").val() }, function (data, data2, label) {
                     var arr = [];
                     var arr1 = [];
                     var label = [];
