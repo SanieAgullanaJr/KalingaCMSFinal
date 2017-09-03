@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ref_Regions>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegionalDesignation)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegionalDesignation)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.regionID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.regionID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.regionID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

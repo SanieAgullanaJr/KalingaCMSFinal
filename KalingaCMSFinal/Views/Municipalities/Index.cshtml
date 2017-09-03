@@ -1,0 +1,65 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ref_Municipality>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.countryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.regionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.provinceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Municipality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zipcode)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.countryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.regionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provinceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Municipality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zipcode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MunicipalityID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.MunicipalityID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.MunicipalityID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

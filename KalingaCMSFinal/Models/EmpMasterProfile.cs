@@ -65,5 +65,8 @@ namespace KalingaCMSFinal.Models
         public Nullable<System.DateTime> DateHired { get; set; }
         public Nullable<System.DateTime> DateResigned { get; set; }
         public Nullable<decimal> CurrentSalary { get; set; }
+        public string DisplayPicturePath { get; set; }
+        public Nullable<int> RegionID { get; set; }
+        public Nullable<int> RegionID2 { get; set; }
     }
 }

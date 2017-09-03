@@ -1,0 +1,90 @@
+﻿@model KalingaCMSFinal.Models.EmpVolunteer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EmpVolunteer</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.empID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.empID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationAddress)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationAddress)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HoursVolunteered)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HoursVolunteered)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.InvolveTypeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.InvolveTypeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationNature)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationNature)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.empVolID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

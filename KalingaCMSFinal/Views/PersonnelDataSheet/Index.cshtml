@@ -1,0 +1,335 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpMasterProfile>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.empNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.namePrefixTitleID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nameSuffixTitleID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReligionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarangayID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MunicipalityID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvinceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.residentialPhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.street2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarangayID2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MunicipalityID2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProvinceID2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryID2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zipCode2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.residentialPhoneNo2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthPlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CivilStatusID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenshipID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GSIS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HDMF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhilHealth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SSS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LandLineNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CellphoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearsInService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthsInService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSupervisor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstApprover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondApprover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSeparated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentUnitID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentStatusID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateHired)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateResigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentSalary)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.namePrefixTitleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nameSuffixTitleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReligionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarangayID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MunicipalityID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvinceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.residentialPhoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.street2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarangayID2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MunicipalityID2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProvinceID2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryID2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zipCode2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.residentialPhoneNo2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthPlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CivilStatusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CitizenshipID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodTypeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GSIS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HDMF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhilHealth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SSS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LandLineNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CellphoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearsInService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthsInService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSupervisor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstApprover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondApprover)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSeparated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentUnitID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentStatusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateResigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentSalary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.empid }) |
+                @Html.ActionLink("Details", "Details", new { id=item.empid }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.empid })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

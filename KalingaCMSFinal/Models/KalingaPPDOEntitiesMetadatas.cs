@@ -1378,4 +1378,743 @@ namespace KalingaCMSFinal.Models
         [Display(Name = "Year Taken")]
         public string YearTaken { get; set; }
     }
+
+    [MetadataType(typeof(EmpMasterProfileMetadata))]
+    public partial class EmpMasterProfile
+    {
+    }
+    public class EmpMasterProfileMetadata
+    {
+        public int empid { get; set; }
+
+        
+        [Display(Name = "Agency Employee No.")]
+        public string empNo { get; set; }
+
+        
+        [Display(Name = "Prefix")]
+        public Nullable<int> namePrefixTitleID { get; set; }
+
+        
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        
+        [Display(Name = "Middle Name")]
+        public string MiddleName { get; set; }
+
+        
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        
+        [Display(Name = "Suffix")]
+        public Nullable<int> nameSuffixTitleID { get; set; }
+
+        
+        [Display(Name = "Gender")]
+        public Nullable<int> GenderID { get; set; }
+
+        
+        [Display(Name = "Religion")]
+        public Nullable<int> ReligionID { get; set; }
+
+        
+        [Display(Name = "Street")]
+        public string street { get; set; }
+
+        
+        [Display(Name = "Barangay")]
+        public Nullable<int> BarangayID { get; set; }
+
+        
+        [Display(Name = "Municipality")]
+        public Nullable<int> MunicipalityID { get; set; }
+
+        
+        [Display(Name = "Province")]
+        public Nullable<int> ProvinceID { get; set; }
+
+        
+        [Display(Name = "Country")]
+        public Nullable<int> CountryID { get; set; }
+
+        
+        [Display(Name = "Zip Code")]
+        public string zipCode { get; set; }
+
+        
+        [Display(Name = "Telephone No.")]
+        public string residentialPhoneNo { get; set; }
+
+        
+        [Display(Name = "Street")]
+        public string street2 { get; set; }
+
+        
+        [Display(Name = "Barangay")]
+        public Nullable<int> BarangayID2 { get; set; }
+
+        
+        [Display(Name = "Municipality")]
+        public Nullable<int> MunicipalityID2 { get; set; }
+
+        
+        [Display(Name = "Province")]
+        public Nullable<int> ProvinceID2 { get; set; }
+
+        
+        [Display(Name = "Country")]
+        public Nullable<int> CountryID2 { get; set; }
+
+        
+        [Display(Name = "Zip Code")]
+        public string zipCode2 { get; set; }
+
+        
+        [Display(Name = "Telephone No.")]
+        public string residentialPhoneNo2 { get; set; }
+
+        
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> birthDate { get; set; }
+
+        
+        [Display(Name = "Place of Birth")]
+        public string birthPlace { get; set; }
+
+        
+        [Display(Name = "Civil Status")]
+        public Nullable<int> CivilStatusID { get; set; }
+
+        
+        [Display(Name = "Citizenship")]
+        public Nullable<int> CitizenshipID { get; set; }
+
+        
+        [Display(Name = "Height")]
+        public string Height { get; set; }
+
+        
+        [Display(Name = "Weight")]
+        public string Weight { get; set; }
+
+        
+        [Display(Name = "Blood Type")]
+        public Nullable<int> BloodTypeID { get; set; }
+
+        
+        [Display(Name = "GSIS")]
+        public string GSIS { get; set; }
+
+        
+        [Display(Name = "HDMF")]
+        public string HDMF { get; set; }
+
+        
+        [Display(Name = "Phil Health")]
+        public string PhilHealth { get; set; }
+
+        
+        [Display(Name = "SSS")]
+        public string SSS { get; set; }
+
+        
+        [Display(Name = "TIN")]
+        public string TIN { get; set; }
+
+        
+        [Display(Name = "Telephone No.")]
+        public string LandLineNo { get; set; }
+
+        
+        [Display(Name = "Cellphone No.")]
+        public string CellphoneNo { get; set; }
+
+        
+        [Display(Name = "Email Address")]
+        [EmailAddress]
+        public string EmailAddress { get; set; }
+
+        
+        [Display(Name = "Years In Service")]
+        public Nullable<int> YearsInService { get; set; }
+
+        
+        [Display(Name = "Months In Service")]
+        public Nullable<int> MonthsInService { get; set; }
+
+        
+        [Display(Name = "Is Supervisor")]
+        public Nullable<bool> IsSupervisor { get; set; }
+
+        
+        [Display(Name = "First Approver")]
+        public Nullable<int> FirstApprover { get; set; }
+
+        
+        [Display(Name = "Second Approver")]
+        public Nullable<int> SecondApprover { get; set; }
+
+        
+        [Display(Name = "Is Separated")]
+        public Nullable<bool> IsSeparated { get; set; }
+
+        
+        [Display(Name = "Department")]
+        public Nullable<int> DeptID { get; set; }
+
+        
+        [Display(Name = "Department Unit")]
+        public Nullable<int> DepartmentUnitID { get; set; }
+
+        
+        [Display(Name = "Appointment Status")]
+        public Nullable<int> AppointmentStatusID { get; set; }
+
+        
+        [Display(Name = "Position")]
+        public Nullable<int> PositionID { get; set; }
+
+        
+        [Display(Name = "Date Hired")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> DateHired { get; set; }
+
+        
+        [Display(Name = "Date Resigned")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> DateResigned { get; set; }
+
+        
+        [Display(Name = "Current Salary")]
+        public Nullable<decimal> CurrentSalary { get; set; }
+
+        [Display(Name = "Profile Picture")]
+        public string DisplayPicturePath { get; set; }
+
+        [Display(Name = "Region")]
+        public int RegionID { get; set; }
+
+        [Display(Name = "Region")]
+        public int RegionID2 { get; set; }
+
+    }
+
+    [MetadataType(typeof(EmpWorkHistoryMetadata))]
+    public partial class EmpWorkHistory
+    {
+    }
+    public class EmpWorkHistoryMetadata
+    {
+        public int workID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Department/Agency/Office/Company")]
+        public string Company { get; set; }
+
+        [Required]
+        [Display(Name = "Date Hired")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "Date Resigned")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Position Title")]
+        public Nullable<int> PositionID { get; set; }
+
+        [Required]
+        [Display(Name = "Monthly Salary")]
+        public Nullable<decimal> MonthlySalary { get; set; }
+
+        [Display(Name = "Salary Grade")]
+        public Nullable<int> SalaryGradeID { get; set; }
+
+        [Display(Name = "Step Increment")]
+        public Nullable<int> SGIncrementID { get; set; }
+
+        [Required]
+        [Display(Name = "Appointment Status")]
+        public Nullable<int> AppointmentStatusID { get; set; }
+
+        [Required]
+        [Display(Name = "Gov't Service")]
+        public Nullable<bool> IsGovService { get; set; }
+
+        [Required]
+        [Display(Name = "Supervisor")]
+        public Nullable<bool> IsSupervisor { get; set; }
+    }
+
+    [MetadataType(typeof(EmpFamilyBackgroundMetadata))]
+    public partial class EmpFamilyBackGround
+    {
+    }
+    public class EmpFamilyBackgroundMetadata
+    {
+        public int empFamBGID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Relationship")]
+        public Nullable<int> RelationshipID { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Middle Name")]
+        public string MiddleName { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> BirthDate { get; set; }
+
+        [Required]
+        [Display(Name = "Occupation")]
+        public string Occupation { get; set; }
+
+        [Required]
+        [Display(Name = "Employer Name")]
+        public string CompanyName { get; set; }
+
+        [Required]
+        [Display(Name = "Business Address")]
+        public string CompanyAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Telephone")]
+        public string CompanyPhone { get; set; }
+    }
+
+    [MetadataType(typeof(EmpEducationHistoryMetadata))]
+    public partial class EmpEducationHistory
+    {
+    }
+    public class EmpEducationHistoryMetadata
+    {
+        public int empEducID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Level")]
+        public Nullable<int> EducLevelID { get; set; }
+
+        [Required]
+        [Display(Name = "Name of School")]
+        public string SchoolName { get; set; }
+
+        [Required]
+        [Display(Name = "Degree Course")]
+        public Nullable<int> DegreeID { get; set; }
+
+        [Required]
+        [Display(Name = "Year Graduated")]
+        public string YearGraduated { get; set; }
+
+        [Required]
+        [Display(Name = "Highest Grade/Level/Units Earned")]
+        public string Earned { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public string StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public string EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Scholarships/Academic Honors Received")]
+        public string Distinction { get; set; }
+    }
+
+    [MetadataType(typeof(EmpCertificateMetadata))]
+    public partial class EmpCertificate
+    {
+    }
+    public class EmpCertificateMetadata
+    {
+        public int empCertID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Name of exam taken")]
+        public string ExamName { get; set; }
+
+        [Required]
+        [Display(Name = "Rating")]
+        public string Rating { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Examination")]
+        public Nullable<System.DateTime> ExamDate { get; set; }
+
+        [Required]
+        [Display(Name = "Examination Venue")]
+        public string ExamVenue { get; set; }
+
+        [Required]
+        [Display(Name = "Licence Number(If Applicable)")]
+        public string LicenseNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Release")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> ReleaseDate { get; set; }
+    }
+
+    [MetadataType(typeof(EmpTrainingMetadata))]
+    public partial class EmpTraining
+    {
+    }
+    public class EmpTrainingMetadata
+    {
+        public int empTrainID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Title of Training Attended")]
+        public string TrainingTitle { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Number of Hours")]
+        public string DurationHours { get; set; }
+
+        [Required]
+        [Display(Name = "Sponsored By")]
+        public string EventSponsor { get; set; }
+
+        [Required]
+        [Display(Name = "Venue")]
+        public string EventVenue { get; set; }
+    }
+
+    [MetadataType(typeof(EmpVolunteerMetadata))]
+    public partial class EmpVolunteer
+    {
+    }
+    public class EmpVolunteerMetadata
+    {
+        public int empVolID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public int empID { get; set; }
+
+        [Required]
+        [Display(Name = "Name of Organization")]
+        public string OrganizationName { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        public string OrganizationAddress { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Number of Hours")]
+        public string HoursVolunteered { get; set; }
+
+        [Required]
+        [Display(Name = "Type of Involvement")]
+        public Nullable<int> InvolveTypeID { get; set; }
+
+        [Required]
+        [Display(Name = "Nature of Work")]
+        public string OrganizationNature { get; set; }
+    }
+
+    [MetadataType(typeof(ref_DepartmentMetadata))]
+    public partial class ref_Department
+    {
+    }
+    public class ref_DepartmentMetadata
+    {
+        public int DeptID { get; set; }
+
+        [Required]
+        [Display(Name = "Deparment Code")]
+        public string DeptCode { get; set; }
+
+        [Required]
+        [Display(Name = "Deparment Description")]
+        public string DeptDescription { get; set; }
+    }
+
+    [MetadataType(typeof(ref_DepartmentUnitMetadata))]
+    public partial class ref_DepartmentUnit
+    {
+    }
+    public class ref_DepartmentUnitMetadata
+    {
+        public int DepartmentUnitID { get; set; }
+
+        [Required]
+        [Display(Name = "Department Code")]
+        public Nullable<int> DeptID { get; set; }
+
+        [Required]
+        [Display(Name = "Sector/Unit Code")]
+        public string DepartmentUnitCode { get; set; }
+
+        [Required]
+        [Display(Name = "Sector/Unit Description")]
+        public string DepartmentUnitDescription { get; set; }
+    }
+
+    [MetadataType(typeof(ref_AppointmentStatusMetadata))]
+    public partial class ref_AppointmentStatus
+    {
+    }
+    public class ref_AppointmentStatusMetadata
+    {
+        public int AppointmentStatusID { get; set; }
+
+        [Required]
+        [Display(Name = "Employment Status Code")]
+        public string EmpStatusCode { get; set; }
+
+        [Required]
+        [Display(Name = "Employment Status Description")]
+        public string EmpStatusDescription { get; set; }
+    }
+
+    [MetadataType(typeof(ref_RegionsMetadata))]
+    public partial class ref_Regions
+    {
+    }
+    public class ref_RegionsMetadata
+    {
+        public int regionID { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public Nullable<int> CountryID { get; set; }
+
+        [Required]
+        [Display(Name = "Region Name")]
+        public string RegionName { get; set; }
+
+        [Required]
+        [Display(Name = "Region Designation/Code")]
+        public string RegionalDesignation { get; set; }
+    }
+
+
+    public partial class ref_Province
+    {
+    }
+    public class ref_ProvinceMetadata
+    {
+        public int provinceID { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public Nullable<int> CountryID { get; set; }
+
+        [Required]
+        [Display(Name = "Region")]
+        public Nullable<int> RegionID { get; set; }
+
+        [Required]
+        [Display(Name = "Province/District")]
+        public string ProvinceDistrict { get; set; }
+
+        [Required]
+        [Display(Name = "Capital")]
+        public string Capital { get; set; }
+    }
+
+
+    public partial class ref_Municipality
+    {
+    }
+    public class ref_MunicipalityMetadata
+    {
+
+        public int MunicipalityID { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public Nullable<int> countryID { get; set; }
+
+        [Required]
+        [Display(Name = "Region")]
+        public Nullable<int> regionID { get; set; }
+
+        [Required]
+        [Display(Name = "Province/District")]
+        public Nullable<int> provinceID { get; set; }
+
+        [Required]
+        [Display(Name = "Municipality")]
+        public string Municipality { get; set; }
+
+        [Required]
+        [Display(Name = "Zip Code")]
+        public string zipcode { get; set; }
+    }
+
+    [MetadataType(typeof(ref_BarangayMetadata))]
+    public partial class ref_Barangay
+    {
+    }
+    public class ref_BarangayMetadata
+    {
+
+        public int barangayID { get; set; }
+
+        [Required]
+        [Display(Name = "Country")]
+        public Nullable<int> countryID { get; set; }
+
+        [Required]
+        [Display(Name = "Region")]
+        public Nullable<int> regionID { get; set; }
+
+        [Required]
+        [Display(Name = "Province/District")]
+        public Nullable<int> provinceID { get; set; }
+
+        [Required]
+        [Display(Name = "Municipality")]
+        public Nullable<int> municipalityID { get; set; }
+
+        [Required]
+        [Display(Name = "Barangay")]
+        public string Barangay { get; set; }
+    }
+
+    [MetadataType(typeof(ref_PositionMetadata))]
+    public partial class ref_Position
+    {
+    }
+    public class ref_PositionMetadata
+    {
+        public int PositionID { get; set; }
+
+        [Required]
+        [Display(Name = "Position Description")]
+        public string PositionDescription { get; set; }
+    }
+
+
+    public partial class ref_Holiday
+    {
+    }
+    public class ref_HolidayMetadata
+    {
+        public int HolidayID { get; set; }
+
+        [Required]
+        [Display(Name = "Holiday Description")]
+        public string HolidayDescription { get; set; }
+
+        [Required]
+        [Display(Name = "Date")]
+        public Nullable<System.DateTime> HolidayDate { get; set; }
+
+        [Required]
+        [Display(Name = "Day Type")]
+        public Nullable<int> DayTypeID { get; set; }
+
+        [Required]
+        [Display(Name = "Number of Hours")]
+        public Nullable<decimal> NoOfHours { get; set; }
+    }
+
+    [MetadataType(typeof(ref_LeavetypeMetadata))]
+    public partial class ref_LeaveType
+    {
+    }
+    public class ref_LeavetypeMetadata
+    {
+        public int LeaveTypeID { get; set; }
+
+        [Required]
+        [Display(Name = "Leave Code")]
+        public string LeaveTypeCode { get; set; }
+
+        [Required]
+        [Display(Name = "Leave Description")]
+        public string LeaveTypeDescription { get; set; }
+    }
+
+    [MetadataType(typeof(ref_DaytypeMetadata))]
+    public partial class ref_DayType
+    {
+    }
+    public class ref_DaytypeMetadata
+    {
+        public int DayTypeID { get; set; }
+
+        [Required]
+        [Display(Name = "Day Type Code")]
+        public string DayTypeCode { get; set; }
+
+        [Required]
+        [Display(Name = "Day Type Description")]
+        public string DayTypeDescription { get; set; }
+    }
 }

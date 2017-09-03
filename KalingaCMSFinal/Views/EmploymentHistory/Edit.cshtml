@@ -1,0 +1,130 @@
+﻿@model KalingaCMSFinal.Models.EmpWorkHistory
+
+@{
+    Layout = null;
+}
+
+<div class="modal-header success">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Edit Employment History</h4>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "editForm", id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.workID)
+            @Html.HiddenFor(model => model.empID)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.PositionID, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.PositionID, ViewBag.Positions as SelectList, "--Select Position Title--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.MonthlySalary, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.MonthlySalary, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MonthlySalary, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.SalaryGradeID, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.SalaryGradeID, ViewBag.SalaryGrades as SelectList, "--Select Salary Grade---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SalaryGradeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.SGIncrementID, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.SGIncrementID, ViewBag.StepIncrements as SelectList, "--Select Step Increment--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SGIncrementID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.AppointmentStatusID, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.AppointmentStatusID, ViewBag.AppointmentStatuses as SelectList, "--Select Appointment Status--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AppointmentStatusID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.IsGovService, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.IsGovService, new List<SelectListItem>
+                    {
+                        new SelectListItem{ Text="--Is In Government Service?---", Value = "" },
+                        new SelectListItem{ Text="Yes", Value = "True" },
+                        new SelectListItem{ Text="No", Value = "False" },
+                     }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IsGovService, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.IsSupervisor, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.IsSupervisor, new List<SelectListItem>
+                    {
+                        new SelectListItem{ Text="--Is Supervisor?--", Value = "" },
+                        new SelectListItem{ Text="Yes", Value = "True" },
+                        new SelectListItem{ Text="No", Value = "False" },
+                     }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IsSupervisor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input class="btn btn-primary" type="submit" value="Save" id="btnModalSubmit" />
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var form = $("#editForm")
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+        $.validator.unobtrusive.parse(form);
+    </script>
+}

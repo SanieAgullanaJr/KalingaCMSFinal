@@ -1,0 +1,50 @@
+﻿@model KalingaCMSFinal.Models.ref_DepartmentUnit
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ref_DepartmentUnit</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DeptID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DeptID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartmentUnitCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DepartmentUnitCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartmentUnitDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DepartmentUnitDescription)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.DepartmentUnitID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

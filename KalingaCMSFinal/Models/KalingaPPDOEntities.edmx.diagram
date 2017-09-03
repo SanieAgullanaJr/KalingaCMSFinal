@@ -162,6 +162,41 @@
         <EntityTypeShape EntityType="kalingaPPDOModel.vw_TrainingsAttended" Width="1.5" PointX="32.75" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.vw_VolunteerList" Width="1.5" PointX="26.75" PointY="32.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.vw_appUsers" Width="1.5" PointX="7.375" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel1" Width="1.5" PointX="9.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel2" Width="1.5" PointX="15.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel3" Width="1.5" PointX="21.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel4" Width="1.5" PointX="23.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel5" Width="1.5" PointX="33.75" PointY="27.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_AIPLevel6" Width="1.5" PointX="29.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_EmpployeeList" Width="1.5" PointX="33.75" PointY="30.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_ImplementingOffice" Width="1.5" PointX="31.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_LGULevel" Width="1.5" PointX="33.75" PointY="33.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_OfficeType" Width="1.5" PointX="11.75" PointY="34.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_StrategicPriority" Width="1.5" PointX="17.75" PointY="34.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_TypologyCode2" Width="1.5" PointX="35.75" PointY="0.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_AIPLevel2" Width="1.5" PointX="0.75" PointY="35.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_AIPLevel3" Width="1.5" PointX="35.75" PointY="3.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_AIPLevel4" Width="1.5" PointX="35.75" PointY="6.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_AIPLevel5" Width="1.5" PointX="35.75" PointY="9.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_AIPLevel6" Width="1.5" PointX="35.75" PointY="13.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.rep_OfficeType" Width="1.5" PointX="35.75" PointY="17.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.vw_AnnualInvestmentProgramProfile" Width="1.5" PointX="35.75" PointY="20.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.vw_Employment" Width="1.5" PointX="35.75" PointY="30.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.vw_Employment2" Width="1.5" PointX="35.75" PointY="35.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.AnnualInvestmentProgram" Width="1.5" PointX="7.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.EmpEmploymentRecord" Width="1.5" PointX="14.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ProjectSignatory" Width="1.5" PointX="20.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP1stLevelSector" Width="1.5" PointX="22.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP2ndLevel" Width="1.5" PointX="24.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP3rdLevel" Width="1.5" PointX="26.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP4thLevel" Width="1.5" PointX="28.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP5thLevel" Width="1.5" PointX="30.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_AIP6thLevel" Width="1.5" PointX="32.75" PointY="36.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_ImplementingDept" Width="1.5" PointX="9.75" PointY="37.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_OfficeType" Width="1.5" PointX="11.75" PointY="37.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.ref_LGULevel" Width="1.5" PointX="16.75" PointY="37.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_Province" Width="1.5" PointX="38.75" PointY="0.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_Regions" Width="1.5" PointX="0.75" PointY="38.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

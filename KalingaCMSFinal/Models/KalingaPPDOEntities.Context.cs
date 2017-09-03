@@ -182,5 +182,40 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_TrainingsAttended> vw_TrainingsAttended { get; set; }
         public virtual DbSet<vw_VolunteerList> vw_VolunteerList { get; set; }
         public virtual DbSet<vw_appUsers> vw_appUsers { get; set; }
+        public virtual DbSet<DropDown_AIPLevel1> DropDown_AIPLevel1 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel2> DropDown_AIPLevel2 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel3> DropDown_AIPLevel3 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel4> DropDown_AIPLevel4 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel5> DropDown_AIPLevel5 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel6> DropDown_AIPLevel6 { get; set; }
+        public virtual DbSet<DropDown_EmpployeeList> DropDown_EmpployeeList { get; set; }
+        public virtual DbSet<DropDown_ImplementingOffice> DropDown_ImplementingOffice { get; set; }
+        public virtual DbSet<DropDown_LGULevel> DropDown_LGULevel { get; set; }
+        public virtual DbSet<DropDown_OfficeType> DropDown_OfficeType { get; set; }
+        public virtual DbSet<DropDown_StrategicPriority> DropDown_StrategicPriority { get; set; }
+        public virtual DbSet<DropDown_TypologyCode2> DropDown_TypologyCode2 { get; set; }
+        public virtual DbSet<rep_AIPLevel2> rep_AIPLevel2 { get; set; }
+        public virtual DbSet<rep_AIPLevel3> rep_AIPLevel3 { get; set; }
+        public virtual DbSet<rep_AIPLevel4> rep_AIPLevel4 { get; set; }
+        public virtual DbSet<rep_AIPLevel5> rep_AIPLevel5 { get; set; }
+        public virtual DbSet<rep_AIPLevel6> rep_AIPLevel6 { get; set; }
+        public virtual DbSet<rep_OfficeType> rep_OfficeType { get; set; }
+        public virtual DbSet<vw_AnnualInvestmentProgramProfile> vw_AnnualInvestmentProgramProfile { get; set; }
+        public virtual DbSet<vw_Employment> vw_Employment { get; set; }
+        public virtual DbSet<vw_Employment2> vw_Employment2 { get; set; }
+        public virtual DbSet<AnnualInvestmentProgram> AnnualInvestmentPrograms { get; set; }
+        public virtual DbSet<EmpEmploymentRecord> EmpEmploymentRecords { get; set; }
+        public virtual DbSet<ProjectSignatory> ProjectSignatories { get; set; }
+        public virtual DbSet<ref_AIP1stLevelSector> ref_AIP1stLevelSector { get; set; }
+        public virtual DbSet<ref_AIP2ndLevel> ref_AIP2ndLevel { get; set; }
+        public virtual DbSet<ref_AIP3rdLevel> ref_AIP3rdLevel { get; set; }
+        public virtual DbSet<ref_AIP4thLevel> ref_AIP4thLevel { get; set; }
+        public virtual DbSet<ref_AIP5thLevel> ref_AIP5thLevel { get; set; }
+        public virtual DbSet<ref_AIP6thLevel> ref_AIP6thLevel { get; set; }
+        public virtual DbSet<ref_ImplementingDept> ref_ImplementingDept { get; set; }
+        public virtual DbSet<ref_OfficeType> ref_OfficeType { get; set; }
+        public virtual DbSet<ref_LGULevel> ref_LGULevel { get; set; }
+        public virtual DbSet<DropDown_Province> DropDown_Province { get; set; }
+        public virtual DbSet<DropDown_Regions> DropDown_Regions { get; set; }
     }
 }

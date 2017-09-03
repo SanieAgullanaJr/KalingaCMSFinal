@@ -19,7 +19,7 @@
             @Styles.Render("~/Content/css")
             @Styles.Render("~/Content/DataTables/css/dataTables.bootstrap.min.css")
             @Styles.Render("~/Content/DataTables/css/buttons.bootstrap.min.css")
-            @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
+            @Styles.Render("~/Content/jquery/jquery-ui.min.css")
             @Styles.Render("~/Gentel/css/font-awesome/css/font-awesome.min.css")
             @Styles.Render("~/Gentel/css/custom.min.css")
             @Scripts.Render("~/bundles/modernizr")
@@ -49,6 +49,15 @@
                     width: 100%;
                     max-height: 400px !important;
                 }
+
+                table {
+                    table-layout: fixed;
+                    width: 100%;
+                    overflow-x: auto;
+                }
+                tbody {
+                    overflow: auto;
+                }
             </style>
         </head>
 
@@ -58,7 +67,7 @@
                     <div class="col-md-3 left_col">
                         <div class="left_col scroll-view">
                             <div class="navbar nav_title">
-                                <center><a href="/Dashboard/Index" class="site_title"><img src="../content/images/KalingaLogo.png" alt="..." class="img-circle kalingaLogo" width="80"></a></center>
+                                <a href="/Dashboard/Index" class="site_title"><img src="../content/images/KalingaLogo.png" alt="..." class="img-circle kalingaLogo"> PLGU Kalinga</a>
                             </div>
 
                             <div class="clearfix"></div>
@@ -246,22 +255,6 @@
                                 </div>
                             </div>
                             <!-- /sidebar menu -->
-                            <!-- /menu footer buttons -->
-                            <div class="sidebar-footer hidden-small">
-                                <a data-toggle="tooltip" data-placement="top" title="Settings">
-                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                                </a>
-                                <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                                </a>
-                                <a data-toggle="tooltip" data-placement="top" title="Lock">
-                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                                </a>
-                                <a data-toggle="tooltip" data-placement="top" title="Logout">
-                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                            <!-- /menu footer buttons -->
                         </div>
                     </div>
 
@@ -394,7 +387,7 @@
             @Scripts.Render("~/Scripts/DataTables/buttons.html5.min.js")
             @Scripts.Render("~/Scripts/bootbox.min.js")
             @Scripts.Render("~/Gentel/js/custom.min.js")
-            @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js");
+            @Scripts.Render("~/Content/jquery/jquery-ui.min.js")
             @Scripts.Render("~/Scripts/Chart.min.js");
             @Scripts.Render("~/Scripts/nprogress.js");
             @RenderSection("scripts", required: false)

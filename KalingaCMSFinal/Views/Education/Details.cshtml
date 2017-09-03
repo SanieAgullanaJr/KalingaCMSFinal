@@ -1,0 +1,98 @@
+﻿@model KalingaCMSFinal.Models.EmpEducationHistory
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EmpEducationHistory</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.empID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.empID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EducLevelID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EducLevelID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SchoolName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SchoolName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DegreeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DegreeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.YearGraduated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.YearGraduated)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Earned)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Earned)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Distinction)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Distinction)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.empEducID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

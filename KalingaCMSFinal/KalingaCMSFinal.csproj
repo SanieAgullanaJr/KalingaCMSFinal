@@ -194,15 +194,31 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AgricultureReportChartsController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
+    <Compile Include="Controllers\BarangaysController.cs" />
+    <Compile Include="Controllers\CertificatesAndLicensuresController.cs" />
     <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
     <Compile Include="Controllers\CoffeeAreaAndProductionController.cs" />
+    <Compile Include="Controllers\DayTypesController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\EmploymentHistoryController.cs" />
+    <Compile Include="Controllers\EmploymentStatusController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FamilyBackgroundController.cs" />
+    <Compile Include="Controllers\HolidaysController.cs" />
     <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
+    <Compile Include="Controllers\LeaveTypesController.cs" />
     <Compile Include="Controllers\LiteracyReportChartsController.cs" />
+    <Compile Include="Controllers\MunicipalitiesController.cs" />
     <Compile Include="Controllers\NewProjectsController.cs" />
     <Compile Include="Controllers\OfficialCodeController.cs" />
+    <Compile Include="Controllers\PersonnelDataSheetController.cs" />
     <Compile Include="Controllers\PopulationReportChartsController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\PriorityClassificationController.cs" />
+    <Compile Include="Controllers\ProvincesController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\SectorTypeController.cs" />
     <Compile Include="Controllers\SourceOfFundController.cs" />
     <Compile Include="Controllers\StrategicPriorityAreaController.cs" />
@@ -241,11 +257,16 @@
     <Compile Include="Controllers\ProjectProfileController.cs" />
     <Compile Include="Controllers\StatusOfIrrigationSystemController.cs" />
     <Compile Include="Controllers\TotalPopulationAndDistributionController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
+    <Compile Include="Controllers\VoluntaryWorkInvolvementController.cs" />
     <Compile Include="Controllers\WorkerReportChartsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AnnualInvestmentProgram.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\appModule.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -268,6 +289,24 @@
     <Compile Include="Models\DropDown_AcountCode.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_AIPLevel1.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AIPLevel2.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AIPLevel3.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AIPLevel4.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AIPLevel5.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AIPLevel6.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_AppUsers.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -283,10 +322,22 @@
     <Compile Include="Models\DropDown_ClimateChangeMitigation.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_EmpployeeList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_ImplementingDepartment.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_ImplementingOffice.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_LGULevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_Municipality.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_OfficeType.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDown_OfficialCode.cs">
@@ -298,16 +349,28 @@
     <Compile Include="Models\DropDown_ProgramCode.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_Province.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_Regions.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_SectoralCode.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDown_SourceofFund.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_StrategicPriority.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_SupervisorList.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDown_TypologyCode.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_TypologyCode2.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpAttendanceMain.cs">
@@ -317,6 +380,9 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpEducationHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpEmploymentRecord.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpFamilyBackGround.cs">
@@ -391,6 +457,7 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NameSuggestions.cs" />
     <Compile Include="Models\OtherCropsProduction.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -430,10 +497,31 @@
     <Compile Include="Models\ProjectProfile.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectSignatory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ref_AccountCode.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_AgeGroup.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP1stLevelSector.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP2ndLevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP3rdLevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP4thLevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP5thLevel.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_AIP6thLevel.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_AppointmentStatus.cs">
@@ -502,6 +590,9 @@
     <Compile Include="Models\ref_ImplementingDepartment.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ref_ImplementingDept.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ref_IndustryClassification.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -518,6 +609,9 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_LeaveType.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_LGULevel.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_Literacy.cs">
@@ -542,6 +636,9 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_NameSuffix.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ref_OfficeType.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ref_OfficialCode.cs">
@@ -601,7 +698,25 @@
     <Compile Include="Models\ref_StrategicPriorityGroup.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\rep_AIPLevel2.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_AIPLevel3.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_AIPLevel4.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_AIPLevel5.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_AIPLevel6.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\rep_HouseholdHighestEducationAttained.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_OfficeType.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rep_PopulationDistributionByYearByMunicipality.cs">
@@ -609,6 +724,9 @@
     </Compile>
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\vw_AccountCodes.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AnnualInvestmentProgramProfile.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_appUsers.cs">
@@ -645,6 +763,12 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_EmployeeSalaryHistory.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_Employment.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_Employment2.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_EmploymentRecord.cs">
@@ -921,6 +1045,8 @@
     <Content Include="Content\Images\KalingaLogo.png" />
     <Content Include="Content\Images\PageUnderConstruction.png" />
     <Content Include="Content\Images\UserIcon.jpg" />
+    <Content Include="Content\jquery\jquery-ui.min.css" />
+    <Content Include="Content\jquery\jquery-ui.min.js" />
     <Content Include="Content\nprogress.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -1455,9 +1581,100 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\PersonnelDataSheet\Create.cshtml" />
+    <Content Include="Views\PersonnelDataSheet\Delete.cshtml" />
+    <Content Include="Views\PersonnelDataSheet\Details.cshtml" />
+    <Content Include="Views\PersonnelDataSheet\Edit.cshtml" />
+    <Content Include="Views\PersonnelDataSheet\Index.cshtml" />
+    <Content Include="Views\EmploymentHistory\Create.cshtml" />
+    <Content Include="Views\EmploymentHistory\Delete.cshtml" />
+    <Content Include="Views\EmploymentHistory\Details.cshtml" />
+    <Content Include="Views\EmploymentHistory\Edit.cshtml" />
+    <Content Include="Views\EmploymentHistory\Index.cshtml" />
+    <Content Include="Views\FamilyBackground\Create.cshtml" />
+    <Content Include="Views\FamilyBackground\Delete.cshtml" />
+    <Content Include="Views\FamilyBackground\Details.cshtml" />
+    <Content Include="Views\FamilyBackground\Edit.cshtml" />
+    <Content Include="Views\FamilyBackground\Index.cshtml" />
+    <Content Include="Views\Education\Create.cshtml" />
+    <Content Include="Views\Education\Delete.cshtml" />
+    <Content Include="Views\Education\Details.cshtml" />
+    <Content Include="Views\Education\Edit.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="Views\CertificatesAndLicensures\Create.cshtml" />
+    <Content Include="Views\CertificatesAndLicensures\Delete.cshtml" />
+    <Content Include="Views\CertificatesAndLicensures\Details.cshtml" />
+    <Content Include="Views\CertificatesAndLicensures\Edit.cshtml" />
+    <Content Include="Views\CertificatesAndLicensures\Index.cshtml" />
+    <Content Include="Views\Trainings\Create.cshtml" />
+    <Content Include="Views\Trainings\Delete.cshtml" />
+    <Content Include="Views\Trainings\Details.cshtml" />
+    <Content Include="Views\Trainings\Edit.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
+    <Content Include="Views\VoluntaryWorkInvolvement\Create.cshtml" />
+    <Content Include="Views\VoluntaryWorkInvolvement\Delete.cshtml" />
+    <Content Include="Views\VoluntaryWorkInvolvement\Details.cshtml" />
+    <Content Include="Views\VoluntaryWorkInvolvement\Edit.cshtml" />
+    <Content Include="Views\VoluntaryWorkInvolvement\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Delete.cshtml" />
+    <Content Include="Views\Section\Details.cshtml" />
+    <Content Include="Views\Section\Edit.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\EmploymentStatus\Create.cshtml" />
+    <Content Include="Views\EmploymentStatus\Delete.cshtml" />
+    <Content Include="Views\EmploymentStatus\Details.cshtml" />
+    <Content Include="Views\EmploymentStatus\Edit.cshtml" />
+    <Content Include="Views\EmploymentStatus\Index.cshtml" />
+    <Content Include="Views\Regions\Create.cshtml" />
+    <Content Include="Views\Regions\Delete.cshtml" />
+    <Content Include="Views\Regions\Details.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Provinces\Create.cshtml" />
+    <Content Include="Views\Provinces\Delete.cshtml" />
+    <Content Include="Views\Provinces\Details.cshtml" />
+    <Content Include="Views\Provinces\Edit.cshtml" />
+    <Content Include="Views\Provinces\Index.cshtml" />
+    <Content Include="Views\Municipalities\Create.cshtml" />
+    <Content Include="Views\Municipalities\Delete.cshtml" />
+    <Content Include="Views\Municipalities\Details.cshtml" />
+    <Content Include="Views\Municipalities\Edit.cshtml" />
+    <Content Include="Views\Municipalities\Index.cshtml" />
+    <Content Include="Views\Barangays\Create.cshtml" />
+    <Content Include="Views\Barangays\Delete.cshtml" />
+    <Content Include="Views\Barangays\Details.cshtml" />
+    <Content Include="Views\Barangays\Edit.cshtml" />
+    <Content Include="Views\Barangays\Index.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
+    <Content Include="Views\Holidays\Create.cshtml" />
+    <Content Include="Views\Holidays\Delete.cshtml" />
+    <Content Include="Views\Holidays\Details.cshtml" />
+    <Content Include="Views\Holidays\Edit.cshtml" />
+    <Content Include="Views\Holidays\Index.cshtml" />
+    <Content Include="Views\LeaveTypes\Create.cshtml" />
+    <Content Include="Views\LeaveTypes\Delete.cshtml" />
+    <Content Include="Views\LeaveTypes\Details.cshtml" />
+    <Content Include="Views\LeaveTypes\Edit.cshtml" />
+    <Content Include="Views\LeaveTypes\Index.cshtml" />
+    <Content Include="Views\DayTypes\Create.cshtml" />
+    <Content Include="Views\DayTypes\Delete.cshtml" />
+    <Content Include="Views\DayTypes\Details.cshtml" />
+    <Content Include="Views\DayTypes\Edit.cshtml" />
+    <Content Include="Views\DayTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\EmployeeProfileImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

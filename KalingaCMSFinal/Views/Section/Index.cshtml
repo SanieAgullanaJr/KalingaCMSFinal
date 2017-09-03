@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.ref_DepartmentUnit>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentUnitCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentUnitDescription)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentUnitCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentUnitDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentUnitID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.DepartmentUnitID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentUnitID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

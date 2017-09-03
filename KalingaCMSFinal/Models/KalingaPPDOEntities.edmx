@@ -5,6 +5,44 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="kalingaPPDOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnnualInvestmentProgram">
+          <Key>
+            <PropertyRef Name="AIPid" />
+          </Key>
+          <Property Name="AIPid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="AIPLevel2ID" Type="int" />
+          <Property Name="AIPLevel3ID" Type="int" />
+          <Property Name="AIPLevel4ID" Type="int" />
+          <Property Name="AIPLevel5ID" Type="int" />
+          <Property Name="AIPLevel6ID" Type="int" />
+          <Property Name="LGULevelID" Type="int" />
+          <Property Name="OfficeTypeID" Type="int" />
+          <Property Name="ImplementingDeptID" Type="int" />
+          <Property Name="ProjectTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ProjActivities" Type="varchar" MaxLength="500" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="ProjStatusID" Type="int" />
+          <Property Name="SourceFundID" Type="int" />
+          <Property Name="ExpectedOutput" Type="varchar" MaxLength="500" />
+          <Property Name="ProjCatID" Type="int" />
+          <Property Name="ReferenceDoc" Type="varchar" MaxLength="50" />
+          <Property Name="ItemWork" Type="varchar" MaxLength="50" />
+          <Property Name="MunicipalityID" Type="int" />
+          <Property Name="barangayID" Type="int" />
+          <Property Name="ProjPurok" Type="varchar" MaxLength="150" />
+          <Property Name="Remarks" Type="varchar" MaxLength="150" />
+          <Property Name="ProjPS" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ProjMOOE" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ProjCapitalOutlay" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="StrategicPriorityID" Type="int" />
+          <Property Name="StrategicPriorityAreaID" Type="int" />
+          <Property Name="MitigationTypologyID" Type="int" />
+          <Property Name="AdaptationTypologyID" Type="int" />
+          <Property Name="CCMitigationAmount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="CCAdaptationAmount" Type="decimal" Precision="9" Scale="2" />
+        </EntityType>
         <EntityType Name="appModule">
           <Key>
             <PropertyRef Name="appmoduleid" />
@@ -229,6 +267,25 @@
           <Property Name="EndDate" Type="varchar" MaxLength="10" />
           <Property Name="Distinction" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="EmpEmploymentRecord">
+          <Key>
+            <PropertyRef Name="empRecID" />
+          </Key>
+          <Property Name="empRecID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empID" Type="int" />
+          <Property Name="DeptID" Type="int" />
+          <Property Name="DateHired" Type="date" />
+          <Property Name="DateResigned" Type="date" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="MonthlySalary" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeID" Type="int" />
+          <Property Name="SGIncrementID" Type="int" />
+          <Property Name="AppointmentStatusID" Type="int" />
+          <Property Name="FirstApprover" Type="int" />
+          <Property Name="SecondApprover" Type="int" />
+          <Property Name="IsSupervisor" Type="bit" />
+          <Property Name="IsSeparated" Type="bit" />
+        </EntityType>
         <EntityType Name="EmpFamilyBackGround">
           <Key>
             <PropertyRef Name="empFamBGID" />
@@ -300,6 +357,9 @@
           <Property Name="DateHired" Type="date" />
           <Property Name="DateResigned" Type="date" />
           <Property Name="CurrentSalary" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="DisplayPicturePath" Type="varchar(max)" />
+          <Property Name="RegionID" Type="int" />
+          <Property Name="RegionID2" Type="int" />
         </EntityType>
         <EntityType Name="EmpTrainings">
           <Key>
@@ -550,6 +610,16 @@
           <Property Name="MitigationTypologyID" Type="int" />
           <Property Name="AdaptationTypologyID" Type="int" />
         </EntityType>
+        <EntityType Name="ProjectSignatories">
+          <Key>
+            <PropertyRef Name="SignatoryID" />
+          </Key>
+          <Property Name="SignatoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanningOfficer" Type="varchar" MaxLength="50" />
+          <Property Name="BudgetOfficer" Type="varchar" MaxLength="50" />
+          <Property Name="LocExecOfficer" Type="varchar" MaxLength="50" />
+          <Property Name="DateEncoded" Type="date" />
+        </EntityType>
         <EntityType Name="ref_AccountCode">
           <Key>
             <PropertyRef Name="AccountCodeID" />
@@ -566,6 +636,59 @@
           </Key>
           <Property Name="AgeGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AgeGroup" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="ref_AIP1stLevelSector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorCode" Type="varchar" MaxLength="5" />
+          <Property Name="SectorDescription" Type="varchar" MaxLength="90" />
+        </EntityType>
+        <EntityType Name="ref_AIP2ndLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="AIPLevel2Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel2Code" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ref_AIP3rdLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AIPLevel2ID" Type="int" />
+          <Property Name="AIPLevel3Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel3Code" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ref_AIP4thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AIPLevel3ID" Type="int" Nullable="false" />
+          <Property Name="AIPLevel4Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel4Code" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ref_AIP5thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel5ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AIPLevel4ID" Type="int" />
+          <Property Name="AIPLevel5Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel5Code" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="ref_AIP6thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AIPLevel5ID" Type="int" Nullable="false" />
+          <Property Name="AIPLevel6Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel6Code" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="ref_AppointmentStatus">
           <Key>
@@ -745,6 +868,16 @@
           <Property Name="ImpDeptCode" Type="varchar" MaxLength="15" />
           <Property Name="ImpDeptDescription" Type="varchar" MaxLength="350" />
         </EntityType>
+        <EntityType Name="ref_ImplementingDept">
+          <Key>
+            <PropertyRef Name="ImplementingDeptID" />
+          </Key>
+          <Property Name="ImplementingDeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LGULevelID" Type="int" />
+          <Property Name="OfficeTypeID" Type="int" />
+          <Property Name="ImplementingDeptDesc" Type="varchar" MaxLength="150" />
+          <Property Name="ImplementingDeptCode" Type="varchar" MaxLength="5" />
+        </EntityType>
         <EntityType Name="ref_IndustryClassification">
           <Key>
             <PropertyRef Name="IndustryClassID" />
@@ -789,6 +922,16 @@
           <Property Name="LeaveTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LeaveTypeCode" Type="varchar" MaxLength="5" />
           <Property Name="LeaveTypeDescription" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.ref_LGULevel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ref_LGULevel">
+          <Key>
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="LGULevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LGULevelDescription" Type="varchar" MaxLength="50" />
+          <Property Name="LGULevelCode" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="ref_Literacy">
           <Key>
@@ -849,6 +992,15 @@
           </Key>
           <Property Name="NameSuffixTitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Suffix" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ref_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LGULevelID" Type="int" Nullable="false" />
+          <Property Name="OfficeTypeDescription" Type="varchar" MaxLength="30" />
+          <Property Name="OfficeTypeCode" Type="varchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="ref_OfficialCode">
           <Key>
@@ -1048,6 +1200,64 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AcountCode' does not have
           <Property Name="AccountCode" Type="varchar" MaxLength="157" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel1">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level1" Type="varchar" MaxLength="96" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel2">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="int" Nullable="false" />
+          <Property Name="Level2" Type="varchar" MaxLength="156" />
+          <Property Name="SectorID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel3">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="int" Nullable="false" />
+          <Property Name="Level3" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel2ID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel4">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="int" Nullable="false" />
+          <Property Name="Level4" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel3ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel5' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel5">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel5ID" Type="int" Nullable="false" />
+          <Property Name="Level5" Type="varchar" MaxLength="156" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AIPLevel6' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_AIPLevel6">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="int" Nullable="false" />
+          <Property Name="Level6" Type="varchar" MaxLength="156" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_AppUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DropDown_AppUsers">
           <Key>
@@ -1097,6 +1307,15 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_ClimateChangeMitigation' 
           <Property Name="StrategicPriorityID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_EmpployeeList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_EmpployeeList">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="153" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_ImplementingDepartment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DropDown_ImplementingDepartment">
           <Key>
@@ -1106,6 +1325,24 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_ImplementingDepartment' d
           <Property Name="ImpDeptCode" Type="varchar" MaxLength="15" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_ImplementingOffice' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_ImplementingOffice">
+          <Key>
+            <PropertyRef Name="ImplementingDeptID" />
+          </Key>
+          <Property Name="ImplementingDeptID" Type="int" Nullable="false" />
+          <Property Name="ImplementingOffice" Type="varchar" MaxLength="156" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_LGULevel' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_LGULevel">
+          <Key>
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="LGULevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LGULevel" Type="varchar" MaxLength="56" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_Municipality' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DropDown_Municipality">
           <Key>
@@ -1113,6 +1350,17 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_Municipality' does not ha
           </Key>
           <Property Name="MunicipalityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Municipality" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_OfficeType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="int" Nullable="false" />
+          <Property Name="OfficeType" Type="varchar" MaxLength="36" />
+          <Property Name="LGULevelID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_OfficialCode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1145,6 +1393,25 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_ProgramCode' does not hav
           <Property Name="ProgramCode" Type="varchar" MaxLength="166" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_Province' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_Province">
+          <Key>
+            <PropertyRef Name="provinceID" />
+          </Key>
+          <Property Name="provinceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinceDistrict" Type="varchar" MaxLength="250" />
+          <Property Name="RegionID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_Regions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_Regions">
+          <Key>
+            <PropertyRef Name="regionID" />
+          </Key>
+          <Property Name="regionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="101" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_SectoralCode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DropDown_SectoralCode">
           <Key>
@@ -1161,6 +1428,15 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_SourceofFund' does not ha
           </Key>
           <Property Name="SourceFundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SourceFundCode" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_StrategicPriority' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_StrategicPriority">
+          <Key>
+            <PropertyRef Name="StrategicPriorityID" />
+          </Key>
+          <Property Name="StrategicPriorityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StrategicPriority" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_SupervisorList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1181,6 +1457,84 @@ warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_TypologyCode' does not ha
           <Property Name="Typology" Type="varchar" MaxLength="75" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.DropDown_TypologyCode2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DropDown_TypologyCode2">
+          <Key>
+            <PropertyRef Name="TypologyID" />
+          </Key>
+          <Property Name="TypologyID" Type="int" Nullable="false" />
+          <Property Name="TypologyCode" Type="varchar" MaxLength="10" />
+          <Property Name="TypologyDescription" Type="varchar" MaxLength="350" />
+          <Property Name="StratPriorityClassID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_AIPLevel2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_AIPLevel2">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="int" Nullable="false" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="AIPLevel2Code" Type="varchar" MaxLength="5" />
+          <Property Name="AIPLevel2Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_AIPLevel3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_AIPLevel3">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="int" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="varchar" MaxLength="96" />
+          <Property Name="AIPCodeLevel2" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel3Code" Type="varchar" MaxLength="5" />
+          <Property Name="AIPLevel3Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_AIPLevel4' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_AIPLevel4">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="int" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="varchar" MaxLength="96" />
+          <Property Name="AIPCodeLevel2" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel3" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel4Code" Type="varchar" MaxLength="5" />
+          <Property Name="AIPLevel4Description" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_AIPLevel5' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_AIPLevel5">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPCodeLevel1" Type="varchar" MaxLength="96" />
+          <Property Name="AIPCodeLevel2" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel3" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel4" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel5Code" Type="varchar" MaxLength="5" />
+          <Property Name="AIPLevel5Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel5ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_AIPLevel6' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_AIPLevel6">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="int" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="varchar" MaxLength="96" />
+          <Property Name="AIPCodeLevel2" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel3" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel4" Type="varchar" MaxLength="156" />
+          <Property Name="AIPCodeLevel5" Type="varchar" MaxLength="156" />
+          <Property Name="AIPLevel6Code" Type="varchar" MaxLength="5" />
+          <Property Name="AIPLevel6Description" Type="varchar" MaxLength="150" />
+          <Property Name="AIPLevel5ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.rep_HouseholdHighestEducationAttained' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="rep_HouseholdHighestEducationAttained">
           <Key>
@@ -1194,6 +1548,17 @@ warning 6002: The table/view 'kalingaPPDO.dbo.rep_HouseholdHighestEducationAttai
           <Property Name="FemalePopulation" Type="int" />
           <Property Name="YearTaken" Type="varchar" MaxLength="4" />
           <Property Name="HighestEducAttainedID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.rep_OfficeType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="rep_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="int" Nullable="false" />
+          <Property Name="LGULevel" Type="varchar" MaxLength="56" />
+          <Property Name="OfficeTypeDescription" Type="varchar" MaxLength="30" />
+          <Property Name="OfficeTypeCode" Type="varchar" MaxLength="5" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.rep_PopulationDistributionByYearByMunicipality' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1220,6 +1585,56 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_AccountCodes' does not have a p
           <Property Name="Program" Type="varchar" MaxLength="150" />
           <Property Name="AccountCode" Type="int" />
           <Property Name="AccountDescription" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.vw_AnnualInvestmentProgramProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_AnnualInvestmentProgramProfile">
+          <Key>
+            <PropertyRef Name="AIPid" />
+            <PropertyRef Name="StrategicPriorityAreaID" />
+            <PropertyRef Name="StrategicPriorityID" />
+          </Key>
+          <Property Name="AIPid" Type="int" Nullable="false" />
+          <Property Name="AIPReferenceCode" Type="int" />
+          <Property Name="ProjectTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ImplementingDeptDesc" Type="varchar" MaxLength="150" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="SourceOfFund" Type="varchar" MaxLength="371" />
+          <Property Name="ProjPS" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ProjMOOE" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ProjCapitalOutlay" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="TOTALAmount" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="CCAdaptationAmount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="CCMitigationAmount" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="SectorID" Type="int" />
+          <Property Name="AIPLevel2ID" Type="int" />
+          <Property Name="AIPLevel3ID" Type="int" />
+          <Property Name="AIPLevel4ID" Type="int" />
+          <Property Name="AIPLevel5ID" Type="int" />
+          <Property Name="AIPLevel6ID" Type="int" />
+          <Property Name="LGULevelID" Type="int" />
+          <Property Name="OfficeTypeID" Type="int" />
+          <Property Name="ImplementingDeptID" Type="int" />
+          <Property Name="ProjActivities" Type="varchar" MaxLength="500" />
+          <Property Name="ProjStatusDescription" Type="varchar" MaxLength="150" />
+          <Property Name="SourceFundDescription" Type="varchar" MaxLength="350" />
+          <Property Name="ExpectedOutput" Type="varchar" MaxLength="500" />
+          <Property Name="ProjCategoryDescription" Type="varchar" MaxLength="250" />
+          <Property Name="ReferenceDoc" Type="varchar" MaxLength="50" />
+          <Property Name="ItemWork" Type="varchar" MaxLength="50" />
+          <Property Name="Municipality" Type="varchar" MaxLength="250" />
+          <Property Name="Barangay" Type="varchar" MaxLength="450" />
+          <Property Name="ProjPurok" Type="varchar" MaxLength="150" />
+          <Property Name="Remarks" Type="varchar" MaxLength="150" />
+          <Property Name="StrategicPriorityDescription" Type="varchar" MaxLength="50" />
+          <Property Name="StrategicPriorityAreaDescription" Type="varchar" MaxLength="50" />
+          <Property Name="StrategicPriorityAreaID" Type="int" Nullable="false" />
+          <Property Name="StrategicPriorityID" Type="int" Nullable="false" />
+          <Property Name="AdaptationTypologyID" Type="int" />
+          <Property Name="MitigationTypologyID" Type="int" />
+          <Property Name="Expr1" Type="int" />
+          <Property Name="Expr2" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_appUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1388,6 +1803,52 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_EmployeeSalaryHistory' does not
           <Property Name="EmpStatusDescription" Type="varchar" MaxLength="30" />
           <Property Name="IsGovService" Type="bit" />
           <Property Name="workID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.vw_Employment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Employment">
+          <Key>
+            <PropertyRef Name="empRecID" />
+            <PropertyRef Name="FirstApprover" />
+            <PropertyRef Name="SecondApprover" />
+          </Key>
+          <Property Name="empRecID" Type="int" Nullable="false" />
+          <Property Name="empID" Type="int" />
+          <Property Name="FullName" Type="varchar" MaxLength="153" />
+          <Property Name="DateHired" Type="date" />
+          <Property Name="DateResigned" Type="date" />
+          <Property Name="PositionDescription" Type="varchar" MaxLength="150" />
+          <Property Name="MonthlySalary" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeCode" Type="varchar" MaxLength="10" />
+          <Property Name="StepIncrement" Type="varchar" MaxLength="10" />
+          <Property Name="EmpStatusDescription" Type="varchar" MaxLength="30" />
+          <Property Name="FirstApprover" Type="int" Nullable="false" />
+          <Property Name="SecondApprover" Type="int" Nullable="false" />
+          <Property Name="IsSupervisor" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'kalingaPPDO.dbo.vw_Employment2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Employment2">
+          <Key>
+            <PropertyRef Name="empRecID" />
+            <PropertyRef Name="FirstApprover" />
+            <PropertyRef Name="SecondApprover" />
+          </Key>
+          <Property Name="empRecID" Type="int" Nullable="false" />
+          <Property Name="empID" Type="int" />
+          <Property Name="FullName" Type="varchar" MaxLength="153" />
+          <Property Name="DateHired" Type="date" />
+          <Property Name="DateResigned" Type="date" />
+          <Property Name="PositionDescription" Type="varchar" MaxLength="150" />
+          <Property Name="MonthlySalary" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeCode" Type="varchar" MaxLength="10" />
+          <Property Name="StepIncrement" Type="varchar" MaxLength="10" />
+          <Property Name="EmpStatusDescription" Type="varchar" MaxLength="30" />
+          <Property Name="FirstApprover" Type="int" Nullable="false" />
+          <Property Name="SecondApprover" Type="int" Nullable="false" />
+          <Property Name="IsSupervisor" Type="bit" />
+          <Property Name="Approver1" Type="varchar" MaxLength="153" />
+          <Property Name="Approver2" Type="varchar" MaxLength="153" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_EmploymentRecord' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1786,6 +2247,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="OrganizationNature" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="kalingaPPDOModelStoreContainer">
+          <EntitySet Name="AnnualInvestmentProgram" EntityType="Self.AnnualInvestmentProgram" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="appModule" EntityType="Self.appModule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="appRole" EntityType="Self.appRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="appUserAccess" EntityType="Self.appUserAccess" Schema="dbo" store:Type="Tables" />
@@ -1804,6 +2266,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="EmpAttendanceMain" EntityType="Self.EmpAttendanceMain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpCertificates" EntityType="Self.EmpCertificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpEducationHistory" EntityType="Self.EmpEducationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmpEmploymentRecord" EntityType="Self.EmpEmploymentRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpFamilyBackGround" EntityType="Self.EmpFamilyBackGround" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpMasterProfile" EntityType="Self.EmpMasterProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmpTrainings" EntityType="Self.EmpTrainings" Schema="dbo" store:Type="Tables" />
@@ -1826,8 +2289,15 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="PopulationLiteracy10YrsAbove" EntityType="Self.PopulationLiteracy10YrsAbove" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PopulationMigrationRate" EntityType="Self.PopulationMigrationRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectProfile" EntityType="Self.ProjectProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectSignatories" EntityType="Self.ProjectSignatories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_AccountCode" EntityType="Self.ref_AccountCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_AgeGroup" EntityType="Self.ref_AgeGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP1stLevelSector" EntityType="Self.ref_AIP1stLevelSector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP2ndLevel" EntityType="Self.ref_AIP2ndLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP3rdLevel" EntityType="Self.ref_AIP3rdLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP4thLevel" EntityType="Self.ref_AIP4thLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP5thLevel" EntityType="Self.ref_AIP5thLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_AIP6thLevel" EntityType="Self.ref_AIP6thLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_AppointmentStatus" EntityType="Self.ref_AppointmentStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_AreabySector" EntityType="Self.ref_AreabySector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_Barangay" EntityType="Self.ref_Barangay" Schema="dbo" store:Type="Tables" />
@@ -1850,6 +2320,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="ref_HighValueCrop" EntityType="Self.ref_HighValueCrop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_Holiday" EntityType="Self.ref_Holiday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_ImplementingDepartment" EntityType="Self.ref_ImplementingDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_ImplementingDept" EntityType="Self.ref_ImplementingDept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_IndustryClassification" EntityType="Self.ref_IndustryClassification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_InvolvementType" EntityType="Self.ref_InvolvementType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_LandCoverClassification" EntityType="Self.ref_LandCoverClassification" Schema="dbo" store:Type="Tables" />
@@ -1864,6 +2335,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="ref_Municipality" EntityType="Self.ref_Municipality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_NamePrefix" EntityType="Self.ref_NamePrefix" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_NameSuffix" EntityType="Self.ref_NameSuffix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_OfficeType" EntityType="Self.ref_OfficeType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_OfficialCode" EntityType="Self.ref_OfficialCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_Origins" EntityType="Self.ref_Origins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ref_Position" EntityType="Self.ref_Position" Schema="dbo" store:Type="Tables" />
@@ -1886,12 +2358,58 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="WorkersByClass" EntityType="Self.WorkersByClass" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkersByMajorIndustry" EntityType="Self.WorkersByMajorIndustry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkersByMajorOCcupation" EntityType="Self.WorkersByMajorOCcupation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_LGULevel" EntityType="Self.ref_LGULevel" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ref_LGULevel].[LGULevelID] AS [LGULevelID], 
+    [ref_LGULevel].[LGULevelDescription] AS [LGULevelDescription], 
+    [ref_LGULevel].[LGULevelCode] AS [LGULevelCode]
+    FROM [dbo].[ref_LGULevel] AS [ref_LGULevel]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DropDown_AcountCode" EntityType="Self.DropDown_AcountCode" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DropDown_AcountCode].[AccountCodeID] AS [AccountCodeID], 
     [DropDown_AcountCode].[ProgramID] AS [ProgramID], 
     [DropDown_AcountCode].[AccountCode] AS [AccountCode]
     FROM [dbo].[DropDown_AcountCode] AS [DropDown_AcountCode]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel1" EntityType="Self.DropDown_AIPLevel1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel1].[SectorID] AS [SectorID], 
+    [DropDown_AIPLevel1].[Level1] AS [Level1]
+    FROM [dbo].[DropDown_AIPLevel1] AS [DropDown_AIPLevel1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel2" EntityType="Self.DropDown_AIPLevel2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel2].[AIPLevel2ID] AS [AIPLevel2ID], 
+    [DropDown_AIPLevel2].[Level2] AS [Level2], 
+    [DropDown_AIPLevel2].[SectorID] AS [SectorID]
+    FROM [dbo].[DropDown_AIPLevel2] AS [DropDown_AIPLevel2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel3" EntityType="Self.DropDown_AIPLevel3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel3].[AIPLevel3ID] AS [AIPLevel3ID], 
+    [DropDown_AIPLevel3].[Level3] AS [Level3], 
+    [DropDown_AIPLevel3].[AIPLevel2ID] AS [AIPLevel2ID]
+    FROM [dbo].[DropDown_AIPLevel3] AS [DropDown_AIPLevel3]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel4" EntityType="Self.DropDown_AIPLevel4" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel4].[AIPLevel4ID] AS [AIPLevel4ID], 
+    [DropDown_AIPLevel4].[Level4] AS [Level4], 
+    [DropDown_AIPLevel4].[AIPLevel3ID] AS [AIPLevel3ID]
+    FROM [dbo].[DropDown_AIPLevel4] AS [DropDown_AIPLevel4]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel5" EntityType="Self.DropDown_AIPLevel5" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel5].[AIPLevel5ID] AS [AIPLevel5ID], 
+    [DropDown_AIPLevel5].[Level5] AS [Level5]
+    FROM [dbo].[DropDown_AIPLevel5] AS [DropDown_AIPLevel5]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_AIPLevel6" EntityType="Self.DropDown_AIPLevel6" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_AIPLevel6].[AIPLevel6ID] AS [AIPLevel6ID], 
+    [DropDown_AIPLevel6].[Level6] AS [Level6]
+    FROM [dbo].[DropDown_AIPLevel6] AS [DropDown_AIPLevel6]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DropDown_AppUsers" EntityType="Self.DropDown_AppUsers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1926,17 +2444,42 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [DropDown_ClimateChangeMitigation].[StrategicPriorityID] AS [StrategicPriorityID]
     FROM [dbo].[DropDown_ClimateChangeMitigation] AS [DropDown_ClimateChangeMitigation]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DropDown_EmpployeeList" EntityType="Self.DropDown_EmpployeeList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_EmpployeeList].[empid] AS [empid], 
+    [DropDown_EmpployeeList].[Fullname] AS [Fullname]
+    FROM [dbo].[DropDown_EmpployeeList] AS [DropDown_EmpployeeList]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DropDown_ImplementingDepartment" EntityType="Self.DropDown_ImplementingDepartment" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DropDown_ImplementingDepartment].[ImpDeptID] AS [ImpDeptID], 
     [DropDown_ImplementingDepartment].[ImpDeptCode] AS [ImpDeptCode]
     FROM [dbo].[DropDown_ImplementingDepartment] AS [DropDown_ImplementingDepartment]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DropDown_ImplementingOffice" EntityType="Self.DropDown_ImplementingOffice" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_ImplementingOffice].[ImplementingDeptID] AS [ImplementingDeptID], 
+    [DropDown_ImplementingOffice].[ImplementingOffice] AS [ImplementingOffice]
+    FROM [dbo].[DropDown_ImplementingOffice] AS [DropDown_ImplementingOffice]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_LGULevel" EntityType="Self.DropDown_LGULevel" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_LGULevel].[LGULevelID] AS [LGULevelID], 
+    [DropDown_LGULevel].[LGULevel] AS [LGULevel]
+    FROM [dbo].[DropDown_LGULevel] AS [DropDown_LGULevel]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DropDown_Municipality" EntityType="Self.DropDown_Municipality" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DropDown_Municipality].[MunicipalityID] AS [MunicipalityID], 
     [DropDown_Municipality].[Municipality] AS [Municipality]
     FROM [dbo].[DropDown_Municipality] AS [DropDown_Municipality]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_OfficeType" EntityType="Self.DropDown_OfficeType" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_OfficeType].[OfficeTypeID] AS [OfficeTypeID], 
+    [DropDown_OfficeType].[OfficeType] AS [OfficeType], 
+    [DropDown_OfficeType].[LGULevelID] AS [LGULevelID]
+    FROM [dbo].[DropDown_OfficeType] AS [DropDown_OfficeType]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DropDown_OfficialCode" EntityType="Self.DropDown_OfficialCode" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1958,6 +2501,19 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [DropDown_ProgramCode].[ProgramCode] AS [ProgramCode]
     FROM [dbo].[DropDown_ProgramCode] AS [DropDown_ProgramCode]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DropDown_Province" EntityType="Self.DropDown_Province" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_Province].[provinceID] AS [provinceID], 
+    [DropDown_Province].[ProvinceDistrict] AS [ProvinceDistrict], 
+    [DropDown_Province].[RegionID] AS [RegionID]
+    FROM [dbo].[DropDown_Province] AS [DropDown_Province]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_Regions" EntityType="Self.DropDown_Regions" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_Regions].[regionID] AS [regionID], 
+    [DropDown_Regions].[Region] AS [Region]
+    FROM [dbo].[DropDown_Regions] AS [DropDown_Regions]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DropDown_SectoralCode" EntityType="Self.DropDown_SectoralCode" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DropDown_SectoralCode].[FunctionID] AS [FunctionID], 
@@ -1969,6 +2525,12 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [DropDown_SourceofFund].[SourceFundID] AS [SourceFundID], 
     [DropDown_SourceofFund].[SourceFundCode] AS [SourceFundCode]
     FROM [dbo].[DropDown_SourceofFund] AS [DropDown_SourceofFund]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DropDown_StrategicPriority" EntityType="Self.DropDown_StrategicPriority" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_StrategicPriority].[StrategicPriorityID] AS [StrategicPriorityID], 
+    [DropDown_StrategicPriority].[StrategicPriority] AS [StrategicPriority]
+    FROM [dbo].[DropDown_StrategicPriority] AS [DropDown_StrategicPriority]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DropDown_SupervisorList" EntityType="Self.DropDown_SupervisorList" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1982,6 +2544,65 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [DropDown_TypologyCode].[Typology] AS [Typology]
     FROM [dbo].[DropDown_TypologyCode] AS [DropDown_TypologyCode]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DropDown_TypologyCode2" EntityType="Self.DropDown_TypologyCode2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DropDown_TypologyCode2].[TypologyID] AS [TypologyID], 
+    [DropDown_TypologyCode2].[TypologyCode] AS [TypologyCode], 
+    [DropDown_TypologyCode2].[TypologyDescription] AS [TypologyDescription], 
+    [DropDown_TypologyCode2].[StratPriorityClassID] AS [StratPriorityClassID]
+    FROM [dbo].[DropDown_TypologyCode2] AS [DropDown_TypologyCode2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_AIPLevel2" EntityType="Self.rep_AIPLevel2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_AIPLevel2].[AIPLevel2ID] AS [AIPLevel2ID], 
+    [rep_AIPLevel2].[SectorID] AS [SectorID], 
+    [rep_AIPLevel2].[AIPLevel2Code] AS [AIPLevel2Code], 
+    [rep_AIPLevel2].[AIPLevel2Description] AS [AIPLevel2Description]
+    FROM [dbo].[rep_AIPLevel2] AS [rep_AIPLevel2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_AIPLevel3" EntityType="Self.rep_AIPLevel3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_AIPLevel3].[AIPLevel3ID] AS [AIPLevel3ID], 
+    [rep_AIPLevel3].[AIPCodeLevel1] AS [AIPCodeLevel1], 
+    [rep_AIPLevel3].[AIPCodeLevel2] AS [AIPCodeLevel2], 
+    [rep_AIPLevel3].[AIPLevel3Code] AS [AIPLevel3Code], 
+    [rep_AIPLevel3].[AIPLevel3Description] AS [AIPLevel3Description]
+    FROM [dbo].[rep_AIPLevel3] AS [rep_AIPLevel3]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_AIPLevel4" EntityType="Self.rep_AIPLevel4" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_AIPLevel4].[AIPLevel4ID] AS [AIPLevel4ID], 
+    [rep_AIPLevel4].[AIPCodeLevel1] AS [AIPCodeLevel1], 
+    [rep_AIPLevel4].[AIPCodeLevel2] AS [AIPCodeLevel2], 
+    [rep_AIPLevel4].[AIPCodeLevel3] AS [AIPCodeLevel3], 
+    [rep_AIPLevel4].[AIPLevel4Code] AS [AIPLevel4Code], 
+    [rep_AIPLevel4].[AIPLevel4Description] AS [AIPLevel4Description]
+    FROM [dbo].[rep_AIPLevel4] AS [rep_AIPLevel4]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_AIPLevel5" EntityType="Self.rep_AIPLevel5" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_AIPLevel5].[AIPCodeLevel1] AS [AIPCodeLevel1], 
+    [rep_AIPLevel5].[AIPCodeLevel2] AS [AIPCodeLevel2], 
+    [rep_AIPLevel5].[AIPCodeLevel3] AS [AIPCodeLevel3], 
+    [rep_AIPLevel5].[AIPCodeLevel4] AS [AIPCodeLevel4], 
+    [rep_AIPLevel5].[AIPLevel5Code] AS [AIPLevel5Code], 
+    [rep_AIPLevel5].[AIPLevel5Description] AS [AIPLevel5Description], 
+    [rep_AIPLevel5].[AIPLevel5ID] AS [AIPLevel5ID]
+    FROM [dbo].[rep_AIPLevel5] AS [rep_AIPLevel5]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_AIPLevel6" EntityType="Self.rep_AIPLevel6" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_AIPLevel6].[AIPLevel6ID] AS [AIPLevel6ID], 
+    [rep_AIPLevel6].[AIPCodeLevel1] AS [AIPCodeLevel1], 
+    [rep_AIPLevel6].[AIPCodeLevel2] AS [AIPCodeLevel2], 
+    [rep_AIPLevel6].[AIPCodeLevel3] AS [AIPCodeLevel3], 
+    [rep_AIPLevel6].[AIPCodeLevel4] AS [AIPCodeLevel4], 
+    [rep_AIPLevel6].[AIPCodeLevel5] AS [AIPCodeLevel5], 
+    [rep_AIPLevel6].[AIPLevel6Code] AS [AIPLevel6Code], 
+    [rep_AIPLevel6].[AIPLevel6Description] AS [AIPLevel6Description], 
+    [rep_AIPLevel6].[AIPLevel5ID] AS [AIPLevel5ID]
+    FROM [dbo].[rep_AIPLevel6] AS [rep_AIPLevel6]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="rep_HouseholdHighestEducationAttained" EntityType="Self.rep_HouseholdHighestEducationAttained" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [rep_HouseholdHighestEducationAttained].[PopEducationAttainedID] AS [PopEducationAttainedID], 
@@ -1993,6 +2614,14 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [rep_HouseholdHighestEducationAttained].[YearTaken] AS [YearTaken], 
     [rep_HouseholdHighestEducationAttained].[HighestEducAttainedID] AS [HighestEducAttainedID]
     FROM [dbo].[rep_HouseholdHighestEducationAttained] AS [rep_HouseholdHighestEducationAttained]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="rep_OfficeType" EntityType="Self.rep_OfficeType" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [rep_OfficeType].[OfficeTypeID] AS [OfficeTypeID], 
+    [rep_OfficeType].[LGULevel] AS [LGULevel], 
+    [rep_OfficeType].[OfficeTypeDescription] AS [OfficeTypeDescription], 
+    [rep_OfficeType].[OfficeTypeCode] AS [OfficeTypeCode]
+    FROM [dbo].[rep_OfficeType] AS [rep_OfficeType]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="rep_PopulationDistributionByYearByMunicipality" EntityType="Self.rep_PopulationDistributionByYearByMunicipality" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2013,6 +2642,51 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_AccountCodes].[AccountCode] AS [AccountCode], 
     [vw_AccountCodes].[AccountDescription] AS [AccountDescription]
     FROM [dbo].[vw_AccountCodes] AS [vw_AccountCodes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_AnnualInvestmentProgramProfile" EntityType="Self.vw_AnnualInvestmentProgramProfile" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_AnnualInvestmentProgramProfile].[AIPid] AS [AIPid], 
+    [vw_AnnualInvestmentProgramProfile].[AIPReferenceCode] AS [AIPReferenceCode], 
+    [vw_AnnualInvestmentProgramProfile].[ProjectTitle] AS [ProjectTitle], 
+    [vw_AnnualInvestmentProgramProfile].[ImplementingDeptDesc] AS [ImplementingDeptDesc], 
+    [vw_AnnualInvestmentProgramProfile].[StartDate] AS [StartDate], 
+    [vw_AnnualInvestmentProgramProfile].[EndDate] AS [EndDate], 
+    [vw_AnnualInvestmentProgramProfile].[SourceOfFund] AS [SourceOfFund], 
+    [vw_AnnualInvestmentProgramProfile].[ProjPS] AS [ProjPS], 
+    [vw_AnnualInvestmentProgramProfile].[ProjMOOE] AS [ProjMOOE], 
+    [vw_AnnualInvestmentProgramProfile].[ProjCapitalOutlay] AS [ProjCapitalOutlay], 
+    [vw_AnnualInvestmentProgramProfile].[TOTALAmount] AS [TOTALAmount], 
+    [vw_AnnualInvestmentProgramProfile].[CCAdaptationAmount] AS [CCAdaptationAmount], 
+    [vw_AnnualInvestmentProgramProfile].[CCMitigationAmount] AS [CCMitigationAmount], 
+    [vw_AnnualInvestmentProgramProfile].[SectorID] AS [SectorID], 
+    [vw_AnnualInvestmentProgramProfile].[AIPLevel2ID] AS [AIPLevel2ID], 
+    [vw_AnnualInvestmentProgramProfile].[AIPLevel3ID] AS [AIPLevel3ID], 
+    [vw_AnnualInvestmentProgramProfile].[AIPLevel4ID] AS [AIPLevel4ID], 
+    [vw_AnnualInvestmentProgramProfile].[AIPLevel5ID] AS [AIPLevel5ID], 
+    [vw_AnnualInvestmentProgramProfile].[AIPLevel6ID] AS [AIPLevel6ID], 
+    [vw_AnnualInvestmentProgramProfile].[LGULevelID] AS [LGULevelID], 
+    [vw_AnnualInvestmentProgramProfile].[OfficeTypeID] AS [OfficeTypeID], 
+    [vw_AnnualInvestmentProgramProfile].[ImplementingDeptID] AS [ImplementingDeptID], 
+    [vw_AnnualInvestmentProgramProfile].[ProjActivities] AS [ProjActivities], 
+    [vw_AnnualInvestmentProgramProfile].[ProjStatusDescription] AS [ProjStatusDescription], 
+    [vw_AnnualInvestmentProgramProfile].[SourceFundDescription] AS [SourceFundDescription], 
+    [vw_AnnualInvestmentProgramProfile].[ExpectedOutput] AS [ExpectedOutput], 
+    [vw_AnnualInvestmentProgramProfile].[ProjCategoryDescription] AS [ProjCategoryDescription], 
+    [vw_AnnualInvestmentProgramProfile].[ReferenceDoc] AS [ReferenceDoc], 
+    [vw_AnnualInvestmentProgramProfile].[ItemWork] AS [ItemWork], 
+    [vw_AnnualInvestmentProgramProfile].[Municipality] AS [Municipality], 
+    [vw_AnnualInvestmentProgramProfile].[Barangay] AS [Barangay], 
+    [vw_AnnualInvestmentProgramProfile].[ProjPurok] AS [ProjPurok], 
+    [vw_AnnualInvestmentProgramProfile].[Remarks] AS [Remarks], 
+    [vw_AnnualInvestmentProgramProfile].[StrategicPriorityDescription] AS [StrategicPriorityDescription], 
+    [vw_AnnualInvestmentProgramProfile].[StrategicPriorityAreaDescription] AS [StrategicPriorityAreaDescription], 
+    [vw_AnnualInvestmentProgramProfile].[StrategicPriorityAreaID] AS [StrategicPriorityAreaID], 
+    [vw_AnnualInvestmentProgramProfile].[StrategicPriorityID] AS [StrategicPriorityID], 
+    [vw_AnnualInvestmentProgramProfile].[AdaptationTypologyID] AS [AdaptationTypologyID], 
+    [vw_AnnualInvestmentProgramProfile].[MitigationTypologyID] AS [MitigationTypologyID], 
+    [vw_AnnualInvestmentProgramProfile].[Expr1] AS [Expr1], 
+    [vw_AnnualInvestmentProgramProfile].[Expr2] AS [Expr2]
+    FROM [dbo].[vw_AnnualInvestmentProgramProfile] AS [vw_AnnualInvestmentProgramProfile]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_appUsers" EntityType="Self.vw_appUsers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2142,6 +2816,42 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_EmployeeSalaryHistory].[IsGovService] AS [IsGovService], 
     [vw_EmployeeSalaryHistory].[workID] AS [workID]
     FROM [dbo].[vw_EmployeeSalaryHistory] AS [vw_EmployeeSalaryHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Employment" EntityType="Self.vw_Employment" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Employment].[empRecID] AS [empRecID], 
+    [vw_Employment].[empID] AS [empID], 
+    [vw_Employment].[FullName] AS [FullName], 
+    [vw_Employment].[DateHired] AS [DateHired], 
+    [vw_Employment].[DateResigned] AS [DateResigned], 
+    [vw_Employment].[PositionDescription] AS [PositionDescription], 
+    [vw_Employment].[MonthlySalary] AS [MonthlySalary], 
+    [vw_Employment].[SalaryGradeCode] AS [SalaryGradeCode], 
+    [vw_Employment].[StepIncrement] AS [StepIncrement], 
+    [vw_Employment].[EmpStatusDescription] AS [EmpStatusDescription], 
+    [vw_Employment].[FirstApprover] AS [FirstApprover], 
+    [vw_Employment].[SecondApprover] AS [SecondApprover], 
+    [vw_Employment].[IsSupervisor] AS [IsSupervisor]
+    FROM [dbo].[vw_Employment] AS [vw_Employment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Employment2" EntityType="Self.vw_Employment2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Employment2].[empRecID] AS [empRecID], 
+    [vw_Employment2].[empID] AS [empID], 
+    [vw_Employment2].[FullName] AS [FullName], 
+    [vw_Employment2].[DateHired] AS [DateHired], 
+    [vw_Employment2].[DateResigned] AS [DateResigned], 
+    [vw_Employment2].[PositionDescription] AS [PositionDescription], 
+    [vw_Employment2].[MonthlySalary] AS [MonthlySalary], 
+    [vw_Employment2].[SalaryGradeCode] AS [SalaryGradeCode], 
+    [vw_Employment2].[StepIncrement] AS [StepIncrement], 
+    [vw_Employment2].[EmpStatusDescription] AS [EmpStatusDescription], 
+    [vw_Employment2].[FirstApprover] AS [FirstApprover], 
+    [vw_Employment2].[SecondApprover] AS [SecondApprover], 
+    [vw_Employment2].[IsSupervisor] AS [IsSupervisor], 
+    [vw_Employment2].[Approver1] AS [Approver1], 
+    [vw_Employment2].[Approver2] AS [Approver2]
+    FROM [dbo].[vw_Employment2] AS [vw_Employment2]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_EmploymentRecord" EntityType="Self.vw_EmploymentRecord" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2754,6 +3464,9 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="DateHired" Type="DateTime" Precision="0" />
           <Property Name="DateResigned" Type="DateTime" Precision="0" />
           <Property Name="CurrentSalary" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="DisplayPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="RegionID2" Type="Int32" />
         </EntityType>
         <EntityType Name="EmpTraining">
           <Key>
@@ -4274,6 +4987,41 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="vw_TrainingsAttended" EntityType="Self.vw_TrainingsAttended" />
           <EntitySet Name="vw_VolunteerList" EntityType="Self.vw_VolunteerList" />
           <EntitySet Name="vw_appUsers" EntityType="kalingaPPDOModel.vw_appUsers" />
+          <EntitySet Name="DropDown_AIPLevel1" EntityType="kalingaPPDOModel.DropDown_AIPLevel1" />
+          <EntitySet Name="DropDown_AIPLevel2" EntityType="kalingaPPDOModel.DropDown_AIPLevel2" />
+          <EntitySet Name="DropDown_AIPLevel3" EntityType="kalingaPPDOModel.DropDown_AIPLevel3" />
+          <EntitySet Name="DropDown_AIPLevel4" EntityType="kalingaPPDOModel.DropDown_AIPLevel4" />
+          <EntitySet Name="DropDown_AIPLevel5" EntityType="kalingaPPDOModel.DropDown_AIPLevel5" />
+          <EntitySet Name="DropDown_AIPLevel6" EntityType="kalingaPPDOModel.DropDown_AIPLevel6" />
+          <EntitySet Name="DropDown_EmpployeeList" EntityType="kalingaPPDOModel.DropDown_EmpployeeList" />
+          <EntitySet Name="DropDown_ImplementingOffice" EntityType="kalingaPPDOModel.DropDown_ImplementingOffice" />
+          <EntitySet Name="DropDown_LGULevel" EntityType="kalingaPPDOModel.DropDown_LGULevel" />
+          <EntitySet Name="DropDown_OfficeType" EntityType="kalingaPPDOModel.DropDown_OfficeType" />
+          <EntitySet Name="DropDown_StrategicPriority" EntityType="kalingaPPDOModel.DropDown_StrategicPriority" />
+          <EntitySet Name="DropDown_TypologyCode2" EntityType="kalingaPPDOModel.DropDown_TypologyCode2" />
+          <EntitySet Name="rep_AIPLevel2" EntityType="kalingaPPDOModel.rep_AIPLevel2" />
+          <EntitySet Name="rep_AIPLevel3" EntityType="kalingaPPDOModel.rep_AIPLevel3" />
+          <EntitySet Name="rep_AIPLevel4" EntityType="kalingaPPDOModel.rep_AIPLevel4" />
+          <EntitySet Name="rep_AIPLevel5" EntityType="kalingaPPDOModel.rep_AIPLevel5" />
+          <EntitySet Name="rep_AIPLevel6" EntityType="kalingaPPDOModel.rep_AIPLevel6" />
+          <EntitySet Name="rep_OfficeType" EntityType="kalingaPPDOModel.rep_OfficeType" />
+          <EntitySet Name="vw_AnnualInvestmentProgramProfile" EntityType="kalingaPPDOModel.vw_AnnualInvestmentProgramProfile" />
+          <EntitySet Name="vw_Employment" EntityType="kalingaPPDOModel.vw_Employment" />
+          <EntitySet Name="vw_Employment2" EntityType="kalingaPPDOModel.vw_Employment2" />
+          <EntitySet Name="AnnualInvestmentPrograms" EntityType="kalingaPPDOModel.AnnualInvestmentProgram" />
+          <EntitySet Name="EmpEmploymentRecords" EntityType="kalingaPPDOModel.EmpEmploymentRecord" />
+          <EntitySet Name="ProjectSignatories" EntityType="kalingaPPDOModel.ProjectSignatory" />
+          <EntitySet Name="ref_AIP1stLevelSector" EntityType="kalingaPPDOModel.ref_AIP1stLevelSector" />
+          <EntitySet Name="ref_AIP2ndLevel" EntityType="kalingaPPDOModel.ref_AIP2ndLevel" />
+          <EntitySet Name="ref_AIP3rdLevel" EntityType="kalingaPPDOModel.ref_AIP3rdLevel" />
+          <EntitySet Name="ref_AIP4thLevel" EntityType="kalingaPPDOModel.ref_AIP4thLevel" />
+          <EntitySet Name="ref_AIP5thLevel" EntityType="kalingaPPDOModel.ref_AIP5thLevel" />
+          <EntitySet Name="ref_AIP6thLevel" EntityType="kalingaPPDOModel.ref_AIP6thLevel" />
+          <EntitySet Name="ref_ImplementingDept" EntityType="kalingaPPDOModel.ref_ImplementingDept" />
+          <EntitySet Name="ref_OfficeType" EntityType="kalingaPPDOModel.ref_OfficeType" />
+          <EntitySet Name="ref_LGULevel" EntityType="kalingaPPDOModel.ref_LGULevel" />
+          <EntitySet Name="DropDown_Province" EntityType="kalingaPPDOModel.DropDown_Province" />
+          <EntitySet Name="DropDown_Regions" EntityType="kalingaPPDOModel.DropDown_Regions" />
         </EntityContainer>
         <EntityType Name="vw_appUsers">
           <Key>
@@ -4283,6 +5031,416 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="empid" Type="Int32" />
           <Property Name="Fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
           <Property Name="roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel1">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level1" Type="String" MaxLength="96" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel2">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="Int32" Nullable="false" />
+          <Property Name="Level2" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="SectorID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel3">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="Int32" Nullable="false" />
+          <Property Name="Level3" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel2ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel4">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="Int32" Nullable="false" />
+          <Property Name="Level4" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel3ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel5">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel5ID" Type="Int32" Nullable="false" />
+          <Property Name="Level5" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_AIPLevel6">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="Int32" Nullable="false" />
+          <Property Name="Level6" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_EmpployeeList">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_ImplementingOffice">
+          <Key>
+            <PropertyRef Name="ImplementingDeptID" />
+          </Key>
+          <Property Name="ImplementingDeptID" Type="Int32" Nullable="false" />
+          <Property Name="ImplementingOffice" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_LGULevel">
+          <Key>
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="LGULevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LGULevel" Type="String" MaxLength="56" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="OfficeType" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="LGULevelID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DropDown_StrategicPriority">
+          <Key>
+            <PropertyRef Name="StrategicPriorityID" />
+          </Key>
+          <Property Name="StrategicPriorityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StrategicPriority" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DropDown_TypologyCode2">
+          <Key>
+            <PropertyRef Name="TypologyID" />
+          </Key>
+          <Property Name="TypologyID" Type="Int32" Nullable="false" />
+          <Property Name="TypologyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TypologyDescription" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="StratPriorityClassID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="rep_AIPLevel2">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="Int32" Nullable="false" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="AIPLevel2Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel2Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="rep_AIPLevel3">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="Int32" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="String" MaxLength="96" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel2" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel3Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel3Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="rep_AIPLevel4">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="Int32" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="String" MaxLength="96" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel2" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel3" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel4Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel4Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="rep_AIPLevel5">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPCodeLevel1" Type="String" MaxLength="96" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel2" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel3" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel4" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel5Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel5Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel5ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rep_AIPLevel6">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="Int32" Nullable="false" />
+          <Property Name="AIPCodeLevel1" Type="String" MaxLength="96" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel2" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel3" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel4" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPCodeLevel5" Type="String" MaxLength="156" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel6Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel6Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel5ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rep_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="LGULevel" Type="String" MaxLength="56" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeTypeDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeTypeCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_AnnualInvestmentProgramProfile">
+          <Key>
+            <PropertyRef Name="AIPid" />
+            <PropertyRef Name="StrategicPriorityAreaID" />
+            <PropertyRef Name="StrategicPriorityID" />
+          </Key>
+          <Property Name="AIPid" Type="Int32" Nullable="false" />
+          <Property Name="AIPReferenceCode" Type="Int32" />
+          <Property Name="ProjectTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ImplementingDeptDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="SourceOfFund" Type="String" MaxLength="371" FixedLength="false" Unicode="false" />
+          <Property Name="ProjPS" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ProjMOOE" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ProjCapitalOutlay" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="TOTALAmount" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="CCAdaptationAmount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="CCMitigationAmount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="AIPLevel2ID" Type="Int32" />
+          <Property Name="AIPLevel3ID" Type="Int32" />
+          <Property Name="AIPLevel4ID" Type="Int32" />
+          <Property Name="AIPLevel5ID" Type="Int32" />
+          <Property Name="AIPLevel6ID" Type="Int32" />
+          <Property Name="LGULevelID" Type="Int32" />
+          <Property Name="OfficeTypeID" Type="Int32" />
+          <Property Name="ImplementingDeptID" Type="Int32" />
+          <Property Name="ProjActivities" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProjStatusDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SourceFundDescription" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="ExpectedOutput" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProjCategoryDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ReferenceDoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Municipality" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Barangay" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="ProjPurok" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="StrategicPriorityDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StrategicPriorityAreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StrategicPriorityAreaID" Type="Int32" Nullable="false" />
+          <Property Name="StrategicPriorityID" Type="Int32" Nullable="false" />
+          <Property Name="AdaptationTypologyID" Type="Int32" />
+          <Property Name="MitigationTypologyID" Type="Int32" />
+          <Property Name="Expr1" Type="Int32" />
+          <Property Name="Expr2" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_Employment">
+          <Key>
+            <PropertyRef Name="empRecID" />
+            <PropertyRef Name="FirstApprover" />
+            <PropertyRef Name="SecondApprover" />
+          </Key>
+          <Property Name="empRecID" Type="Int32" Nullable="false" />
+          <Property Name="empID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="DateResigned" Type="DateTime" Precision="0" />
+          <Property Name="PositionDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MonthlySalary" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StepIncrement" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpStatusDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstApprover" Type="Int32" Nullable="false" />
+          <Property Name="SecondApprover" Type="Int32" Nullable="false" />
+          <Property Name="IsSupervisor" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_Employment2">
+          <Key>
+            <PropertyRef Name="empRecID" />
+            <PropertyRef Name="FirstApprover" />
+            <PropertyRef Name="SecondApprover" />
+          </Key>
+          <Property Name="empRecID" Type="Int32" Nullable="false" />
+          <Property Name="empID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="DateResigned" Type="DateTime" Precision="0" />
+          <Property Name="PositionDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MonthlySalary" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StepIncrement" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpStatusDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstApprover" Type="Int32" Nullable="false" />
+          <Property Name="SecondApprover" Type="Int32" Nullable="false" />
+          <Property Name="IsSupervisor" Type="Boolean" />
+          <Property Name="Approver1" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+          <Property Name="Approver2" Type="String" MaxLength="153" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AnnualInvestmentProgram">
+          <Key>
+            <PropertyRef Name="AIPid" />
+          </Key>
+          <Property Name="AIPid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="AIPLevel2ID" Type="Int32" />
+          <Property Name="AIPLevel3ID" Type="Int32" />
+          <Property Name="AIPLevel4ID" Type="Int32" />
+          <Property Name="AIPLevel5ID" Type="Int32" />
+          <Property Name="AIPLevel6ID" Type="Int32" />
+          <Property Name="LGULevelID" Type="Int32" />
+          <Property Name="OfficeTypeID" Type="Int32" />
+          <Property Name="ImplementingDeptID" Type="Int32" />
+          <Property Name="ProjectTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProjActivities" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="ProjStatusID" Type="Int32" />
+          <Property Name="SourceFundID" Type="Int32" />
+          <Property Name="ExpectedOutput" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ProjCatID" Type="Int32" />
+          <Property Name="ReferenceDoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MunicipalityID" Type="Int32" />
+          <Property Name="barangayID" Type="Int32" />
+          <Property Name="ProjPurok" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProjPS" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ProjMOOE" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ProjCapitalOutlay" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="StrategicPriorityID" Type="Int32" />
+          <Property Name="StrategicPriorityAreaID" Type="Int32" />
+          <Property Name="MitigationTypologyID" Type="Int32" />
+          <Property Name="AdaptationTypologyID" Type="Int32" />
+          <Property Name="CCMitigationAmount" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="CCAdaptationAmount" Type="Decimal" Precision="9" Scale="2" />
+        </EntityType>
+        <EntityType Name="EmpEmploymentRecord">
+          <Key>
+            <PropertyRef Name="empRecID" />
+          </Key>
+          <Property Name="empRecID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empID" Type="Int32" />
+          <Property Name="DeptID" Type="Int32" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="DateResigned" Type="DateTime" Precision="0" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="MonthlySalary" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="SalaryGradeID" Type="Int32" />
+          <Property Name="SGIncrementID" Type="Int32" />
+          <Property Name="AppointmentStatusID" Type="Int32" />
+          <Property Name="FirstApprover" Type="Int32" />
+          <Property Name="SecondApprover" Type="Int32" />
+          <Property Name="IsSupervisor" Type="Boolean" />
+          <Property Name="IsSeparated" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ProjectSignatory">
+          <Key>
+            <PropertyRef Name="SignatoryID" />
+          </Key>
+          <Property Name="SignatoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanningOfficer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BudgetOfficer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LocExecOfficer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateEncoded" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ref_AIP1stLevelSector">
+          <Key>
+            <PropertyRef Name="SectorID" />
+          </Key>
+          <Property Name="SectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SectorDescription" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_AIP2ndLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel2ID" />
+          </Key>
+          <Property Name="AIPLevel2ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorID" Type="Int32" />
+          <Property Name="AIPLevel2Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel2Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_AIP3rdLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel3ID" />
+          </Key>
+          <Property Name="AIPLevel3ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AIPLevel2ID" Type="Int32" />
+          <Property Name="AIPLevel3Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel3Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_AIP4thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel4ID" />
+          </Key>
+          <Property Name="AIPLevel4ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AIPLevel3ID" Type="Int32" Nullable="false" />
+          <Property Name="AIPLevel4Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel4Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_AIP5thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel5ID" />
+          </Key>
+          <Property Name="AIPLevel5ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AIPLevel4ID" Type="Int32" />
+          <Property Name="AIPLevel5Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel5Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_AIP6thLevel">
+          <Key>
+            <PropertyRef Name="AIPLevel6ID" />
+          </Key>
+          <Property Name="AIPLevel6ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AIPLevel5ID" Type="Int32" Nullable="false" />
+          <Property Name="AIPLevel6Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AIPLevel6Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_ImplementingDept">
+          <Key>
+            <PropertyRef Name="ImplementingDeptID" />
+          </Key>
+          <Property Name="ImplementingDeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LGULevelID" Type="Int32" />
+          <Property Name="OfficeTypeID" Type="Int32" />
+          <Property Name="ImplementingDeptDesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImplementingDeptCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_OfficeType">
+          <Key>
+            <PropertyRef Name="OfficeTypeID" />
+          </Key>
+          <Property Name="OfficeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LGULevelID" Type="Int32" Nullable="false" />
+          <Property Name="OfficeTypeDescription" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeTypeCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ref_LGULevel">
+          <Key>
+            <PropertyRef Name="LGULevelID" />
+          </Key>
+          <Property Name="LGULevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LGULevelDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LGULevelCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DropDown_Province">
+          <Key>
+            <PropertyRef Name="provinceID" />
+          </Key>
+          <Property Name="provinceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinceDistrict" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RegionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DropDown_Regions">
+          <Key>
+            <PropertyRef Name="regionID" />
+          </Key>
+          <Property Name="regionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4552,6 +5710,9 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="EmpMasterProfiles">
             <EntityTypeMapping TypeName="kalingaPPDOModel.EmpMasterProfile">
               <MappingFragment StoreEntitySet="EmpMasterProfile">
+                <ScalarProperty Name="RegionID2" ColumnName="RegionID2" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DisplayPicturePath" ColumnName="DisplayPicturePath" />
                 <ScalarProperty Name="empid" ColumnName="empid" />
                 <ScalarProperty Name="empNo" ColumnName="empNo" />
                 <ScalarProperty Name="namePrefixTitleID" ColumnName="namePrefixTitleID" />
@@ -6100,6 +7261,442 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
                 <ScalarProperty Name="Fullname" ColumnName="Fullname" />
                 <ScalarProperty Name="empid" ColumnName="empid" />
                 <ScalarProperty Name="appuserid" ColumnName="appuserid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel1">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel1">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel1">
+                <ScalarProperty Name="Level1" ColumnName="Level1" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel2">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel2">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel2">
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="Level2" ColumnName="Level2" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel3">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel3">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel3">
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+                <ScalarProperty Name="Level3" ColumnName="Level3" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel4">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel4">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel4">
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+                <ScalarProperty Name="Level4" ColumnName="Level4" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel5">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel5">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel5">
+                <ScalarProperty Name="Level5" ColumnName="Level5" />
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_AIPLevel6">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_AIPLevel6">
+              <MappingFragment StoreEntitySet="DropDown_AIPLevel6">
+                <ScalarProperty Name="Level6" ColumnName="Level6" />
+                <ScalarProperty Name="AIPLevel6ID" ColumnName="AIPLevel6ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_EmpployeeList">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_EmpployeeList">
+              <MappingFragment StoreEntitySet="DropDown_EmpployeeList">
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_ImplementingOffice">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_ImplementingOffice">
+              <MappingFragment StoreEntitySet="DropDown_ImplementingOffice">
+                <ScalarProperty Name="ImplementingOffice" ColumnName="ImplementingOffice" />
+                <ScalarProperty Name="ImplementingDeptID" ColumnName="ImplementingDeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_LGULevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_LGULevel">
+              <MappingFragment StoreEntitySet="DropDown_LGULevel">
+                <ScalarProperty Name="LGULevel" ColumnName="LGULevel" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_OfficeType">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_OfficeType">
+              <MappingFragment StoreEntitySet="DropDown_OfficeType">
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+                <ScalarProperty Name="OfficeType" ColumnName="OfficeType" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_StrategicPriority">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_StrategicPriority">
+              <MappingFragment StoreEntitySet="DropDown_StrategicPriority">
+                <ScalarProperty Name="StrategicPriority" ColumnName="StrategicPriority" />
+                <ScalarProperty Name="StrategicPriorityID" ColumnName="StrategicPriorityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_TypologyCode2">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_TypologyCode2">
+              <MappingFragment StoreEntitySet="DropDown_TypologyCode2">
+                <ScalarProperty Name="StratPriorityClassID" ColumnName="StratPriorityClassID" />
+                <ScalarProperty Name="TypologyDescription" ColumnName="TypologyDescription" />
+                <ScalarProperty Name="TypologyCode" ColumnName="TypologyCode" />
+                <ScalarProperty Name="TypologyID" ColumnName="TypologyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_AIPLevel2">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_AIPLevel2">
+              <MappingFragment StoreEntitySet="rep_AIPLevel2">
+                <ScalarProperty Name="AIPLevel2Description" ColumnName="AIPLevel2Description" />
+                <ScalarProperty Name="AIPLevel2Code" ColumnName="AIPLevel2Code" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_AIPLevel3">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_AIPLevel3">
+              <MappingFragment StoreEntitySet="rep_AIPLevel3">
+                <ScalarProperty Name="AIPLevel3Description" ColumnName="AIPLevel3Description" />
+                <ScalarProperty Name="AIPLevel3Code" ColumnName="AIPLevel3Code" />
+                <ScalarProperty Name="AIPCodeLevel2" ColumnName="AIPCodeLevel2" />
+                <ScalarProperty Name="AIPCodeLevel1" ColumnName="AIPCodeLevel1" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_AIPLevel4">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_AIPLevel4">
+              <MappingFragment StoreEntitySet="rep_AIPLevel4">
+                <ScalarProperty Name="AIPLevel4Description" ColumnName="AIPLevel4Description" />
+                <ScalarProperty Name="AIPLevel4Code" ColumnName="AIPLevel4Code" />
+                <ScalarProperty Name="AIPCodeLevel3" ColumnName="AIPCodeLevel3" />
+                <ScalarProperty Name="AIPCodeLevel2" ColumnName="AIPCodeLevel2" />
+                <ScalarProperty Name="AIPCodeLevel1" ColumnName="AIPCodeLevel1" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_AIPLevel5">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_AIPLevel5">
+              <MappingFragment StoreEntitySet="rep_AIPLevel5">
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+                <ScalarProperty Name="AIPLevel5Description" ColumnName="AIPLevel5Description" />
+                <ScalarProperty Name="AIPLevel5Code" ColumnName="AIPLevel5Code" />
+                <ScalarProperty Name="AIPCodeLevel4" ColumnName="AIPCodeLevel4" />
+                <ScalarProperty Name="AIPCodeLevel3" ColumnName="AIPCodeLevel3" />
+                <ScalarProperty Name="AIPCodeLevel2" ColumnName="AIPCodeLevel2" />
+                <ScalarProperty Name="AIPCodeLevel1" ColumnName="AIPCodeLevel1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_AIPLevel6">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_AIPLevel6">
+              <MappingFragment StoreEntitySet="rep_AIPLevel6">
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+                <ScalarProperty Name="AIPLevel6Description" ColumnName="AIPLevel6Description" />
+                <ScalarProperty Name="AIPLevel6Code" ColumnName="AIPLevel6Code" />
+                <ScalarProperty Name="AIPCodeLevel5" ColumnName="AIPCodeLevel5" />
+                <ScalarProperty Name="AIPCodeLevel4" ColumnName="AIPCodeLevel4" />
+                <ScalarProperty Name="AIPCodeLevel3" ColumnName="AIPCodeLevel3" />
+                <ScalarProperty Name="AIPCodeLevel2" ColumnName="AIPCodeLevel2" />
+                <ScalarProperty Name="AIPCodeLevel1" ColumnName="AIPCodeLevel1" />
+                <ScalarProperty Name="AIPLevel6ID" ColumnName="AIPLevel6ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rep_OfficeType">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.rep_OfficeType">
+              <MappingFragment StoreEntitySet="rep_OfficeType">
+                <ScalarProperty Name="OfficeTypeCode" ColumnName="OfficeTypeCode" />
+                <ScalarProperty Name="OfficeTypeDescription" ColumnName="OfficeTypeDescription" />
+                <ScalarProperty Name="LGULevel" ColumnName="LGULevel" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_AnnualInvestmentProgramProfile">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_AnnualInvestmentProgramProfile">
+              <MappingFragment StoreEntitySet="vw_AnnualInvestmentProgramProfile">
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="MitigationTypologyID" ColumnName="MitigationTypologyID" />
+                <ScalarProperty Name="AdaptationTypologyID" ColumnName="AdaptationTypologyID" />
+                <ScalarProperty Name="StrategicPriorityID" ColumnName="StrategicPriorityID" />
+                <ScalarProperty Name="StrategicPriorityAreaID" ColumnName="StrategicPriorityAreaID" />
+                <ScalarProperty Name="StrategicPriorityAreaDescription" ColumnName="StrategicPriorityAreaDescription" />
+                <ScalarProperty Name="StrategicPriorityDescription" ColumnName="StrategicPriorityDescription" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ProjPurok" ColumnName="ProjPurok" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Municipality" ColumnName="Municipality" />
+                <ScalarProperty Name="ItemWork" ColumnName="ItemWork" />
+                <ScalarProperty Name="ReferenceDoc" ColumnName="ReferenceDoc" />
+                <ScalarProperty Name="ProjCategoryDescription" ColumnName="ProjCategoryDescription" />
+                <ScalarProperty Name="ExpectedOutput" ColumnName="ExpectedOutput" />
+                <ScalarProperty Name="SourceFundDescription" ColumnName="SourceFundDescription" />
+                <ScalarProperty Name="ProjStatusDescription" ColumnName="ProjStatusDescription" />
+                <ScalarProperty Name="ProjActivities" ColumnName="ProjActivities" />
+                <ScalarProperty Name="ImplementingDeptID" ColumnName="ImplementingDeptID" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+                <ScalarProperty Name="AIPLevel6ID" ColumnName="AIPLevel6ID" />
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="CCMitigationAmount" ColumnName="CCMitigationAmount" />
+                <ScalarProperty Name="CCAdaptationAmount" ColumnName="CCAdaptationAmount" />
+                <ScalarProperty Name="TOTALAmount" ColumnName="TOTALAmount" />
+                <ScalarProperty Name="ProjCapitalOutlay" ColumnName="ProjCapitalOutlay" />
+                <ScalarProperty Name="ProjMOOE" ColumnName="ProjMOOE" />
+                <ScalarProperty Name="ProjPS" ColumnName="ProjPS" />
+                <ScalarProperty Name="SourceOfFund" ColumnName="SourceOfFund" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ImplementingDeptDesc" ColumnName="ImplementingDeptDesc" />
+                <ScalarProperty Name="ProjectTitle" ColumnName="ProjectTitle" />
+                <ScalarProperty Name="AIPReferenceCode" ColumnName="AIPReferenceCode" />
+                <ScalarProperty Name="AIPid" ColumnName="AIPid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Employment">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_Employment">
+              <MappingFragment StoreEntitySet="vw_Employment">
+                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+                <ScalarProperty Name="SecondApprover" ColumnName="SecondApprover" />
+                <ScalarProperty Name="FirstApprover" ColumnName="FirstApprover" />
+                <ScalarProperty Name="EmpStatusDescription" ColumnName="EmpStatusDescription" />
+                <ScalarProperty Name="StepIncrement" ColumnName="StepIncrement" />
+                <ScalarProperty Name="SalaryGradeCode" ColumnName="SalaryGradeCode" />
+                <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
+                <ScalarProperty Name="PositionDescription" ColumnName="PositionDescription" />
+                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="empRecID" ColumnName="empRecID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Employment2">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.vw_Employment2">
+              <MappingFragment StoreEntitySet="vw_Employment2">
+                <ScalarProperty Name="Approver2" ColumnName="Approver2" />
+                <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+                <ScalarProperty Name="SecondApprover" ColumnName="SecondApprover" />
+                <ScalarProperty Name="FirstApprover" ColumnName="FirstApprover" />
+                <ScalarProperty Name="EmpStatusDescription" ColumnName="EmpStatusDescription" />
+                <ScalarProperty Name="StepIncrement" ColumnName="StepIncrement" />
+                <ScalarProperty Name="SalaryGradeCode" ColumnName="SalaryGradeCode" />
+                <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
+                <ScalarProperty Name="PositionDescription" ColumnName="PositionDescription" />
+                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="empRecID" ColumnName="empRecID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnnualInvestmentPrograms">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.AnnualInvestmentProgram">
+              <MappingFragment StoreEntitySet="AnnualInvestmentProgram">
+                <ScalarProperty Name="CCAdaptationAmount" ColumnName="CCAdaptationAmount" />
+                <ScalarProperty Name="CCMitigationAmount" ColumnName="CCMitigationAmount" />
+                <ScalarProperty Name="AdaptationTypologyID" ColumnName="AdaptationTypologyID" />
+                <ScalarProperty Name="MitigationTypologyID" ColumnName="MitigationTypologyID" />
+                <ScalarProperty Name="StrategicPriorityAreaID" ColumnName="StrategicPriorityAreaID" />
+                <ScalarProperty Name="StrategicPriorityID" ColumnName="StrategicPriorityID" />
+                <ScalarProperty Name="ProjCapitalOutlay" ColumnName="ProjCapitalOutlay" />
+                <ScalarProperty Name="ProjMOOE" ColumnName="ProjMOOE" />
+                <ScalarProperty Name="ProjPS" ColumnName="ProjPS" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ProjPurok" ColumnName="ProjPurok" />
+                <ScalarProperty Name="barangayID" ColumnName="barangayID" />
+                <ScalarProperty Name="MunicipalityID" ColumnName="MunicipalityID" />
+                <ScalarProperty Name="ItemWork" ColumnName="ItemWork" />
+                <ScalarProperty Name="ReferenceDoc" ColumnName="ReferenceDoc" />
+                <ScalarProperty Name="ProjCatID" ColumnName="ProjCatID" />
+                <ScalarProperty Name="ExpectedOutput" ColumnName="ExpectedOutput" />
+                <ScalarProperty Name="SourceFundID" ColumnName="SourceFundID" />
+                <ScalarProperty Name="ProjStatusID" ColumnName="ProjStatusID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProjActivities" ColumnName="ProjActivities" />
+                <ScalarProperty Name="ProjectTitle" ColumnName="ProjectTitle" />
+                <ScalarProperty Name="ImplementingDeptID" ColumnName="ImplementingDeptID" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+                <ScalarProperty Name="AIPLevel6ID" ColumnName="AIPLevel6ID" />
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="AIPid" ColumnName="AIPid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpEmploymentRecords">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.EmpEmploymentRecord">
+              <MappingFragment StoreEntitySet="EmpEmploymentRecord">
+                <ScalarProperty Name="IsSeparated" ColumnName="IsSeparated" />
+                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+                <ScalarProperty Name="SecondApprover" ColumnName="SecondApprover" />
+                <ScalarProperty Name="FirstApprover" ColumnName="FirstApprover" />
+                <ScalarProperty Name="AppointmentStatusID" ColumnName="AppointmentStatusID" />
+                <ScalarProperty Name="SGIncrementID" ColumnName="SGIncrementID" />
+                <ScalarProperty Name="SalaryGradeID" ColumnName="SalaryGradeID" />
+                <ScalarProperty Name="MonthlySalary" ColumnName="MonthlySalary" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+                <ScalarProperty Name="empRecID" ColumnName="empRecID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectSignatories">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ProjectSignatory">
+              <MappingFragment StoreEntitySet="ProjectSignatories">
+                <ScalarProperty Name="DateEncoded" ColumnName="DateEncoded" />
+                <ScalarProperty Name="LocExecOfficer" ColumnName="LocExecOfficer" />
+                <ScalarProperty Name="BudgetOfficer" ColumnName="BudgetOfficer" />
+                <ScalarProperty Name="PlanningOfficer" ColumnName="PlanningOfficer" />
+                <ScalarProperty Name="SignatoryID" ColumnName="SignatoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP1stLevelSector">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP1stLevelSector">
+              <MappingFragment StoreEntitySet="ref_AIP1stLevelSector">
+                <ScalarProperty Name="SectorDescription" ColumnName="SectorDescription" />
+                <ScalarProperty Name="SectorCode" ColumnName="SectorCode" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP2ndLevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP2ndLevel">
+              <MappingFragment StoreEntitySet="ref_AIP2ndLevel">
+                <ScalarProperty Name="AIPLevel2Code" ColumnName="AIPLevel2Code" />
+                <ScalarProperty Name="AIPLevel2Description" ColumnName="AIPLevel2Description" />
+                <ScalarProperty Name="SectorID" ColumnName="SectorID" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP3rdLevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP3rdLevel">
+              <MappingFragment StoreEntitySet="ref_AIP3rdLevel">
+                <ScalarProperty Name="AIPLevel3Code" ColumnName="AIPLevel3Code" />
+                <ScalarProperty Name="AIPLevel3Description" ColumnName="AIPLevel3Description" />
+                <ScalarProperty Name="AIPLevel2ID" ColumnName="AIPLevel2ID" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP4thLevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP4thLevel">
+              <MappingFragment StoreEntitySet="ref_AIP4thLevel">
+                <ScalarProperty Name="AIPLevel4Code" ColumnName="AIPLevel4Code" />
+                <ScalarProperty Name="AIPLevel4Description" ColumnName="AIPLevel4Description" />
+                <ScalarProperty Name="AIPLevel3ID" ColumnName="AIPLevel3ID" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP5thLevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP5thLevel">
+              <MappingFragment StoreEntitySet="ref_AIP5thLevel">
+                <ScalarProperty Name="AIPLevel5Code" ColumnName="AIPLevel5Code" />
+                <ScalarProperty Name="AIPLevel5Description" ColumnName="AIPLevel5Description" />
+                <ScalarProperty Name="AIPLevel4ID" ColumnName="AIPLevel4ID" />
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_AIP6thLevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_AIP6thLevel">
+              <MappingFragment StoreEntitySet="ref_AIP6thLevel">
+                <ScalarProperty Name="AIPLevel6Code" ColumnName="AIPLevel6Code" />
+                <ScalarProperty Name="AIPLevel6Description" ColumnName="AIPLevel6Description" />
+                <ScalarProperty Name="AIPLevel5ID" ColumnName="AIPLevel5ID" />
+                <ScalarProperty Name="AIPLevel6ID" ColumnName="AIPLevel6ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_ImplementingDept">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_ImplementingDept">
+              <MappingFragment StoreEntitySet="ref_ImplementingDept">
+                <ScalarProperty Name="ImplementingDeptCode" ColumnName="ImplementingDeptCode" />
+                <ScalarProperty Name="ImplementingDeptDesc" ColumnName="ImplementingDeptDesc" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+                <ScalarProperty Name="ImplementingDeptID" ColumnName="ImplementingDeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_OfficeType">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_OfficeType">
+              <MappingFragment StoreEntitySet="ref_OfficeType">
+                <ScalarProperty Name="OfficeTypeCode" ColumnName="OfficeTypeCode" />
+                <ScalarProperty Name="OfficeTypeDescription" ColumnName="OfficeTypeDescription" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+                <ScalarProperty Name="OfficeTypeID" ColumnName="OfficeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_LGULevel">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.ref_LGULevel">
+              <MappingFragment StoreEntitySet="ref_LGULevel">
+                <ScalarProperty Name="LGULevelCode" ColumnName="LGULevelCode" />
+                <ScalarProperty Name="LGULevelDescription" ColumnName="LGULevelDescription" />
+                <ScalarProperty Name="LGULevelID" ColumnName="LGULevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_Province">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_Province">
+              <MappingFragment StoreEntitySet="DropDown_Province">
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="ProvinceDistrict" ColumnName="ProvinceDistrict" />
+                <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropDown_Regions">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.DropDown_Regions">
+              <MappingFragment StoreEntitySet="DropDown_Regions">
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="regionID" ColumnName="regionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpEducationHistory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.empID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducLevelID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchoolName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DegreeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearGraduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Earned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distinction)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducLevelID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchoolName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DegreeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearGraduated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Earned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distinction)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.empEducID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.empEducID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.empEducID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

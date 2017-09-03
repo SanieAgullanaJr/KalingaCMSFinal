@@ -1,0 +1,101 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpWorkHistory>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.empID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthlySalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalaryGradeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SGIncrementID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentStatusID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsGovService)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSupervisor)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthlySalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaryGradeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SGIncrementID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentStatusID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsGovService)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSupervisor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.workID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.workID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.workID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

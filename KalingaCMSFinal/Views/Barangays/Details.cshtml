@@ -1,0 +1,66 @@
+﻿@model KalingaCMSFinal.Models.ref_Barangay
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ref_Barangay</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.countryID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.countryID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.regionID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.regionID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.provinceID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.provinceID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.municipalityID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.municipalityID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Barangay)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Barangay)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.barangayID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

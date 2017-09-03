@@ -1,0 +1,127 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using KalingaCMSFinal.Models;
+
+namespace KalingaCMSFinal.Controllers
+{
+    public class RegionsController : Controller
+    {
+        private kalingaPPDOEntities db = new kalingaPPDOEntities();
+
+        // GET: Regions
+        public ActionResult Index()
+        {
+            return View(db.ref_Regions.ToList());
+        }
+
+        // GET: Regions/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ref_Regions ref_Regions = db.ref_Regions.Find(id);
+            if (ref_Regions == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ref_Regions);
+        }
+
+        // GET: Regions/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Regions/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "regionID,CountryID,RegionName,RegionalDesignation")] ref_Regions ref_Regions)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ref_Regions.Add(ref_Regions);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(ref_Regions);
+        }
+
+        // GET: Regions/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ref_Regions ref_Regions = db.ref_Regions.Find(id);
+            if (ref_Regions == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ref_Regions);
+        }
+
+        // POST: Regions/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "regionID,CountryID,RegionName,RegionalDesignation")] ref_Regions ref_Regions)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(ref_Regions).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(ref_Regions);
+        }
+
+        // GET: Regions/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ref_Regions ref_Regions = db.ref_Regions.Find(id);
+            if (ref_Regions == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ref_Regions);
+        }
+
+        // POST: Regions/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            ref_Regions ref_Regions = db.ref_Regions.Find(id);
+            db.ref_Regions.Remove(ref_Regions);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

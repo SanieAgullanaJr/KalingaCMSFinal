@@ -1,0 +1,83 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpVolunteer>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.empID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoursVolunteered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvolveTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationNature)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.empID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursVolunteered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvolveTypeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationNature)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.empVolID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.empVolID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.empVolID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

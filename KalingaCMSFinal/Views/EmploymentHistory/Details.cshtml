@@ -1,0 +1,114 @@
+﻿@model KalingaCMSFinal.Models.EmpWorkHistory
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EmpWorkHistory</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.empID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.empID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Company)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PositionID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PositionID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.MonthlySalary)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MonthlySalary)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SalaryGradeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SalaryGradeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SGIncrementID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SGIncrementID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AppointmentStatusID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AppointmentStatusID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsGovService)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsGovService)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IsSupervisor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IsSupervisor)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.workID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

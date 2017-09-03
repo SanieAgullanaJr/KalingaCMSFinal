@@ -1,0 +1,82 @@
+﻿@model KalingaCMSFinal.Models.EmpTraining
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>EmpTraining</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.empID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.empID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingTitle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TrainingTitle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DurationHours)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DurationHours)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EventSponsor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EventSponsor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EventVenue)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EventVenue)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.empTrainID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

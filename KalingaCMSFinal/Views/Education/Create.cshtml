@@ -1,0 +1,261 @@
+﻿@model Tuple<KalingaCMSFinal.Models.EmpEducationHistory, IEnumerable<KalingaCMSFinal.Models.vw_EducationHistory>>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Education History</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-12" style="width:300px;">
+                <label for="txtSearch" class="control-label">Search Employee</label>
+                <div class="input-group">
+                    <input type="text" name="txtSearch" id="txtSearch" class="form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit" id="btnSearch" name="btnSearch">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="txtAgencyEmployeeNumber" class="control-label">Agency Employee Number</label>
+                <div>
+                    <input type="text" name="txtAgencyEmployeeNumber" id="txtAgencyEmployeeNumber" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="txtEmployeeName" class="control-label">Employee Name</label>
+                <div>
+                    <input type="text" name="txtEmployeeName" id="txtEmployeeName" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div>
+                    @Html.HiddenFor(model => model.Item1.empID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Item1.empID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item1.EducLevelID, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.DropDownListFor(model => model.Item1.EducLevelID, ViewBag.Levels as SelectList, "--Select Level--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Item1.EducLevelID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.SchoolName, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.SchoolName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.SchoolName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.DegreeID, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.DegreeID, ViewBag.Degrees as SelectList, "--Select Degree--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.DegreeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.YearGraduated, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.YearGraduated, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.Item1.YearGraduated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.Earned, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.Earned, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.Earned, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.StartDate, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Item1.EndDate, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Item1.Distinction, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.Item1.Distinction, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Item1.Distinction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-5">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<hr />
+<table class="table table-bordered table-striped" id="EducationHistoryTable">
+    <thead>
+        <tr>
+            <th>
+                Education Level
+            </th>
+            <th>
+                School Name
+            </th>
+            <th>
+                Degree
+            </th>
+            <th>
+                Year Graduated
+            </th>
+            <th>
+                Highest Grade/Level
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Academic Honors
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody id="EducationHistoryTableData">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#txtSearch").autocomplete({
+                source: '@Url.Action("Search","Education")'
+            });
+            $("#btnSearch").on("click", function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("EmployeeName", "Education")", { Name: $("#txtSearch").val() }, function (EmployeeFullName, EmployeeNumber, EmployeeID) {
+                    $("#txtEmployeeName").empty();
+                    $("#txtAgencyEmployeeNumber").empty();
+                    $("#Item1_empID").empty();
+                    $("#EducationHistoryTableData").empty();
+                    $.each(EmployeeFullName, function (index, data) {
+                        $("#txtEmployeeName").val(data.EmployeeFullName);
+                        $("#txtAgencyEmployeeNumber").val(data.EmployeeNumber);
+                        $("#Item1_empID").val(data.EmployeeID)
+                    });
+                    $.get("@Url.Action("EducationHistory", "Education")", { EmployeeID: $("#Item1_empID").val() },
+                        function (EducationID, Level, SchoolName, DegreeCourse, YearGraduated, HighestAttainment, StartDate, EndDate, AcademicHonors) {
+                        $.each(EducationID, function (index, data) {
+                            var EditButton = '@Html.ActionLink("Edit", "Edit", new { id = "EmployeeID" }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal"})';
+                            var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "EmployeeID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
+                            EditButton = EditButton.replace("EmployeeID", parseInt(data.EducationID));
+                            DeleteButton = DeleteButton.replace("EmployeeID", parseInt(data.EducationID));
+                        $("#EducationHistoryTableData").append(
+                            "<tr>" +
+                            "<td>" + data.Level + "</td>" +
+                            "<td>" + data.SchoolName + "</td>" +
+                            "<td>" + data.DegreeCourse + "</td>" +
+                            "<td>" + data.YearGraduated + "</td>" +
+                            "<td>" + data.HighestAttainment + "</td>" +
+                            "<td>" + data.StartDate + "</td>" +
+                            "<td>" + data.EndDate + "</td>" +
+                            "<td>" + data.AcademicHonors + "</td>" +
+                            "<td>" + EditButton + "|" + DeleteButton  + "</td>" +
+                            "</tr>"
+                        );
+                    });
+                });
+                });
+            });
+            $('#EducationHistoryTable').DataTable({
+                scrollX: false
+            });
+            $('#EducationHistoryTable').on("click", ".modalOpener", function (e) {
+                e.preventDefault();
+                //replace the get with this.href to load the edit page
+                alert(this.id);
+                $.get(this.href, function (data) {
+                    //replace the content returned
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('#myModal').modal({
+                    keyboard: true,
+                }, 'show');
+                return false;
+            });
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var form = $("#editForm")
+                    .removeData("validator") /* added by the raw jquery.validate plugin */
+                    .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+                $.validator.unobtrusive.parse(form);
+                $(function () {
+                    $('.datepicker1').datepicker({
+                        changeMonth: false,
+                        changeYear: true,
+                        showButtonPanel: true,
+                        yearRange: '1950:2020', // Optional Year Range
+                        dateFormat: 'yy',
+                        onClose: function (dateText, inst) {
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            $(this).datepicker('setDate', new Date(year, 0, 1));
+                        }
+                    });
+                });
+            })
+        });
+    </script>
+}

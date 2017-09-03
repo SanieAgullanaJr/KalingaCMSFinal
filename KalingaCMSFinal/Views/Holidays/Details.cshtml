@@ -1,0 +1,58 @@
+﻿@model KalingaCMSFinal.Models.ref_Holiday
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ref_Holiday</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.HolidayDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HolidayDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HolidayDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HolidayDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DayTypeID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DayTypeID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NoOfHours)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NoOfHours)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.HolidayID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
