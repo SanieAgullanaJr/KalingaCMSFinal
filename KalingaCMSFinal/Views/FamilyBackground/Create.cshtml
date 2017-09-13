@@ -16,30 +16,40 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="form-group col-md-12" style="width:300px;">
+            <div class="form-group col-md-4">
                 <label for="txtSearch" class="control-label">Search Employee</label>
                 <div class="input-group">
                     <input type="text" name="txtSearch" id="txtSearch" class="form-control" placeholder="Search">
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
+                        <button class="btn btn-default" type="submit" id="btnSearch" name="btnSearch">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
                 </div>
             </div>
+            <div class="form-group col-md-5">
+            </div>
+            <div class="form-group col-md-3">
+                <img id="ProfilePicture" name="ProfilePicture" class="img-thumbnail" src="#" alt="ProfileImage" height="200" width="200">
+            </div>
         </div>
         <br />
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="txtAgencyEmployeeNumber" class="control-label">Agency Employee Number</label>
                 <div>
-                    <input type="text" name="txtAgencyEmployeeNumber" id="txtAgencyEmployeeNumber" class="form-control">
+                    <input type="text" name="txtAgencyEmployeeNumber" id="txtAgencyEmployeeNumber" class="form-control" readonly>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Item1.empID, htmlAttributes: new { @class = "control-label" })
+            <div class="form-group col-md-4">
+                <label for="txtEmployeeName" class="control-label">Employee Name</label>
                 <div>
-                    @Html.EditorFor(model => model.Item1.empID, new { htmlAttributes = new { @class = "form-control" } })
+                    <input type="text" name="txtEmployeeName" id="txtEmployeeName" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div>
+                    @Html.HiddenFor(model => model.Item1.empID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.Item1.empID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -80,11 +90,13 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.BirthDate, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Item1.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Item1.BirthDate, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.BirthDate, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.BirthDate, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -113,15 +125,17 @@
                 @Html.ValidationMessageFor(model => model.Item1.CompanyAddress, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.CompanyPhone, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Item1.CompanyPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Item1.CompanyPhone, "", new { @class = "text-danger" })
+        
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.CompanyPhone, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.CompanyPhone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.CompanyPhone, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-        <br/>
+        <br />
         <div class="form-group">
             <div class="col-md-offset-5 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -133,9 +147,6 @@
 <table class="table table-striped table-bordered" id="FamilyBackgroundTable">
     <thead>
         <tr>
-            <th>
-                Employee ID
-            </th>
             <th>
                 Relationship
             </th>
@@ -162,40 +173,7 @@
             </th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var item in Model.Item2)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.empID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.relationshipDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fullname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Occupation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyPhone)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.empFamBGID }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.empFamBGID }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })
-                </td>
-            </tr>
-        }
+    <tbody id="FamilyBackgroundTableData">
     </tbody>
 </table>
 <div class="modal fade" id="myModal">
@@ -208,8 +186,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#FamilyBackgroundTable').DataTable({
-                scrollX: false
+            var table = $('#FamilyBackgroundTable').DataTable({
+                language: {
+                    emptyTable: "", // 
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
             });
             $('#FamilyBackgroundTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
@@ -229,7 +211,59 @@
                     .removeData("validator") /* added by the raw jquery.validate plugin */
                     .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
                 $.validator.unobtrusive.parse(form);
-            })
+            });
+            $("#txtSearch").autocomplete({
+                source: '@Url.Action("Search","Education")'
+            });
+            $("#btnSearch").on("click", function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("EmployeeName", "FamilyBackground")", { Name: $("#txtSearch").val() }, function (EmployeeFullName, EmployeeNumber, EmployeeID) {
+                    $("#txtEmployeeName").empty();
+                    $("#txtAgencyEmployeeNumber").empty();
+                    $("#Item1_empID").empty();
+                    $("#EducationHistoryTableData").empty();
+                    $.each(EmployeeFullName, function (index, data) {
+                        $("#txtEmployeeName").val(data.EmployeeFullName);
+                        $("#txtAgencyEmployeeNumber").val(data.EmployeeNumber);
+                        $("#Item1_empID").val(data.EmployeeID)
+                        PicturePath = data.DisplayPicturePath.replace("~", "..");
+                        $("#ProfilePicture").attr("src", PicturePath);
+                    });
+                    $.get("@Url.Action("FamilyBackground", "FamilyBackground")", { EmployeeID: $("#Item1_empID").val() },
+                        function (empFamBGID, Relationship, FullName, BirthDate, Occupation, CompanyName, CompanyAddress, CompanyPhone) {
+                            $.each(empFamBGID, function (index, data) {
+                            var EditButton = '@Html.ActionLink("Edit", "Edit", new { id = "EmployeeID" }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal"})';
+                            var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "EmployeeID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
+                            EditButton = EditButton.replace("EmployeeID", parseInt(data.empFamBGID));
+                            DeleteButton = DeleteButton.replace("EmployeeID", parseInt(data.empFamBGID));
+                        $("#FamilyBackgroundTableData").append(
+                            "<tr>" +
+                            "<td>" + data.Relationship + "</td>" +
+                            "<td>" + data.FullName + "</td>" +
+                            "<td>" + data.BirthDate + "</td>" +
+                            "<td>" + data.Occupation + "</td>" +
+                            "<td>" + data.CompanyName + "</td>" +
+                            "<td>" + data.CompanyAddress + "</td>" +
+                            "<td>" + data.CompanyPhone + "</td>" +
+                            "<td>" + EditButton + "|" + DeleteButton  + "</td>" +
+                            "</tr>"
+                        );
+                        BirthDate = data.BirthDate.replace(" 12:00:00 AM", "");
+                        table.row.add([
+                            data.Relationship,
+                            data.FullName,
+                            BirthDate,
+                            data.Occupation,
+                            data.CompanyName,
+                            data.CompanyAddress,
+                            data.CompanyPhone,
+                            EditButton + "|" + DeleteButton,
+                        ]);
+                        table.draw();
+                    });
+                });
+                });
+            });
         });
     </script>
 }

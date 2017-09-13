@@ -12,6 +12,7 @@ using System.IO;
 using System.Web.Helpers;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data.Entity.Migrations;
 
 namespace KalingaCMSFinal.Controllers
 {
@@ -161,7 +162,7 @@ namespace KalingaCMSFinal.Controllers
 
         public JsonResult GetMunicipalityList(int ProvinceID)
         {
-           db.Configuration.ProxyCreationEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false;
             List<vw_MunicipalityList> Municipalities = db.vw_MunicipalityList.Where(x => x.provinceID == ProvinceID).ToList();
             return Json(Municipalities, JsonRequestBehavior.AllowGet);
         }
@@ -171,6 +172,45 @@ namespace KalingaCMSFinal.Controllers
             db.Configuration.ProxyCreationEnabled = false;
             List<vw_BarangayList> Barangays = db.vw_BarangayList.Where(x => x.MunicipalityID == MunicipalityID).ToList();
             return Json(Barangays, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Search(string term)
+        {
+            NameSuggestions ns = new NameSuggestions();
+            return Json(ns.Search(term), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult EmployeeName(string Name)
+        {
+            List<EmployeeName> t = new List<EmployeeName>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select empid from EmpMasterProfile where CONCAT(FirstName, ' ', MiddleName, ' ', LastName) LIKE @Name";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@Name", Name);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        EmployeeName tsData = new EmployeeName()
+                        {
+                            EmployeeID = dr["empid"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult EmployeeProfile(int EmployeeID)
@@ -196,37 +236,38 @@ namespace KalingaCMSFinal.Controllers
                     {
                         EmployeeMasterProfile tsData = new EmployeeMasterProfile()
                         {
-                            AgencyEmployeeNumber = int.Parse(dr["empNo"].ToString()),
-                            Prefix = int.Parse(dr["namePrefixTitleID"].ToString()),
+                            EmployeeID = dr["empID"].ToString(),
+                            AgencyEmployeeNumber = dr["empNo"].ToString(),
+                            Prefix = dr["namePrefixTitleID"].ToString(),
                             FirstName = dr["FirstName"].ToString(),
                             MiddleName = dr["MiddleName"].ToString(),
                             LastName = dr["LastName"].ToString(),
-                            Suffix = int.Parse(dr["namePrefixTitleID"].ToString()),
-                            Gender = int.Parse(dr["GenderID"].ToString()),
-                            Religion = int.Parse(dr["ReligionID"].ToString()),
-                            Country = int.Parse(dr["CountryID"].ToString()),
-                            Region = int.Parse(dr["RegionID"].ToString()),
-                            Province = int.Parse(dr["ProvinceID"].ToString()),
-                            Municipality = int.Parse(dr["MunicipalityID"].ToString()),
-                            Barangay = int.Parse(dr["BarangayID"].ToString()),
+                            Suffix = dr["namePrefixTitleID"].ToString(),
+                            Gender = dr["GenderID"].ToString(),
+                            Religion = dr["ReligionID"].ToString(),
+                            Country = dr["CountryID"].ToString(),
+                            Region = dr["RegionID"].ToString(),
+                            Province = dr["ProvinceID"].ToString(),
+                            Municipality = dr["MunicipalityID"].ToString(),
+                            Barangay = dr["BarangayID"].ToString(),
                             Street = dr["Street"].ToString(),
-                            Country2 = int.Parse(dr["CountryID2"].ToString()),
-                            Region2 = int.Parse(dr["RegionID2"].ToString()),
-                            Province2 = int.Parse(dr["ProvinceID2"].ToString()),
-                            Municipality2 = int.Parse(dr["MunicipalityID2"].ToString()),
-                            Barangay2 = int.Parse(dr["BarangayID"].ToString()),
+                            Country2 = dr["CountryID2"].ToString(),
+                            Region2 = dr["RegionID2"].ToString(),
+                            Province2 = dr["ProvinceID2"].ToString(),
+                            Municipality2 = dr["MunicipalityID2"].ToString(),
+                            Barangay2 = dr["BarangayID"].ToString(),
                             Street2 = dr["Street2"].ToString(),
-                            Telephone = int.Parse(dr["residentialPhoneNo"].ToString()),
-                            Telephone2 = int.Parse(dr["residentialPhoneNo2"].ToString()),
-                            ZipCode = int.Parse(dr["zipCode"].ToString()),
-                            ZipCode2 = int.Parse(dr["zipCode2"].ToString()),
+                            Telephone = dr["residentialPhoneNo"].ToString(),
+                            Telephone2 = dr["residentialPhoneNo2"].ToString(),
+                            ZipCode = dr["zipCode"].ToString(),
+                            ZipCode2 = dr["zipCode2"].ToString(),
                             DateofBirth = dr["birthDate"].ToString(),
                             PlaceofBirth = dr["birthPlace"].ToString(),
-                            CivilStatus = int.Parse(dr["CivilStatusID"].ToString()),
-                            Citizenship = int.Parse(dr["CitizenshipID"].ToString()),
+                            CivilStatus = dr["CivilStatusID"].ToString(),
+                            Citizenship = dr["CitizenshipID"].ToString(),
                             Height = dr["Height"].ToString(),
                             Weight = dr["Weight"].ToString(),
-                            BloodType = int.Parse(dr["BloodTypeID"].ToString()),
+                            BloodType = dr["BloodTypeID"].ToString(),
                             GSIS = dr["GSIS"].ToString(),
                             PAGIBIG = dr["HDMF"].ToString(),
                             PhilHealth = dr["PhilHealth"].ToString(),
@@ -235,19 +276,19 @@ namespace KalingaCMSFinal.Controllers
                             Email = dr["EmailAddress"].ToString(),
                             TelNo = dr["LandLineNo"].ToString(),
                             CelNo = dr["CellphoneNo"].ToString(),
-                            FirstApprover = int.Parse(dr["FirstApprover"].ToString()),
-                            SecondApprover = int.Parse(dr["SecondApprover"].ToString()),
-                            IsSeparated = int.Parse(dr["IsSeparated"].ToString()),
-                            IsSuperVisor = int.Parse(dr["IsSuperVisor"].ToString()),
-                            YearsInService = int.Parse(dr["YearsInService"].ToString()),
-                            MonthsInService = int.Parse(dr["MonthsInService"].ToString()),
-                            Department = int.Parse(dr["DepartmentID"].ToString()),
-                            DepartmentUnit = int.Parse(dr["DepartmentUnitID"].ToString()),
-                            AppointmentStatus = int.Parse(dr["AppointmentStatusID"].ToString()),
-                            Position = int.Parse(dr["PositionID"].ToString()),
-                            DateHired = dr["Company"].ToString(),
-                            DateResigned = dr["Company"].ToString(),
-                            Salary = double.Parse(dr["Company"].ToString()),
+                            FirstApprover = dr["FirstApprover"].ToString(),
+                            SecondApprover = dr["SecondApprover"].ToString(),
+                            IsSeparated = dr["IsSeparated"].ToString(),
+                            IsSuperVisor = dr["IsSuperVisor"].ToString(),
+                            YearsInService = dr["YearsInService"].ToString(),
+                            MonthsInService = dr["MonthsInService"].ToString(),
+                            Department = dr["DeptID"].ToString(),
+                            DepartmentUnit = dr["DepartmentUnitID"].ToString(),
+                            AppointmentStatus = dr["AppointmentStatusID"].ToString(),
+                            Position = dr["PositionID"].ToString(),
+                            DateHired = dr["DateHired"].ToString(),
+                            DateResigned = dr["DateResigned"].ToString(),
+                            Salary = dr["CurrentSalary"].ToString(),
                             DisplayPicturePath = dr["DisplayPicturePath"].ToString()
                         };
                         t.Add(tsData);
@@ -274,7 +315,7 @@ namespace KalingaCMSFinal.Controllers
             DepartmentUnitDD();
             AppointmentStatusDD();
             PositionDD();
-            return View(Tuple.Create<EmpMasterProfile, IEnumerable<vw_EmployeeList>>(new EmpMasterProfile(), db.vw_EmployeeList.ToList()));
+            return View("Create", new EmpMasterProfile());
         }
 
         // POST: PersonnelDataSheet/Create
@@ -282,49 +323,82 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Prefix="Item1", Include = "empid,empNo,namePrefixTitleID,LastName,MiddleName,FirstName,nameSuffixTitleID,GenderID,ReligionID,street,BarangayID,MunicipalityID,ProvinceID,CountryID,zipCode,residentialPhoneNo,street2,BarangayID2,MunicipalityID2,ProvinceID2,CountryID2,zipCode2,residentialPhoneNo2,birthDate,birthPlace,CivilStatusID,CitizenshipID,Height,Weight,BloodTypeID,GSIS,HDMF,PhilHealth,SSS,TIN,LandLineNo,CellphoneNo,EmailAddress,YearsInService,MonthsInService,IsSupervisor,FirstApprover,SecondApprover,IsSeparated,DeptID,DepartmentUnitID,AppointmentStatusID,PositionID,DateHired,DateResigned,CurrentSalary,DisplayPicturePath,RegionID,RegionID2")] EmpMasterProfile empMasterProfile, HttpPostedFileBase File)
+        public ActionResult Create([Bind(Include = "empid,empNo,namePrefixTitleID,LastName,MiddleName,FirstName,nameSuffixTitleID,GenderID,ReligionID,street,BarangayID,MunicipalityID,ProvinceID,CountryID,zipCode,residentialPhoneNo,street2,BarangayID2,MunicipalityID2,ProvinceID2,CountryID2,zipCode2,residentialPhoneNo2,birthDate,birthPlace,CivilStatusID,CitizenshipID,Height,Weight,BloodTypeID,GSIS,HDMF,PhilHealth,SSS,TIN,LandLineNo,CellphoneNo,EmailAddress,YearsInService,MonthsInService,IsSupervisor,FirstApprover,SecondApprover,IsSeparated,DeptID,DepartmentUnitID,AppointmentStatusID,PositionID,DateHired,DateResigned,CurrentSalary,DisplayPicturePath,RegionID,RegionID2")] EmpMasterProfile empMasterProfile, HttpPostedFileBase File, string Create, string Edit, string empid)
         {
-            if (File != null)
+            CountryDD();
+            BloodTypeDD();
+            CitizenshipDD();
+            CivilStatusDD();
+            GenderDD();
+            PrefixDD();
+            ReligionDD();
+            SuffixDD();
+            SupervisorsDD();
+            DepartmentDD();
+            DepartmentUnitDD();
+            AppointmentStatusDD();
+            PositionDD();
+            var EmployeeName = empMasterProfile.FirstName + " " + empMasterProfile.MiddleName + " " + empMasterProfile.LastName;
+            var EmployeeNameChecker = db.EmpMasterProfiles.FirstOrDefault(id => id.empid == empMasterProfile.empid);
+            var EmpNameChecker = db.EmpMasterProfiles.Any(name => name.FirstName + " " + name.MiddleName + " " + name.LastName == EmployeeName);
+            //var FullNameCheck = EmployeeNameChecker.FirstName + " " + EmployeeNameChecker.MiddleName + " " + EmployeeNameChecker.LastName;
+            if (ModelState.IsValid)
             {
-                if (File.ContentLength > 0)
+                if (File != null)
                 {
-                    if ((Path.GetExtension(File.FileName).ToLower() == ".jpg") ||
-                        (Path.GetExtension(File.FileName).ToLower() == ".jpeg") ||
-                        (Path.GetExtension(File.FileName).ToLower() == ".png") ||
-                        (Path.GetExtension(File.FileName).ToLower() == ".gif"))
+                    if ((File.ContentLength > 0 && empMasterProfile.DisplayPicturePath != null) || (File.ContentLength > 0 && empMasterProfile.DisplayPicturePath == null))
                     {
-                        WebImage img = new WebImage(File.InputStream);
-                        if ((img.Width > 180) || (img.Height > 190))
+                        if ((Path.GetExtension(File.FileName).ToLower() == ".jpg") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".jpeg") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".png") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".gif"))
                         {
-                            img.Resize(190, 180);
-                            string extension = Path.GetExtension(File.FileName);
-                            string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
-                            empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
-                            img.Save(empMasterProfile.DisplayPicturePath);
-                            filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
-                        }
-                        else
-                        {
-                            string extension = Path.GetExtension(File.FileName);
-                            string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
-                            empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
-                            filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
-                            File.SaveAs(filename);
+                            WebImage img = new WebImage(File.InputStream);
+                            if ((img.Width > 180) || (img.Height > 190))
+                            {
+                                img.Resize(190, 180);
+                                string extension = Path.GetExtension(File.FileName);
+                                string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
+                                empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
+                                img.Save(empMasterProfile.DisplayPicturePath);
+                                filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
+                            }
+                            else
+                            {
+                                string extension = Path.GetExtension(File.FileName);
+                                string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
+                                empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
+                                filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
+                                File.SaveAs(filename);
+                            }
                         }
                     }
                 }
+                else if (File == null && empMasterProfile.DisplayPicturePath == null)
+                {
+                    empMasterProfile.DisplayPicturePath = null;
+                }
+                if (Create != null)
+                {
+                    if (EmpNameChecker == false)
+                    {
+                        db.EmpMasterProfiles.Add(empMasterProfile);
+                        db.SaveChanges();
+                        return RedirectToAction("Create");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Employee " + EmployeeName + " has a saved data already! Please click update if you're trying to update a data.");
+                        return View(empMasterProfile);
+                    }
+                }
+                else if (Edit != null)
+                {
+                    db.Set<EmpMasterProfile>().AddOrUpdate(empMasterProfile);
+                    db.SaveChanges();
+                    return RedirectToAction("Create");
+                }
             }
-            else
-            {
-                empMasterProfile.DisplayPicturePath = null;
-            }
-            if (ModelState.IsValid)
-            {
-                db.EmpMasterProfiles.Add(empMasterProfile);
-                db.SaveChanges();
-                return RedirectToAction("Create");
-            }
-
             return View(empMasterProfile);
         }
 
@@ -353,7 +427,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 return HttpNotFound();
             }
-            return View(empMasterProfile);
+            return View("Create", empMasterProfile);
         }
 
         // POST: PersonnelDataSheet/Edit/5
@@ -361,11 +435,41 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "empid,empNo,namePrefixTitleID,LastName,MiddleName,FirstName,nameSuffixTitleID,GenderID,ReligionID,street,BarangayID,MunicipalityID,ProvinceID,CountryID,zipCode,residentialPhoneNo,street2,BarangayID2,MunicipalityID2,ProvinceID2,CountryID2,zipCode2,residentialPhoneNo2,birthDate,birthPlace,CivilStatusID,CitizenshipID,Height,Weight,BloodTypeID,GSIS,HDMF,PhilHealth,SSS,TIN,LandLineNo,CellphoneNo,EmailAddress,YearsInService,MonthsInService,IsSupervisor,FirstApprover,SecondApprover,IsSeparated,DeptID,DepartmentUnitID,AppointmentStatusID,PositionID,DateHired,DateResigned,CurrentSalary,DisplayPicturePath,RegionID,RegionID2")] EmpMasterProfile empMasterProfile)
+        public ActionResult Edit([Bind(Include = "empid,empNo,namePrefixTitleID,LastName,MiddleName,FirstName,nameSuffixTitleID,GenderID,ReligionID,street,BarangayID,MunicipalityID,ProvinceID,CountryID,zipCode,residentialPhoneNo,street2,BarangayID2,MunicipalityID2,ProvinceID2,CountryID2,zipCode2,residentialPhoneNo2,birthDate,birthPlace,CivilStatusID,CitizenshipID,Height,Weight,BloodTypeID,GSIS,HDMF,PhilHealth,SSS,TIN,LandLineNo,CellphoneNo,EmailAddress,YearsInService,MonthsInService,IsSupervisor,FirstApprover,SecondApprover,IsSeparated,DeptID,DepartmentUnitID,AppointmentStatusID,PositionID,DateHired,DateResigned,CurrentSalary,DisplayPicturePath,RegionID,RegionID2")] EmpMasterProfile empMasterProfile, HttpPostedFileBase File)
         {
 
             if (ModelState.IsValid)
             {
+                if (File != null)
+                {
+                    if (File.ContentLength > 0)
+                    {
+                        if ((Path.GetExtension(File.FileName).ToLower() == ".jpg") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".jpeg") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".png") ||
+                            (Path.GetExtension(File.FileName).ToLower() == ".gif"))
+                        {
+                            WebImage img = new WebImage(File.InputStream);
+                            if ((img.Width > 180) || (img.Height > 190))
+                            {
+                                img.Resize(190, 180);
+                                string extension = Path.GetExtension(File.FileName);
+                                string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
+                                empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
+                                img.Save(empMasterProfile.DisplayPicturePath);
+                                filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
+                            }
+                            else
+                            {
+                                string extension = Path.GetExtension(File.FileName);
+                                string filename = empMasterProfile.FirstName + empMasterProfile.MiddleName + empMasterProfile.LastName + DateTime.Now.ToString("MMddyy") + extension;
+                                empMasterProfile.DisplayPicturePath = "~/Content/EmployeeProfileImages/" + filename;
+                                filename = Path.Combine(Server.MapPath("~/Content/EmployeeProfileImages/"), filename);
+                                File.SaveAs(filename);
+                            }
+                        }
+                    }
+                }
                 db.Entry(empMasterProfile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Create");

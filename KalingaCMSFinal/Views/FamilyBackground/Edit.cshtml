@@ -85,11 +85,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CompanyPhone, htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.CompanyPhone, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
         </div>

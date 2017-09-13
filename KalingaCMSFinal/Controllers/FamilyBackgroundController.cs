@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace KalingaCMSFinal.Controllers
 {
@@ -40,6 +42,82 @@ namespace KalingaCMSFinal.Controllers
             List<ref_Relationship> Relationships = db.ref_Relationship.ToList();
             ViewBag.Relationships = new SelectList(Relationships, "relationshipID", "relationshipDescription");
             return View();
+        }
+
+        public JsonResult EmployeeName(string Name)
+        {
+            List<EmployeeName> t = new List<EmployeeName>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select empid, empNo, CONCAT(FirstName, ' ', MiddleName, ' ', LastName) AS FullName, DisplayPicturePath from EmpMasterProfile where CONCAT(FirstName, ' ', MiddleName, ' ', LastName) LIKE @Name";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@Name", Name);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        EmployeeName tsData = new EmployeeName()
+                        {
+                            EmployeeFullName = dr["FullName"].ToString(),
+                            EmployeeNumber = dr["empNo"].ToString(),
+                            EmployeeID = dr["empid"].ToString(),
+                            DisplayPicturePath = dr["DisplayPicturePath"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult FamilyBackground(int EmployeeID)
+        {
+            List<FamilyBackground> t = new List<FamilyBackground>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select * from vw_FamilyBackground where empid = @EmployeeID";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@EmployeeID", EmployeeID);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        FamilyBackground tsData = new FamilyBackground()
+                        {
+                            empFamBGID = dr["empFamBGID"].ToString(),
+                            Relationship = dr["relationshipDescription"].ToString(),
+                            FullName = dr["FullName"].ToString(),
+                            BirthDate = dr["BirthDate"].ToString(),
+                            Occupation = dr["Occupation"].ToString(),
+                            CompanyName = dr["CompanyName"].ToString(),
+                            CompanyAddress = dr["CompanyAddress"].ToString(),
+                            CompanyPhone = dr["CompanyPhone"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
         }
 
         // GET: FamilyBackground/Create

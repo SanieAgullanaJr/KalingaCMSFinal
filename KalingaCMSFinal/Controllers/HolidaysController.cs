@@ -35,10 +35,19 @@ namespace KalingaCMSFinal.Controllers
             return View(ref_Holiday);
         }
 
+        //DayType Dropdown
+        public ActionResult DayTypeDD()
+        {
+            List<ref_DayType> DayTypes = db.ref_DayType.ToList();
+            ViewBag.DayTypes = new SelectList(DayTypes, "DayTypeID", "DayTypeDescription");
+            return View();
+        }
+
         // GET: Holidays/Create
         public ActionResult Create()
         {
-            return View();
+            DayTypeDD();
+            return View(Tuple.Create<ref_Holiday, IEnumerable<vw_HolidayList>>(new ref_Holiday(), db.vw_HolidayList.ToList()));
         }
 
         // POST: Holidays/Create
@@ -46,13 +55,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HolidayID,HolidayDescription,HolidayDate,DayTypeID,NoOfHours")] ref_Holiday ref_Holiday)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "HolidayID,HolidayDescription,HolidayDate,DayTypeID,NoOfHours")] ref_Holiday ref_Holiday)
         {
             if (ModelState.IsValid)
             {
                 db.ref_Holiday.Add(ref_Holiday);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_Holiday);
@@ -61,6 +70,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Holidays/Edit/5
         public ActionResult Edit(int? id)
         {
+            DayTypeDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +94,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_Holiday).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_Holiday);
         }
@@ -112,7 +122,7 @@ namespace KalingaCMSFinal.Controllers
             ref_Holiday ref_Holiday = db.ref_Holiday.Find(id);
             db.ref_Holiday.Remove(ref_Holiday);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

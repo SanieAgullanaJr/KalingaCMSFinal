@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace KalingaCMSFinal.Controllers
 {
@@ -35,10 +37,113 @@ namespace KalingaCMSFinal.Controllers
             return View(ref_Barangay);
         }
 
+        //Country Dropdown
+        public ActionResult CountryDD()
+        {
+            List<ref_Origins> Countries = db.ref_Origins.ToList();
+            ViewBag.Countries = new SelectList(Countries, "countryID", "Country");
+            return View();
+        }
+
+        public JsonResult GetRegionsList(int CountryID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<vw_RegionList> Regions = db.vw_RegionList.Where(x => x.CountryID == CountryID).ToList();
+            return Json(Regions, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProvinceList(int RegionID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<vw_ProvinceList> Provinces = db.vw_ProvinceList.Where(x => x.RegionID == RegionID).ToList();
+            return Json(Provinces, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetMunicipalityList(int ProvinceID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<vw_MunicipalityList> Municipalities = db.vw_MunicipalityList.Where(x => x.provinceID == ProvinceID).ToList();
+            return Json(Municipalities, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Locations(int LocationsID)
+        {
+            List<Locations> t = new List<Locations>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select * from ref_Barangay where barangayID = @LocationsID";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@LocationsID", LocationsID);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        Locations tsData = new Locations()
+                        {
+                            CountryID = dr["countryID"].ToString(),
+                            RegionID = dr["RegionID"].ToString(),
+                            ProvinceID = dr["provinceID"].ToString(),
+                            MunicipalityID = dr["municipalityID"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult BarangayTable(int MunicipalityID)
+        {
+            List<TableData> t = new List<TableData>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select * from vw_BarangayList where MunicipalityID= @MunicipalityID";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@MunicipalityID", MunicipalityID);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        TableData tsData = new TableData()
+                        {
+                            Region = dr["RegionalDesignation"].ToString(),
+                            Province = dr["ProvinceDistrict"].ToString(),
+                            Municipality = dr["Municipality"].ToString(),
+                            Barangay = dr["Barangay"].ToString(),
+                            BarangayID = dr["barangayID"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Barangays/Create
         public ActionResult Create()
         {
-            return View();
+            CountryDD();
+            return View(Tuple.Create<ref_Barangay, IEnumerable<vw_BarangayList>>(new ref_Barangay(), db.vw_BarangayList.ToList()));
         }
 
         // POST: Barangays/Create
@@ -46,13 +151,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "barangayID,countryID,regionID,provinceID,municipalityID,Barangay")] ref_Barangay ref_Barangay)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "barangayID,countryID,regionID,provinceID,municipalityID,Barangay")] ref_Barangay ref_Barangay)
         {
             if (ModelState.IsValid)
             {
                 db.ref_Barangay.Add(ref_Barangay);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_Barangay);
@@ -61,6 +166,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Barangays/Edit/5
         public ActionResult Edit(int? id)
         {
+            CountryDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +190,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_Barangay).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_Barangay);
         }
@@ -112,7 +218,7 @@ namespace KalingaCMSFinal.Controllers
             ref_Barangay ref_Barangay = db.ref_Barangay.Find(id);
             db.ref_Barangay.Remove(ref_Barangay);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

@@ -33,15 +33,16 @@ namespace KalingaCMSFinal.Views.Login
             {
                 try
                 {
-                    var UserCredentials = db.appUsers.Single(u => u.username == appUser.username && u.password == appUser.password);
+                    var UserCredentials = db.appUsers.Single(u => u.username == appUser.username);
                     var Name = db.EmpMasterProfiles.Single(n => n.empid == UserCredentials.empid);
-                    if (UserCredentials != null)
+                    if (UserCredentials != null && appUser.password == UserCredentials.password)
                     {
                         RemainSession.Username = UserCredentials.username;
                         RemainSession.Firstname = Name.FirstName;
                         RemainSession.Lastname = Name.LastName;
                         RemainSession.EmployeeID = UserCredentials.empid.ToString();
                         RemainSession.Roles = UserCredentials.roles;
+                        RemainSession.ImagePath = Name.DisplayPicturePath;
                         return RedirectToAction("Index", "Dashboard");
                     }
                     else

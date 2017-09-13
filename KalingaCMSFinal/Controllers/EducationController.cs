@@ -63,7 +63,7 @@ namespace KalingaCMSFinal.Controllers
             string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
             using (SqlConnection cn = new SqlConnection(conn))
             {
-                string myQuery = "select empid, empNo, CONCAT(FirstName, ' ', MiddleName, ' ', LastName) AS FullName from EmpMasterProfile where CONCAT(FirstName, ' ', MiddleName, ' ', LastName) LIKE @Name";
+                string myQuery = "select empid, empNo, CONCAT(FirstName, ' ', MiddleName, ' ', LastName) AS FullName, DisplayPicturePath from EmpMasterProfile where CONCAT(FirstName, ' ', MiddleName, ' ', LastName) LIKE @Name";
                 SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = myQuery,
@@ -82,7 +82,8 @@ namespace KalingaCMSFinal.Controllers
                         {
                             EmployeeFullName = dr["FullName"].ToString(),
                             EmployeeNumber = dr["empNo"].ToString(),
-                            EmployeeID = dr["empid"].ToString()
+                            EmployeeID = dr["empid"].ToString(),
+                            DisplayPicturePath = dr["DisplayPicturePath"].ToString()
                         };
                         t.Add(tsData);
                         counter++;

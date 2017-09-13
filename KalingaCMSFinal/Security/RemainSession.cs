@@ -12,6 +12,7 @@ namespace KalingaCMSFinal.Security
         static string lastnameSessionVar = "Lastname";
         static string employeeIDSessionVar = "EmployeeID";
         static string rolesSessionVar = "Roles";
+        static string pathSessionVar = "ImagePath";
 
         public static string Username
         {
@@ -95,6 +96,23 @@ namespace KalingaCMSFinal.Security
             set
             {
                 HttpContext.Current.Session[rolesSessionVar] = value;
+            }
+        }
+
+        public static string ImagePath
+        {
+            get
+            {
+                if (HttpContext.Current == null)
+                    return string.Empty;
+                var sessionVar = HttpContext.Current.Session[pathSessionVar];
+                if (sessionVar != null)
+                    return sessionVar as string;
+                return null;
+            }
+            set
+            {
+                HttpContext.Current.Session[pathSessionVar] = value;
             }
         }
     }

@@ -38,7 +38,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Positions/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<ref_Position, IEnumerable<ref_Position>>(new ref_Position(), db.ref_Position.ToList()));
         }
 
         // POST: Positions/Create
@@ -46,13 +46,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PositionID,PositionDescription")] ref_Position ref_Position)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "PositionID,PositionDescription")] ref_Position ref_Position)
         {
             if (ModelState.IsValid)
             {
                 db.ref_Position.Add(ref_Position);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_Position);
@@ -84,7 +84,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_Position).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_Position);
         }
@@ -112,7 +112,7 @@ namespace KalingaCMSFinal.Controllers
             ref_Position ref_Position = db.ref_Position.Find(id);
             db.ref_Position.Remove(ref_Position);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

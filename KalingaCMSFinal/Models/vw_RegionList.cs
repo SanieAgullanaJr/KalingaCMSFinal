@@ -18,5 +18,6 @@ namespace KalingaCMSFinal.Models
         public Nullable<int> CountryID { get; set; }
         public string RegionName { get; set; }
         public string RegionalDesignation { get; set; }
+        public string Country { get; set; }
     }
 }

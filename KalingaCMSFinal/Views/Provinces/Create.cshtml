@@ -1,59 +1,104 @@
-﻿@model KalingaCMSFinal.Models.ref_Province
+﻿@model Tuple<KalingaCMSFinal.Models.ref_Province, IEnumerable<KalingaCMSFinal.Models.vw_ProvinceList>>
 
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Province</h4>
+        <h2>Province</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.CountryID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CountryID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.CountryID, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.CountryID, ViewBag.Countries as SelectList, "--Select Country--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.CountryID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RegionID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RegionID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RegionID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.RegionID, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.RegionID, new SelectList(" "), "--Select Region--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.RegionID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProvinceDistrict, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProvinceDistrict, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProvinceDistrict, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.ProvinceDistrict, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.EditorFor(model => model.Item1.ProvinceDistrict, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.ProvinceDistrict, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Capital, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Capital, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Capital, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.Capital, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.EditorFor(model => model.Item1.Capital, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.Capital, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-
+        <br />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-0 col-md-5">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+<br />
+<table class="table table-striped table-bordered" id="ProvincesTable">
+    <thead>
+        <tr>
+            <th>
+                Region
+            </th>
+            <th>
+                Province/District
+            </th>
+            <th>
+                Capital
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegionalDesignation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProvinceDistrict)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capital)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.provinceID }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.provinceID }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div id="mainContent" class="modal-content col-sm-12">
@@ -64,9 +109,18 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#LivestockPoultryTable').DataTable({
+            $(document).on("change", "#Item1_CountryID", function () {
+                $.get("@Url.Action("GetRegionsList", "Provinces")", { CountryID: $("#Item1_CountryID").val() }, function (data) {
+                    $("#Item1_RegionID").empty();
+                    $("#Item1_RegionID").append("<option value=''>--Select Region--</option>")
+                    $.each(data, function (index, row) {
+                        $("#Item1_RegionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                    });
+                });
             });
-            $('#LivestockPoultryTable').on("click", ".modalOpener", function (e) {
+            $('#ProvincesTable').DataTable({
+            });
+            $('#ProvincesTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
                 //replace the get with this.href to load the edit page
                 $.get(this.href, function (data) {
@@ -84,7 +138,28 @@
                     .removeData("validator") /* added by the raw jquery.validate plugin */
                     .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
                 $.validator.unobtrusive.parse(form);
-            })
+                $.get("@Url.Action("GetRegionsList", "Provinces")", { CountryID: $("#CountryID").val() }, function (data) {
+                    $("#RegionID").empty();
+                    $("#RegionID").append("<option value=''>--Select Region--</option>")
+                    $.each(data, function (index, row) {
+                        $("#RegionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                    });
+                    $.get("@Url.Action("Locations", "Provinces")", { LocationsID: $("#provinceID").val() }, function (LocationsID) {
+                        $.each(LocationsID, function (index, row) {
+                            $("#RegionID").val(row.RegionID)
+                        });
+                    });
+                });
+                $(document).on("change", "#CountryID", function () {
+                $.get("@Url.Action("GetRegionsList", "Provinces")", { CountryID: $("#CountryID").val() }, function (data) {
+                    $("#RegionID").empty();
+                    $("#RegionID").append("<option value=''>--Select Region--</option>")
+                    $.each(data, function (index, row) {
+                        $("#RegionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                    });
+                });
+            });
+             });
         });
     </script>
 }

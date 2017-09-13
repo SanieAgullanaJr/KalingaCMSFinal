@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpCertificate" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpEducationHistory" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpFamilyBackGround" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="kalingaPPDOModel.EmpMasterProfile" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpTraining" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpVolunteer" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="kalingaPPDOModel.EmpWorkHistory" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
@@ -197,6 +196,7 @@
         <EntityTypeShape EntityType="kalingaPPDOModel.ref_LGULevel" Width="1.5" PointX="16.75" PointY="37.75" />
         <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_Province" Width="1.5" PointX="38.75" PointY="0.75" />
         <EntityTypeShape EntityType="kalingaPPDOModel.DropDown_Regions" Width="1.5" PointX="0.75" PointY="38.75" />
+        <EntityTypeShape EntityType="kalingaPPDOModel.EmpMasterProfile" Width="1.5" PointX="38.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

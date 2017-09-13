@@ -12,8 +12,9 @@
         <h2>Employment History</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Item1.empID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
         <div class="row">
-            <div class="form-group col-md-12" style="width:300px;">
+            <div class="form-group col-md-4" style="width:300px;">
                 <label for="txtSearch" class="control-label">Search Employee</label>
                 <div class="input-group">
                     <input type="text" name="txtSearch" id="txtSearch" class="form-control" placeholder="Search">
@@ -23,6 +24,11 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="form-group col-md-5">
+            </div>
+            <div class="form-group col-md-3">
+                <img id="ProfilePicture" name="ProfilePicture" class="img-thumbnail" src="#" alt="ProfileImage" height="200" width="200">
             </div>
         </div>
         <br />
@@ -37,12 +43,6 @@
                 <label for="txtEmployeeName" class="control-label">Employee Name</label>
                 <div>
                     <input type="text" name="txtEmployeeName" id="txtEmployeeName" class="form-control" readonly>
-                </div>
-            </div>
-            <div class="form-group col-md-4">
-                <div>
-                    @Html.HiddenFor(model => model.Item1.empID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.Item1.empID, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -114,35 +114,36 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.IsGovService, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.DropDownListFor(model => model.Item1.IsGovService, new List<SelectListItem>
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.IsGovService, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.IsGovService, new List<SelectListItem>
                     {
                         new SelectListItem{ Text="--Is In Government Service?---", Value = "" },
                         new SelectListItem{ Text="Yes", Value = "True" },
                         new SelectListItem{ Text="No", Value = "False" },
                      }, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Item1.IsGovService, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Item1.IsGovService, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.IsSupervisor, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.DropDownListFor(model => model.Item1.IsSupervisor, new List<SelectListItem>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.IsSupervisor, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.IsSupervisor, new List<SelectListItem>
                     {
                         new SelectListItem{ Text="--Is Supervisor?--", Value = "" },
                         new SelectListItem{ Text="Yes", Value = "True" },
                         new SelectListItem{ Text="No", Value = "False" },
                      }, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Item1.IsSupervisor, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Item1.IsSupervisor, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
         <br />
         <div class="form-group">
             <div class="col-md-offset-5 col-md-5">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -184,18 +185,6 @@
         </tr>
     </thead>
     <tbody id="EmploymentHistoryTableData">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
     </tbody>
 </table>
 <div class="modal fade" id="myModal">
@@ -208,7 +197,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#EmploymentHistoryTable').DataTable({
+            var table = $('#EmploymentHistoryTable').DataTable({
+                language: {
+                    emptyTable: "", // 
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
             });
             $('#EmploymentHistoryTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
@@ -228,7 +222,7 @@
             });
             $("#btnSearch").on("click", function (e) {
                 e.preventDefault();
-                $.get("@Url.Action("EmployeeName", "EmploymentHistory")", { Name: $("#txtSearch").val() }, function (EmployeeFullName, EmployeeNumber, EmployeeID) {
+                $.get("@Url.Action("EmployeeName", "EmploymentHistory")", { Name: $("#txtSearch").val() }, function (EmployeeFullName, EmployeeNumber, EmployeeID, DisplayPicturePath) {
                     $("#txtEmployeeName").empty();
                     $("#txtAgencyEmployeeNumber").empty();
                     $("#Item1_empID").empty();
@@ -236,7 +230,9 @@
                     $.each(EmployeeFullName, function (index, data) {
                         $("#txtEmployeeName").val(data.EmployeeFullName);
                         $("#txtAgencyEmployeeNumber").val(data.EmployeeNumber);
-                        $("#Item1_empID").val(data.EmployeeID)
+                        $("#Item1_empID").val(data.EmployeeID);
+                        PicturePath = data.DisplayPicturePath.replace("~", "..");
+                        $("#ProfilePicture").attr("src", PicturePath);
                     });
                     $.get("@Url.Action("WorkHistory", "EmploymentHistory")", { EmployeeID: $("#Item1_empID").val() },
                         function (WorkID, Company, Position, MonthlySalary, SalaryGradeCode, StepIncrement, StartDate, EndDate, StatusDescription, GovernmentService) {
@@ -245,20 +241,22 @@
                             var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "WorkID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
                             EditButton = EditButton.replace("WorkID", parseInt(data.WorkID));
                             DeleteButton = DeleteButton.replace("WorkID", parseInt(data.WorkID));
-                            $("#EmploymentHistoryTableData").append(
-                            "<tr>" +
-                                "<td>" + data.Company + "</td>" +
-                                "<td>" + data.StartDate + "</td>" +
-                                "<td>" + data.EndDate + "</td>" +
-                                "<td>" + data.Position + "</td>" +
-                                "<td>" + data.MonthlySalary + "</td>" +
-                                "<td>" + data.SalaryGradeCode + "</td>" +
-                                "<td>" + data.StepIncrement + "</td>" +
-                                "<td>" + data.StatusDescription + "</td>" +
-                                "<td>" + data.GovernmentService + "</td>" +
-                            "<td>" + EditButton + "|" + DeleteButton  + "</td>" +
-                            "</tr>"
-                        );
+                            StartDate = data.StartDate.replace(" 12:00:00 AM", "");
+                            EndDate = data.EndDate.replace(" 12:00:00 AM", "");
+                            table.row.add([
+                                data.Company,
+                                StartDate,
+                                EndDate,
+                                data.Position,
+                                data.MonthlySalary,
+                                data.SalaryGradeCode,
+                                data.StepIncrement,
+                                data.StatusDescription,
+                                data.GovernmentService,
+                                EditButton + "|" + DeleteButton,
+                            ]);
+                            table.draw();
+                            
                     });
                 });
                 });

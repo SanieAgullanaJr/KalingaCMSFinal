@@ -38,7 +38,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Department/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<ref_Department, IEnumerable<ref_Department>>(new ref_Department(), db.ref_Department.ToList()));
         }
 
         // POST: Department/Create
@@ -46,13 +46,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DeptID,DeptCode,DeptDescription")] ref_Department ref_Department)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "DeptID,DeptCode,DeptDescription")] ref_Department ref_Department)
         {
             if (ModelState.IsValid)
             {
                 db.ref_Department.Add(ref_Department);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_Department);
@@ -84,7 +84,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_Department).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_Department);
         }
@@ -112,7 +112,7 @@ namespace KalingaCMSFinal.Controllers
             ref_Department ref_Department = db.ref_Department.Find(id);
             db.ref_Department.Remove(ref_Department);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

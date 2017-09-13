@@ -13,7 +13,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="form-group col-md-12" style="width:300px;">
+            <div class="form-group col-md-4">
                 <label for="txtSearch" class="control-label">Search Employee</label>
                 <div class="input-group">
                     <input type="text" name="txtSearch" id="txtSearch" class="form-control" placeholder="Search">
@@ -23,6 +23,11 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="form-group col-md-5">
+            </div>
+            <div class="form-group col-md-3">
+                <img id="ProfilePicture" name="ProfilePicture" class="img-thumbnail" src="#" alt="ProfileImage" height="200" width="200">
             </div>
         </div>
         <br />
@@ -47,11 +52,13 @@
             </div>
         </div>
         <hr />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.EducLevelID, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.DropDownListFor(model => model.Item1.EducLevelID, ViewBag.Levels as SelectList, "--Select Level--", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Item1.EducLevelID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.EducLevelID, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.EducLevelID, ViewBag.Levels as SelectList, "--Select Level--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.EducLevelID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -90,7 +97,7 @@
                 </div>
             </div>
         </div>
-
+        <h4>Inclusive Dates</h4>
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.Item1.StartDate, htmlAttributes: new { @class = "control-label" })
@@ -109,17 +116,19 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Item1.Distinction, htmlAttributes: new { @class = "control-label" })
-            <div>
-                @Html.EditorFor(model => model.Item1.Distinction, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Item1.Distinction, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-5">
+                @Html.LabelFor(model => model.Item1.Distinction, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.Distinction, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.Distinction, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
         <br />
         <div class="form-group">
             <div class="col-md-offset-5 col-md-5">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -158,17 +167,6 @@
         </tr>
     </thead>
     <tbody id="EducationHistoryTableData">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
     </tbody>
 </table>
 <div class="modal fade" id="myModal">
@@ -181,6 +179,13 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            var table = $('#EducationHistoryTable').DataTable({
+                language: {
+                    emptyTable: "", // 
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
+            });
             $("#txtSearch").autocomplete({
                 source: '@Url.Action("Search","Education")'
             });
@@ -195,6 +200,8 @@
                         $("#txtEmployeeName").val(data.EmployeeFullName);
                         $("#txtAgencyEmployeeNumber").val(data.EmployeeNumber);
                         $("#Item1_empID").val(data.EmployeeID)
+                        PicturePath = data.DisplayPicturePath.replace("~", "..");
+                        $("#ProfilePicture").attr("src", PicturePath);
                     });
                     $.get("@Url.Action("EducationHistory", "Education")", { EmployeeID: $("#Item1_empID").val() },
                         function (EducationID, Level, SchoolName, DegreeCourse, YearGraduated, HighestAttainment, StartDate, EndDate, AcademicHonors) {
@@ -203,30 +210,27 @@
                             var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "EmployeeID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
                             EditButton = EditButton.replace("EmployeeID", parseInt(data.EducationID));
                             DeleteButton = DeleteButton.replace("EmployeeID", parseInt(data.EducationID));
-                        $("#EducationHistoryTableData").append(
-                            "<tr>" +
-                            "<td>" + data.Level + "</td>" +
-                            "<td>" + data.SchoolName + "</td>" +
-                            "<td>" + data.DegreeCourse + "</td>" +
-                            "<td>" + data.YearGraduated + "</td>" +
-                            "<td>" + data.HighestAttainment + "</td>" +
-                            "<td>" + data.StartDate + "</td>" +
-                            "<td>" + data.EndDate + "</td>" +
-                            "<td>" + data.AcademicHonors + "</td>" +
-                            "<td>" + EditButton + "|" + DeleteButton  + "</td>" +
-                            "</tr>"
-                        );
+                            StartDate = data.StartDate.replace(" 12:00:00 AM", "");
+                            EndDate = data.EndDate.replace(" 12:00:00 AM", "");
+                        table.row.add([
+                            data.Level,
+                            data.SchoolName,
+                            data.DegreeCourse,
+                            data.YearGraduated,
+                            data.HighestAttainment,
+                            StartDate,
+                            EndDate,
+                            data.AcademicHonors,
+                            EditButton + "|" + DeleteButton,
+                        ]);
+                        table.draw();
                     });
                 });
                 });
             });
-            $('#EducationHistoryTable').DataTable({
-                scrollX: false
-            });
             $('#EducationHistoryTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
                 //replace the get with this.href to load the edit page
-                alert(this.id);
                 $.get(this.href, function (data) {
                     //replace the content returned
                     $("#mainContent").html(data);

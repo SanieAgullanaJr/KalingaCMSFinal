@@ -38,7 +38,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: EmploymentStatus/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<ref_AppointmentStatus, IEnumerable<ref_AppointmentStatus>>(new ref_AppointmentStatus(), db.ref_AppointmentStatus.ToList()));
         }
 
         // POST: EmploymentStatus/Create
@@ -46,7 +46,7 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AppointmentStatusID,EmpStatusCode,EmpStatusDescription")] ref_AppointmentStatus ref_AppointmentStatus)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "AppointmentStatusID,EmpStatusCode,EmpStatusDescription")] ref_AppointmentStatus ref_AppointmentStatus)
         {
             if (ModelState.IsValid)
             {

@@ -35,10 +35,19 @@ namespace KalingaCMSFinal.Controllers
             return View(ref_Regions);
         }
 
+        //Country Dropdown
+        public ActionResult CountryDD()
+        {
+            List<ref_Origins> Countries = db.ref_Origins.ToList();
+            ViewBag.Countries = new SelectList(Countries, "countryID", "Country");
+            return View();
+        }
+
         // GET: Regions/Create
         public ActionResult Create()
         {
-            return View();
+            CountryDD();
+            return View(Tuple.Create<ref_Regions, IEnumerable<vw_RegionList>>(new ref_Regions(), db.vw_RegionList.ToList()));
         }
 
         // POST: Regions/Create
@@ -46,13 +55,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "regionID,CountryID,RegionName,RegionalDesignation")] ref_Regions ref_Regions)
+        public ActionResult Create([Bind(Prefix = "Item1", Include = "regionID,CountryID,RegionName,RegionalDesignation")] ref_Regions ref_Regions)
         {
             if (ModelState.IsValid)
             {
                 db.ref_Regions.Add(ref_Regions);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_Regions);
@@ -61,6 +70,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Regions/Edit/5
         public ActionResult Edit(int? id)
         {
+            CountryDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +94,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_Regions).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_Regions);
         }
@@ -112,7 +122,7 @@ namespace KalingaCMSFinal.Controllers
             ref_Regions ref_Regions = db.ref_Regions.Find(id);
             db.ref_Regions.Remove(ref_Regions);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

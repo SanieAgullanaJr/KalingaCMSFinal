@@ -35,10 +35,19 @@ namespace KalingaCMSFinal.Controllers
             return View(ref_DepartmentUnit);
         }
 
+        //Department Dropdown
+        public ActionResult DepartmentDD()
+        {
+            List<ref_Department> Departments = db.ref_Department.ToList();
+            ViewBag.Departments = new SelectList(Departments, "DeptID", "DeptDescription");
+            return View();
+        }
+
         // GET: Section/Create
         public ActionResult Create()
         {
-            return View();
+            DepartmentDD();
+            return View(Tuple.Create<ref_DepartmentUnit, IEnumerable<vw_DepartmentUnitsList>>(new ref_DepartmentUnit(), db.vw_DepartmentUnitsList.ToList()));
         }
 
         // POST: Section/Create
@@ -46,13 +55,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DepartmentUnitID,DeptID,DepartmentUnitCode,DepartmentUnitDescription")] ref_DepartmentUnit ref_DepartmentUnit)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "DepartmentUnitID,DeptID,DepartmentUnitCode,DepartmentUnitDescription")] ref_DepartmentUnit ref_DepartmentUnit)
         {
             if (ModelState.IsValid)
             {
                 db.ref_DepartmentUnit.Add(ref_DepartmentUnit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_DepartmentUnit);
@@ -61,6 +70,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: Section/Edit/5
         public ActionResult Edit(int? id)
         {
+            DepartmentDD();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +94,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_DepartmentUnit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_DepartmentUnit);
         }
@@ -112,7 +122,7 @@ namespace KalingaCMSFinal.Controllers
             ref_DepartmentUnit ref_DepartmentUnit = db.ref_DepartmentUnit.Find(id);
             db.ref_DepartmentUnit.Remove(ref_DepartmentUnit);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

@@ -38,7 +38,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: LeaveTypes/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<ref_LeaveType, IEnumerable<ref_LeaveType>>(new ref_LeaveType(), db.ref_LeaveType.ToList()));
         }
 
         // POST: LeaveTypes/Create
@@ -46,13 +46,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LeaveTypeID,LeaveTypeCode,LeaveTypeDescription")] ref_LeaveType ref_LeaveType)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "LeaveTypeID,LeaveTypeCode,LeaveTypeDescription")] ref_LeaveType ref_LeaveType)
         {
             if (ModelState.IsValid)
             {
                 db.ref_LeaveType.Add(ref_LeaveType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_LeaveType);
@@ -84,7 +84,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_LeaveType).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_LeaveType);
         }
@@ -112,7 +112,7 @@ namespace KalingaCMSFinal.Controllers
             ref_LeaveType ref_LeaveType = db.ref_LeaveType.Find(id);
             db.ref_LeaveType.Remove(ref_LeaveType);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

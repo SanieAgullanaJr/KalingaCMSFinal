@@ -44,7 +44,6 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<EmpCertificate> EmpCertificates { get; set; }
         public virtual DbSet<EmpEducationHistory> EmpEducationHistories { get; set; }
         public virtual DbSet<EmpFamilyBackGround> EmpFamilyBackGrounds { get; set; }
-        public virtual DbSet<EmpMasterProfile> EmpMasterProfiles { get; set; }
         public virtual DbSet<EmpTraining> EmpTrainings { get; set; }
         public virtual DbSet<EmpVolunteer> EmpVolunteers { get; set; }
         public virtual DbSet<EmpWorkHistory> EmpWorkHistories { get; set; }
@@ -217,5 +216,6 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<ref_LGULevel> ref_LGULevel { get; set; }
         public virtual DbSet<DropDown_Province> DropDown_Province { get; set; }
         public virtual DbSet<DropDown_Regions> DropDown_Regions { get; set; }
+        public virtual DbSet<EmpMasterProfile> EmpMasterProfiles { get; set; }
     }
 }

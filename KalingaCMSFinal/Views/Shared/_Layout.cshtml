@@ -10,6 +10,16 @@
         var Last = RemainSession.Lastname;
         var Username = RemainSession.Username;
         var Role = RemainSession.Roles;
+        var ImagePath = RemainSession.ImagePath;
+        if (RemainSession.ImagePath != null)
+        {
+            ImagePath = RemainSession.ImagePath.Replace("~", "..");
+        }
+        else
+        {
+            ImagePath = "../content/images/UserIcon.jpg";
+        }
+
         <!DOCTYPE html>
         <html>
         <head>
@@ -55,6 +65,7 @@
                     width: 100%;
                     overflow-x: auto;
                 }
+
                 tbody {
                     overflow: auto;
                 }
@@ -75,7 +86,7 @@
                             <!-- menu profile quick info -->
                             <div class="profile">
                                 <div class="profile_pic">
-                                    <img src="../content/images/UserIcon.jpg" alt="..." class="img-circle profile_img">
+                                    <img src="@ImagePath" alt="..." class="img-circle profile_img">
                                 </div>
                                 <div class="profile_info">
                                     <span>Welcome,</span>
@@ -126,7 +137,7 @@
                                                 </ul>
                                             </li>
                                         }
-                                        @if((Role.Contains("SocioEconAdmin")) || Role.Contains("SuperAdmin"))
+                                        @if ((Role.Contains("SocioEconAdmin")) || Role.Contains("SuperAdmin"))
                                         {
                                             <li>
                                                 <a><i class="fa fa-group"></i> Population <span class="glyphicon glyphicon-chevron-down"></span></a>
@@ -203,6 +214,76 @@
                                                 </ul>
                                             </li>
                                         }
+                                        @if ((Role.Contains("HRAdmin")) || Role.Contains("SuperAdmin"))
+                                        {
+                                            <li>
+                                                <a><i class="fa fa-group"></i> Staff Management <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("Personnel Data Sheet", "Create", "PersonnelDataSheet")</li>
+                                                    <li>@Html.ActionLink("Employment Record", "Create", "EmploymentHistory")</li>
+                                                    <li>@Html.ActionLink("Family Background", "Create", "FamilyBackground")</li>
+                                                    <li>@Html.ActionLink("Education", "Create", "Education")</li>
+                                                    <li>@Html.ActionLink("Certificates/Licensures Acquired", "Create", "CertificatesAndLicensures")</li>
+                                                    <li>@Html.ActionLink("Trainings Attended", "Create", "Trainings")</li>
+                                                    <li>@Html.ActionLink("Voluntary Work Rendered", "Create", "VoluntaryWorkInvolvement")</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a><i class="fa fa-calendar"></i> Attendance <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("Attendance Cut Off", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Attendance Adjustment", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Leave Application", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("OT Application", "Soon", "Dashboard")</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a><i class="fa fa-list"></i> Reports <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>@Html.ActionLink("Leave Credits Monitoring", "Soon", "Dashboard")</li>
+                                                    <li><a>Absences and Tardiness</a>
+                                                        <ul class="nav child_menu">
+                                                            <li>@Html.ActionLink("Per Employee", "Soon", "Dashboard")</li>
+                                                            <li>@Html.ActionLink("Per Cut Off Date", "Soon", "Dashboard")</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>@Html.ActionLink("Leave Applications", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Employee List", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Employee Salary History", "Soon", "Dashboard")</li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a><i class="fa fa-cogs"></i> Manage Module <span class="glyphicon glyphicon-chevron-down"></span></a>
+                                                <ul class="nav child_menu">
+                                                    <li>
+                                                        <a>Organization</a>
+                                                        <ul class="nav child_menu">
+                                                            <li>@Html.ActionLink("Department", "Create", "Department")</li>
+                                                            <li>@Html.ActionLink("Sections/Units", "Create", "Section")</li>
+                                                            <li>@Html.ActionLink("Employment Status", "Create", "EmploymentStatus")</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a>Location</a>
+                                                        <ul class="nav child_menu">
+                                                            <li>@Html.ActionLink("Region", "Create", "Regions")</li>
+                                                            <li>@Html.ActionLink("Province", "Create", "Provinces")</li>
+                                                            <li>@Html.ActionLink("Municipality", "Create", "Municipalities")</li>
+                                                            <li>@Html.ActionLink("Barangay", "Create", "Barangays")</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>@Html.ActionLink("Position", "Create", "Positions")</li>
+                                                    <li>
+                                                        <a>Time and Attendance</a>
+                                                        <ul class="nav child_menu">
+                                                            <li>@Html.ActionLink("Holidays", "Create", "Holidays")</li>
+                                                            <li>@Html.ActionLink("Leave Type", "Create", "LeaveTypes")</li>
+                                                            <li>@Html.ActionLink("Day Type", "Create", "DayTypes")</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
                                         @if (Role == "ChartsOnly")
                                         {
                                             <li>
@@ -269,7 +350,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="">
                                         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <img src="../content/images/UserIcon.jpg" alt="">@First  @Last
+                                            <img src="@ImagePath" alt="">@First  @Last
                                             <span class=" fa fa-angle-down"></span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -290,7 +371,7 @@
                                             <i class="fa fa-envelope-o"></i>
                                             <span class="badge bg-green">6</span>
                                         </a>
-                                        
+
                                         <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                             <li>
                                                 <a>
@@ -412,7 +493,7 @@
 
                 // Trigger finish when page fully loaded
                 jQuery(window).on('load', function () {
-                    
+
                     NProgress.done();
                 });
 

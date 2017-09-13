@@ -20,5 +20,7 @@ namespace KalingaCMSFinal.Models
         public string ProvinceDistrict { get; set; }
         public string Municipality { get; set; }
         public string zipcode { get; set; }
+        public Nullable<int> countryID { get; set; }
+        public Nullable<int> regionID { get; set; }
     }
 }

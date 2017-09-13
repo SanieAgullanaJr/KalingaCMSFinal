@@ -1,66 +1,99 @@
-﻿@model KalingaCMSFinal.Models.ref_Barangay
+﻿@model Tuple<KalingaCMSFinal.Models.ref_Barangay, IEnumerable<KalingaCMSFinal.Models.vw_BarangayList>>
 
-@{ 
+@{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Barangay</h4>
+        <h2>Barangay</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.countryID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.countryID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.countryID, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.countryID, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.countryID, ViewBag.Countries as SelectList, "--Select Country--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.countryID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.regionID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.regionID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.regionID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.regionID, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.regionID, new SelectList(" "), "--Select Region--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.regionID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.provinceID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.provinceID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.provinceID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.provinceID, htmlAttributes: new { @class = "control-label " })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.provinceID, new SelectList(" "), "--Select Province--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.provinceID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.municipalityID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.municipalityID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.municipalityID, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.municipalityID, htmlAttributes: new { @class = "control-label model.Item1.Item1." })
+                <div>
+                    @Html.DropDownListFor(model => model.Item1.municipalityID, new SelectList(" "), "--Select Municipality--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Item1.municipalityID, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Barangay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Barangay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Barangay, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.Barangay, htmlAttributes: new { @class = "control-label model.Item1.Item1." })
+                <div>
+                    @Html.EditorFor(model => model.Item1.Barangay, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.Barangay, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-
+        <br />
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-0 col-md-5">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+<br />
+<table class="table table-striped table-bordered" id="BarangayTable">
+    <thead>
+        <tr>
+            <th>
+                Region
+            </th>
+            <th>
+                Province
+            </th>
+            <th>
+                Municipality
+            </th>
+            <th>
+                Barangay
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody id="BarangayTableData">
+    </tbody>
+</table>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div id="mainContent" class="modal-content col-sm-12">
@@ -71,9 +104,14 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#LivestockPoultryTable').DataTable({
+            var table = $('#BarangayTable').DataTable({
+                language: {
+                    emptyTable: "", // 
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
             });
-            $('#LivestockPoultryTable').on("click", ".modalOpener", function (e) {
+            $('#BarangayTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
                 //replace the get with this.href to load the edit page
                 $.get(this.href, function (data) {
@@ -91,7 +129,117 @@
                     .removeData("validator") /* added by the raw jquery.validate plugin */
                     .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
                 $.validator.unobtrusive.parse(form);
-            })
+                $.get("@Url.Action("GetRegionsList", "Barangays")", { CountryID: $("#countryID").val() }, function (data) {
+                    $("#regionID").empty();
+                    $("#regionID").append("<option value=''>--Select Region--</option>")
+                    $.each(data, function (index, row) {
+                        $("#regionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                    });
+                    $.get("@Url.Action("Locations", "Barangays")", { LocationsID: $("#barangayID").val() }, function (LocationsID) {
+                        $.each(LocationsID, function (index, row) {
+                            $("#regionID").val(row.RegionID)
+                        });
+                        $.get("@Url.Action("GetProvinceList", "Barangays")", { RegionID: $("#regionID").val() }, function (data) {
+                            $("#provinceID").empty();
+                            $("#provinceID").append("<option value=''>--Select Province--</option>")
+                            $.each(data, function (index, row) {
+                                $("#provinceID").append("<option value='" + row.provinceID + "'>" + row.ProvinceDistrict + "</option>")
+                            });
+                            $.get("@Url.Action("Locations", "Barangays")", { LocationsID: $("#barangayID").val() }, function (LocationsID) {
+                                $.each(LocationsID, function (index, row) {
+                                    $("#provinceID").val(row.ProvinceID);
+                                });
+                                $.get("@Url.Action("GetMunicipalityList", "Barangays")", { ProvinceID: $("#provinceID").val() }, function (data) {
+                                    $("#municipalityID").empty();
+                                    $("#municipalityID").append("<option value=''>--Select Municipality--</option>")
+                                    $.each(data, function (index, row) {
+                                        $("#municipalityID").append("<option value='" + row.MunicipalityID + "'>" + row.Municipality + "</option>")
+                                    });
+                                    $.get("@Url.Action("Locations", "Barangays")", { LocationsID: $("#barangayID").val() }, function (LocationsID) {
+                                        $.each(LocationsID, function (index, row) {
+                                            $("#municipalityID").val(row.MunicipalityID);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+                $(document).on("change", "#countryID", function () {
+                    $.get("@Url.Action("GetRegionsList", "Barangays")", { CountryID: $("#countryID").val() }, function (data) {
+                        $("#regionID").empty();
+                        $("#regionID").append("<option value=''>--Select Region--</option>")
+                        $.each(data, function (index, row) {
+                            $("#regionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                        });
+                    });
+                });
+                $(document).on("change", "#regionID", function () {
+                    $.get("@Url.Action("GetProvinceList", "Barangays")", { RegionID: $("#regionID").val() }, function (data) {
+                        $("#provinceID").empty();
+                        $("#provinceID").append("<option value=''>--Select Province--</option>")
+                        $.each(data, function (index, row) {
+                            $("#provinceID").append("<option value='" + row.provinceID + "'>" + row.ProvinceDistrict + "</option>")
+                        });
+                    });
+                });
+                $(document).on("change", "#provinceID", function () {
+                    $.get("@Url.Action("GetMunicipalityList", "Barangays")", { ProvinceID: $("#provinceID").val() }, function (data) {
+                        $("#municipalityID").empty();
+                        $("#municipalityID").append("<option value=''>--Select Municipality--</option>")
+                        $.each(data, function (index, row) {
+                            $("#municipalityID").append("<option value='" + row.municipalityID + "'>" + row.Municipality + "</option>")
+                        });
+                    });
+                });
+            });
+            ////////
+            $(document).on("change", "#Item1_countryID", function () {
+                $.get("@Url.Action("GetRegionsList", "Barangays")", { CountryID: $("#Item1_countryID").val() }, function (data) {
+                    $("#Item1_regionID").empty();
+                    $("#Item1_regionID").append("<option value=''>--Select Region--</option>")
+                    $.each(data, function (index, row) {
+                        $("#Item1_regionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                    });
+                });
+            });
+            $(document).on("change", "#Item1_regionID", function () {
+                $.get("@Url.Action("GetProvinceList", "Barangays")", { RegionID: $("#Item1_regionID").val() }, function (data) {
+                    $("#Item1_provinceID").empty();
+                    $("#Item1_provinceID").append("<option value=''>--Select Province--</option>")
+                    $.each(data, function (index, row) {
+                        $("#Item1_provinceID").append("<option value='" + row.provinceID + "'>" + row.ProvinceDistrict + "</option>")
+                    });
+                });
+            });
+            $(document).on("change", "#Item1_provinceID", function () {
+                $.get("@Url.Action("GetMunicipalityList", "Barangays")", { ProvinceID: $("#Item1_provinceID").val() }, function (data) {
+                    $("#Item1_municipalityID").empty();
+                    $("#Item1_municipalityID").append("<option value=''>--Select Municipality--</option>")
+                    $.each(data, function (index, row) {
+                        $("#Item1_municipalityID").append("<option value='" + row.MunicipalityID + "'>" + row.Municipality + "</option>")
+                    });
+                });
+            });
+            $(document).on("change", "#Item1_municipalityID", function () {
+                $.get("@Url.Action("BarangayTable", "Barangays")", { MunicipalityID: $("#Item1_municipalityID").val() }, function (data) {
+                    $("#BarangayTableData").empty();
+                    $.each(data, function (index, item) {
+                            var EditButton = '@Html.ActionLink("Edit", "Edit", new { id = "EmployeeID" }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal"})';
+                            var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "EmployeeID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
+                            EditButton = EditButton.replace("EmployeeID", parseInt(item.BarangayID));
+                            DeleteButton = DeleteButton.replace("EmployeeID", parseInt(item.BarangayID));
+                            table.row.add([
+                                item.Region,
+                                item.Province,
+                                item.Municipality,
+                                item.Barangay,
+                                EditButton + "|" + DeleteButton,
+                            ]);
+                            table.draw();
+                    });
+                });
+            });
         });
     </script>
-
+}

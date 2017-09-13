@@ -1387,222 +1387,223 @@ namespace KalingaCMSFinal.Models
     {
         public int empid { get; set; }
 
-        
+        [Required]
         [Display(Name = "Agency Employee No.")]
         public string empNo { get; set; }
 
-        
+        [Required]
         [Display(Name = "Prefix")]
         public Nullable<int> namePrefixTitleID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        
+        [Required]
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
 
-        
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        
+        [Required]
         [Display(Name = "Suffix")]
         public Nullable<int> nameSuffixTitleID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Gender")]
         public Nullable<int> GenderID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Religion")]
         public Nullable<int> ReligionID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Street")]
         public string street { get; set; }
 
-        
+        [Required]
         [Display(Name = "Barangay")]
         public Nullable<int> BarangayID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Municipality")]
         public Nullable<int> MunicipalityID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Province")]
         public Nullable<int> ProvinceID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Country")]
         public Nullable<int> CountryID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Zip Code")]
         public string zipCode { get; set; }
 
-        
+        [Required]
         [Display(Name = "Telephone No.")]
         public string residentialPhoneNo { get; set; }
 
-        
+        [Required]
         [Display(Name = "Street")]
         public string street2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Barangay")]
         public Nullable<int> BarangayID2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Municipality")]
         public Nullable<int> MunicipalityID2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Province")]
         public Nullable<int> ProvinceID2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Country")]
         public Nullable<int> CountryID2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Zip Code")]
         public string zipCode2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Telephone No.")]
         public string residentialPhoneNo2 { get; set; }
 
-        
+        [Required]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> birthDate { get; set; }
 
-        
+        [Required]
         [Display(Name = "Place of Birth")]
         public string birthPlace { get; set; }
 
-        
+        [Required]
         [Display(Name = "Civil Status")]
         public Nullable<int> CivilStatusID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Citizenship")]
         public Nullable<int> CitizenshipID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Height")]
         public string Height { get; set; }
 
-        
+        [Required]
         [Display(Name = "Weight")]
         public string Weight { get; set; }
 
-        
+        [Required]
         [Display(Name = "Blood Type")]
         public Nullable<int> BloodTypeID { get; set; }
 
-        
+        [Required]
         [Display(Name = "GSIS")]
         public string GSIS { get; set; }
 
-        
+        [Required]
         [Display(Name = "HDMF")]
         public string HDMF { get; set; }
 
-        
+        [Required]
         [Display(Name = "Phil Health")]
         public string PhilHealth { get; set; }
 
-        
+        [Required]
         [Display(Name = "SSS")]
         public string SSS { get; set; }
 
-        
+        [Required]
         [Display(Name = "TIN")]
         public string TIN { get; set; }
 
-        
+        [Required]
         [Display(Name = "Telephone No.")]
         public string LandLineNo { get; set; }
 
-        
+        [Required]
         [Display(Name = "Cellphone No.")]
         public string CellphoneNo { get; set; }
 
-        
+        [Required]
         [Display(Name = "Email Address")]
         [EmailAddress]
         public string EmailAddress { get; set; }
 
-        
-        [Display(Name = "Years In Service")]
-        public Nullable<int> YearsInService { get; set; }
-
-        
-        [Display(Name = "Months In Service")]
-        public Nullable<int> MonthsInService { get; set; }
-
-        
+        [Required]
         [Display(Name = "Is Supervisor")]
         public Nullable<bool> IsSupervisor { get; set; }
 
-        
+        [Required]
         [Display(Name = "First Approver")]
         public Nullable<int> FirstApprover { get; set; }
 
-        
+        [Required]
         [Display(Name = "Second Approver")]
         public Nullable<int> SecondApprover { get; set; }
 
-        
+        [Required]
         [Display(Name = "Is Separated")]
         public Nullable<bool> IsSeparated { get; set; }
 
-        
+        [Required]
         [Display(Name = "Department")]
         public Nullable<int> DeptID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Department Unit")]
         public Nullable<int> DepartmentUnitID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Appointment Status")]
         public Nullable<int> AppointmentStatusID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Position")]
         public Nullable<int> PositionID { get; set; }
 
-        
+        [Required]
         [Display(Name = "Date Hired")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> DateHired { get; set; }
 
-        
+        [Required]
         [Display(Name = "Date Resigned")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> DateResigned { get; set; }
 
-        
+        [Required]
         [Display(Name = "Current Salary")]
         public Nullable<decimal> CurrentSalary { get; set; }
 
         [Display(Name = "Profile Picture")]
         public string DisplayPicturePath { get; set; }
 
+        [Required]
         [Display(Name = "Region")]
         public int RegionID { get; set; }
 
+        [Required]
         [Display(Name = "Region")]
         public int RegionID2 { get; set; }
 
+        [Required]
+        [Display(Name = "Years In Service")]
+        public Nullable<int> YearsInService { get; set; }
+
+        [Required]
+        [Display(Name = "Months In Service")]
+        public Nullable<int> MonthsInService { get; set; }
     }
 
     [MetadataType(typeof(EmpWorkHistoryMetadata))]
@@ -1624,7 +1625,7 @@ namespace KalingaCMSFinal.Models
         [Required]
         [Display(Name = "Date Hired")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+            
         public Nullable<System.DateTime> StartDate { get; set; }
 
         [Required]
@@ -1691,7 +1692,7 @@ namespace KalingaCMSFinal.Models
         [Required]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> BirthDate { get; set; }
 
         [Required]
@@ -1773,7 +1774,7 @@ namespace KalingaCMSFinal.Models
         public Nullable<int> empID { get; set; }
 
         [Required]
-        [Display(Name = "Name of exam taken")]
+        [Display(Name = "Name of Exam Taken")]
         public string ExamName { get; set; }
 
         [Required]
@@ -1782,6 +1783,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Date of Examination")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> ExamDate { get; set; }
 
         [Required]
@@ -1961,7 +1964,7 @@ namespace KalingaCMSFinal.Models
         public string RegionalDesignation { get; set; }
     }
 
-
+    [MetadataType(typeof(ref_ProvinceMetadata))]
     public partial class ref_Province
     {
     }
@@ -1986,7 +1989,7 @@ namespace KalingaCMSFinal.Models
         public string Capital { get; set; }
     }
 
-
+    [MetadataType(typeof(ref_MunicipalityMetadata))]
     public partial class ref_Municipality
     {
     }
@@ -2011,7 +2014,6 @@ namespace KalingaCMSFinal.Models
         [Display(Name = "Municipality")]
         public string Municipality { get; set; }
 
-        [Required]
         [Display(Name = "Zip Code")]
         public string zipcode { get; set; }
     }
@@ -2059,7 +2061,7 @@ namespace KalingaCMSFinal.Models
         public string PositionDescription { get; set; }
     }
 
-
+    [MetadataType(typeof(ref_HolidayMetadata))]
     public partial class ref_Holiday
     {
     }
@@ -2073,6 +2075,8 @@ namespace KalingaCMSFinal.Models
 
         [Required]
         [Display(Name = "Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> HolidayDate { get; set; }
 
         [Required]
@@ -2116,5 +2120,21 @@ namespace KalingaCMSFinal.Models
         [Required]
         [Display(Name = "Day Type Description")]
         public string DayTypeDescription { get; set; }
+    }
+
+    [MetadataType(typeof(vw_HolidayListMetadata))]
+    public partial class vw_HolidayList
+    {
+    }
+    public class vw_HolidayListMetadata
+    {
+        public int HolidayID { get; set; }
+        public string HolidayDescription { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM-dd}")]
+        public Nullable<System.DateTime> HolidayDate { get; set; }
+        public string DayTypeDescription { get; set; }
+        public Nullable<decimal> NoOfHours { get; set; }
     }
 }

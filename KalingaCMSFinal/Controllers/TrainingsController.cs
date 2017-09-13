@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using KalingaCMSFinal.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace KalingaCMSFinal.Controllers
 {
@@ -35,10 +37,46 @@ namespace KalingaCMSFinal.Controllers
             return View(empTraining);
         }
 
+        public JsonResult EmployeeName(string Name)
+        {
+            List<EmployeeName> t = new List<EmployeeName>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select empid, empNo, CONCAT(FirstName, ' ', MiddleName, ' ', LastName) AS FullName, DisplayPicturePath from EmpMasterProfile where CONCAT(FirstName, ' ', MiddleName, ' ', LastName) LIKE @Name";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@Name", Name);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        EmployeeName tsData = new EmployeeName()
+                        {
+                            EmployeeFullName = dr["FullName"].ToString(),
+                            EmployeeNumber = dr["empNo"].ToString(),
+                            EmployeeID = dr["empid"].ToString(),
+                            DisplayPicturePath = dr["DisplayPicturePath"].ToString()
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Trainings/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<EmpTraining, IEnumerable<vw_TrainingsAttended>>(new EmpTraining(), db.vw_TrainingsAttended.ToList()));
         }
 
         // POST: Trainings/Create
@@ -46,16 +84,55 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "empTrainID,empID,TrainingTitle,StartDate,EndDate,DurationHours,EventSponsor,EventVenue")] EmpTraining empTraining)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "empTrainID,empID,TrainingTitle,StartDate,EndDate,DurationHours,EventSponsor,EventVenue")] EmpTraining empTraining)
         {
             if (ModelState.IsValid)
             {
                 db.EmpTrainings.Add(empTraining);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(empTraining);
+        }
+
+        public JsonResult Trainings(int EmployeeID)
+        {
+            List<Trainings> t = new List<Trainings>();
+            string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
+            using (SqlConnection cn = new SqlConnection(conn))
+            {
+                string myQuery = "select * from vw_TrainingsAttended where empid = @EmployeeID";
+                SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = myQuery,
+                    CommandType = CommandType.Text
+                };
+                cmd.Parameters.AddWithValue("@EmployeeID", EmployeeID);
+                cmd.Connection = cn;
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    int counter = 0;
+                    while (dr.Read())
+                    {
+                        Trainings tsData = new Trainings()
+                        {
+                            empTrainID = dr["empTrainID"].ToString(),
+                            TrainingTitle = dr["TrainingTitle"].ToString(),
+                            StartDate = dr["StartDate"].ToString(),
+                            EndDate = dr["EndDate"].ToString(),
+                            DurationHours = dr["DurationHours"].ToString(),
+                            EventSponsor = dr["EventSponsor"].ToString(),
+                            EventVenue = dr["EventVenue"].ToString(),
+                        };
+                        t.Add(tsData);
+                        counter++;
+                    }
+                }
+            }
+            return Json(t, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Trainings/Edit/5
@@ -78,13 +155,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "empTrainID,empID,TrainingTitle,StartDate,EndDate,DurationHours,EventSponsor,EventVenue")] EmpTraining empTraining)
+        public ActionResult Edit([Bind(Prefix="Item1", Include = "empTrainID,empID,TrainingTitle,StartDate,EndDate,DurationHours,EventSponsor,EventVenue")] EmpTraining empTraining)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(empTraining).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(empTraining);
         }
@@ -112,7 +189,7 @@ namespace KalingaCMSFinal.Controllers
             EmpTraining empTraining = db.EmpTrainings.Find(id);
             db.EmpTrainings.Remove(empTraining);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

@@ -19,5 +19,6 @@ namespace KalingaCMSFinal.Models
         public string RegionalDesignation { get; set; }
         public string ProvinceDistrict { get; set; }
         public string Capital { get; set; }
+        public Nullable<int> CountryID { get; set; }
     }
 }

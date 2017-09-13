@@ -344,8 +344,6 @@
           <Property Name="LandLineNo" Type="varchar" MaxLength="50" />
           <Property Name="CellphoneNo" Type="varchar" MaxLength="50" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
-          <Property Name="YearsInService" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="MonthsInService" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="IsSupervisor" Type="bit" />
           <Property Name="FirstApprover" Type="int" />
           <Property Name="SecondApprover" Type="int" />
@@ -360,6 +358,8 @@
           <Property Name="DisplayPicturePath" Type="varchar(max)" />
           <Property Name="RegionID" Type="int" />
           <Property Name="RegionID2" Type="int" />
+          <Property Name="YearsInService" Type="int" />
+          <Property Name="MonthsInService" Type="int" />
         </EntityType>
         <EntityType Name="EmpTrainings">
           <Key>
@@ -2031,6 +2031,8 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_MunicipalityList' does not have
           <Property Name="ProvinceDistrict" Type="varchar" MaxLength="250" />
           <Property Name="Municipality" Type="varchar" MaxLength="250" />
           <Property Name="zipcode" Type="varchar" MaxLength="6" />
+          <Property Name="countryID" Type="int" />
+          <Property Name="regionID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_OtherHighValueCropsAreaAndProduction' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2161,6 +2163,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_ProvinceList' does not have a p
           <Property Name="RegionalDesignation" Type="varchar" MaxLength="50" />
           <Property Name="ProvinceDistrict" Type="varchar" MaxLength="250" />
           <Property Name="Capital" Type="varchar" MaxLength="150" />
+          <Property Name="CountryID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_RegionList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2168,10 +2171,11 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_RegionList' does not have a pri
           <Key>
             <PropertyRef Name="regionID" />
           </Key>
-          <Property Name="regionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="regionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CountryID" Type="int" />
           <Property Name="RegionName" Type="varchar" MaxLength="50" />
           <Property Name="RegionalDesignation" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'kalingaPPDO.dbo.vw_ReligiousAffiliation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2992,7 +2996,9 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_MunicipalityList].[RegionalDesignation] AS [RegionalDesignation], 
     [vw_MunicipalityList].[ProvinceDistrict] AS [ProvinceDistrict], 
     [vw_MunicipalityList].[Municipality] AS [Municipality], 
-    [vw_MunicipalityList].[zipcode] AS [zipcode]
+    [vw_MunicipalityList].[zipcode] AS [zipcode], 
+    [vw_MunicipalityList].[countryID] AS [countryID], 
+    [vw_MunicipalityList].[regionID] AS [regionID]
     FROM [dbo].[vw_MunicipalityList] AS [vw_MunicipalityList]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_OtherHighValueCropsAreaAndProduction" EntityType="Self.vw_OtherHighValueCropsAreaAndProduction" store:Type="Views" store:Schema="dbo">
@@ -3096,7 +3102,8 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_ProvinceList].[RegionID] AS [RegionID], 
     [vw_ProvinceList].[RegionalDesignation] AS [RegionalDesignation], 
     [vw_ProvinceList].[ProvinceDistrict] AS [ProvinceDistrict], 
-    [vw_ProvinceList].[Capital] AS [Capital]
+    [vw_ProvinceList].[Capital] AS [Capital], 
+    [vw_ProvinceList].[CountryID] AS [CountryID]
     FROM [dbo].[vw_ProvinceList] AS [vw_ProvinceList]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_RegionList" EntityType="Self.vw_RegionList" store:Type="Views" store:Schema="dbo">
@@ -3104,7 +3111,8 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
     [vw_RegionList].[regionID] AS [regionID], 
     [vw_RegionList].[CountryID] AS [CountryID], 
     [vw_RegionList].[RegionName] AS [RegionName], 
-    [vw_RegionList].[RegionalDesignation] AS [RegionalDesignation]
+    [vw_RegionList].[RegionalDesignation] AS [RegionalDesignation], 
+    [vw_RegionList].[Country] AS [Country]
     FROM [dbo].[vw_RegionList] AS [vw_RegionList]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_ReligiousAffiliation" EntityType="Self.vw_ReligiousAffiliation" store:Type="Views" store:Schema="dbo">
@@ -3408,65 +3416,6 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CompanyAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="EmpMasterProfile">
-          <Key>
-            <PropertyRef Name="empid" />
-          </Key>
-          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="empNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="namePrefixTitleID" Type="Int32" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="nameSuffixTitleID" Type="Int32" />
-          <Property Name="GenderID" Type="Int32" />
-          <Property Name="ReligionID" Type="Int32" />
-          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BarangayID" Type="Int32" />
-          <Property Name="MunicipalityID" Type="Int32" />
-          <Property Name="ProvinceID" Type="Int32" />
-          <Property Name="CountryID" Type="Int32" />
-          <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="residentialPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="street2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BarangayID2" Type="Int32" />
-          <Property Name="MunicipalityID2" Type="Int32" />
-          <Property Name="ProvinceID2" Type="Int32" />
-          <Property Name="CountryID2" Type="Int32" />
-          <Property Name="zipCode2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="residentialPhoneNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="birthDate" Type="DateTime" Precision="0" />
-          <Property Name="birthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CivilStatusID" Type="Int32" />
-          <Property Name="CitizenshipID" Type="Int32" />
-          <Property Name="Height" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BloodTypeID" Type="Int32" />
-          <Property Name="GSIS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="HDMF" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="PhilHealth" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="SSS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="TIN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="LandLineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CellphoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="YearsInService" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="MonthsInService" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="IsSupervisor" Type="Boolean" />
-          <Property Name="FirstApprover" Type="Int32" />
-          <Property Name="SecondApprover" Type="Int32" />
-          <Property Name="IsSeparated" Type="Boolean" />
-          <Property Name="DeptID" Type="Int32" />
-          <Property Name="DepartmentUnitID" Type="Int32" />
-          <Property Name="AppointmentStatusID" Type="Int32" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="DateHired" Type="DateTime" Precision="0" />
-          <Property Name="DateResigned" Type="DateTime" Precision="0" />
-          <Property Name="CurrentSalary" Type="Decimal" Precision="9" Scale="2" />
-          <Property Name="DisplayPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="RegionID" Type="Int32" />
-          <Property Name="RegionID2" Type="Int32" />
         </EntityType>
         <EntityType Name="EmpTraining">
           <Key>
@@ -4642,6 +4591,8 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="ProvinceDistrict" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Municipality" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="zipcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="countryID" Type="Int32" />
+          <Property Name="regionID" Type="Int32" />
         </EntityType>
         <EntityType Name="vw_OtherHighValueCropsAreaAndProduction">
           <Key>
@@ -4756,6 +4707,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="RegionalDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProvinceDistrict" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Capital" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" />
         </EntityType>
         <EntityType Name="vw_RegionList">
           <Key>
@@ -4765,6 +4717,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="CountryID" Type="Int32" />
           <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RegionalDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="vw_ReligiousAffiliation">
           <Key>
@@ -4849,7 +4802,6 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="EmpCertificates" EntityType="Self.EmpCertificate" />
           <EntitySet Name="EmpEducationHistories" EntityType="Self.EmpEducationHistory" />
           <EntitySet Name="EmpFamilyBackGrounds" EntityType="Self.EmpFamilyBackGround" />
-          <EntitySet Name="EmpMasterProfiles" EntityType="Self.EmpMasterProfile" />
           <EntitySet Name="EmpTrainings" EntityType="Self.EmpTraining" />
           <EntitySet Name="EmpVolunteers" EntityType="Self.EmpVolunteer" />
           <EntitySet Name="EmpWorkHistories" EntityType="Self.EmpWorkHistory" />
@@ -5022,6 +4974,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySet Name="ref_LGULevel" EntityType="kalingaPPDOModel.ref_LGULevel" />
           <EntitySet Name="DropDown_Province" EntityType="kalingaPPDOModel.DropDown_Province" />
           <EntitySet Name="DropDown_Regions" EntityType="kalingaPPDOModel.DropDown_Regions" />
+          <EntitySet Name="EmpMasterProfiles" EntityType="kalingaPPDOModel.EmpMasterProfile" />
         </EntityContainer>
         <EntityType Name="vw_appUsers">
           <Key>
@@ -5442,6 +5395,65 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <Property Name="regionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Region" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="EmpMasterProfile">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="namePrefixTitleID" Type="Int32" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nameSuffixTitleID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="ReligionID" Type="Int32" />
+          <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BarangayID" Type="Int32" />
+          <Property Name="MunicipalityID" Type="Int32" />
+          <Property Name="ProvinceID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residentialPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="street2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BarangayID2" Type="Int32" />
+          <Property Name="MunicipalityID2" Type="Int32" />
+          <Property Name="ProvinceID2" Type="Int32" />
+          <Property Name="CountryID2" Type="Int32" />
+          <Property Name="zipCode2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residentialPhoneNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="birthDate" Type="DateTime" Precision="0" />
+          <Property Name="birthPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CivilStatusID" Type="Int32" />
+          <Property Name="CitizenshipID" Type="Int32" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BloodTypeID" Type="Int32" />
+          <Property Name="GSIS" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="HDMF" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PhilHealth" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="SSS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIN" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="LandLineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CellphoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSupervisor" Type="Boolean" />
+          <Property Name="FirstApprover" Type="Int32" />
+          <Property Name="SecondApprover" Type="Int32" />
+          <Property Name="IsSeparated" Type="Boolean" />
+          <Property Name="DeptID" Type="Int32" />
+          <Property Name="DepartmentUnitID" Type="Int32" />
+          <Property Name="AppointmentStatusID" Type="Int32" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="DateHired" Type="DateTime" Precision="0" />
+          <Property Name="DateResigned" Type="DateTime" Precision="0" />
+          <Property Name="CurrentSalary" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="DisplayPicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegionID" Type="Int32" />
+          <Property Name="RegionID2" Type="Int32" />
+          <Property Name="YearsInService" Type="Int32" />
+          <Property Name="MonthsInService" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5704,66 +5716,6 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
                 <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmpMasterProfiles">
-            <EntityTypeMapping TypeName="kalingaPPDOModel.EmpMasterProfile">
-              <MappingFragment StoreEntitySet="EmpMasterProfile">
-                <ScalarProperty Name="RegionID2" ColumnName="RegionID2" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="DisplayPicturePath" ColumnName="DisplayPicturePath" />
-                <ScalarProperty Name="empid" ColumnName="empid" />
-                <ScalarProperty Name="empNo" ColumnName="empNo" />
-                <ScalarProperty Name="namePrefixTitleID" ColumnName="namePrefixTitleID" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="nameSuffixTitleID" ColumnName="nameSuffixTitleID" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
-                <ScalarProperty Name="street" ColumnName="street" />
-                <ScalarProperty Name="BarangayID" ColumnName="BarangayID" />
-                <ScalarProperty Name="MunicipalityID" ColumnName="MunicipalityID" />
-                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
-                <ScalarProperty Name="residentialPhoneNo" ColumnName="residentialPhoneNo" />
-                <ScalarProperty Name="street2" ColumnName="street2" />
-                <ScalarProperty Name="BarangayID2" ColumnName="BarangayID2" />
-                <ScalarProperty Name="MunicipalityID2" ColumnName="MunicipalityID2" />
-                <ScalarProperty Name="ProvinceID2" ColumnName="ProvinceID2" />
-                <ScalarProperty Name="CountryID2" ColumnName="CountryID2" />
-                <ScalarProperty Name="zipCode2" ColumnName="zipCode2" />
-                <ScalarProperty Name="residentialPhoneNo2" ColumnName="residentialPhoneNo2" />
-                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
-                <ScalarProperty Name="birthPlace" ColumnName="birthPlace" />
-                <ScalarProperty Name="CivilStatusID" ColumnName="CivilStatusID" />
-                <ScalarProperty Name="CitizenshipID" ColumnName="CitizenshipID" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="BloodTypeID" ColumnName="BloodTypeID" />
-                <ScalarProperty Name="GSIS" ColumnName="GSIS" />
-                <ScalarProperty Name="HDMF" ColumnName="HDMF" />
-                <ScalarProperty Name="PhilHealth" ColumnName="PhilHealth" />
-                <ScalarProperty Name="SSS" ColumnName="SSS" />
-                <ScalarProperty Name="TIN" ColumnName="TIN" />
-                <ScalarProperty Name="LandLineNo" ColumnName="LandLineNo" />
-                <ScalarProperty Name="CellphoneNo" ColumnName="CellphoneNo" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="YearsInService" ColumnName="YearsInService" />
-                <ScalarProperty Name="MonthsInService" ColumnName="MonthsInService" />
-                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
-                <ScalarProperty Name="FirstApprover" ColumnName="FirstApprover" />
-                <ScalarProperty Name="SecondApprover" ColumnName="SecondApprover" />
-                <ScalarProperty Name="IsSeparated" ColumnName="IsSeparated" />
-                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
-                <ScalarProperty Name="DepartmentUnitID" ColumnName="DepartmentUnitID" />
-                <ScalarProperty Name="AppointmentStatusID" ColumnName="AppointmentStatusID" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
-                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
-                <ScalarProperty Name="CurrentSalary" ColumnName="CurrentSalary" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7048,6 +7000,8 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="vw_MunicipalityList">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_MunicipalityList">
               <MappingFragment StoreEntitySet="vw_MunicipalityList">
+                <ScalarProperty Name="regionID" ColumnName="regionID" />
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
                 <ScalarProperty Name="provinceID" ColumnName="provinceID" />
                 <ScalarProperty Name="MunicipalityID" ColumnName="MunicipalityID" />
                 <ScalarProperty Name="RegionalDesignation" ColumnName="RegionalDesignation" />
@@ -7169,6 +7123,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="vw_ProvinceList">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_ProvinceList">
               <MappingFragment StoreEntitySet="vw_ProvinceList">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="provinceID" ColumnName="provinceID" />
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
                 <ScalarProperty Name="RegionalDesignation" ColumnName="RegionalDesignation" />
@@ -7180,6 +7135,7 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
           <EntitySetMapping Name="vw_RegionList">
             <EntityTypeMapping TypeName="kalingaPPDOModel.vw_RegionList">
               <MappingFragment StoreEntitySet="vw_RegionList">
+                <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="regionID" ColumnName="regionID" />
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="RegionName" ColumnName="RegionName" />
@@ -7697,6 +7653,66 @@ warning 6002: The table/view 'kalingaPPDO.dbo.vw_VolunteerList' does not have a 
               <MappingFragment StoreEntitySet="DropDown_Regions">
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="regionID" ColumnName="regionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpMasterProfiles">
+            <EntityTypeMapping TypeName="kalingaPPDOModel.EmpMasterProfile">
+              <MappingFragment StoreEntitySet="EmpMasterProfile">
+                <ScalarProperty Name="MonthsInService" ColumnName="MonthsInService" />
+                <ScalarProperty Name="YearsInService" ColumnName="YearsInService" />
+                <ScalarProperty Name="RegionID2" ColumnName="RegionID2" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="DisplayPicturePath" ColumnName="DisplayPicturePath" />
+                <ScalarProperty Name="CurrentSalary" ColumnName="CurrentSalary" />
+                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
+                <ScalarProperty Name="DateHired" ColumnName="DateHired" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="AppointmentStatusID" ColumnName="AppointmentStatusID" />
+                <ScalarProperty Name="DepartmentUnitID" ColumnName="DepartmentUnitID" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="IsSeparated" ColumnName="IsSeparated" />
+                <ScalarProperty Name="SecondApprover" ColumnName="SecondApprover" />
+                <ScalarProperty Name="FirstApprover" ColumnName="FirstApprover" />
+                <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="CellphoneNo" ColumnName="CellphoneNo" />
+                <ScalarProperty Name="LandLineNo" ColumnName="LandLineNo" />
+                <ScalarProperty Name="TIN" ColumnName="TIN" />
+                <ScalarProperty Name="SSS" ColumnName="SSS" />
+                <ScalarProperty Name="PhilHealth" ColumnName="PhilHealth" />
+                <ScalarProperty Name="HDMF" ColumnName="HDMF" />
+                <ScalarProperty Name="GSIS" ColumnName="GSIS" />
+                <ScalarProperty Name="BloodTypeID" ColumnName="BloodTypeID" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="CitizenshipID" ColumnName="CitizenshipID" />
+                <ScalarProperty Name="CivilStatusID" ColumnName="CivilStatusID" />
+                <ScalarProperty Name="birthPlace" ColumnName="birthPlace" />
+                <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+                <ScalarProperty Name="residentialPhoneNo2" ColumnName="residentialPhoneNo2" />
+                <ScalarProperty Name="zipCode2" ColumnName="zipCode2" />
+                <ScalarProperty Name="CountryID2" ColumnName="CountryID2" />
+                <ScalarProperty Name="ProvinceID2" ColumnName="ProvinceID2" />
+                <ScalarProperty Name="MunicipalityID2" ColumnName="MunicipalityID2" />
+                <ScalarProperty Name="BarangayID2" ColumnName="BarangayID2" />
+                <ScalarProperty Name="street2" ColumnName="street2" />
+                <ScalarProperty Name="residentialPhoneNo" ColumnName="residentialPhoneNo" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="MunicipalityID" ColumnName="MunicipalityID" />
+                <ScalarProperty Name="BarangayID" ColumnName="BarangayID" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="nameSuffixTitleID" ColumnName="nameSuffixTitleID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="namePrefixTitleID" ColumnName="namePrefixTitleID" />
+                <ScalarProperty Name="empNo" ColumnName="empNo" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

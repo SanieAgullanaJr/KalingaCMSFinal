@@ -1,35 +1,61 @@
-﻿@model KalingaCMSFinal.Models.ref_Position
+﻿@model Tuple<KalingaCMSFinal.Models.ref_Position, IEnumerable<KalingaCMSFinal.Models.ref_Position>>
 
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Position</h4>
+        <h2>Position</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PositionDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PositionDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PositionDescription, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Item1.PositionDescription, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.Item1.PositionDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Item1.PositionDescription, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-
+        <br/>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-0 col-md-5">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+<br/>
+<table class="table table-striped table-bordered" id="PositionTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item1.PositionDescription)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Item2)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }, new { @class = "modalOpener editModal btn btn-info btn-sm glyphicon glyphicon-edit", @data_target = "editModal" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PositionID }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div id="mainContent" class="modal-content col-sm-12">
@@ -40,9 +66,9 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#LivestockPoultryTable').DataTable({
+            $('#PositionTable').DataTable({
             });
-            $('#LivestockPoultryTable').on("click", ".modalOpener", function (e) {
+            $('#PositionTable').on("click", ".modalOpener", function (e) {
                 e.preventDefault();
                 //replace the get with this.href to load the edit page
                 $.get(this.href, function (data) {

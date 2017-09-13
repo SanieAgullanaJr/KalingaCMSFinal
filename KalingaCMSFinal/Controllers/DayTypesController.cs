@@ -38,7 +38,7 @@ namespace KalingaCMSFinal.Controllers
         // GET: DayTypes/Create
         public ActionResult Create()
         {
-            return View();
+            return View(Tuple.Create<ref_DayType, IEnumerable<ref_DayType>>(new ref_DayType(), db.ref_DayType.ToList()));
         }
 
         // POST: DayTypes/Create
@@ -46,13 +46,13 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DayTypeID,DayTypeCode,DayTypeDescription")] ref_DayType ref_DayType)
+        public ActionResult Create([Bind(Prefix="Item1", Include = "DayTypeID,DayTypeCode,DayTypeDescription")] ref_DayType ref_DayType)
         {
             if (ModelState.IsValid)
             {
                 db.ref_DayType.Add(ref_DayType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(ref_DayType);
@@ -84,7 +84,7 @@ namespace KalingaCMSFinal.Controllers
             {
                 db.Entry(ref_DayType).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(ref_DayType);
         }
@@ -112,7 +112,7 @@ namespace KalingaCMSFinal.Controllers
             ref_DayType ref_DayType = db.ref_DayType.Find(id);
             db.ref_DayType.Remove(ref_DayType);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)
