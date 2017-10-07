@@ -12,14 +12,12 @@ namespace KalingaCMSFinal.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Emp_DTRCapture
+    public partial class rep_EmpVacationLeaveReport
     {
-        public int empDTRCaptureID { get; set; }
+        public int LeaveCreditID { get; set; }
         public Nullable<int> empID { get; set; }
-        public string empNo { get; set; }
-        public string LogType { get; set; }
-        public Nullable<System.DateTime> DTRDate { get; set; }
-        public string DTRTime { get; set; }
-        public byte[] DTRTimeStamp { get; set; }
+        public Nullable<int> LeaveTypeID { get; set; }
+        public Nullable<System.DateTime> AcquiredDate { get; set; }
+        public Nullable<decimal> LeaveHrs { get; set; }
     }
 }

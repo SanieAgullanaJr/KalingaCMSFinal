@@ -1,0 +1,390 @@
+﻿@model KalingaCMSFinal.Models.EmpOvertime
+
+@{
+    ViewBag.Title = "Create";
+}
+<h2>Overtime Application</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-9">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        @Html.LabelFor(model => model.empID, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.DropDownListFor(model => model.empID, ViewBag.Employees as SelectList, "--Select Employee--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.empID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.AttendanceDetailDTRId, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.AttendanceDetailDTRId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AttendanceDetailDTRId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AttendanceDate, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.AttendanceDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AttendanceDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.In1, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.In1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.In1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.Out1, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.Out1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Out1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        @Html.LabelFor(model => model.OTReason, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.TextAreaFor(model => model.OTReason, new { @class = "form-control", rows = "6", cols = "10" })
+                            @Html.ValidationMessageFor(model => model.OTReason, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.AppliedOTHoursCHAR, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.AppliedOTHoursCHAR, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AppliedOTHoursCHAR, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.AppliedOTHoursDEC)
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(model => model.SupervisorID, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.DropDownListFor(model => model.SupervisorID, ViewBag.Supervisors as SelectList, "--Select Supervisor--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SupervisorID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-10">
+                        @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-md-2">
+                        <label class="checkbox-inline">
+                            @Html.CheckBoxFor(model => model.IsApproved)
+                            @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
+                            Approved
+                        </label>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label class="checkbox-inline">
+                            @Html.CheckBoxFor(model => model.IsDenied)
+                            @Html.ValidationMessageFor(model => model.IsDenied, "", new { @class = "text-danger" })
+                            Denied
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.DateApproved, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.DateApproved, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateApproved, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.DateApplied, htmlAttributes: new { @class = "control-label " })
+                        <div>
+                            @Html.EditorFor(model => model.DateApplied, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateApplied, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        <input type="submit" value="Save" class="btn btn-default SubmitBtn" name="Create" id="Create" />
+                        <input type="submit" value="Update" class="btn btn-default SubmitBtn" name="Edit" id="Edit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<hr />
+<center><h4>Applied OT History</h4></center>
+<table class="table table-bordered table-striped" id="AppliedOTHistoryTable">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Date Filed</th>
+            <th>Attendance Date</th>
+            <th>Applied Hours</th>
+            <th>Login</th>
+            <th>Logout</th>
+            <th>Approved By</th>
+            <th>Approved</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br />
+<center><h4>OT Work from DTR</h4></center>
+<table class="table table-bordered table-striped" id="OTWorkFromDTR">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Attendance Date</th>
+            <th>Login</th>
+            <th>Logout</th>
+            <th>Computed OT Hours</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#AppliedOTHistoryTable').on("click", ".modalOpener", function (e) {
+                e.preventDefault();
+                //replace the get with this.href to load the edit page
+                $.get(this.href, function (data) {
+                    //replace the content returned
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('#myModal').modal({
+                    keyboard: true,
+                }, 'show');
+                return false;
+            });
+            $("#AppliedOTHoursCHAR").keyup(function () {
+                $("#AppliedOTHoursDEC").val($(this).val());
+            });
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var form = $("#editForm")
+                    .removeData("validator") /* added by the raw jquery.validate plugin */
+                    .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+                $.validator.unobtrusive.parse(form);
+            });
+            $("#IsApproved").on("change", function () {
+                if ($(this).is(":checked")) {
+                    $("#IsDenied").prop("checked", false);
+                }
+            });
+            $("#IsDenied").on("change", function () {
+                if ($(this).is(":checked")) {
+                    $("#IsApproved").prop("checked", false);
+                }
+            });
+            var OTHistoryTable = $('#AppliedOTHistoryTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
+            });
+            var OTDTR = $('#OTWorkFromDTR').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                }
+            });
+            $("#OTWorkFromDTR,#AppliedOTHistoryTable").on("click", ".Enabler", function (e) {
+                e.preventDefault();
+                if ($("#empID").val() != "") {
+                    $(":input").prop("disabled", false);
+                }
+                else {
+                    $(":input:not([name=empID])").prop("disabled", true);
+                }
+            });
+            $("#OTWorkFromDTR").on("click", ".ApplyForOT", function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("OTWorkFromDTR0", "OvertimeApplication")", { AttendanceDetailDTRId: e.target.id },
+                    function (AttendanceDetailDTRId) {
+                        $.each(AttendanceDetailDTRId, function (index, data) {
+                            var DTRDate = "";
+                            var tempDTRDate = "";
+                            LOGIN = data.LOGIN.replace(":", "");
+                            LOGOUT = data.LOGOUT.replace(":", "");
+                            if (data.DTRDate != null && data.DTRDate != "" && data.DTRDate != 0) {
+                                DTRDate = data.DTRDate.replace(" 12:00:00 AM", "");
+                                DTRDate = DTRDate.replace(/\//g, '-');
+                                tempDTRDate = DTRDate.split("-");
+                                if (tempDTRDate != null && tempDTRDate != "" && tempDTRDate != 0) {
+                                    if (tempDTRDate[1].length == 1) tempDTRDate[1] = "0" + tempDTRDate[1];
+                                    if (tempDTRDate[0].length == 1) tempDTRDate[0] = "0" + tempDTRDate[0];
+                                    DTRDate = tempDTRDate[2] + '-' + tempDTRDate[0] + '-' + tempDTRDate[1];
+                                }
+                                else { DTRDate = "" }
+                                $("#empID").val(data.empID);
+                                $("#AttendanceDetailDTRId").val(data.AttendanceDetailDTRId);
+                                $("#In1").val(LOGIN);
+                                $("#Out1").val(LOGOUT);
+                                $("#AttendanceDate").val(DTRDate);
+                            }
+                        });
+                    });
+            });
+            $("#AppliedOTHistoryTable").on("click", ".editModal", function (e) {
+                e.preventDefault();
+                $.get("@Url.Action("OvertimeApplicationData", "OvertimeApplication")", { empOTID: e.target.id },
+                    function (empOTID) {
+                        $.each(empOTID, function (index, data) {
+                            var DTRDate = "";
+                            var tempDTRDate = "";
+                            if (data.IsApproved == "True") data.IsApproved = 1; else { data.IsApproved = 0 }
+                            if (data.IsDenied == "True") data.IsDenied = 1; else { data.IsDenied = 0 }
+                            LOGIN = data.In1.replace(":", "");
+                            LOGOUT = data.Out1.replace(":", "");
+                            if (data.DTRDate != null && data.DTRDate != "" && data.DTRDate != 0) {
+                                DTRDate = data.DTRDate.replace(" 12:00:00 AM", "");
+                                DTRDate = DTRDate.replace(/\//g, '-');
+                                tempDTRDate = DTRDate.split("-");
+                                if (tempDTRDate != null && tempDTRDate != "" && tempDTRDate != 0) {
+                                    if (tempDTRDate[1].length == 1) tempDTRDate[1] = "0" + tempDTRDate[1];
+                                    if (tempDTRDate[0].length == 1) tempDTRDate[0] = "0" + tempDTRDate[0];
+                                    DTRDate = tempDTRDate[2] + '-' + tempDTRDate[0] + '-' + tempDTRDate[1];
+                                }
+                                else { DTRDate = "" }
+                            }
+                            var DateApproved = "";
+                            var tempDateApproved = "";
+                            if (data.DateApproved != null && data.DateApproved != "" && data.DateApproved != 0) {
+                                DateApproved = data.DateApproved.replace(" 12:00:00 AM", "");
+                                DateApproved = DateApproved.replace(/\//g, '-');
+                                tempDateApproved = DateApproved.split("-");
+                                if (tempDateApproved != null && tempDateApproved != "" && tempDateApproved != 0) {
+                                    if (tempDateApproved[1].length == 1) tempDateApproved[1] = "0" + tempDateApproved[1];
+                                    if (tempDateApproved[0].length == 1) tempDateApproved[0] = "0" + tempDateApproved[0];
+                                    DateApproved = tempDateApproved[2] + '-' + tempDateApproved[0] + '-' + tempDateApproved[1];
+                                }
+                                else { DateApproved = "" }
+                            }
+                            var DateApplied = "";
+                            var tempDateApplied = "";
+                            if (data.DateApplied != null && data.DateApplied != "" && data.DateApplied != 0) {
+                                DateApplied = data.DateApplied.replace(" 12:00:00 AM", "");
+                                DateApplied = DateApplied.replace(/\//g, '-');
+                                tempDateApplied = DateApplied.split("-");
+                                if (tempDateApplied != null && tempDateApplied != "" && tempDateApplied != 0) {
+                                    if (tempDateApplied[1].length == 1) tempDateApplied[1] = "0" + tempDateApplied[1];
+                                    if (tempDateApplied[0].length == 1) tempDateApplied[0] = "0" + tempDateApplied[0];
+                                    DateApplied = tempDateApplied[2] + '-' + tempDateApplied[0] + '-' + tempDateApplied[1];
+                                }
+                                else { DateApplied = "" }
+                            }
+                            $("#empOTID").val(empOTID)
+                            $("#empID").val(data.empID);
+                            $("#AttendanceDetailDTRId").val(data.AttendanceDetailDTRId);
+                            $("#In1").val(LOGIN);
+                            $("#Out1").val(LOGOUT);
+                            $("#DateApplied").val(DateApplied);
+                            $("#DateApproved").val(DateApproved);
+                            $("#IsApproved").prop('checked', data.IsApproved);
+                            $("#IsDenied").prop('checked', data.IsDenied);
+                            $("#AttendanceDate").val(DTRDate);
+                            $("#AppliedOTHoursDEC").val(data.AppliedOTHoursDEC);
+                            $("#AppliedOTHoursCHAR").val(data.AppliedOTHoursCHAR);
+                            $("#SupervisorID").val(data.SupervisorID);
+                            $("#Remarks").val(data.Remarks);
+                            $("#OTReason").val(data.OTReason);
+                        });
+                    });
+            });
+            $(":input:not([name=empID])").prop("disabled", true);
+            $("#empID").on("change", function () {
+                    if ($("#empID").val() != null || $("#empID").val() != "") {
+                        OTHistoryTable.clear().draw();
+                        OTDTR.clear().draw();
+                    $.get("@Url.Action("OvertimeHistory", "OvertimeApplication")", { EmployeeID: $("#empID").val() },
+                        function (empOTID) {
+                            $.each(empOTID, function (index, data) {
+                                var EditButton = "<a href class='Enabler editModal btn btn-info btn-sm glyphicon glyphicon-edit' id='empOTID'>Edit</a>"
+                                var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "empOTID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
+                                EditButton = EditButton.replace("empOTID", parseInt(data.empOTID));
+                                DeleteButton = DeleteButton.replace("empOTID", parseInt(data.empOTID));
+                                DateApplied = data.DateApplied.replace(" 12:00:00 AM", "");
+                                DTRDate = data.DTRDate.replace(" 12:00:00 AM", "");
+                                if (data.IsApproved == "True") { data.IsApproved = "Yes" } else { data.IsApproved = "No" }
+                                OTHistoryTable.row.add([
+                                    data.empOTID,
+                                    DateApplied,
+                                    DTRDate,
+                                    data.AppliedOTHoursCHAR,
+                                    data.LOGIN,
+                                    data.LOGOUT,
+                                    data.SupervisorID,
+                                    data.IsApproved,
+                                    EditButton + "|" + DeleteButton,
+                                ]);
+                                OTHistoryTable.draw();
+                            });
+                            $.get("@Url.Action("OTWorkFromDTR", "OvertimeApplication")", { EmployeeID: $("#empID").val() },
+                                function (AttendanceDetailDTRId) {
+                                    $.each(AttendanceDetailDTRId, function (index, data) {
+                                        var ApplyForOT = "<a href class='Enabler ApplyForOT btn btn-info btn-sm glyphicon glyphicon-edit' id='AttendanceDetailDTRId'>Edit</a>";
+                                ApplyForOT = ApplyForOT.replace("AttendanceDetailDTRId", parseInt(data.AttendanceDetailDTRId));
+                                DTRDate = data.DTRDate.replace(" 12:00:00 AM", "");
+                                if (data.IsApproved == "True") { data.IsApproved = "Yes" } else { data.IsApproved = "No" }
+                                OTDTR.row.add([
+                                    data.AttendanceDetailDTRId,
+                                    DTRDate,
+                                    data.LOGIN,
+                                    data.LOGOUT,
+                                    data.OTHrsDec,
+                                    ApplyForOT,
+                                ]);
+                                OTDTR.draw();
+                            });
+                            });
+                            });
+                    }
+            });
+        });
+    </script>
+}

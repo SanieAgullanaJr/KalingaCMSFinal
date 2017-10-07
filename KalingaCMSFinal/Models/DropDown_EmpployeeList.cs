@@ -16,5 +16,6 @@ namespace KalingaCMSFinal.Models
     {
         public int empid { get; set; }
         public string Fullname { get; set; }
+        public Nullable<System.DateTime> DateHired { get; set; }
     }
 }

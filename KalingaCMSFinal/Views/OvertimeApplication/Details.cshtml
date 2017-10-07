@@ -1,0 +1,122 @@
+﻿@model KalingaCMSFinal.Models.EmpOvertime
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmpOvertime</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.empID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendanceDetailDTRId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendanceDetailDTRId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.In1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.In1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Out1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Out1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OTReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OTReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppliedOTHoursDEC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppliedOTHoursDEC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppliedOTHoursCHAR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppliedOTHoursCHAR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupervisorID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateApplied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateApplied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDenied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDenied)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.empOTID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

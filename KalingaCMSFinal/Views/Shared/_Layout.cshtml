@@ -29,6 +29,7 @@
             @Styles.Render("~/Content/css")
             @Styles.Render("~/Content/DataTables/css/dataTables.bootstrap.min.css")
             @Styles.Render("~/Content/DataTables/css/buttons.bootstrap.min.css")
+            @Styles.Render("~/Content/DataTables/css/select.bootstrap.min.css")
             @Styles.Render("~/Content/jquery/jquery-ui.min.css")
             @Styles.Render("~/Gentel/css/font-awesome/css/font-awesome.min.css")
             @Styles.Render("~/Gentel/css/custom.min.css")
@@ -36,10 +37,6 @@
             @Styles.Render("~/Content/nprogress.css")
             <style>
                 body {
-                    width: 100%;
-                    height: 100%;
-                    margin: 0px;
-                    padding: 0px;
                     overflow: auto;
                 }
 
@@ -63,11 +60,15 @@
                 table {
                     table-layout: fixed;
                     width: 100%;
-                    overflow-x: auto;
+                    overflow: auto;
                 }
 
                 tbody {
                     overflow: auto;
+                }
+
+                .TableHeader {
+                    text-align: center;
                 }
             </style>
         </head>
@@ -233,23 +234,23 @@
                                                 <ul class="nav child_menu">
                                                     <li>@Html.ActionLink("Attendance Cut Off", "Soon", "Dashboard")</li>
                                                     <li>@Html.ActionLink("Attendance Adjustment", "Soon", "Dashboard")</li>
-                                                    <li>@Html.ActionLink("Leave Application", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Leave Application", "Create", "LeaveApplication")</li>
                                                     <li>@Html.ActionLink("OT Application", "Soon", "Dashboard")</li>
                                                 </ul>
                                             </li>
                                             <li>
                                                 <a><i class="fa fa-list"></i> Reports <span class="glyphicon glyphicon-chevron-down"></span></a>
                                                 <ul class="nav child_menu">
-                                                    <li>@Html.ActionLink("Leave Credits Monitoring", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Leave Credits Monitoring", "Index", "LeaveCreditsMonitoring")</li>
                                                     <li><a>Absences and Tardiness</a>
                                                         <ul class="nav child_menu">
-                                                            <li>@Html.ActionLink("Per Employee", "Soon", "Dashboard")</li>
-                                                            <li>@Html.ActionLink("Per Cut Off Date", "Soon", "Dashboard")</li>
+                                                            <li>@Html.ActionLink("Per Employee", "Index", "AbsencesTardinessDetailsPerEmployee")</li>
+                                                            <li>@Html.ActionLink("Per Cut Off Date", "Index", "AbsencesTardinessDetailsPerCutoffDate")</li>
                                                         </ul>
                                                     </li>
-                                                    <li>@Html.ActionLink("Leave Applications", "Soon", "Dashboard")</li>
-                                                    <li>@Html.ActionLink("Employee List", "Soon", "Dashboard")</li>
-                                                    <li>@Html.ActionLink("Employee Salary History", "Soon", "Dashboard")</li>
+                                                    <li>@Html.ActionLink("Leave Applications", "Index", "LeaveApplicationsSummaryReport")</li>
+                                                    <li>@Html.ActionLink("Employee List", "Index", "EmployeeList")</li>
+                                                    <li>@Html.ActionLink("Employee Salary History", "Index", "EmployeeSalaryHistory")</li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -460,12 +461,16 @@
             @Scripts.Render("~/Scripts/flot/jquery.flot.min.js")
             @Scripts.Render("~/Scripts/flot/jquery.flot.pie.min.js")
             @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.min.js")
-            @Scripts.Render("~/Scripts/DataTables/dataTables.buttons.min.js")
+            @Scripts.Render("~/Scripts/DataTables/dataTables.buttons.js")
             @Scripts.Render("~/Scripts/DataTables/buttons.bootstrap.min.js")
-            @Scripts.Render("~/Scripts/DataTables/buttons.print.min.js")
-            @Scripts.Render("~/Scripts/DataTables/buttons.flash.min.js")
+            @Scripts.Render("~/Scripts/DataTables/dataTables.select.min.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.print.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.flash.js")
             @Scripts.Render("~/Scripts/DataTables/buttons.colVis.min.js")
-            @Scripts.Render("~/Scripts/DataTables/buttons.html5.min.js")
+            @Scripts.Render("~/Scripts/DataTables/pdfmake.min.js")
+            @Scripts.Render("~/Scripts/DataTables/vfs_fonts.js")
+            @Scripts.Render("~/Scripts/DataTables/jszip.min.js")
+            @Scripts.Render("~/Scripts/DataTables/buttons.html5.js")
             @Scripts.Render("~/Scripts/bootbox.min.js")
             @Scripts.Render("~/Gentel/js/custom.min.js")
             @Scripts.Render("~/Content/jquery/jquery-ui.min.js")

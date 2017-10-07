@@ -1,0 +1,105 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpOvertime>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.empID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendanceDetailDTRId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.In1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Out1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OTReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppliedOTHoursDEC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppliedOTHoursCHAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupervisorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDenied)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.empID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendanceDetailDTRId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.In1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Out1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OTReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppliedOTHoursDEC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppliedOTHoursCHAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupervisorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateApplied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDenied)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.empOTID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.empOTID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.empOTID })
+        </td>
+    </tr>
+}
+
+</table>

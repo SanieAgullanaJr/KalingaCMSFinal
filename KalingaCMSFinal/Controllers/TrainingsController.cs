@@ -86,13 +86,16 @@ namespace KalingaCMSFinal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Prefix="Item1", Include = "empTrainID,empID,TrainingTitle,StartDate,EndDate,DurationHours,EventSponsor,EventVenue")] EmpTraining empTraining)
         {
-            if (ModelState.IsValid)
+            if (empTraining.empID != null)
             {
-                db.EmpTrainings.Add(empTraining);
-                db.SaveChanges();
-                return RedirectToAction("Create");
+                if (ModelState.IsValid)
+                {
+                    db.EmpTrainings.Add(empTraining);
+                    db.SaveChanges();
+                    return RedirectToAction("Create");
+                }
             }
-
+            ModelState.AddModelError("", "Search for and employee first before saving data!");
             return View(empTraining);
         }
 

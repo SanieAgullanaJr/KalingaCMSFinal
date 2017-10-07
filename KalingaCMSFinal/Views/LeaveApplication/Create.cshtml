@@ -1,0 +1,442 @@
+﻿@model KalingaCMSFinal.Models.EmpLeaveApplication
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "LeaveApplication", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Leave Application</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.empID, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.DropDownListFor(model => model.empID, ViewBag.Employees as SelectList, "--Select Employee--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.empID, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.empLeaveAppID)
+                                    @Html.HiddenFor(model => model.empAttendanceMainID)
+                                    @Html.HiddenFor(model => model.AttendanceDetailDTRId)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(model => model.LeaveTypeID, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.DropDownListFor(model => model.LeaveTypeID, ViewBag.LeaveTypes as SelectList, "--Select Leave Type--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LeaveTypeID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.LeaveReason, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.TextAreaFor(model => model.LeaveReason, new { @class = "form-control", rows = "6", cols = "10" })
+                                    @Html.ValidationMessageFor(model => model.LeaveReason, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.DateFiled, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.DateFiled, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.DateFiled, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.AppliedHours, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.AppliedHours, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AppliedHours, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.ApprovedDate, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.ApprovedDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.ApprovedDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(model => model.ApprovedBy, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.DropDownListFor(model => model.ApprovedBy, ViewBag.Supervisors as SelectList, "--Select Supervisor--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ApprovedBy, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label class="checkbox-inline">
+                                    @Html.CheckBoxFor(model => model.IsApproved)
+                                    @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
+                                    Approved
+                                </label>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label class="checkbox-inline">
+                                    @Html.CheckBoxFor(model => model.IsWithPay)
+                                    @Html.ValidationMessageFor(model => model.IsWithPay, "", new { @class = "text-danger" })
+                                    With Pay
+                                </label>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label class="checkbox-inline">
+                                    @Html.CheckBoxFor(model => model.IsCancelled)
+                                    @Html.ValidationMessageFor(model => model.IsCancelled, "", new { @class = "text-danger" })
+                                    Cancelled
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label " })
+                                <div>
+                                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped" id="LeaveBalanceTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" class="TableHeader">Leave Balance</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Days</th>
+                                            <th>Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="LeaveBalanceTableData"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered table-striped" id="OffsetBalanceTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" class="TableHeader">Offset Balance</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Days</th>
+                                            <th>Hours</th>
+                                            <th>Expiration Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="OffsetBalanceTableData"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-5">
+                        <input type="submit" value="Save" class="btn btn-default SubmitBtn" name="Create" id="Create" />
+                        <input type="submit" value="Update" class="btn btn-default SubmitBtn" name="Edit" id="Edit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<table class="table table-bordered table-striped" id="LeaveApplicationTable">
+    <thead>
+        <tr>
+            <th>
+                No.
+            </th>
+            <th>
+                Leave Type
+            </th>
+            <th>
+                Date Filed
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Applied Hours
+            </th>
+            <th>
+                Approved
+            </th>
+            <th>
+                With Pay
+            </th>
+            <th>
+                Cancelled
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody id="LeaveApplicationTableData"></tbody>
+</table>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $(".SubmitBtn").on("click", function () {
+                if ($("#empID").val() == "") {
+                    alert("Search for an Employee first before saving a data!");
+                    return false;
+                };
+            });
+            var d = new Date();
+            var curr_date = d.getDate();
+            var curr_month = d.getMonth()+1;
+            var curr_year = d.getFullYear();
+            var TodayDate = curr_year + "-" + (curr_month < 10 ? '0' : '') + curr_month + "-" + (curr_date < 10 ? '0' : '') + curr_date;
+            $("#DateFiled").val(TodayDate);
+            $("#ApprovedDate").val(TodayDate);
+            var minitable = $('#LeaveBalanceTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: '<"top">t<"bottom"><"clear">',
+                "scrollY": "60px",
+                "scrollCollapse": true,
+                "paging": false
+            });
+            var minitable1 = $('#OffsetBalanceTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: '<"top">t<"bottom"><"clear">',
+                "scrollY": "60px",
+                "scrollCollapse": true,
+                "paging": false,
+            });
+            var table = $('#LeaveApplicationTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+            });
+            $('#LeaveApplicationTable').on("click", ".modalOpener", function (e) {
+                if ($("#empID").val() != null || $("#empID").val() != "") {
+                    $("#DateFiled").val(null);
+                    $("#ApprovedDate").val(null);
+                }
+                e.preventDefault();
+                //replace the get with this.href to load the edit page
+                $.get(this.href, function (data) {
+                    //replace the content returned
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('#myModal').modal({
+                    keyboard: true,
+                }, 'show');
+                return false;
+            });
+            $('#myModal').on('shown.bs.modal', function (e) {
+                var form = $("#editForm")
+                    .removeData("validator") /* added by the raw jquery.validate plugin */
+                    .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+                $.validator.unobtrusive.parse(form);
+            });
+            $("#LeaveApplicationTable").on("click", ".editModal", function (e) {
+                e.preventDefault();
+                $("#DateFiled").attr("readonly", false);
+                $("#ApprovedDate").attr("readonly", false);
+                $.get("@Url.Action("LeaveApplicationData", "LeaveApplication")", { empLeaveAppID: e.target.id },
+                        function (empLeaveAppID) {
+                            $.each(empLeaveAppID, function (index, data) {
+                                var StartDate = "";
+                                var EndDate = "";
+                                var DateFiled = "";
+                                var ApprovedDate = "";
+                                var tempStartDate = "";
+                                var tempEndDate = "";
+                                var tempFiled = "";
+                                var tempApproved = "";
+                                if (data.IsApproved == "True") data.IsApproved = 1; else { data.IsApproved = 0 }
+                                if (data.IsWithPay == "True") data.IsWithPay = 1; else { data.IsWithPay = 0 }
+                                if (data.IsCancelled == "True") data.IsCancelled = 1; else { data.IsCancelled = 0 }
+                                if (data.StartDate != null && data.StartDate != "" && data.StartDate != 0) {
+                                    StartDate = data.StartDate.replace(" 12:00:00 AM", "");
+                                    StartDate = StartDate.replace(/\//g, '-');
+                                    tempStartDate = StartDate.split("-");
+                                    if (tempStartDate != null && tempStartDate != "" && tempStartDate != 0) {
+                                        if (tempStartDate[1].length == 1) tempStartDate[1] = "0" + tempStartDate[1];
+                                        if (tempStartDate[0].length == 1) tempStartDate[0] = "0" + tempStartDate[0];
+                                        StartDate = tempStartDate[2] + '-' + tempStartDate[0] + '-' + tempStartDate[1];
+                                    }
+                                    else { StartDate = "" }
+                                }
+                                if (data.EndDate != null && data.EndDate != "" && data.EndDate != 0) {
+                                    EndDate = data.EndDate.replace(" 12:00:00 AM", "");
+                                    EndDate = EndDate.replace(/\//g, '-');
+                                    tempEnd = EndDate.split("-");
+                                    if (tempEnd != null && tempEnd != "" && tempEnd != 0) {
+                                        if (tempEnd[1].length == 1) tempEnd[1] = "0" + tempEnd[1];
+                                        if (tempEnd[0].length == 1) tempEnd[0] = "0" + tempEnd[0];
+                                        EndDate = tempEnd[2] + '-' + tempEnd[0] + '-' + tempEnd[1];
+                                    }
+                                    else { EndDate = "" }
+                                }
+                                if (data.ApprovedDate != null && data.ApprovedDate != "" && data.ApprovedDate != 0) {
+                                    ApprovedDate = data.ApprovedDate.replace(" 12:00:00 AM", "");
+                                    ApprovedDate = ApprovedDate.replace(/\//g, '-');
+                                    tempApproved = ApprovedDate.split("-");
+                                    if (tempApproved != null && tempApproved != "" && tempApproved != 0) {
+                                        if (tempApproved[1].length == 1) tempApproved[1] = "0" + tempApproved[1];
+                                        if (tempApproved[0].length == 1) tempApproved[0] = "0" + tempApproved[0];
+                                        ApprovedDate = tempApproved[2] + '-' + tempApproved[0] + '-' + tempApproved[1];
+                                    }
+                                    else { ApprovedDate = "" }
+                                }
+                                if (data.DateFiled != null && data.DateFiled != "" && data.DateFiled != 0) {
+                                    DateFiled = data.DateFiled.replace(" 12:00:00 AM", "");
+                                    DateFiled = DateFiled.replace(/\//g, '-');
+                                    tempFiled = DateFiled.split("-");
+                                    if (tempFiled != null && tempFiled != "" && tempFiled != 0) {
+                                        if (tempFiled[1].length == 1) tempFiled[1] = "0" + tempFiled[1];
+                                        if (tempFiled[0].length == 1) tempFiled[0] = "0" + tempFiled[0];
+                                        DateFiled = tempFiled[2] + '-' + tempFiled[0] + '-' + tempFiled[1];
+                                    }
+                                    else { DateFiled = "" }
+                                }
+                                $("#empLeaveAppID").val(data.empLeaveAppID);
+                                $("#empAttendanceMainID").val(data.empAttendanceMainID)
+                                $("#LeaveTypeID").val(data.LeaveType);
+                                $("#LeaveReason").val(data.LeaveReason);
+                                $("#DateFiled").val(DateFiled);
+                                $("#StartDate").val(StartDate);
+                                $("#EndDate").val(EndDate);
+                                $("#AppliedHours").val(data.AppliedHours);
+                                $("#ApprovedDate").val(ApprovedDate);
+                                $("#ApprovedBy").val(data.ApprovedBy);
+                                $("#IsApproved").prop('checked', data.IsApproved);
+                                $("#IsWithPay").prop('checked', data.IsWithPay);
+                                $("#IsCancelled").prop('checked', data.IsCancelled);
+                                $("#Remarks").val(data.Remarks);
+                                $("#StampTime").val(data.StampTime);
+                            });
+                        });
+            });
+            $("#empID").on("change", function (e) {
+                if ($("#empID").val() != null || $("#empID").val() != "") {
+                    table.clear().draw();
+                    minitable1.clear().draw();
+                    minitable.clear().draw();
+                    $.get("@Url.Action("LeaveHistory", "LeaveApplication")", { EmployeeID: $("#empID").val() },
+                        function (empLeaveAppID) {
+                            $.each(empLeaveAppID, function (index, data) {
+                                var EditButton = "<a href class='editModal btn btn-info btn-sm glyphicon glyphicon-edit' id='empLeaveAppID'>Edit</a>"
+                                var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "empLeaveAppID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
+                                EditButton = EditButton.replace("empLeaveAppID", parseInt(data.empLeaveAppID));
+                                DeleteButton = DeleteButton.replace("empLeaveAppID", parseInt(data.empLeaveAppID));
+                                StartDate = data.StartDate.replace(" 12:00:00 AM", "");
+                                EndDate = data.EndDate.replace(" 12:00:00 AM", "");
+                                DateFiled = data.DateFiled.replace(" 12:00:00 AM", "");
+                                if (data.IsWithPay == "True") { data.IsWithPay = "Yes" } else { data.IsWithPay = "No" }
+                                if (data.IsApproved == "True") { data.IsApproved = "Yes" } else { data.IsApproved = "No" }
+                                if (data.IsCancelled == "True") { data.IsCancelled = "Yes" } else { data.IsCancelled = "No" }
+                                table.row.add([
+                                    data.empLeaveAppID,
+                                    data.LeaveTypeDescription,
+                                    DateFiled,
+                                    StartDate,
+                                    EndDate,
+                                    data.AppliedHours,
+                                    data.IsWithPay,
+                                    data.IsApproved,
+                                    data.IsCancelled,
+                                    EditButton + "|" + DeleteButton,
+                                ]);
+                                table.draw();
+                            });
+                            $.get("@Url.Action("OffsetBalance", "LeaveApplication")", { EmployeeID: $("#empID").val() },
+                                function (empID) {
+                                    
+                                    $.each(empID, function (index, data) {
+                                    ExpirationDate = data.ExpirationDate.replace(" 12:00:00 AM", "");
+                                    minitable1.row.add([
+                                        data.Hours,
+                                        data.Days,
+                                        ExpirationDate,
+                                    ]).draw();
+                                });
+                                });
+                             $.get("@Url.Action("LeaveBalance", "LeaveApplication")", { EmployeeID: $("#empID").val() },
+                                 function (empID) {
+                                     
+                                $.each(empID, function (index, data) {
+                                    minitable.row.add([
+                                        data.Hours,
+                                        data.Days,
+                                        data.LeaveType,
+                                    ]).draw();
+                                });
+                            });
+                        });
+                    }
+            });
+        });
+    </script>
+}

@@ -16,7 +16,7 @@ namespace KalingaCMSFinal.Models
     {
         public int empAttendanceMainID { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EmpDate { get; set; }
-        public Nullable<bool> IsPosted { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public bool IsPosted { get; set; }
     }
 }

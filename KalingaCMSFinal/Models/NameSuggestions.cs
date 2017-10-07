@@ -114,6 +114,7 @@ namespace KalingaCMSFinal.Models
         public string StatusDescription { get; set; }
         public string GovernmentService { get; set; }
     }
+
     public class FamilyBackground
     {
         public string empFamBGID { get; set; }
@@ -178,5 +179,150 @@ namespace KalingaCMSFinal.Models
         public string BarangayID { get; set; }
         public string ZipCode { get; set; }
         public string MunicipalityID { get; set; }
+    }
+
+    public class SalaryHistory
+    {
+        public string Department { get; set; }
+        public string DateHired { get; set; }
+        public string DateResigned { get; set; }
+        public string PositionTitle { get; set; }
+        public string MonthlySalary { get; set; }
+        public string SalaryGrade { get; set; }
+        public string StepIncrement { get; set; }
+        public string AppointmentStatus { get; set; }
+        public string GovernmentService { get; set; }
+    }
+
+    public class LeaveApplicationHistory
+    {
+        public string empLeaveAppID { get; set; }
+        public string empID { get; set; }
+        public string empAttendanceMainID { get; set; }
+        public string Fullname { get; set; }
+        public string LeaveTypeDescription { get; set; }
+        public string DateFiled { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string Supervisor { get; set; }
+        public string IsApproved { get; set; }
+        public string IsWithPay { get; set; }
+        public string IsCancelled { get; set; }
+        public string Remarks { get; set; }
+        public string AppliedHours { get; set; }
+    }
+
+    public class LeaveBalance
+    {
+        public string LeaveType { get; set; }
+        public string Days { get; set; }
+        public string Hours { get; set; }
+    }
+
+    public class OffsetBalance
+    {
+        public string ExpirationDate { get; set; }
+        public string Days { get; set; }
+        public string Hours { get; set; }
+    }
+
+    public class LeaveApplicationData
+    {
+        public string empLeaveAppID { get; set; }
+        public string empAttendanceMainID { get; set; }
+        public string LeaveType { get; set; }
+        public string LeaveReason { get; set; }
+        public string DateFiled { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string AppliedHours { get; set; }
+        public string ApprovedDate { get; set; }
+        public string ApprovedBy { get; set; }
+        public string IsApproved { get; set; }
+        public string IsWithPay { get; set; }
+        public string IsCancelled { get; set; }
+        public string Remarks { get; set; }
+        public string StampTime { get; set; }
+    }
+
+    public class LeaveCreditsData
+    {
+        public string VLID { get; set; }
+        public string SLID { get; set; }
+        public string OSID { get; set; }
+        public string VLDateAcquired { get; set; }
+        public string VLEarnedHours { get; set; }
+        public string SLDateAcquired { get; set; }
+        public string SLEarnedHours { get; set; }
+        public string OSDateAcquired { get; set; }
+        public string OSEarnedHours { get; set; }
+    }
+
+    public class AbsencesAndTardiness
+    {
+        public string empAttendanceMainID { get; set; }
+        public string NameDate { get; set; }
+        public string DTRDate { get; set; }
+        public string empID { get; set; }
+        public string LOGIN { get; set; }
+        public string LOGOUT { get; set; }
+        public string AbsHrs { get; set; }
+        public string AbsHrsDec { get; set; }
+        public string LateHrs { get; set; }
+        public string LateHrsDec { get; set; }
+        public string UnderTimeHours { get; set; }
+        public string UnderTimeHoursDec { get; set; }
+        public string LeaveTypeCode { get; set; }
+        public string OTHrs { get; set; }
+        public string OTHrsDec { get; set; }
+    }
+
+    public class OvertimeApplicationData
+    {
+        public string empOTID { get; set; }
+        public string empID { get; set; }
+        public string AttendanceDetailDTRId { get; set; }
+        public string In1 { get; set; }
+        public string Out1 { get; set; }
+        public string OTReason { get; set; }
+        public string AppliedOTHoursDec { get; set; }
+        public string AppliedOTHoursCHAR { get; set; }
+        public string SupervisorID { get; set; }
+        public string Remarks { get; set; }
+        public string DateApproved { get; set; }
+        public string DateApplied { get; set; }
+        public string IsApproved { get; set; }
+        public string IsDenied { get; set; }
+        public string DTRDate { get; set; }
+    }
+
+    public class OvertimeHistory
+    {
+        public string empOTID { get; set; }
+        public string empID { get; set; }
+        public string DateApplied { get; set; }
+        public string AttendanceDetailDTRId { get; set; }
+        public string DTRDate { get; set; }
+        public string LOGIN { get; set; }
+        public string LOGOUT { get; set; }
+        public string AppliedOTHoursDEC { get; set; }
+        public string AppliedOTHoursCHAR { get; set; }
+        public string SupervisorID { get; set; }
+        public string IsApproved { get; set; }
+        public string IsDenied { get; set; }
+        public string DateApproved { get; set; }
+    }
+
+    public class OTWorkFromDTR
+    {
+        public string AttendanceDetailDTRId { get; set; }
+        public string empAttendanceMainID { get; set; }
+        public string empID { get; set; }
+        public string NameDate { get; set; }
+        public string DTRDate { get; set; }
+        public string LOGIN { get; set; }
+        public string LOGOUT { get; set; }
+        public string OTHrs { get; set; }
+        public string OTHrsDec { get; set; }
     }
 }

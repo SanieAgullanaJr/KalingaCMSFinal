@@ -516,6 +516,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            var country, region, province, municipality, barangay;
+            var country2, region2, province2, municipality2, barangay2;
              $("#txtSearch").autocomplete({
                 source: '@Url.Action("Search","PersonnelDataSheet")'
             });
@@ -577,18 +579,28 @@
                                 $("#GenderID").val(data.Gender);
                                 $("#ReligionID").val(data.Religion);
                                 $("#CountryID").val(data.Country);
+                                country = data.Country;
                                 $("#RegionID").val(data.Region);
+                                region = data.Region;
                                 $("#ProvinceID").val(data.Province);
+                                province = data.Province;
                                 $("#MunicipalityID").val(data.Municipality);
+                                municipality = data.Municipality;
                                 $("#BarangayID").val(data.Barangay);
+                                barangay = data.Barangay;
                                 $("#street").val(data.Street);
                                 $("#zipCode").val(data.ZipCode);
                                 $("#residentialPhoneNo").val(data.Telephone);
                                 $("#CountryID2").val(data.Country2);
+                                country2 = data.Country2;
                                 $("#RegionID2").val(data.Region2);
+                                region2 = data.Region2;
                                 $("#ProvinceID2").val(data.Province2);
+                                province2 = data.Province2;
                                 $("#MunicipalityID2").val(data.Municipality2);
+                                municipality2 = data.Municipality2;
                                 $("#BarangayID2").val(data.Barangay2);
+                                barangay2 = data.Barangay2;
                                 $("#street2").val(data.Street2);
                                 $("#zipCode2").val(data.ZipCode2);
                                 $("#residentialPhoneNo2").val(data.Telephone2);
@@ -624,9 +636,75 @@
                                 PicturePath = data.DisplayPicturePath.replace("~", "..");
                                 $("#ProfilePicture").attr("src", PicturePath);
                             });
+                            $.get("@Url.Action("GetRegionList", "PersonnelDataSheet")", { CountryID: country }, function (data) {
+                        $("#RegionID").empty();
+                        $("#RegionID").append("<option value=''>Region</option>")
+                        $.each(data, function (index, row) {
+                            $("#RegionID").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                        });
+                        $("#RegionID").val(region);
+                         $.get("@Url.Action("GetProvinceList", "PersonnelDataSheet")", { RegionID: region }, function (data) {
+                            $("#ProvinceID").empty();
+                            $("#ProvinceID").append("<option value=''>Province</option>")
+                            $.each(data, function (index, row) {
+                                $("#ProvinceID").append("<option value='" + row.provinceID + "'>" + row.ProvinceDistrict + "</option>")
+                            });
+                            $("#ProvinceID").val(province);
+                             $.get("@Url.Action("GetMunicipalityList", "PersonnelDataSheet")", { ProvinceID: province }, function (data) {
+                                $("#MunicipalityID").empty();
+                                $("#MunicipalityID").append("<option value=''>Municipality</option>")
+                                $.each(data, function (index, row) {
+                                    $("#MunicipalityID").append("<option value='" + row.MunicipalityID + "'>" + row.Municipality + "</option>")
+                                });
+                                $("#MunicipalityID").val(municipality);
+                                 $.get("@Url.Action("GetBarangayList", "PersonnelDataSheet")", { MunicipalityID: municipality }, function (data) {
+                                    $("#BarangayID").empty();
+                                    $("#BarangayID").append("<option value=''>Barangay</option>")
+                                    $.each(data, function (index, row) {
+                                        $("#BarangayID").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
+                                    });
+                                    $("#BarangayID").val(barangay);
+                                });
+                            });
+                        });
                     });
+                    $.get("@Url.Action("GetRegionList", "PersonnelDataSheet")", { CountryID: country2 }, function (data) {
+                        $("#RegionID2").empty();
+                        $("#RegionID2").append("<option value=''>Region</option>")
+                        $.each(data, function (index, row) {
+                            $("#RegionID2").append("<option value='" + row.regionID + "'>" + row.RegionalDesignation + "</option>")
+                        });
+                        $("#RegionID2").val(region2);
+                        $.get("@Url.Action("GetProvinceList", "PersonnelDataSheet")", { RegionID: region2 }, function (data) {
+                            $("#ProvinceID2").empty();
+                            $("#ProvinceID2").append("<option value=''>Province</option>")
+                            $.each(data, function (index, row) {
+                                $("#ProvinceID2").append("<option value='" + row.provinceID + "'>" + row.ProvinceDistrict + "</option>")
+                            });
+                            $("#ProvinceID2").val(province2)
+                            $.get("@Url.Action("GetMunicipalityList", "PersonnelDataSheet")", { ProvinceID: province2 }, function (data) {
+                                $("#MunicipalityID2").empty();
+                                $("#MunicipalityID2").append("<option value=''>Municipality</option>")
+                                $.each(data, function (index, row) {
+                                    $("#MunicipalityID2").append("<option value='" + row.MunicipalityID + "'>" + row.Municipality + "</option>")
+                                });
+                                $("#MunicipalityID2").val(municipality2);
+                                $.get("@Url.Action("GetBarangayList", "PersonnelDataSheet")", { MunicipalityID: municipality2 }, function (data) {
+                                    $("#BarangayID2").empty();
+                                    $("#BarangayID2").append("<option value=''>Barangay</option>")
+                                    $.each(data, function (index, row) {
+                                        $("#BarangayID2").append("<option value='" + row.barangayID + "'>" + row.Barangay + "</option>")
+                                    });
+                                    $("#BarangayID2").val(barangay2);
+                                });
+                            });
+                        });
+                    });
+                        });
                 });
              });
+
+
             $('#myModal').on('shown.bs.modal', function (e) {
                 var form = $("#editForm")
                     .removeData("validator") /* added by the raw jquery.validate plugin */

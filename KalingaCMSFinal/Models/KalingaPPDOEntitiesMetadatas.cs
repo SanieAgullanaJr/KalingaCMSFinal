@@ -1625,7 +1625,7 @@ namespace KalingaCMSFinal.Models
         [Required]
         [Display(Name = "Date Hired")]
         [DataType(DataType.Date)]
-            
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> StartDate { get; set; }
 
         [Required]
@@ -1692,7 +1692,7 @@ namespace KalingaCMSFinal.Models
         [Required]
         [Display(Name = "Date of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public Nullable<System.DateTime> BirthDate { get; set; }
 
         [Required]
@@ -2136,5 +2136,297 @@ namespace KalingaCMSFinal.Models
         public Nullable<System.DateTime> HolidayDate { get; set; }
         public string DayTypeDescription { get; set; }
         public Nullable<decimal> NoOfHours { get; set; }
+    }
+
+    [MetadataType(typeof(vw_EmployeeSalaryHistoryMetadata))]
+    public partial class vw_EmployeeSalaryHistory
+    {
+    }
+    public class vw_EmployeeSalaryHistoryMetadata
+    {
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Display(Name = "Department/ Agency/ Office/ Company")]
+        public string Company { get; set; }
+
+        [Display(Name = "Date Hired")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM-dd-yyyy}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Display(Name = "Date Resigned")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM-dd-yyyy}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Display(Name = "Position Title")]
+        public string PositionDescription { get; set; }
+
+        [Display(Name = "Monthly Salary")]
+        public Nullable<decimal> MonthlySalary { get; set; }
+
+        [Display(Name = "Salary Grade")]
+        public string SalaryGradeDescription { get; set; }
+
+        [Display(Name = "Step Increment")]
+        public string StepIncrement { get; set; }
+
+        [Display(Name = "Appointment Status")]
+        public string EmpStatusDescription { get; set; }
+
+        [Display(Name = "Gov't Service")]
+        public Nullable<bool> IsGovService { get; set; }
+
+        [Display(Name = "")]
+        public int workID { get; set; }
+    }
+
+    [MetadataType(typeof(vw_EmployeeListMetadata))]
+    public partial class vw_EmployeeList
+    {
+    }
+    public class vw_EmployeeListMetadata
+    {
+        public int empid { get; set; }
+
+        [Display(Name = "Employee Name")]
+        public string EmployeeName { get; set; }
+
+        [Display(Name = "Employee Number")]
+        public string empNo { get; set; }
+
+        [Display(Name = "Position")]
+        public string PositionDescription { get; set; }
+
+        [Display(Name = "Date Hired")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM-dd-yyyy}")]
+        public Nullable<System.DateTime> DateHired { get; set; }
+
+        [Display(Name = "Employment Status")]
+        public string EmpStatusDescription { get; set; }
+
+        [Display(Name = "Department")]
+        public string DeptDescription { get; set; }
+
+        [Display(Name = "Civil Status")]
+        public string CivilStatusDescription { get; set; }
+    }
+
+    [MetadataType(typeof(EmpLeaveApplicationMetadata))]
+    public partial class EmpLeaveApplication
+    {
+    }
+    public class EmpLeaveApplicationMetadata
+    {
+        public int empLeaveAppID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Leave Type")]
+        public Nullable<int> LeaveTypeID { get; set; }
+
+        [Required]
+        [Display(Name = "Leave Reason")]
+        public string LeaveReason { get; set; }
+
+        [Required]
+        [Display(Name = "Date Filed")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> DateFiled { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Applied Hours")]
+        public Nullable<decimal> AppliedHours { get; set; }
+
+        [Required]
+        [Display(Name = "Date Approved")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> ApprovedDate { get; set; }
+
+        [Required]
+        [Display(Name = "Approved By")]
+        public Nullable<int> ApprovedBy { get; set; }
+
+        [Required]
+        [Display(Name = "Approved")]
+        public Nullable<bool> IsApproved { get; set; }
+
+        [Required]
+        [Display(Name = "With Pay")]
+        public Nullable<bool> IsWithPay { get; set; }
+
+        [Required]
+        [Display(Name = "Cancelled")]
+        public Nullable<bool> IsCancelled { get; set; }
+
+        [Required]
+        [Display(Name = "Remarks")]
+        public string Remarks { get; set; }
+
+        public byte[] StampTime { get; set; }
+
+        public Nullable<int> empAttendanceMainID { get; set; }
+    }
+
+    [MetadataType(typeof(Rep_EmpLeaveApplicationMetadata))]
+    public partial class Rep_EmpLeaveApplication
+    {
+    }
+    public class Rep_EmpLeaveApplicationMetadata
+    {
+        public int empLeaveAppID { get; set; }
+
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Full Name")]
+        public string Fullname { get; set; }
+
+        [Required]
+        [Display(Name = "Leave Type")]
+        public string LeaveTypeDescription { get; set; }
+
+        [Required]
+        [Display(Name = "Date Filed")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> DateFiled { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        [Required]
+        [Display(Name = "Supervisor")]
+        public string Supervisor { get; set; }
+
+        [Required]
+        [Display(Name = "IsApproved")]
+        public Nullable<bool> IsApproved { get; set; }
+
+
+        [Required]
+        [Display(Name = "Cancelled")]
+        public Nullable<bool> IsCancelled { get; set; }
+    }
+
+    [MetadataType(typeof(EmpOvertimeMetadata))]
+    public partial class EmpOvertime
+    {
+    }
+    public class EmpOvertimeMetadata
+    {
+        public int empOTID { get; set; }
+
+        [Required]
+        [Display(Name = "Employee Name")]
+        public Nullable<int> empID { get; set; }
+
+        [Required]
+        [Display(Name = "Application No.")]
+        public Nullable<int> AttendanceDetailDTRId { get; set; }
+
+        [Required]
+        [Display(Name = "Login")]
+        public string In1 { get; set; }
+
+        [Required]
+        [Display(Name = "Logout")]
+        public string Out1 { get; set; }
+
+        [Required]
+        [Display(Name = "Reason")]
+        public string OTReason { get; set; }
+
+        [Display(Name = "Applied Hours (Decimal)")]
+        public Nullable<decimal> AppliedOTHoursDEC { get; set; }
+
+        [Required]
+        [Display(Name = "Applied Hours")]
+        public string AppliedOTHoursCHAR { get; set; }
+
+        [Required]
+        [Display(Name = "Approved By")]
+        public Nullable<int> SupervisorID { get; set; }
+
+        [Required]
+        [Display(Name = "Remarks")]
+        public string Remarks { get; set; }
+
+        [Required]
+        [Display(Name = "Date Approved")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> DateApproved { get; set; }
+
+        [Required]
+        [Display(Name = "Date Filed")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> DateApplied { get; set; }
+
+        [Required]
+        [Display(Name = "Approved")]
+        public bool IsApproved { get; set; }
+
+        [Required]
+        [Display(Name = "Denied")]
+        public bool IsDenied { get; set; }
+
+        [Required]
+        [Display(Name = "Attendance Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> AttendanceDate { get; set; }
+    }
+
+    [MetadataType(typeof(EmpAttendanceMainMetadata))]
+    public partial class EmpAttendanceMain
+    {
+    }
+    public class EmpAttendanceMainMetadata
+    {
+        public int empAttendanceMainID { get; set; }
+
+        [Required]
+        [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> StartDate { get; set; }
+
+        [Required]
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        public Nullable<System.DateTime> EndDate { get; set; }
+
+        public bool IsPosted { get; set; }
     }
 }

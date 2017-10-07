@@ -1,0 +1,124 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.vw_EmployeeList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employee List</h2>
+<hr/>
+<table class="table table-striped table-bordered" id="EmployeeListTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.empNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateHired)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpStatusDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CivilStatusDescription)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.empNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PositionDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateHired)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpStatusDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeptDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CivilStatusDescription)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var table = $('#EmployeeListTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        filename: "Employee List",
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
+                        extend: 'excel',
+                        filename: "Employee List",
+                        title: "Employee List",
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: function (xlsx) {
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            $('row:first c', sheet).attr('s', '42');
+                        },
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: "Employee List",
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        title: "Employee List",
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        orientation: 'landscape',
+                        title: "Employee List",
+                        pageSize: 'LEGAL',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+            });
+    </script>
+}

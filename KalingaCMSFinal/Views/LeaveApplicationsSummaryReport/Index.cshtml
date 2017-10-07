@@ -1,0 +1,186 @@
+﻿@model KalingaCMSFinal.Models.SummaryReportSelector
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Leave Applications Summary Report</h2>
+<hr/>
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="Status">Status</label>
+        <div>
+            <select class="form-control" id="Status" name="Status">
+                <option value="">--Status--</option>
+                <option value="1">Approved</option>
+                <option value="0">Denied</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="Year">Year</label>
+        <div>
+            @Html.DropDownListFor(model => model.Year, ViewBag.Years as SelectList, "--Year--", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="Month">Month</label>
+        <div>
+            @Html.DropDownListFor(model => model.Month, new SelectList(" "), "--Month--", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="CutoffDate">Cut-off Date</label>
+        <div>
+            @Html.DropDownListFor(model => model.CutoffDate, new SelectList(" "), "--Cut-off Date--", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped" id="SummaryReportTable">
+    <thead>
+        <tr>
+            <th rowspan="2" class="TableHeader">Name</th>
+            <th rowspan="2" class="TableHeader">Leave Type</th>
+            <th rowspan="2" class="TableHeader">Date Filed</th>
+            <th colspan="2" class="TableHeader">Inclusive Dates</th>
+            <th rowspan="2" class="TableHeader">Applied Hours</th>
+            <th rowspan="2" class="TableHeader">Status</th>
+            <th rowspan="2" class="TableHeader">Approver</th>
+            <th rowspan="2" class="TableHeader">Date of Action</th>
+            <th rowspan="2" class="TableHeader">Reason</th>
+        </tr>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var table = $('#SummaryReportTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        filename: function () { return "Leave Applications Summary Report | Cut-Off Date: " + $("#CutoffDate option:selected").text(); },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        filename: function () { return "Leave Applications Summary Report | Cut-Off Date: " + $("#CutoffDate option:selected").text(); },
+                        title: "Leave Applications Summary Report",
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: function (xlsx) {
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            $('row:first c', sheet).attr('s', '42');
+                        },
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: function () { return "Leave Applications Summary Report | Cut-Off Date: " + $("#CutoffDate option:selected").text(); },
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        title: "Leave Applications Summary Report",
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        header: true
+                    },
+                    {
+                        extend: 'print',
+                        orientation: 'landscape',
+                        title: "Leave Applications Summary Report",
+                        pageSize: 'LEGAL',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+            $("#Year").on("change", function () {
+                $.get("@Url.Action("GetMonth", "LeaveApplicationsSummaryReport")", { Year: parseInt($("#Year option:selected").text()) }, function (data) {
+                    $("#Month").empty();
+                    var Month = [];
+                        $("#Month").append("<option value=''>--Month--</option>")
+                        $.each(data, function (index, row) {
+                            if (Month.indexOf(row.AttendanceMonth) == -1)
+                            {
+                                $("#Month").append("<option value='" + row.AttendanceMonth + "'>" + row.AttendanceMonth + "</option>")
+                                Month.push(row.AttendanceMonth);
+                            }
+                         });
+                    });
+            });
+            $("#Month").on("change", function () {
+                var month = $("#Month").val();
+                var MonthInNumber = 0;
+                if (month == "January") { MonthInNumber = 1; }
+                else if (month == "February") { MonthInNumber = 2; }
+                else if (month == "March") { MonthInNumber = 3; }
+                else if (month == "April") { MonthInNumber = 4; }
+                else if (month == "May") { MonthInNumber = 5; }
+                else if (month == "June") { MonthInNumber = 6; }
+                else if (month == "July") { MonthInNumber = 7; }
+                else if (month == "August") { MonthInNumber = 8; }
+                else if (month == "September") { MonthInNumber = 9; }
+                else if (month == "October") { MonthInNumber = 10; }
+                else if (month == "November") { MonthInNumber = 11; }
+                else if (month == "December") { MonthInNumber = 12; }
+                $.get("@Url.Action("GetCutoff", "LeaveApplicationsSummaryReport")", { Year: $("#Year option:selected").text(), Month: MonthInNumber }, function (data) {
+                    $("#CutoffDate").empty();
+                    $("#CutoffDate").append("<option value=''>--Cut-off Date--</option>")
+                        $.each(data, function (index, row) {
+                            $("#CutoffDate").append("<option value='" + row.empAttendanceMainID + "'>" + row.CutoffDate + "</option>")
+                         });
+                    });
+            });
+            $("#CutoffDate").on("change", function () {
+                table.clear();
+                alert($("#CutoffDate").val())
+                if ($("#CutoffDate").val() != null || $("#CutoffDate").val() != "") {
+                    $.get("@Url.Action("LeaveSummary", "LeaveApplicationsSummaryReport")", { AttendanceID: $("#CutoffDate").val(), Status: $("#Status").val() },
+                        function (AttendanceID) {
+                            $.each(AttendanceID, function (index, data) {
+                                StartDate = data.StartDate.replace(" 12:00:00 AM", "");
+                                EndDate = data.EndDate.replace(" 12:00:00 AM", "");
+                                DateFiled = data.DateFiled.replace(" 12:00:00 AM", "");
+                                DateofAction = data.DateofAction.replace(" 12:00:00 AM", "");
+                                table.row.add([
+                                    data.Name,
+                                    data.LeaveType,
+                                    DateFiled,
+                                    StartDate,
+                                    EndDate,
+                                    data.AppliedHours,
+                                    data.Status,
+                                    data.Approver,
+                                    DateofAction,
+                                    data.Reason 
+                                ]);
+                                table.draw();
+                            });
+                        });
+                }
+            });
+        });
+    </script>
+}

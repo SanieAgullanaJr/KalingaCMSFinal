@@ -120,7 +120,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-5 col-md-5">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" id="SubmitBtn" />
             </div>
         </div>
     </div>
@@ -166,6 +166,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            $("#SubmitBtn").on("click", function () {
+                if ($("#Item1_empID").val() == "") {
+                    alert("Search for an Employee first before saving a data!");
+                    return false;
+                };
+            });
             var table = $('#VoluteersTables').DataTable({
                 language: {
                     emptyTable: "", // 

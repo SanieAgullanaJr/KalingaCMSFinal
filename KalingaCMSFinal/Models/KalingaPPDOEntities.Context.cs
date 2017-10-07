@@ -12,6 +12,8 @@ namespace KalingaCMSFinal.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class kalingaPPDOEntities : DbContext
     {
@@ -25,13 +27,13 @@ namespace KalingaCMSFinal.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AnnualInvestmentProgram> AnnualInvestmentPrograms { get; set; }
         public virtual DbSet<appModule> appModules { get; set; }
         public virtual DbSet<appRole> appRoles { get; set; }
         public virtual DbSet<appUserAccess> appUserAccesses { get; set; }
         public virtual DbSet<appUser> appUsers { get; set; }
         public virtual DbSet<CoffeeProduction> CoffeeProductions { get; set; }
         public virtual DbSet<CornProduction> CornProductions { get; set; }
-        public virtual DbSet<Emp_DTRCapture> Emp_DTRCapture { get; set; }
         public virtual DbSet<Emp_LeaveApplication> Emp_LeaveApplication { get; set; }
         public virtual DbSet<Emp_LeaveApplicationDetail> Emp_LeaveApplicationDetail { get; set; }
         public virtual DbSet<Emp_LeaveBalance> Emp_LeaveBalance { get; set; }
@@ -40,12 +42,21 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<Emp_OffsetApplication> Emp_OffsetApplication { get; set; }
         public virtual DbSet<Emp_OffsetHoursBalance> Emp_OffsetHoursBalance { get; set; }
         public virtual DbSet<Emp_OvertimeApplication> Emp_OvertimeApplication { get; set; }
+        public virtual DbSet<EmpAttendanceDetailDTR> EmpAttendanceDetailDTRs { get; set; }
         public virtual DbSet<EmpAttendanceMain> EmpAttendanceMains { get; set; }
         public virtual DbSet<EmpCertificate> EmpCertificates { get; set; }
+        public virtual DbSet<EmpDTRCapture> EmpDTRCaptures { get; set; }
         public virtual DbSet<EmpEducationHistory> EmpEducationHistories { get; set; }
+        public virtual DbSet<EmpEmploymentRecord> EmpEmploymentRecords { get; set; }
         public virtual DbSet<EmpFamilyBackGround> EmpFamilyBackGrounds { get; set; }
+        public virtual DbSet<EmpLeaveApplication> EmpLeaveApplications { get; set; }
+        public virtual DbSet<EmpLeaveBalance> EmpLeaveBalances { get; set; }
+        public virtual DbSet<EmpLeaveCredit> EmpLeaveCredits { get; set; }
+        public virtual DbSet<EmpMasterProfile> EmpMasterProfiles { get; set; }
+        public virtual DbSet<EmpOffset> EmpOffsets { get; set; }
+        public virtual DbSet<EmpOffsetBalance> EmpOffsetBalances { get; set; }
+        public virtual DbSet<EmpOvertime> EmpOvertimes { get; set; }
         public virtual DbSet<EmpTraining> EmpTrainings { get; set; }
-        public virtual DbSet<EmpVolunteer> EmpVolunteers { get; set; }
         public virtual DbSet<EmpWorkHistory> EmpWorkHistories { get; set; }
         public virtual DbSet<EstablishmentByIndustry> EstablishmentByIndustries { get; set; }
         public virtual DbSet<ForestCoverVegetation> ForestCoverVegetations { get; set; }
@@ -64,8 +75,15 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<PopulationLiteracy10YrsAbove> PopulationLiteracy10YrsAbove { get; set; }
         public virtual DbSet<PopulationMigrationRate> PopulationMigrationRates { get; set; }
         public virtual DbSet<ProjectProfile> ProjectProfiles { get; set; }
+        public virtual DbSet<ProjectSignatory> ProjectSignatories { get; set; }
         public virtual DbSet<ref_AccountCode> ref_AccountCode { get; set; }
         public virtual DbSet<ref_AgeGroup> ref_AgeGroup { get; set; }
+        public virtual DbSet<ref_AIP1stLevelSector> ref_AIP1stLevelSector { get; set; }
+        public virtual DbSet<ref_AIP2ndLevel> ref_AIP2ndLevel { get; set; }
+        public virtual DbSet<ref_AIP3rdLevel> ref_AIP3rdLevel { get; set; }
+        public virtual DbSet<ref_AIP4thLevel> ref_AIP4thLevel { get; set; }
+        public virtual DbSet<ref_AIP5thLevel> ref_AIP5thLevel { get; set; }
+        public virtual DbSet<ref_AIP6thLevel> ref_AIP6thLevel { get; set; }
         public virtual DbSet<ref_AppointmentStatus> ref_AppointmentStatus { get; set; }
         public virtual DbSet<ref_AreabySector> ref_AreabySector { get; set; }
         public virtual DbSet<ref_Barangay> ref_Barangay { get; set; }
@@ -88,6 +106,7 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<ref_HighValueCrop> ref_HighValueCrop { get; set; }
         public virtual DbSet<ref_Holiday> ref_Holiday { get; set; }
         public virtual DbSet<ref_ImplementingDepartment> ref_ImplementingDepartment { get; set; }
+        public virtual DbSet<ref_ImplementingDept> ref_ImplementingDept { get; set; }
         public virtual DbSet<ref_IndustryClassification> ref_IndustryClassification { get; set; }
         public virtual DbSet<ref_InvolvementType> ref_InvolvementType { get; set; }
         public virtual DbSet<ref_LandCoverClassification> ref_LandCoverClassification { get; set; }
@@ -102,6 +121,7 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<ref_Municipality> ref_Municipality { get; set; }
         public virtual DbSet<ref_NamePrefix> ref_NamePrefix { get; set; }
         public virtual DbSet<ref_NameSuffix> ref_NameSuffix { get; set; }
+        public virtual DbSet<ref_OfficeType> ref_OfficeType { get; set; }
         public virtual DbSet<ref_OfficialCode> ref_OfficialCode { get; set; }
         public virtual DbSet<ref_Origins> ref_Origins { get; set; }
         public virtual DbSet<ref_Position> ref_Position { get; set; }
@@ -124,24 +144,63 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<WorkersByClass> WorkersByClasses { get; set; }
         public virtual DbSet<WorkersByMajorIndustry> WorkersByMajorIndustries { get; set; }
         public virtual DbSet<WorkersByMajorOCcupation> WorkersByMajorOCcupations { get; set; }
+        public virtual DbSet<ref_LGULevel> ref_LGULevel { get; set; }
         public virtual DbSet<DropDown_AcountCode> DropDown_AcountCode { get; set; }
+        public virtual DbSet<DropDown_AIPLevel1> DropDown_AIPLevel1 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel2> DropDown_AIPLevel2 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel3> DropDown_AIPLevel3 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel4> DropDown_AIPLevel4 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel5> DropDown_AIPLevel5 { get; set; }
+        public virtual DbSet<DropDown_AIPLevel6> DropDown_AIPLevel6 { get; set; }
         public virtual DbSet<DropDown_AppUsers> DropDown_AppUsers { get; set; }
+        public virtual DbSet<DropDown_AttendanceCutOff> DropDown_AttendanceCutOff { get; set; }
+        public virtual DbSet<DropDown_AttendanceMonth> DropDown_AttendanceMonth { get; set; }
+        public virtual DbSet<DropDown_AttendanceYear> DropDown_AttendanceYear { get; set; }
         public virtual DbSet<DropDown_Barangay> DropDown_Barangay { get; set; }
         public virtual DbSet<DropDown_BDIPMunicipality> DropDown_BDIPMunicipality { get; set; }
         public virtual DbSet<DropDown_ClimateChangeAdaptation> DropDown_ClimateChangeAdaptation { get; set; }
         public virtual DbSet<DropDown_ClimateChangeMitigation> DropDown_ClimateChangeMitigation { get; set; }
+        public virtual DbSet<DropDown_EmpployeeList> DropDown_EmpployeeList { get; set; }
         public virtual DbSet<DropDown_ImplementingDepartment> DropDown_ImplementingDepartment { get; set; }
+        public virtual DbSet<DropDown_ImplementingOffice> DropDown_ImplementingOffice { get; set; }
+        public virtual DbSet<DropDown_LeaveType> DropDown_LeaveType { get; set; }
+        public virtual DbSet<DropDown_LGULevel> DropDown_LGULevel { get; set; }
         public virtual DbSet<DropDown_Municipality> DropDown_Municipality { get; set; }
+        public virtual DbSet<DropDown_OfficeType> DropDown_OfficeType { get; set; }
         public virtual DbSet<DropDown_OfficialCode> DropDown_OfficialCode { get; set; }
         public virtual DbSet<Dropdown_PriorityArea> Dropdown_PriorityArea { get; set; }
         public virtual DbSet<DropDown_ProgramCode> DropDown_ProgramCode { get; set; }
+        public virtual DbSet<DropDown_Province> DropDown_Province { get; set; }
+        public virtual DbSet<DropDown_Regions> DropDown_Regions { get; set; }
         public virtual DbSet<DropDown_SectoralCode> DropDown_SectoralCode { get; set; }
         public virtual DbSet<DropDown_SourceofFund> DropDown_SourceofFund { get; set; }
+        public virtual DbSet<DropDown_StrategicPriority> DropDown_StrategicPriority { get; set; }
         public virtual DbSet<DropDown_SupervisorList> DropDown_SupervisorList { get; set; }
         public virtual DbSet<DropDown_TypologyCode> DropDown_TypologyCode { get; set; }
+        public virtual DbSet<DropDown_TypologyCode2> DropDown_TypologyCode2 { get; set; }
+        public virtual DbSet<rep_AbsencesTardinessDetailsPerEmployee> rep_AbsencesTardinessDetailsPerEmployee { get; set; }
+        public virtual DbSet<rep_AbsencesTardinessDetailsPerEmployee2> rep_AbsencesTardinessDetailsPerEmployee2 { get; set; }
+        public virtual DbSet<rep_AIPLevel2> rep_AIPLevel2 { get; set; }
+        public virtual DbSet<rep_AIPLevel3> rep_AIPLevel3 { get; set; }
+        public virtual DbSet<rep_AIPLevel4> rep_AIPLevel4 { get; set; }
+        public virtual DbSet<rep_AIPLevel5> rep_AIPLevel5 { get; set; }
+        public virtual DbSet<rep_AIPLevel6> rep_AIPLevel6 { get; set; }
+        public virtual DbSet<rep_AttendancePerEmployee> rep_AttendancePerEmployee { get; set; }
+        public virtual DbSet<Rep_EmpLeaveApplication> Rep_EmpLeaveApplication { get; set; }
+        public virtual DbSet<rep_EmpOffsetReport> rep_EmpOffsetReport { get; set; }
+        public virtual DbSet<rep_EmpSickLeaveReport> rep_EmpSickLeaveReport { get; set; }
+        public virtual DbSet<rep_EmpVacationLeaveReport> rep_EmpVacationLeaveReport { get; set; }
         public virtual DbSet<rep_HouseholdHighestEducationAttained> rep_HouseholdHighestEducationAttained { get; set; }
+        public virtual DbSet<rep_OfficeType> rep_OfficeType { get; set; }
         public virtual DbSet<rep_PopulationDistributionByYearByMunicipality> rep_PopulationDistributionByYearByMunicipality { get; set; }
         public virtual DbSet<vw_AccountCodes> vw_AccountCodes { get; set; }
+        public virtual DbSet<vw_AnnualInvestmentProgramProfile> vw_AnnualInvestmentProgramProfile { get; set; }
+        public virtual DbSet<vw_appUsers> vw_appUsers { get; set; }
+        public virtual DbSet<vw_AttendanceDetailDTR> vw_AttendanceDetailDTR { get; set; }
+        public virtual DbSet<vw_AttendanceDetailDTRPerCutOffPerEmployee> vw_AttendanceDetailDTRPerCutOffPerEmployee { get; set; }
+        public virtual DbSet<vw_AttendanceDetailDTRPerCutOffPerEmployee2> vw_AttendanceDetailDTRPerCutOffPerEmployee2 { get; set; }
+        public virtual DbSet<vw_AttendanceDetailDTRPerEmployee> vw_AttendanceDetailDTRPerEmployee { get; set; }
+        public virtual DbSet<vw_AttendancePerEmpOT> vw_AttendancePerEmpOT { get; set; }
         public virtual DbSet<vw_BarangayList> vw_BarangayList { get; set; }
         public virtual DbSet<vw_BDIPperMunicipality> vw_BDIPperMunicipality { get; set; }
         public virtual DbSet<vw_ByMajorBusinessOrIndustry> vw_ByMajorBusinessOrIndustry { get; set; }
@@ -151,9 +210,16 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_CornAreaProductionYield> vw_CornAreaProductionYield { get; set; }
         public virtual DbSet<vw_DepartmentUnitsList> vw_DepartmentUnitsList { get; set; }
         public virtual DbSet<vw_EducationHistory> vw_EducationHistory { get; set; }
+        public virtual DbSet<vw_EmpAppliedOT> vw_EmpAppliedOT { get; set; }
+        public virtual DbSet<vw_EmpAppliedOvertime> vw_EmpAppliedOvertime { get; set; }
         public virtual DbSet<vw_EmployeeList> vw_EmployeeList { get; set; }
+        public virtual DbSet<vw_EmployeePersonalProfile> vw_EmployeePersonalProfile { get; set; }
         public virtual DbSet<vw_EmployeeSalaryHistory> vw_EmployeeSalaryHistory { get; set; }
+        public virtual DbSet<vw_Employment> vw_Employment { get; set; }
+        public virtual DbSet<vw_Employment2> vw_Employment2 { get; set; }
         public virtual DbSet<vw_EmploymentRecord> vw_EmploymentRecord { get; set; }
+        public virtual DbSet<vw_EmpOTApplicationforApproval> vw_EmpOTApplicationforApproval { get; set; }
+        public virtual DbSet<vw_EmpOvertimeDetails> vw_EmpOvertimeDetails { get; set; }
         public virtual DbSet<vw_EstablishmentByIndustryByYear> vw_EstablishmentByIndustryByYear { get; set; }
         public virtual DbSet<vw_ExamTaken> vw_ExamTaken { get; set; }
         public virtual DbSet<vw_FamilyBackground> vw_FamilyBackground { get; set; }
@@ -180,42 +246,173 @@ namespace KalingaCMSFinal.Models
         public virtual DbSet<vw_StrategicPriorityArea> vw_StrategicPriorityArea { get; set; }
         public virtual DbSet<vw_TrainingsAttended> vw_TrainingsAttended { get; set; }
         public virtual DbSet<vw_VolunteerList> vw_VolunteerList { get; set; }
-        public virtual DbSet<vw_appUsers> vw_appUsers { get; set; }
-        public virtual DbSet<DropDown_AIPLevel1> DropDown_AIPLevel1 { get; set; }
-        public virtual DbSet<DropDown_AIPLevel2> DropDown_AIPLevel2 { get; set; }
-        public virtual DbSet<DropDown_AIPLevel3> DropDown_AIPLevel3 { get; set; }
-        public virtual DbSet<DropDown_AIPLevel4> DropDown_AIPLevel4 { get; set; }
-        public virtual DbSet<DropDown_AIPLevel5> DropDown_AIPLevel5 { get; set; }
-        public virtual DbSet<DropDown_AIPLevel6> DropDown_AIPLevel6 { get; set; }
-        public virtual DbSet<DropDown_EmpployeeList> DropDown_EmpployeeList { get; set; }
-        public virtual DbSet<DropDown_ImplementingOffice> DropDown_ImplementingOffice { get; set; }
-        public virtual DbSet<DropDown_LGULevel> DropDown_LGULevel { get; set; }
-        public virtual DbSet<DropDown_OfficeType> DropDown_OfficeType { get; set; }
-        public virtual DbSet<DropDown_StrategicPriority> DropDown_StrategicPriority { get; set; }
-        public virtual DbSet<DropDown_TypologyCode2> DropDown_TypologyCode2 { get; set; }
-        public virtual DbSet<rep_AIPLevel2> rep_AIPLevel2 { get; set; }
-        public virtual DbSet<rep_AIPLevel3> rep_AIPLevel3 { get; set; }
-        public virtual DbSet<rep_AIPLevel4> rep_AIPLevel4 { get; set; }
-        public virtual DbSet<rep_AIPLevel5> rep_AIPLevel5 { get; set; }
-        public virtual DbSet<rep_AIPLevel6> rep_AIPLevel6 { get; set; }
-        public virtual DbSet<rep_OfficeType> rep_OfficeType { get; set; }
-        public virtual DbSet<vw_AnnualInvestmentProgramProfile> vw_AnnualInvestmentProgramProfile { get; set; }
-        public virtual DbSet<vw_Employment> vw_Employment { get; set; }
-        public virtual DbSet<vw_Employment2> vw_Employment2 { get; set; }
-        public virtual DbSet<AnnualInvestmentProgram> AnnualInvestmentPrograms { get; set; }
-        public virtual DbSet<EmpEmploymentRecord> EmpEmploymentRecords { get; set; }
-        public virtual DbSet<ProjectSignatory> ProjectSignatories { get; set; }
-        public virtual DbSet<ref_AIP1stLevelSector> ref_AIP1stLevelSector { get; set; }
-        public virtual DbSet<ref_AIP2ndLevel> ref_AIP2ndLevel { get; set; }
-        public virtual DbSet<ref_AIP3rdLevel> ref_AIP3rdLevel { get; set; }
-        public virtual DbSet<ref_AIP4thLevel> ref_AIP4thLevel { get; set; }
-        public virtual DbSet<ref_AIP5thLevel> ref_AIP5thLevel { get; set; }
-        public virtual DbSet<ref_AIP6thLevel> ref_AIP6thLevel { get; set; }
-        public virtual DbSet<ref_ImplementingDept> ref_ImplementingDept { get; set; }
-        public virtual DbSet<ref_OfficeType> ref_OfficeType { get; set; }
-        public virtual DbSet<ref_LGULevel> ref_LGULevel { get; set; }
-        public virtual DbSet<DropDown_Province> DropDown_Province { get; set; }
-        public virtual DbSet<DropDown_Regions> DropDown_Regions { get; set; }
-        public virtual DbSet<EmpMasterProfile> EmpMasterProfiles { get; set; }
+        public virtual DbSet<EmpVolunteer> EmpVolunteers { get; set; }
+    
+        public virtual int SP_AttendanceDetailDTRComputeHrsWorked(Nullable<int> attendanceDetailDTRId)
+        {
+            var attendanceDetailDTRIdParameter = attendanceDetailDTRId.HasValue ?
+                new ObjectParameter("AttendanceDetailDTRId", attendanceDetailDTRId) :
+                new ObjectParameter("AttendanceDetailDTRId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AttendanceDetailDTRComputeHrsWorked", attendanceDetailDTRIdParameter);
+        }
+    
+        public virtual int SP_AttendanceDetailDTRComputeLate(Nullable<int> attendanceDetailDTRId, string in1)
+        {
+            var attendanceDetailDTRIdParameter = attendanceDetailDTRId.HasValue ?
+                new ObjectParameter("AttendanceDetailDTRId", attendanceDetailDTRId) :
+                new ObjectParameter("AttendanceDetailDTRId", typeof(int));
+    
+            var in1Parameter = in1 != null ?
+                new ObjectParameter("In1", in1) :
+                new ObjectParameter("In1", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AttendanceDetailDTRComputeLate", attendanceDetailDTRIdParameter, in1Parameter);
+        }
+    
+        public virtual int SP_AttendanceDetailDTRComputeOTHrs(Nullable<int> attendanceDetailDTRId)
+        {
+            var attendanceDetailDTRIdParameter = attendanceDetailDTRId.HasValue ?
+                new ObjectParameter("AttendanceDetailDTRId", attendanceDetailDTRId) :
+                new ObjectParameter("AttendanceDetailDTRId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AttendanceDetailDTRComputeOTHrs", attendanceDetailDTRIdParameter);
+        }
+    
+        public virtual int SP_AttendanceDetailDTRComputeUnder(Nullable<int> attendanceDetailDTRId, string out1)
+        {
+            var attendanceDetailDTRIdParameter = attendanceDetailDTRId.HasValue ?
+                new ObjectParameter("AttendanceDetailDTRId", attendanceDetailDTRId) :
+                new ObjectParameter("AttendanceDetailDTRId", typeof(int));
+    
+            var out1Parameter = out1 != null ?
+                new ObjectParameter("Out1", out1) :
+                new ObjectParameter("Out1", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_AttendanceDetailDTRComputeUnder", attendanceDetailDTRIdParameter, out1Parameter);
+        }
+    
+        public virtual int SP_CreateAttendanceDetailDTR(Nullable<int> empAttendanceMainID, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var empAttendanceMainIDParameter = empAttendanceMainID.HasValue ?
+                new ObjectParameter("empAttendanceMainID", empAttendanceMainID) :
+                new ObjectParameter("empAttendanceMainID", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CreateAttendanceDetailDTR", empAttendanceMainIDParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual int sp_InsertEmpLeave(Nullable<int> empID, Nullable<int> empAttendanceMainID, Nullable<int> attendancedetaildtrID, Nullable<int> leaveTypeID, string leaveReason, Nullable<System.DateTime> dateFiled, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, Nullable<decimal> appliedHours, Nullable<System.DateTime> approvedDate, Nullable<int> approvedBy, Nullable<bool> isApproved, Nullable<bool> isWithPay, Nullable<int> isCancelled, string remarks)
+        {
+            var empIDParameter = empID.HasValue ?
+                new ObjectParameter("empID", empID) :
+                new ObjectParameter("empID", typeof(int));
+    
+            var empAttendanceMainIDParameter = empAttendanceMainID.HasValue ?
+                new ObjectParameter("empAttendanceMainID", empAttendanceMainID) :
+                new ObjectParameter("empAttendanceMainID", typeof(int));
+    
+            var attendancedetaildtrIDParameter = attendancedetaildtrID.HasValue ?
+                new ObjectParameter("attendancedetaildtrID", attendancedetaildtrID) :
+                new ObjectParameter("attendancedetaildtrID", typeof(int));
+    
+            var leaveTypeIDParameter = leaveTypeID.HasValue ?
+                new ObjectParameter("LeaveTypeID", leaveTypeID) :
+                new ObjectParameter("LeaveTypeID", typeof(int));
+    
+            var leaveReasonParameter = leaveReason != null ?
+                new ObjectParameter("LeaveReason", leaveReason) :
+                new ObjectParameter("LeaveReason", typeof(string));
+    
+            var dateFiledParameter = dateFiled.HasValue ?
+                new ObjectParameter("DateFiled", dateFiled) :
+                new ObjectParameter("DateFiled", typeof(System.DateTime));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var appliedHoursParameter = appliedHours.HasValue ?
+                new ObjectParameter("AppliedHours", appliedHours) :
+                new ObjectParameter("AppliedHours", typeof(decimal));
+    
+            var approvedDateParameter = approvedDate.HasValue ?
+                new ObjectParameter("ApprovedDate", approvedDate) :
+                new ObjectParameter("ApprovedDate", typeof(System.DateTime));
+    
+            var approvedByParameter = approvedBy.HasValue ?
+                new ObjectParameter("ApprovedBy", approvedBy) :
+                new ObjectParameter("ApprovedBy", typeof(int));
+    
+            var isApprovedParameter = isApproved.HasValue ?
+                new ObjectParameter("IsApproved", isApproved) :
+                new ObjectParameter("IsApproved", typeof(bool));
+    
+            var isWithPayParameter = isWithPay.HasValue ?
+                new ObjectParameter("IsWithPay", isWithPay) :
+                new ObjectParameter("IsWithPay", typeof(bool));
+    
+            var isCancelledParameter = isCancelled.HasValue ?
+                new ObjectParameter("IsCancelled", isCancelled) :
+                new ObjectParameter("IsCancelled", typeof(int));
+    
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertEmpLeave", empIDParameter, empAttendanceMainIDParameter, attendancedetaildtrIDParameter, leaveTypeIDParameter, leaveReasonParameter, dateFiledParameter, startDateParameter, endDateParameter, appliedHoursParameter, approvedDateParameter, approvedByParameter, isApprovedParameter, isWithPayParameter, isCancelledParameter, remarksParameter);
+        }
+    
+        public virtual int sp_InsertAppliedLeavePerEmployee(Nullable<int> empID, Nullable<int> empAttendanceMainID, Nullable<int> attendanceDetailDTRId, Nullable<int> leaveTypeID, string leaveReason, Nullable<System.DateTime> dateFiled, Nullable<System.DateTime> dateApplied, Nullable<int> approver, Nullable<decimal> appliedHours)
+        {
+            var empIDParameter = empID.HasValue ?
+                new ObjectParameter("empID", empID) :
+                new ObjectParameter("empID", typeof(int));
+    
+            var empAttendanceMainIDParameter = empAttendanceMainID.HasValue ?
+                new ObjectParameter("empAttendanceMainID", empAttendanceMainID) :
+                new ObjectParameter("empAttendanceMainID", typeof(int));
+    
+            var attendanceDetailDTRIdParameter = attendanceDetailDTRId.HasValue ?
+                new ObjectParameter("AttendanceDetailDTRId", attendanceDetailDTRId) :
+                new ObjectParameter("AttendanceDetailDTRId", typeof(int));
+    
+            var leaveTypeIDParameter = leaveTypeID.HasValue ?
+                new ObjectParameter("LeaveTypeID", leaveTypeID) :
+                new ObjectParameter("LeaveTypeID", typeof(int));
+    
+            var leaveReasonParameter = leaveReason != null ?
+                new ObjectParameter("LeaveReason", leaveReason) :
+                new ObjectParameter("LeaveReason", typeof(string));
+    
+            var dateFiledParameter = dateFiled.HasValue ?
+                new ObjectParameter("DateFiled", dateFiled) :
+                new ObjectParameter("DateFiled", typeof(System.DateTime));
+    
+            var dateAppliedParameter = dateApplied.HasValue ?
+                new ObjectParameter("DateApplied", dateApplied) :
+                new ObjectParameter("DateApplied", typeof(System.DateTime));
+    
+            var approverParameter = approver.HasValue ?
+                new ObjectParameter("Approver", approver) :
+                new ObjectParameter("Approver", typeof(int));
+    
+            var appliedHoursParameter = appliedHours.HasValue ?
+                new ObjectParameter("AppliedHours", appliedHours) :
+                new ObjectParameter("AppliedHours", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertAppliedLeavePerEmployee", empIDParameter, empAttendanceMainIDParameter, attendanceDetailDTRIdParameter, leaveTypeIDParameter, leaveReasonParameter, dateFiledParameter, dateAppliedParameter, approverParameter, appliedHoursParameter);
+        }
     }
 }

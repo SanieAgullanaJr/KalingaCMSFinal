@@ -1,0 +1,153 @@
+﻿@model KalingaCMSFinal.Models.EmpLeaveApplication
+
+@{
+    Layout = null;
+}
+
+<div class="modal-header success">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Edit Leave Application</h4>
+</div>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "editForm", id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.empLeaveAppID)
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.empID, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.DropDownListFor(model => model.empID, ViewBag.Employees as SelectList, "--Select Employee--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.empID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.LeaveTypeID, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.DropDownListFor(model => model.LeaveTypeID, ViewBag.LeaveTypes as SelectList, "--Select Leave Type--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LeaveTypeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.LeaveReason, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.TextAreaFor(model => model.LeaveReason, new { @class = "form-control", rows = "6", cols = "10" })
+                        @Html.ValidationMessageFor(model => model.LeaveReason, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.DateFiled, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.DateFiled, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateFiled, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.AppliedHours, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.AppliedHours, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AppliedHours, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ApprovedDate, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.ApprovedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ApprovedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ApprovedBy, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.DropDownListFor(model => model.ApprovedBy, ViewBag.Supervisors as SelectList, "--Select Supervisor--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ApprovedBy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label class="checkbox-inline">
+                        @Html.CheckBoxFor(model => model.IsApproved)
+                        @Html.ValidationMessageFor(model => model.IsApproved, "", new { @class = "text-danger" })
+                        Approved
+                    </label>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="checkbox-inline">
+                        @Html.CheckBoxFor(model => model.IsWithPay)
+                        @Html.ValidationMessageFor(model => model.IsWithPay, "", new { @class = "text-danger" })
+                        With Pay
+                    </label>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="checkbox-inline">
+                        @Html.CheckBoxFor(model => model.IsCancelled)
+                        @Html.ValidationMessageFor(model => model.IsCancelled, "", new { @class = "text-danger" })
+                        Cancelled
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label " })
+                    <div>
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <input class="btn btn-primary" type="submit" value="Save" id="btnModalSubmit" />
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var form = $("#editForm")
+            .removeData("validator") /* added by the raw jquery.validate plugin */
+            .removeData("unobtrusiveValidation");  /* added by the jquery unobtrusive plugin*/
+        $.validator.unobtrusive.parse(form);
+    </script>
+}

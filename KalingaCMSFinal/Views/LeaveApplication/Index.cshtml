@@ -1,0 +1,111 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.EmpLeaveApplication>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.empID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateFiled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppliedHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsWithPay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCancelled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StampTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.empID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateFiled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppliedHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApprovedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApprovedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsWithPay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCancelled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StampTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.empLeaveAppID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.empLeaveAppID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.empLeaveAppID })
+        </td>
+    </tr>
+}
+
+</table>

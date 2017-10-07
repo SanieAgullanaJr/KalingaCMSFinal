@@ -213,7 +213,7 @@ namespace KalingaCMSFinal.Controllers
             return Json(t, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult EmployeeProfile(int EmployeeID)
+        public JsonResult EmployeeProfile(int? EmployeeID)
         {
             List<EmployeeMasterProfile> t = new List<EmployeeMasterProfile>();
             string conn = ConfigurationManager.ConnectionStrings["kalingaPPDO"].ConnectionString;
@@ -242,7 +242,7 @@ namespace KalingaCMSFinal.Controllers
                             FirstName = dr["FirstName"].ToString(),
                             MiddleName = dr["MiddleName"].ToString(),
                             LastName = dr["LastName"].ToString(),
-                            Suffix = dr["namePrefixTitleID"].ToString(),
+                            Suffix = dr["nameSuffixTitleID"].ToString(),
                             Gender = dr["GenderID"].ToString(),
                             Religion = dr["ReligionID"].ToString(),
                             Country = dr["CountryID"].ToString(),
@@ -255,7 +255,7 @@ namespace KalingaCMSFinal.Controllers
                             Region2 = dr["RegionID2"].ToString(),
                             Province2 = dr["ProvinceID2"].ToString(),
                             Municipality2 = dr["MunicipalityID2"].ToString(),
-                            Barangay2 = dr["BarangayID"].ToString(),
+                            Barangay2 = dr["BarangayID2"].ToString(),
                             Street2 = dr["Street2"].ToString(),
                             Telephone = dr["residentialPhoneNo"].ToString(),
                             Telephone2 = dr["residentialPhoneNo2"].ToString(),

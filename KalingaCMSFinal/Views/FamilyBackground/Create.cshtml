@@ -4,15 +4,12 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Family Background</h4>
+        <h2>Family Background</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
@@ -138,7 +135,7 @@
         <br />
         <div class="form-group">
             <div class="col-md-offset-5 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" id="SubmitBtn" />
             </div>
         </div>
     </div>
@@ -186,6 +183,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+            $("#SubmitBtn").on("click", function () {
+                if ($("#Item1_empID").val() == "") {
+                    alert("Search for an Employee first before saving a data!");
+                    return false;
+                };
+            });
             var table = $('#FamilyBackgroundTable').DataTable({
                 language: {
                     emptyTable: "", // 
@@ -221,7 +224,7 @@
                     $("#txtEmployeeName").empty();
                     $("#txtAgencyEmployeeNumber").empty();
                     $("#Item1_empID").empty();
-                    $("#EducationHistoryTableData").empty();
+                    table.clear().draw();
                     $.each(EmployeeFullName, function (index, data) {
                         $("#txtEmployeeName").val(data.EmployeeFullName);
                         $("#txtAgencyEmployeeNumber").val(data.EmployeeNumber);
@@ -236,18 +239,6 @@
                             var DeleteButton = '@Html.ActionLink("Delete", "Delete", new { id = "EmployeeID" }, new { @class = "modalOpener deleteModal btn btn-danger btn-sm glyphicon glyphicon-trash", @data_target = "deleteModal" })';
                             EditButton = EditButton.replace("EmployeeID", parseInt(data.empFamBGID));
                             DeleteButton = DeleteButton.replace("EmployeeID", parseInt(data.empFamBGID));
-                        $("#FamilyBackgroundTableData").append(
-                            "<tr>" +
-                            "<td>" + data.Relationship + "</td>" +
-                            "<td>" + data.FullName + "</td>" +
-                            "<td>" + data.BirthDate + "</td>" +
-                            "<td>" + data.Occupation + "</td>" +
-                            "<td>" + data.CompanyName + "</td>" +
-                            "<td>" + data.CompanyAddress + "</td>" +
-                            "<td>" + data.CompanyPhone + "</td>" +
-                            "<td>" + EditButton + "|" + DeleteButton  + "</td>" +
-                            "</tr>"
-                        );
                         BirthDate = data.BirthDate.replace(" 12:00:00 AM", "");
                         table.row.add([
                             data.Relationship,

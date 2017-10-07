@@ -192,8 +192,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AbsencesTardinessDetailsPerCutoffDateController.cs" />
+    <Compile Include="Controllers\AbsencesTardinessDetailsPerEmployeeController.cs" />
     <Compile Include="Controllers\AgricultureReportChartsController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
+    <Compile Include="Controllers\AttendanceCutOffController.cs" />
     <Compile Include="Controllers\BarangaysController.cs" />
     <Compile Include="Controllers\CertificatesAndLicensuresController.cs" />
     <Compile Include="Controllers\ClimateChangeTypologyController.cs" />
@@ -201,17 +204,23 @@
     <Compile Include="Controllers\DayTypesController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\EmployeeListController.cs" />
+    <Compile Include="Controllers\EmployeeSalaryHistoryController.cs" />
     <Compile Include="Controllers\EmploymentHistoryController.cs" />
     <Compile Include="Controllers\EmploymentStatusController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FamilyBackgroundController.cs" />
     <Compile Include="Controllers\HolidaysController.cs" />
     <Compile Include="Controllers\InfrastructureReportChartsController.cs" />
+    <Compile Include="Controllers\LeaveApplicationController.cs" />
+    <Compile Include="Controllers\LeaveApplicationsSummaryReportController.cs" />
+    <Compile Include="Controllers\LeaveCreditsMonitoringController.cs" />
     <Compile Include="Controllers\LeaveTypesController.cs" />
     <Compile Include="Controllers\LiteracyReportChartsController.cs" />
     <Compile Include="Controllers\MunicipalitiesController.cs" />
     <Compile Include="Controllers\NewProjectsController.cs" />
     <Compile Include="Controllers\OfficialCodeController.cs" />
+    <Compile Include="Controllers\OvertimeApplicationController.cs" />
     <Compile Include="Controllers\PersonnelDataSheetController.cs" />
     <Compile Include="Controllers\PopulationReportChartsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
@@ -310,6 +319,15 @@
     <Compile Include="Models\DropDown_AppUsers.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DropDown_AttendanceCutOff.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AttendanceMonth.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_AttendanceYear.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DropDown_Barangay.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -329,6 +347,9 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDown_ImplementingOffice.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DropDown_LeaveType.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDown_LGULevel.cs">
@@ -373,10 +394,16 @@
     <Compile Include="Models\DropDown_TypologyCode2.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpAttendanceDetailDTR.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmpAttendanceMain.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpCertificate.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpDTRCapture.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpEducationHistory.cs">
@@ -388,7 +415,25 @@
     <Compile Include="Models\EmpFamilyBackGround.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpLeaveApplication.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpLeaveBalance.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpLeaveCredit.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EmpMasterProfile.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpOffset.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpOffsetBalance.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmpOvertime.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpTraining.cs">
@@ -398,9 +443,6 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmpWorkHistory.cs">
-      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Emp_DTRCapture.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Emp_LeaveApplication.cs">
@@ -698,6 +740,12 @@
     <Compile Include="Models\ref_StrategicPriorityGroup.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\rep_AbsencesTardinessDetailsPerEmployee.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_AbsencesTardinessDetailsPerEmployee2.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\rep_AIPLevel2.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -713,6 +761,21 @@
     <Compile Include="Models\rep_AIPLevel6.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\rep_AttendancePerEmployee.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rep_EmpLeaveApplication.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_EmpOffsetReport.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_EmpSickLeaveReport.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rep_EmpVacationLeaveReport.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\rep_HouseholdHighestEducationAttained.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -723,6 +786,7 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\SummaryReportSelector.cs" />
     <Compile Include="Models\vw_AccountCodes.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
@@ -730,6 +794,21 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_appUsers.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AttendanceDetailDTR.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AttendanceDetailDTRPerCutOffPerEmployee.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AttendanceDetailDTRPerCutOffPerEmployee2.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AttendanceDetailDTRPerEmployee.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_AttendancePerEmpOT.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_BarangayList.cs">
@@ -759,7 +838,16 @@
     <Compile Include="Models\vw_EducationHistory.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_EmpAppliedOT.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmpAppliedOvertime.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_EmployeeList.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmployeePersonalProfile.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_EmployeeSalaryHistory.cs">
@@ -772,6 +860,12 @@
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_EmploymentRecord.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmpOTApplicationforApproval.cs">
+      <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_EmpOvertimeDetails.cs">
       <DependentUpon>KalingaPPDOEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_EstablishmentByIndustryByYear.cs">
@@ -1270,6 +1364,8 @@
     <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
     <Content Include="Scripts\DataTables\jquery.dataTables.js" />
     <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\jszip.min.js" />
+    <Content Include="Scripts\DataTables\pdfmake.min.js" />
     <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
     <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\responsive.bootstrap4.js" />
@@ -1280,6 +1376,7 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\vfs_fonts.js" />
     <Content Include="Scripts\flot\excanvas.js" />
     <Content Include="Scripts\flot\excanvas.min.js" />
     <Content Include="Scripts\flot\jquery.colorhelpers.js" />
@@ -1671,6 +1768,27 @@
     <Content Include="Views\DayTypes\Details.cshtml" />
     <Content Include="Views\DayTypes\Edit.cshtml" />
     <Content Include="Views\DayTypes\Index.cshtml" />
+    <Content Include="Views\EmployeeSalaryHistory\Index.cshtml" />
+    <Content Include="Views\EmployeeList\Index.cshtml" />
+    <Content Include="Views\LeaveApplication\Create.cshtml" />
+    <Content Include="Views\LeaveApplication\Delete.cshtml" />
+    <Content Include="Views\LeaveApplication\Details.cshtml" />
+    <Content Include="Views\LeaveApplication\Edit.cshtml" />
+    <Content Include="Views\LeaveApplication\Index.cshtml" />
+    <Content Include="Views\OvertimeApplication\Create.cshtml" />
+    <Content Include="Views\OvertimeApplication\Delete.cshtml" />
+    <Content Include="Views\OvertimeApplication\Details.cshtml" />
+    <Content Include="Views\OvertimeApplication\Edit.cshtml" />
+    <Content Include="Views\OvertimeApplication\Index.cshtml" />
+    <Content Include="Views\LeaveCreditsMonitoring\Index.cshtml" />
+    <Content Include="Views\LeaveApplicationsSummaryReport\Index.cshtml" />
+    <Content Include="Views\AbsencesTardinessDetailsPerEmployee\Index.cshtml" />
+    <Content Include="Views\AbsencesTardinessDetailsPerCutoffDate\Index.cshtml" />
+    <Content Include="Views\AttendanceCutOff\Create.cshtml" />
+    <Content Include="Views\AttendanceCutOff\Delete.cshtml" />
+    <Content Include="Views\AttendanceCutOff\Details.cshtml" />
+    <Content Include="Views\AttendanceCutOff\Edit.cshtml" />
+    <Content Include="Views\AttendanceCutOff\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

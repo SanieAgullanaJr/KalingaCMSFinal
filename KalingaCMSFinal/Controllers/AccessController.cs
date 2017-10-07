@@ -22,6 +22,7 @@ namespace KalingaCMSFinal.Views.Login
 
         public ActionResult Login()
         {
+            Session.Abandon();
             return View();
         }
 

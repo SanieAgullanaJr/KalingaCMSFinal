@@ -52,6 +52,10 @@ namespace KalingaCMSFinal.Models
         public string LandLineNo { get; set; }
         public string CellphoneNo { get; set; }
         public string EmailAddress { get; set; }
+        public string YearsInService { get; set; }
+        public string MonthsInService { get; set; }
+        public Nullable<int> RegionID { get; set; }
+        public Nullable<int> RegionID2 { get; set; }
         public Nullable<bool> IsSupervisor { get; set; }
         public Nullable<int> FirstApprover { get; set; }
         public Nullable<int> SecondApprover { get; set; }
@@ -62,11 +66,7 @@ namespace KalingaCMSFinal.Models
         public Nullable<int> PositionID { get; set; }
         public Nullable<System.DateTime> DateHired { get; set; }
         public Nullable<System.DateTime> DateResigned { get; set; }
-        public Nullable<decimal> CurrentSalary { get; set; }
         public string DisplayPicturePath { get; set; }
-        public Nullable<int> RegionID { get; set; }
-        public Nullable<int> RegionID2 { get; set; }
-        public Nullable<int> YearsInService { get; set; }
-        public Nullable<int> MonthsInService { get; set; }
+        public Nullable<decimal> CurrentSalary { get; set; }
     }
 }

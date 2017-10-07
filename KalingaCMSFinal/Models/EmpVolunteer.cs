@@ -15,7 +15,7 @@ namespace KalingaCMSFinal.Models
     public partial class EmpVolunteer
     {
         public int empVolID { get; set; }
-        public int empID { get; set; }
+        public Nullable<int> empID { get; set; }
         public string OrganizationName { get; set; }
         public string OrganizationAddress { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }

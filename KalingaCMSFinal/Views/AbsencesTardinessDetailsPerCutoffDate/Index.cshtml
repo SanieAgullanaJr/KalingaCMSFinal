@@ -1,0 +1,20 @@
+﻿@model IEnumerable<KalingaCMSFinal.Models.rep_AbsencesTardinessDetailsPerEmployee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Absences and Tardiness Details Per Cut-off</h2>
+<hr/>
+<div id="ParentDivForTable">
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#AttendanceNumber").on("change", function () {
+
+            });
+        });
+    </script>
+}

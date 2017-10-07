@@ -147,7 +147,7 @@ namespace KalingaCMSFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Prefix="Item1", Include = "empEducID,empID,EducLevelID,SchoolName,DegreeID,YearGraduated,Earned,StartDate,EndDate,Distinction")] EmpEducationHistory empEducationHistory)
+        public ActionResult Create([Bind(Prefix = "Item1", Include = "empEducID,empID,EducLevelID,SchoolName,DegreeID,YearGraduated,Earned,StartDate,EndDate,Distinction")] EmpEducationHistory empEducationHistory)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +155,6 @@ namespace KalingaCMSFinal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }
-
             return View(empEducationHistory);
         }
 

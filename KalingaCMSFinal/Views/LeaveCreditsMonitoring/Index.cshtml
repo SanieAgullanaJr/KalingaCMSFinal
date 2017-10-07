@@ -1,0 +1,124 @@
+﻿@model KalingaCMSFinal.Models.rep_EmpOffsetReport
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Leave Credits Monitoring</h2>
+<hr/>
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="empID">Employee Name</label>
+        <div>
+            @Html.DropDownListFor(model => model.empID, ViewBag.Employees as SelectList, "--Select Employee--", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<hr/>
+<table class="table table-bordered table-striped" id="LeaveCreditsMonitoringTable">
+    <thead>
+        <tr>
+            <th rowspan="2" class="TableHeader">No.</th>
+            <th colspan="2" class="TableHeader">Vacation Leave</th>
+            <th rowspan="2" class="TableHeader">No.</th>
+            <th colspan="2" class="TableHeader">Sick Leave</th>
+            <th rowspan="2" class="TableHeader">No.</th>
+            <th colspan="2" class="TableHeader">Offset</th>
+        </tr>
+        <tr>
+            <th>Date Acquired</th>
+            <th>Earned Hours</th>
+            <th>Date Acquired</th>
+            <th>Earned Hours</th>
+            <th>Date Acquired</th>
+            <th>Earned Hours</th>
+        </tr>
+    </thead>
+    <tbody id="LeaveCreditsMonitoringTableData"></tbody>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var table = $('#LeaveCreditsMonitoringTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        filename: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
+                        extend: 'excel',
+                        filename: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        title: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: function (xlsx) {
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            $('row:first c', sheet).attr('s', '42');
+                        },
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        title: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        orientation: 'landscape',
+                        title: function () { return $('#empID option:selected').text() + " | Leave Credits"; },
+                        pageSize: 'LEGAL',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+            $("#empID").on("change", function () {
+                table.clear();
+                if ($("#empID").val() != null || $("#empID").val() != "") {
+                    $.get("@Url.Action("LeaveCreditsMonitoringData", "LeaveCreditsMonitoring")", { EmployeeID: $("#empID").val() },
+                        function (VLDateAcquired) {
+                            $.each(VLDateAcquired, function (index, data) {
+                                VLDateAcquired = data.VLDateAcquired.replace(" 12:00:00 AM", "");
+                                OSDateAcquired = data.OSDateAcquired.replace(" 12:00:00 AM", "");
+                                SLDateAcquired = data.SLDateAcquired.replace(" 12:00:00 AM", "");
+                                table.row.add([
+                                    data.VLID,
+                                    VLDateAcquired,
+                                    data.VLEarnedHours,
+                                    data.SLID,
+                                    SLDateAcquired,
+                                    data.SLEarnedHours,
+                                    data.OSID,
+                                    OSDateAcquired,
+                                    data.OSEarnedHours,
+                                ]);
+                                table.draw();
+                            });
+                        });
+                }
+            });
+            });
+    </script>
+}

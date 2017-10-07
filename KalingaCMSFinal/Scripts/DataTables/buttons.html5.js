@@ -342,7 +342,17 @@ var _exportData = function ( dt, config )
 		return s;
 	};
 
-	var header = config.header ? join( data.header )+newLine : '';
+    /* ----- BEGIN changed Code ----- */
+
+    var header = '';
+    if (config.header) {
+        for (i = 0; i < data.header.length; i++) {
+            header = header + join(data.header[i]) + newLine;
+        }
+    }
+
+//  var header = config.header ? join( data.header )+newLine : '';
+    /* ----- END changed Code ----- */
 	var footer = config.footer && data.footer ? newLine+join( data.footer ) : '';
 	var body = [];
 
@@ -1145,8 +1155,13 @@ DataTable.ext.buttons.excelHtml5 = {
 		}
 
 		if ( config.header ) {
-			addRow( data.header, rowPos );
-			$('row c', rels).attr( 's', '2' ); // bold
+            /* ----- BEGIN changed Code ----- */
+            for (i = 0; i < data.header.length; i++) {
+                addRow(data.header[i]);
+                $('row c', rels).attr('s', '2'); // bold
+            }
+    /* ----- END changed Code ----- */
+			
 		}
 
 		for ( var n=0, ie=data.body.length ; n<ie ; n++ ) {

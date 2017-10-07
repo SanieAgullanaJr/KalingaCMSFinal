@@ -1,0 +1,174 @@
+﻿@model KalingaCMSFinal.Models.SummaryReportSelector
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Absences and Tardiness Per Employee</h2>
+<hr/>
+<div class="row">
+    <div class="form-group col-md-3">
+        <label for="Employee">Employee</label>
+        <div>
+            @Html.DropDownListFor(model => model.empID, ViewBag.Employees as SelectList, "--Employee Name--", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="Year">Year</label>
+        <div>
+            @Html.DropDownListFor(model => model.Year, ViewBag.Years as SelectList, "--Year--", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="Month">Month</label>
+        <div>
+            @Html.DropDownListFor(model => model.Month, new SelectList(" "), "--Month--", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="CutoffDate">Cut-off Date</label>
+        <div>
+            @Html.DropDownListFor(model => model.CutoffDate, new SelectList(" "), "--Cut-off Date--", new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped" id="PerEmployeeTable">
+    <thead>
+        <tr>
+            <th rowspan="2" class="TableHeader">Date</th>
+            <th rowspan="2" class="TableHeader">Type</th>
+            <th colspan="2" class="TableHeader">Actual Log</th>
+            <th rowspan="2" class="TableHeader">Late</th>
+            <th rowspan="2" class="TableHeader">Under Time</th>
+            <th rowspan="2" class="TableHeader">Absent</th>
+            <th rowspan="2" class="TableHeader">Leave Type</th>
+        </tr>
+        <tr>
+            <th>In</th>
+            <th>Out</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var table = $('#PerEmployeeTable').DataTable({
+                language: {
+                    emptyTable: "", //
+                    loadingRecords: "Please wait .. ",
+                    zeroRecords: ""
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        filename: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        filename: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        title: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        customize: function (xlsx) {
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            $('row:first c', sheet).attr('s', '42');
+                        },
+                    },
+                    {
+                        extend: 'pdf',
+                        filename: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL',
+                        title: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        exportOptions: {
+                            columns: ':visible'
+                        },
+                        header: true
+                    },
+                    {
+                        extend: 'print',
+                        orientation: 'landscape',
+                        title: function () { return "Absences and Tardiness Summary Report | " + $("#empID option:selected").text(); },
+                        pageSize: 'LEGAL',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    }
+                ]
+            });
+            $("#Year").on("change", function () {
+                $.get("@Url.Action("GetMonth", "AbsencesTardinessDetailsPerEmployee")", { Year: parseInt($("#Year option:selected").text()) }, function (data) {
+                    $("#Month").empty();
+                    var Month = [];
+                        $("#Month").append("<option value=''>--Month--</option>")
+                        $.each(data, function (index, row) {
+                            if (Month.indexOf(row.AttendanceMonth) == -1)
+                            {
+                                $("#Month").append("<option value='" + row.AttendanceMonth + "'>" + row.AttendanceMonth + "</option>")
+                                Month.push(row.AttendanceMonth);
+                            }
+                         });
+                    });
+            });
+            $("#Month").on("change", function () {
+                var month = $("#Month").val();
+                var MonthInNumber = 0;
+                if (month == "January") { MonthInNumber = 1; }
+                else if (month == "February") { MonthInNumber = 2; }
+                else if (month == "March") { MonthInNumber = 3; }
+                else if (month == "April") { MonthInNumber = 4; }
+                else if (month == "May") { MonthInNumber = 5; }
+                else if (month == "June") { MonthInNumber = 6; }
+                else if (month == "July") { MonthInNumber = 7; }
+                else if (month == "August") { MonthInNumber = 8; }
+                else if (month == "September") { MonthInNumber = 9; }
+                else if (month == "October") { MonthInNumber = 10; }
+                else if (month == "November") { MonthInNumber = 11; }
+                else if (month == "December") { MonthInNumber = 12; }
+                $.get("@Url.Action("GetCutoff", "AbsencesTardinessDetailsPerEmployee")", { Year: $("#Year option:selected").text(), Month: MonthInNumber }, function (data) {
+                    $("#CutoffDate").empty();
+                    $("#CutoffDate").append("<option value=''>--Cut-off Date--</option>")
+                        $.each(data, function (index, row) {
+                            $("#CutoffDate").append("<option value='" + row.empAttendanceMainID + "'>" + row.CutoffDate + "</option>")
+                         });
+                    });
+            });
+            $("#CutoffDate").on("change", function () {
+                table.clear();
+                alert($("#CutoffDate").val())
+                if ($("#CutoffDate").val() != null || $("#CutoffDate").val() != "") {
+                    $.get("@Url.Action("PerEmployee", "AbsencesTardinessDetailsPerEmployee")", { AttendanceID: parseInt($("#CutoffDate").val()), empID: parseInt($("#empID").val()) },
+                        function (AttendanceID) {
+                            $.each(AttendanceID, function (index, data) {
+                                DTRDate = data.DTRDate.replace(" 12:00:00 AM", "");
+                                table.row.add([
+                                    DTRDate,
+                                    Data.LeaveTypeCode,
+                                    data.LOGIN,
+                                    data.LOGOUT,
+                                    data.LateHrs,
+                                    data.UnderTimeHours,
+                                    data.AbsHrs,
+                                    LeaveTypeCode,
+                                ]);
+                                table.draw();
+                            });
+                        });
+                }
+            });
+        });
+    </script>
+}
